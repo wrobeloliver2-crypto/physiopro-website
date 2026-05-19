@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Physiotherapie Lübeck – PhysioPro Lübeck</title>
+<meta name="description" content="Physiotherapie, Manuelle Therapie, Lymphdrainage, Massage und Krankengymnastik am Reformer in Stockelsdorf bei Lübeck. Jetzt Rückruf anfordern.">
+<meta name="keywords" content="Physiotherapie Lübeck, Manuelle Therapie Lübeck, Lymphdrainage Lübeck, Massage Lübeck, Krankengymnastik Stockelsdorf">
+<link rel="canonical" href="https://www.physioproluebeck.de/therapie.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+  .therapie-card { background:#fff; border-radius:var(--radius); overflow:hidden; box-shadow:0 4px 20px rgba(0,0,0,.06); border:1px solid var(--beige-mid); }
+  .therapie-card img { width:100%; height:200px; object-fit:cover; display:block; }
+  .therapie-card-body { padding:1.5rem; border-top:3px solid var(--rose); }
+  .therapie-card-body h3 { font-size:1.1rem; margin-bottom:.5rem; }
+  .therapie-card-body p { font-size:.875rem; color:var(--text-mid); line-height:1.7; margin:0; }
+  .therapie-card.innovativ { background:var(--rose); }
+  .therapie-card.innovativ .therapie-card-body { border-top-color:rgba(255,255,255,.4); }
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo"><img src="logo.png" alt="PhysioPro Lübeck"></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="team.html">Team</a></li>
+      <li><a href="jobs.html">Jobs</a></li>
+      <li><a href="therapie.html" class="active">Therapie</a></li>
+      <li><a href="osteopathie.html">Osteopathie</a></li>
+      <li><a href="pilates.html">Pilates</a></li>
+      <li><a href="kontakt.html">Kontakt</a></li>
+      <li><a href="termin.html" class="nav-cta">Termin buchen</a></li>
+    </ul>
+    <button class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="index.html" onclick="toggleMenu()">Home</a>
+  <a href="team.html" onclick="toggleMenu()">Team</a>
+  <a href="jobs.html" onclick="toggleMenu()">Jobs</a>
+  <a href="therapie.html" onclick="toggleMenu()">Therapie</a>
+  <a href="osteopathie.html" onclick="toggleMenu()">Osteopathie</a>
+  <a href="pilates.html" onclick="toggleMenu()">Pilates</a>
+  <a href="kontakt.html" onclick="toggleMenu()">Kontakt</a>
+  <a href="termin.html" onclick="toggleMenu()">Termin buchen</a>
+</div>
+
+<!-- HERO -->
+<div style="background:linear-gradient(135deg,var(--rose),var(--rose-dark));padding:5rem 0 4rem;">
+  <div class="container">
+    <span style="display:inline-block;font-size:.75rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.7);background:rgba(255,255,255,.15);padding:.3rem .75rem;border-radius:100px;margin-bottom:1rem;">Physiotherapie & Heilpraktik</span>
+    <h1 style="color:#fff;font-size:clamp(2rem,5vw,3.5rem);margin-bottom:1rem;">Therapie, die<br>wirklich hilft</h1>
+    <p style="color:rgba(255,255,255,.85);font-size:1.1rem;max-width:540px;line-height:1.8;">Individuelle Behandlung von Schmerzen, Verletzungen und Bewegungseinschränkungen – von erfahrenen Therapeut:innen auf höchstem Niveau.</p>
+    <div style="display:flex;gap:1rem;margin-top:2rem;flex-wrap:wrap;">
+      <button class="btn" onclick="openRueckruf()" style="background:#fff;color:var(--rose-dark);">Rückruf anfordern</button>
+      <a class="btn" href="tel:+4945140073073" style="background:rgba(255,255,255,.15);color:#fff;border:1.5px solid rgba(255,255,255,.4);">0451 / 400 730 73</a>
+    </div>
+  </div>
+</div>
+
+<!-- LEISTUNGEN -->
+<section class="section">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-bottom:4rem;">
+      <div class="therapie-card">
+        <img src="studio-behandlung.jpg" alt="Physiotherapie">
+        <div class="therapie-card-body"><h3>Physiotherapie</h3><p>Bei Rückenschmerzen, Bandscheibenvorfällen, Gelenkproblemen, Sportverletzungen und muskulären Beschwerden.</p></div>
+      </div>
+      <div class="therapie-card">
+        <img src="foto-osteopathie.jpg" alt="Osteopathie">
+        <div class="therapie-card-body"><h3>Osteopathie</h3><p>Ganzheitliche manuelle Therapie bei Rücken- und Gelenkschmerzen, Verdauungsproblemen, Migräne und Stresssymptomen.</p></div>
+      </div>
+      <div class="therapie-card">
+        <img src="foto-lymphdrainage.jpg" alt="Lymphdrainage">
+        <div class="therapie-card-body"><h3>Manuelle Lymphdrainage</h3><p>Aktiviert das Lymphsystem, fördert den Abtransport von Flüssigkeitsansammlungen. Häufig bei Schwellungen oder nach Operationen.</p></div>
+      </div>
+      <div class="therapie-card">
+        <img src="foto-massage2.jpg" alt="Massage">
+        <div class="therapie-card-body" style="border-top-color:var(--beige);"><h3>Massage</h3><p>Löst Verspannungen, lindert Schmerzen und fördert die Durchblutung. Wirkt positiv auf chronische Schmerzen und Entspannung.</p></div>
+      </div>
+      <div class="therapie-card">
+        <img src="foto-manuelle.jpg" alt="Manuelle Therapie">
+        <div class="therapie-card-body" style="border-top-color:var(--beige);"><h3>Manuelle Therapie</h3><p>Gezielte Handgriffe und Mobilisationstechniken lösen Blockaden, mobilisieren Gelenke und regulieren Muskelspannungen.</p></div>
+      </div>
+      <div class="therapie-card innovativ">
+        <img src="foto-krankengymnastik.jpg" alt="Krankengymnastik am Reformer" style="opacity:.85;">
+        <div class="therapie-card-body">
+          <span style="font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.75);font-weight:500;">Innovativ</span>
+          <h3 style="color:#fff;">Krankengymnastik am Reformer</h3>
+          <p style="color:rgba(255,255,255,.85);">Eine der wenigen Praxen, die Pilates-Reformer für Krankengymnastik nutzen – therapeutische Präzision trifft modernes Bewegungstraining.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div style="background:var(--beige-warm);border-radius:var(--radius);padding:2.5rem 3rem;border:1px solid var(--beige-mid);display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;">
+      <div>
+        <h4 style="margin-bottom:.4rem;">Jetzt Termin vereinbaren</h4>
+        <p style="color:var(--text-mid);font-size:.95rem;">Rückruf anfordern oder direkt anrufen – auch ohne ärztliche Verordnung.</p>
+      </div>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;flex-shrink:0;">
+        <button class="btn btn-primary" onclick="openRueckruf()">Rückruf anfordern</button>
+        <a class="btn btn-outline" href="tel:+4945140073073">0451 / 400 730 73</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand"><img src="logo.png" alt="PhysioPro Lübeck" style="height:40px;filter:brightness(0) invert(1);opacity:.8;"><p style="margin-top:.75rem;">Physiotherapie, Osteopathie, Heilpraktik und Pilates in Stockelsdorf bei Lübeck.</p></div>
+      <div class="footer-col"><h4>Leistungen</h4><ul><li><a href="therapie.html">Physiotherapie</a></li><li><a href="osteopathie.html">Osteopathie</a></li><li><a href="pilates.html">Pilates</a></li><li><a href="team.html">Team</a></li><li><a href="jobs.html">Jobs</a></li></ul></div>
+      <div class="footer-col"><h4>Kontakt</h4><ul><li><a href="tel:+4945140073073">0451 / 400 730 73</a></li><li><a href="mailto:info@physioproluebeck.de">info@physioproluebeck.de</a></li><li><a href="termin.html">Termin buchen</a></li></ul></div>
+      <div class="footer-col"><h4>Öffnungszeiten</h4><ul><li><a>Mo–Do: 8–20 Uhr</a></li><li><a>Fr: 8–14 Uhr</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><p>© 2026 PhysioPro Lübeck · Hanna Wrobel</p><div style="display:flex;gap:1.5rem;"><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a></div></div>
+  </div>
+</footer>
+
+<!-- RÜCKRUF MODAL -->
+<div class="modal-overlay" id="rueckruf-overlay" onclick="if(event.target===this)closeRueckruf()">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeRueckruf()">✕</button>
+    <div class="modal-header"><h3>Rückruf anfordern</h3><p>Wir rufen Sie so schnell wie möglich zurück.</p></div>
+    <div class="modal-body">
+      <div id="rb-form">
+        <div class="form-field"><label>Name *</label><input id="rb-name" type="text" placeholder="Ihr Name"></div>
+        <div class="form-field"><label>Telefonnummer *</label><input id="rb-tel" type="tel" placeholder="0451 ..."></div>
+        <div class="form-field"><label>Wann sollen wir anrufen?</label>
+          <div class="radio-group" id="rb-prio-group">
+            <label class="radio-opt" onclick="selectRbPrio(this)"><input type="radio" name="rb-prio" value="Sofort"><span><strong>Sofort</strong> – so schnell wie möglich</span></label>
+            <label class="radio-opt" onclick="selectRbPrio(this)"><input type="radio" name="rb-prio" value="Heute noch"><span><strong>Heute noch</strong> – wenn möglich</span></label>
+            <label class="radio-opt" onclick="selectRbPrio(this)"><input type="radio" name="rb-prio" value="Keine Eile"><span><strong>Keine Eile</strong> – nächste Tage reicht</span></label>
+          </div>
+        </div>
+        <div class="dsgvo-check"><input type="checkbox" id="rb-dsgvo"><label for="rb-dsgvo">Ich stimme der Verarbeitung meiner Daten zur Kontaktaufnahme zu. *</label></div>
+        <div class="error-msg" id="rb-error"></div>
+        <button class="btn btn-primary" style="width:100%;" onclick="rueckrufSubmit()" id="rb-btn">Rückruf anfordern</button>
+      </div>
+      <div class="success-msg" id="rb-success"><div class="success-icon">✓</div><h3>Rückruf angefordert!</h3><p style="color:var(--text-mid);">Wir melden uns so schnell wie möglich.</p></div>
+    </div>
+  </div>
+</div>
+<script src="shared.js"></script>
+</body>
+</html>

@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Passt PhysioPro zu dir?</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --g:#55725e;--gd:#3d5445;--gl:#eef3f0;
+  --b:#c4b09a;--bl:#f7f0e8;--bm:#e8ddd0;
+  --t:#2c2825;--tm:#5a5450;--cr:#faf8f4;
+  --r:14px;
+  --sans:'DM Sans',system-ui,sans-serif;
+  --serif:'Cormorant Garamond',Georgia,serif;
+}
+body{font-family:var(--sans);background:var(--cr);color:var(--t);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:.5rem}
+.card{background:#fff;border-radius:20px;border:1px solid var(--bm);max-width:640px;width:100%;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,.07)}
+.hdr{background:linear-gradient(135deg,var(--g),var(--gd));padding:2.25rem 2.5rem 1.75rem;color:#fff}
+.hdr-tag{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:.6rem}
+.hdr h1{font-family:var(--serif);font-size:1.9rem;font-weight:300;line-height:1.2;margin-bottom:.4rem}
+.hdr p{font-size:.85rem;color:rgba(255,255,255,.75);line-height:1.6}
+.body{padding:2rem 2.5rem}
+
+/* STEP 1: Karten-Auswahl */
+.step-label{font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--b);margin-bottom:.5rem}
+.step-title{font-family:var(--serif);font-size:1.3rem;font-weight:300;line-height:1.3;margin-bottom:.35rem}
+.step-sub{font-size:.85rem;color:var(--tm);margin-bottom:1.5rem;line-height:1.6}
+.chips{display:flex;flex-wrap:wrap;gap:.6rem;margin-bottom:1.75rem}
+.chip{display:flex;align-items:center;gap:.5rem;padding:.55rem 1rem;border:1.5px solid var(--bm);border-radius:100px;cursor:pointer;transition:.18s;background:#fff;font-family:var(--sans);font-size:.85rem;color:var(--tm);user-select:none}
+.chip:hover{border-color:var(--g);background:var(--gl);color:var(--gd)}
+.chip.on{border-color:var(--g);background:var(--g);color:#fff}
+.chip-dot{width:8px;height:8px;border-radius:50%;border:1.5px solid currentColor;transition:.18s;flex-shrink:0}
+.chip.on .chip-dot{background:#fff;border-color:#fff}
+
+/* STEP 2: 3 kurze Fragen */
+.q-wrap{display:flex;flex-direction:column;gap:1.25rem;margin-bottom:1.75rem}
+.q-item{}
+.q-text{font-size:.9rem;font-weight:500;color:var(--t);margin-bottom:.6rem}
+.q-opts{display:flex;gap:.5rem;flex-wrap:wrap}
+.qopt{padding:.5rem 1rem;border:1.5px solid var(--bm);border-radius:100px;cursor:pointer;font-size:.82rem;color:var(--tm);background:#fff;transition:.18s;font-family:var(--sans)}
+.qopt:hover{border-color:var(--g);background:var(--gl);color:var(--gd)}
+.qopt.on{border-color:var(--g);background:var(--g);color:#fff}
+
+/* Buttons */
+.btns{display:flex;justify-content:space-between;align-items:center}
+.btn-back{background:none;border:1.5px solid var(--bm);border-radius:100px;padding:.6rem 1.25rem;font-family:var(--sans);font-size:.85rem;color:var(--tm);cursor:pointer;transition:.18s}
+.btn-back:hover{border-color:var(--tm)}
+.btn-next{background:var(--g);color:#fff;border:none;border-radius:100px;padding:.7rem 1.75rem;font-family:var(--sans);font-size:.875rem;font-weight:500;cursor:pointer;transition:.18s}
+.btn-next:hover{background:var(--gd)}
+.btn-next:disabled{opacity:.35;pointer-events:none}
+
+/* Progress dots */
+.dots{display:flex;gap:.4rem;align-items:center}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--bm);transition:.2s}
+.dot.on{background:var(--g);width:20px;border-radius:4px}
+
+/* Result */
+.res-header{text-align:center;padding:1rem 0 1.5rem}
+.res-ring{width:96px;height:96px;margin:0 auto 1rem;position:relative;display:flex;align-items:center;justify-content:center}
+.res-pct{font-family:var(--serif);font-size:2rem;font-weight:300}
+.res-title{font-family:var(--serif);font-size:1.5rem;font-weight:300;margin-bottom:.5rem}
+.res-sub{font-size:.875rem;color:var(--tm);line-height:1.75;max-width:460px;margin:0 auto}
+.res-matches{display:flex;flex-direction:column;gap:.5rem;margin:1.5rem 0}
+.res-match{display:flex;gap:.75rem;padding:.75rem 1rem;border-radius:10px;font-size:.875rem;line-height:1.5}
+.res-match.pos{background:var(--gl);color:var(--gd)}
+.res-match.neu{background:var(--bl);color:#6b5a48}
+.res-cta{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:1.5rem}
+.btn-wa{background:#25D366;color:#fff;border:none;border-radius:100px;padding:.75rem 1.75rem;font-family:var(--sans);font-size:.875rem;font-weight:500;cursor:pointer;text-decoration:none;display:inline-block;transition:.18s}
+.btn-wa:hover{background:#1da856}
+.btn-ol{background:#fff;color:var(--t);border:1.5px solid var(--bm);border-radius:100px;padding:.7rem 1.5rem;font-family:var(--sans);font-size:.875rem;cursor:pointer;transition:.18s}
+.btn-ol:hover{border-color:var(--g);color:var(--gd)}
+
+@media(max-width:480px){
+  .hdr,.body{padding-left:1.25rem;padding-right:1.25rem}
+  .hdr{padding-top:1.5rem;padding-bottom:1.25rem}
+  .hdr h1{font-size:1.45rem}
+  .hdr p{font-size:.8rem}
+  .body{padding-top:1.25rem;padding-bottom:1.25rem}
+  .card{border-radius:0;border:none;box-shadow:none}
+  .chips{gap:.4rem}
+  .chip{font-size:.78rem;padding:.45rem .8rem}
+  .step-title{font-size:1.1rem}
+  .step-sub{font-size:.8rem}
+  .q-text{font-size:.85rem}
+  .q-opts{gap:.4rem}
+  .qopt{font-size:.78rem;padding:.45rem .8rem}
+  .btn-next,.btn-back{font-size:.82rem;padding:.6rem 1.25rem}
+  .res-title{font-size:1.25rem}
+  .res-sub{font-size:.82rem}
+  .res-match{font-size:.82rem;padding:.6rem .85rem}
+  .res-cta{flex-direction:column;align-items:stretch}
+  .btn-wa,.btn-ol{text-align:center;padding:.75rem 1rem}
+  /* Wann-Grid auf Mobile 1 Spalte */
+  #ost-wann-group, div[id="ter-wann-group"]{grid-template-columns:1fr!important}
+}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="hdr">
+    <div class="hdr-tag">PhysioPro Lübeck · Arbeitgeber-Check</div>
+    <h1>Passt PhysioPro<br>zu dir?</h1>
+    <p>Wähle was dir wichtig ist – 2 kurze Schritte, ehrliches Ergebnis.</p>
+  </div>
+  <div class="body" id="body"></div>
+</div>
+
+<script>
+const priorities = [
+  { id:'flex', label:'Flexible Arbeitszeiten', match:3 },
+  { id:'family', label:'Familienfreundlich', match:3 },
+  { id:'eigen', label:'Eigenverantwortung', match:3 },
+  { id:'team', label:'Echtes Teamgefühl', match:3 },
+  { id:'gehalt', label:'Überdurchschnittliches Gehalt', match:3 },
+  { id:'modern', label:'Moderne Methoden', match:3 },
+  { id:'mentor', label:'Mentor für Einsteiger', match:3 },
+  { id:'fortbild', label:'Fortbildungsförderung', match:3 },
+  { id:'digital', label:'Digitale Praxis', match:3 },
+  { id:'benefits', label:'Extras (iPad, Dienstwagen)', match:3 },
+  { id:'fuehrung', label:'Führungsperspektive', match:2 },
+  { id:'wohnen', label:'Hilfe bei Wohnungssuche', match:2 },
+];
+
+const questions = [
+  {
+    id:'q1',
+    text:'Wie viele Tage möchtest du arbeiten?',
+    opts:[
+      {label:'1–2 Tage', score:3},
+      {label:'3–4 Tage', score:3},
+      {label:'Vollzeit 5 Tage', score:3},
+      {label:'Noch offen', score:3},
+    ]
+  },
+  {
+    id:'q2',
+    text:'Wann könntest du starten?',
+    opts:[
+      {label:'Sofort', score:3},
+      {label:'In 1–3 Monaten', score:3},
+      {label:'Später, plane voraus', score:3},
+    ]
+  },
+  {
+    id:'q3',
+    text:'Wie viel Erfahrung bringst du mit?',
+    opts:[
+      {label:'Berufseinsteiger:in', score:3},
+      {label:'Wiedereinsteiger:in', score:3},
+      {label:'Berufserfahren', score:3},
+    ]
+  }
+];
+
+let step = 1;
+let selected = new Set();
+let qAnswers = {};
+let lastPct = 0;
+
+function render() {
+  const b = document.getElementById('body');
+  if (step === 1) b.innerHTML = renderStep1();
+  else if (step === 2) b.innerHTML = renderStep2();
+  else b.innerHTML = renderResult();
+  attachEvents();
+  // Update WA links if on result
+  if (step === 3) {
+    const btns = document.querySelectorAll('#btn-send-wa, #btn-main-wa');
+    if (btns.length) {
+      const selLabels = [...selected].map(id => priorities.find(x=>x.id===id)?.label).filter(Boolean);
+      const qStr = Object.values(qAnswers).join(', ');
+      const msg = encodeURIComponent('Hallo Hanna, ich habe den Arbeitgeber-Check gemacht – meine Übereinstimmung mit PhysioPro: ' + lastPct + '%! 🎯\nMir ist wichtig: ' + selLabels.join(', ') + '.\n' + qStr + '\nIch möchte mich gerne vorstellen!');
+      const url = 'https://wa.me/4917623339367?text=' + msg;
+      btns.forEach(btn => btn.href = url);
+    }
+  }
+}
+
+function renderStep1() {
+  return `
+    <div class="step-label">Schritt 1 von 2</div>
+    <div class="step-title">Was ist dir bei einem Arbeitgeber wichtig?</div>
+    <div class="step-sub">Wähle alles was zutrifft – auch mehreres.</div>
+    <div class="chips">
+      ${priorities.map(p => `
+        <div class="chip${selected.has(p.id)?' on':''}" data-id="${p.id}">
+          <div class="chip-dot"></div>${p.label}
+        </div>`).join('')}
+    </div>
+    <div class="btns">
+      <div class="dots">
+        <div class="dot on"></div>
+        <div class="dot"></div>
+      </div>
+      <button class="btn-next" id="btn1" ${selected.size===0?'disabled':''} onclick="step=2;render()">Weiter →</button>
+    </div>`;
+}
+
+function renderStep2() {
+  return `
+    <div class="step-label">Schritt 2 von 2</div>
+    <div class="step-title">Noch 3 kurze Fragen</div>
+    <div class="step-sub">Schnell angetippt – damit wir dich besser einschätzen können.</div>
+    <div class="q-wrap">
+      ${questions.map(q => `
+        <div class="q-item">
+          <div class="q-text">${q.text}</div>
+          <div class="q-opts">
+            ${q.opts.map(o => `
+              <div class="qopt${qAnswers[q.id]===o.label?' on':''}" data-q="${q.id}" data-label="${o.label}" data-score="${o.score}">${o.label}</div>
+            `).join('')}
+          </div>
+        </div>`).join('')}
+    </div>
+    <div class="btns">
+      <div class="dots">
+        <div class="dot"></div>
+        <div class="dot on"></div>
+      </div>
+      <div style="display:flex;gap:.75rem">
+        <button class="btn-back" onclick="step=1;render()">← Zurück</button>
+        <button class="btn-next" id="btn2" ${Object.keys(qAnswers).length<3?'disabled':''} onclick="step=3;render()">Ergebnis →</button>
+      </div>
+    </div>`;
+}
+
+function renderResult() {
+  // Score berechnen
+  let score = 0, max = 0;
+  selected.forEach(id => {
+    const p = priorities.find(x => x.id === id);
+    if (p) { score += p.match; max += 3; }
+  });
+  // Fragen immer 3 Punkte (alle Optionen passen bei PhysioPro)
+  score += Object.keys(qAnswers).length * 3;
+  max += questions.length * 3;
+
+  const pct = max > 0 ? Math.round((score / max) * 100) : 0;
+  lastPct = pct;
+  const r = 40;
+  const circ = 2 * Math.PI * r;
+  const dash = circ * (pct / 100);
+
+  // Negative Chips erkennen
+  const hasNeg = false;
+  const hasGood = [...selected].some(id => (priorities.find(x=>x.id===id)||{}).match === 3);
+
+  let title, sub, color, matches;
+
+  if (pct >= 75) {
+    title = 'Sehr gute Übereinstimmung';
+    sub = 'Was dir wichtig ist, können wir dir bei PhysioPro Lübeck bieten. Komm auf einen Kaffee vorbei oder schreib Hanna direkt an.';
+    color = '#55725e';
+    matches = [
+      ...[...selected].filter(id=>(priorities.find(x=>x.id===id)||{}).match===3).slice(0,3).map(id=>({
+        type:'pos', text: '✓  ' + priorities.find(x=>x.id===id).label + ' – das bieten wir.'
+      }))
+    ];
+  } else {
+    title = 'Gute Basis';
+    sub = 'Es gibt solide Überschneidungen. Ein kurzes Gespräch mit Hanna bringt schnell Klarheit ob es wirklich passt.';
+    color = '#8c7660';
+    matches = [
+      ...[...selected].filter(id=>(priorities.find(x=>x.id===id)||{}).match>=2).slice(0,3).map(id=>({
+        type:'pos', text: '✓  ' + priorities.find(x=>x.id===id).label + ' – können wir bieten.'
+      }))
+    ];
+  }
+
+
+  return `
+    <div class="res-header">
+      <div class="res-ring">
+        <svg width="96" height="96" style="position:absolute;inset:0;transform:rotate(-90deg)">
+          <circle cx="48" cy="48" r="${r}" fill="none" stroke="#e8ddd0" stroke-width="5"/>
+          <circle cx="48" cy="48" r="${r}" fill="none" stroke="${color}" stroke-width="5"
+            stroke-dasharray="${circ.toFixed(1)}"
+            stroke-dashoffset="${(circ - dash).toFixed(1)}"
+            stroke-linecap="round"/>
+        </svg>
+        <span class="res-pct" style="color:${color}">${pct}%</span>
+      </div>
+      <div class="res-title">${title}</div>
+      <p class="res-sub">${sub}</p>
+    </div>
+    <div class="res-matches">
+      ${matches.map(m=>`<div class="res-match ${m.type}">${m.text}</div>`).join('')}
+    </div>
+    <div style="background:var(--bl);border-radius:12px;padding:1.25rem 1.5rem;margin:1.25rem 0;border:1px solid var(--bm)">
+      <div style="font-size:.82rem;font-weight:500;color:var(--t);margin-bottom:.4rem;">Ergebnisse direkt an Hanna senden?</div>
+      <div style="font-size:.8rem;color:var(--tm);margin-bottom:.9rem;line-height:1.5;">Hanna sieht dann sofort was dir wichtig ist – kein langes Erklären nötig.</div>
+      <div style="display:flex;gap:.6rem;flex-wrap:wrap">
+        <a class="btn-wa" id="btn-send-wa" href="#" target="_blank" style="font-size:.82rem;padding:.6rem 1.25rem;">Ja, per WhatsApp senden</a>
+        <button class="btn-ol" style="font-size:.82rem;padding:.55rem 1rem;" onclick="step=1;selected=new Set();qAnswers={};render()">Nochmal starten</button>
+      </div>
+    </div>
+    <div class="res-cta">
+      <a class="btn-wa" id="btn-main-wa" href="#" target="_blank">Mit Hanna sprechen</a>
+      <button class="btn-ol" onclick="window.parent.closeFinder();setTimeout(()=>{const el=window.parent.document.getElementById('bewerbung-formular');if(el)el.scrollIntoView({behavior:'smooth'})},300)">Jetzt bewerben in 3 Schritten</button>
+    </div>`;
+}
+
+function attachEvents() {
+  document.querySelectorAll('.chip').forEach(c => {
+    c.onclick = () => {
+      const id = c.dataset.id;
+      if (selected.has(id)) selected.delete(id);
+      else selected.add(id);
+      render();
+    };
+  });
+  document.querySelectorAll('.qopt').forEach(o => {
+    o.onclick = () => {
+      qAnswers[o.dataset.q] = o.dataset.label;
+      render();
+    };
+  });
+}
+
+render();
+</script>
+</body>
+</html>
