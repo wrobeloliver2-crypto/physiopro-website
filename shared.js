@@ -92,5 +92,48 @@ async function rueckrufSubmit() {
 
 // Close modal on Escape
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') closeRueckruf();
+  if (e.key === 'Escape') { closeRueckruf(); closeQA(); }
 });
+
+// Floating "Jetzt Fragen stellen" Button
+(function() {
+  const style = document.createElement('style');
+  style.textContent = `
+    #pp-float-btn {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 1500;
+      background: #2d4a3e;
+      color: #fff;
+      border: none;
+      border-radius: 50px;
+      padding: 14px 20px;
+      font-size: 15px;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      box-shadow: 0 4px 20px rgba(45,74,62,0.4);
+      transition: transform 0.2s, box-shadow 0.2s;
+      white-space: nowrap;
+    }
+    #pp-float-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 28px rgba(45,74,62,0.5);
+    }
+    #pp-float-btn svg { flex-shrink: 0; }
+    @media(max-width:640px) {
+      #pp-float-btn { bottom: 16px; right: 16px; font-size: 14px; padding: 12px 16px; }
+    }
+  `;
+  document.head.appendChild(style);
+
+  const btn = document.createElement('button');
+  btn.id = 'pp-float-btn';
+  btn.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>Jetzt Fragen stellen`;
+  btn.onclick = openQA;
+  document.body.appendChild(btn);
+})();
