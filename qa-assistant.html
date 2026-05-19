@@ -192,10 +192,10 @@ async function send() {
     exchangeCount++;
     addMsg(reply, false);
 
-    if (exchangeCount >= 3) {
+    if (exchangeCount >= 8) {
       const ctaEl = document.createElement('div');
       ctaEl.className = 'msg msg-bot';
-      ctaEl.innerHTML = 'Kann ich noch etwas für Sie tun? Oder möchten Sie direkt Kontakt aufnehmen?<div class="cta-row"><a class="cta-btn" href="kontakt.html" target="_parent">Rückruf anfordern</a><a class="cta-btn outline" href="tel:04514007307" target="_parent">Anrufen</a></div>';
+      ctaEl.innerHTML = 'Vielen Dank für Ihre vielen Fragen – das freut uns sehr! Damit wir Ihnen noch besser helfen können, würden wir Sie gerne persönlich beraten. Darf unser Team Sie kurz zurückrufen?<div class="cta-row"><a class="cta-btn" href="kontakt.html" target="_parent">Rückruf anfordern</a><a class="cta-btn outline" href="tel:04514007307" target="_parent">0451 / 400 730 73</a></div>';
       msgs.appendChild(ctaEl); msgs.scrollTop = msgs.scrollHeight;
       exchangeCount = 0;
     } else {
