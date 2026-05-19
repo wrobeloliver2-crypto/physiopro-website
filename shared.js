@@ -95,35 +95,39 @@ document.addEventListener('keydown', e => {
   if (e.key === 'Escape') { closeRueckruf(); closeQA(); }
 });
 
-// Floating "Jetzt Fragen stellen" Button
+// Floating "Jetzt Fragen stellen" Button + QA Modal auf allen Seiten
 (function() {
+  // Modal HTML einfügen falls noch nicht vorhanden
+  if (!document.getElementById('qa-overlay')) {
+    const modal = document.createElement('div');
+    modal.innerHTML = `
+      <div id="qa-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:2100;align-items:center;justify-content:center;padding:1rem;backdrop-filter:blur(4px);" onclick="if(event.target===this)closeQA()">
+        <div id="qa-modal" style="background:#fff;border-radius:20px;max-width:480px;width:100%;height:580px;overflow:hidden;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.2);">
+          <button onclick="closeQA()" style="position:absolute;top:.75rem;right:.75rem;background:rgba(0,0,0,.15);border:none;border-radius:50%;width:28px;height:28px;cursor:pointer;font-size:.9rem;color:#fff;z-index:10;display:flex;align-items:center;justify-content:center;">✕</button>
+          <iframe src="/qa-assistant.html" style="width:100%;height:100%;border:none;" frameborder="0"></iframe>
+        </div>
+      </div>
+      <style>
+        @media(max-width:640px){
+          #qa-modal { height:85vh !important; max-height:85vh !important; border-radius:20px 20px 0 0 !important; }
+          #qa-overlay { align-items:flex-end !important; padding:0 !important; }
+        }
+      </style>`;
+    document.body.appendChild(modal);
+  }
+
+  // Floating Button styles
   const style = document.createElement('style');
   style.textContent = `
     #pp-float-btn {
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      z-index: 1500;
-      background: #2d4a3e;
-      color: #fff;
-      border: none;
-      border-radius: 50px;
-      padding: 14px 20px;
-      font-size: 15px;
-      font-weight: 600;
-      font-family: inherit;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 9px;
+      position: fixed; bottom: 24px; right: 24px; z-index: 1500;
+      background: #2d4a3e; color: #fff; border: none; border-radius: 50px;
+      padding: 14px 20px; font-size: 15px; font-weight: 600; font-family: inherit;
+      cursor: pointer; display: flex; align-items: center; gap: 9px;
       box-shadow: 0 4px 20px rgba(45,74,62,0.4);
-      transition: transform 0.2s, box-shadow 0.2s;
-      white-space: nowrap;
+      transition: transform 0.2s, box-shadow 0.2s; white-space: nowrap;
     }
-    #pp-float-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 28px rgba(45,74,62,0.5);
-    }
+    #pp-float-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 28px rgba(45,74,62,0.5); }
     #pp-float-btn svg { flex-shrink: 0; }
     @media(max-width:640px) {
       #pp-float-btn { bottom: 16px; right: 16px; font-size: 14px; padding: 12px 16px; }
