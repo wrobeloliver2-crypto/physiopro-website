@@ -1,9 +1,23 @@
-/physiotherapie    /therapie.html    301
-/osteopathie       /osteopathie.html 301
-/pilates           /pilates.html     301
-/team              /team.html        301
-/kontakt           /kontakt.html     301
-/jobs              /jobs.html        301
-/impressum         /impressum.html   301
-/datenschutz       /datenschutz.html 301
-/termin            /termin.html      301
+# Clean-URL Redirects (bestehend)
+/physiotherapie    /therapie.html     301
+/osteopathie       /osteopathie.html  301
+/pilates           /pilates.html      301
+/team              /team.html         301
+/kontakt           /kontakt.html      301
+/jobs              /jobs.html         301
+/impressum         /impressum.html    301
+/datenschutz       /datenschutz.html  301
+/termin            /termin.html       301
+
+# 404-Fixes (neu)
+/offene-stellen/                           /jobs.html  301
+/offene-stellen                            /jobs.html  301
+/kursplan/                                 /           301
+/kursplan                                  /           301
+/pilates/datenschutz/                      /datenschutz.html  301
+/pilates/datenschutz                       /datenschutz.html  301
+/pilates/                                  /pilates.html      301
+
+# Umleitungsfehler-Fixes (neu)
+/job-physiotherapeut-luebeck.html          /jobs.html  301
+/ki-arbeitgeber-finder-physiotherapie.html /jobs.html  301
