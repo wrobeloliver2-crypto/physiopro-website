@@ -27,6 +27,12 @@
 /kursplan                                  /          301
 /pilates/datenschutz/                      /datenschutz 301
 /pilates/datenschutz                       /datenschutz 301
+/pilates-company/                          https://www.pilatescompany.de    301
+/pilates-company                           https://www.pilatescompany.de    301
+/ernahrungscoaching/                       /          301
+/ernahrungscoaching                        /          301
+/allgemeinen-geschaftsbedingungen/         /          301
+/allgemeinen-geschaftsbedingungen          /          301
 
 # Umleitungsfehler-Fixes
 /job-physiotherapeut-luebeck.html          /jobs      301
