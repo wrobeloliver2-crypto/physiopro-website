@@ -63,9 +63,10 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; height: var(--n
 .nav-instagram { color: var(--text-mid) !important; }
 .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
 .hamburger span { display: block; width: 24px; height: 2px; background: var(--text); border-radius: 2px; }
-.mobile-menu { display: none; position: fixed; top: var(--nav-h); left: 0; right: 0; bottom: 0; background: var(--cream); z-index: 999; flex-direction: column; align-items: center; justify-content: center; gap: 2rem; }
+.mobile-menu { display: none; position: fixed; top: var(--nav-h); left: 0; right: 0; bottom: 0; background: var(--cream); z-index: 999; flex-direction: column; align-items: center; justify-content: center; gap: 1rem; padding: 2rem 1rem; overflow-y: auto; }
 .mobile-menu.open { display: flex; }
-.mobile-menu a { font-family: var(--serif); font-size: 2rem; font-weight: 300; color: var(--text); text-decoration: none; }
+.mobile-menu a { font-family: var(--serif); font-size: 1.3rem; font-weight: 300; color: var(--text); text-decoration: none; text-align: center; width: 100%; transition: color .2s; }
+.mobile-menu a[href="termin.html"] { background: var(--green); color: #fff !important; padding: .6rem 1.5rem; border-radius: 100px; font-size: 1rem; font-weight: 500; width: auto; margin-top: .5rem; }
 
 /* ── HERO ── */
 .hero { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 4rem; padding: 3rem 2rem; max-width: 1200px; margin: 0 auto; }
