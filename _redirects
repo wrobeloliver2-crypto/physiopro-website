@@ -34,6 +34,8 @@
 /job-physiotherapeut-finder.html           /jobs      301
 
 # Neue SEO-Seiten: Clean URLs
+/wissen                               /wissen.html                                200
+/wissen/                              /wissen.html                                200
 /physiotherapie-wechseljahre-luebeck      /physiotherapie-wechseljahre-luebeck.html  200
 /physiotherapie-wechseljahre-luebeck/     /physiotherapie-wechseljahre-luebeck.html  200
 /rueckenschmerzen-buero-luebeck           /rueckenschmerzen-buero-luebeck.html        200
