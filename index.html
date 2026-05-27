@@ -97,13 +97,30 @@
   <img src="hero-startseite.jpg" alt="PhysioPro Lübeck – Empfang" style="width:100%;height:200px;object-fit:cover;object-position:center 30%;display:block;">
 </div>
 </div>
+<!-- MOBILE: Statischer Spezialisierungstext vor der Slideshow -->
+<div class="mobile-spezialisierung" style="display:none;background:var(--beige-warm);border-radius:20px;border:1px solid var(--beige-mid);padding:1.75rem;margin-bottom:1rem;">
+  <h4 style="margin-bottom:1rem;">Unsere Spezialisierung</h4>
+  <div class="hero-why-item">
+    <div class="hero-why-num" style="font-size:1.1rem;">ab 40</div>
+    <div><strong>Frauen ab 40 & Wechseljahre</strong><p>Hanna Wrobel – Physiotherapeutin seit über 20 Jahren, spezialisiert auf Frauen in den Wechseljahren. Begründerin des <em>She Regulates</em>-Ansatzes.</p></div>
+  </div>
+  <div class="hero-why-item">
+    <div class="hero-why-num" style="font-size:1.1rem;">Büro</div>
+    <div><strong>Büro, Stress & Alltagsbelastung</strong><p>Nacken, Rücken, Kiefer – die häufigsten Beschwerden der modernen Arbeitswelt. Auch ohne Wartezeit und ohne Rezept möglich.</p></div>
+  </div>
+  <div class="hero-why-item">
+    <div class="hero-why-num" style="font-size:1.1rem;">Osteo</div>
+    <div><strong>Osteopathie bei Julia Mielke</strong><p>Osteopathin & Heilpraktikerin – ganzheitlich, ursachenorientiert. Osteopathie-Check ab 26,50 €.</p></div>
+  </div>
+</div>
+
 <div style="border-radius:20px;overflow:hidden;border:1px solid var(--beige-mid);position:relative;height:460px;background:var(--beige-warm);">
 
   <!-- fixer Rahmen, Inhalt wechselt -->
   <div id="hw-container" style="position:relative;width:100%;height:100%;">
 
-    <!-- SLIDE 1: Spezialisierung -->
-    <div class="hw-slide hw-active" style="position:absolute;inset:0;padding:2rem 2.5rem;overflow:hidden;">
+    <!-- SLIDE 1: Spezialisierung – nur Desktop -->
+    <div class="hw-slide hw-active hw-slide-text" style="position:absolute;inset:0;padding:2rem 2.5rem;overflow:hidden;">
       <div style="margin-bottom:1.25rem;">
         <h4 style="margin:0;">Unsere Spezialisierung</h4>
       </div>
@@ -154,7 +171,17 @@
 
 <script>
 (function() {
-  const slides = document.querySelectorAll('.hw-slide');
+  const isMobile = window.innerWidth <= 640;
+  const allSlides = document.querySelectorAll('.hw-slide');
+  // On mobile skip the text slide, only show image slides
+  const slides = isMobile
+    ? Array.from(allSlides).filter(s => !s.classList.contains('hw-slide-text'))
+    : Array.from(allSlides);
+
+  // Set first active
+  allSlides.forEach(s => s.classList.remove('hw-active'));
+  slides[0].classList.add('hw-active');
+
   let cur = 0;
   setInterval(function() {
     slides[cur].classList.remove('hw-active');
@@ -493,6 +520,7 @@ Zu den Pilates-Kursen →
 #qa-overlay { align-items:flex-end !important; padding:0 !important; }
 .studio-banner { display:none; }
 .mobile-hero-img { display:block; }
+.mobile-spezialisierung { display:block !important; }
 .voor-wen-block { grid-template-columns: 1fr !important; }
 .voor-wen-block .block-btn-col { border-left: none !important; border-top: 1px solid var(--beige-mid); padding-top: 1rem !important; }
 .pilates-mobile-btn { display:block !important; }
