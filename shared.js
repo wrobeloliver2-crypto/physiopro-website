@@ -143,3 +143,16 @@ document.addEventListener('keydown', e => {
   btn.onclick = openQA;
   document.body.appendChild(btn);
 })();
+
+// Fliegender Anruf-Button – nur Mobile
+(function() {
+  if (window.innerWidth > 640) return;
+  var btn = document.createElement('a');
+  btn.href = 'tel:+4945140073073';
+  btn.id = 'pp-call-btn';
+  btn.setAttribute('aria-label', 'Anrufen');
+  btn.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>';
+  var style = btn.style;
+  style.cssText = 'position:fixed;bottom:5.5rem;right:1.25rem;z-index:8000;width:52px;height:52px;border-radius:50%;background:#55725e;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,.2);text-decoration:none;';
+  document.body.appendChild(btn);
+})();
