@@ -112,6 +112,11 @@
 </div>
 </div>
 
+<!-- MOBILE: Empfangsbild direkt nach Hero -->
+<div class="mobile-hero-img" style="display:none;">
+  <img src="hero-startseite.jpg" alt="PhysioPro Lübeck – Empfang" style="width:100%;height:220px;object-fit:cover;object-position:center top;display:block;">
+</div>
+
 <!-- STATS -->
 <section class="stats-bar">
 <div class="container">
@@ -393,6 +398,8 @@ Zu den Pilates-Kursen →
 @media(max-width:640px){
 #qa-modal { height:85vh !important; max-height:85vh !important; border-radius:20px 20px 0 0 !important; }
 #qa-overlay { align-items:flex-end !important; padding:0 !important; }
+.studio-banner { display:none; } /* original verstecken auf mobile */
+.mobile-hero-img { display:block !important; }
 }
 @media(max-width:900px){
 .pilates-partner-grid { grid-template-columns: 1fr !important; gap: 2rem !important; }
