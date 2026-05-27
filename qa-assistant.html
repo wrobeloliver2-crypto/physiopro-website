@@ -160,10 +160,10 @@ let history = [];
 let exchangeCount = 0;
 
 const STARTER_CHIPS = [
-  'Rückenschmerzen – was kann ich tun?',
-  'Was ist der Osteopathie-Check?',
+  'Rücken, Gelenke oder Sportverletzung – was hilft?',
+  'Stress, Kiefer oder Kopfschmerzen – was steckt dahinter?',
+  'Wechseljahre & Hormone – was kann Physiotherapie tun?',
   'Termin buchen',
-  'Welche Behandlungen gibt es?',
   'Öffnungszeiten',
   'Offene Stellen'
 ];
@@ -224,16 +224,16 @@ async function send() {
       exchangeCount = 0;
     } else {
       const l = text.toLowerCase();
-      if (l.match(/rücken|nacken|schulter|knie|hüfte|schmerz/))
-        setChips(['Termin ohne Verordnung?', 'Manuelle Therapie', 'Pilates Reformer']);
-      else if (l.match(/osteo|check|migräne|kiefer|verdauung|stress/))
-        setChips(['Check buchen · 26,50 €', 'Kassenleistung?', 'Wer ist Julia Mielke?']);
+      if (l.match(/rücken|nacken|schulter|knie|hüfte|gelenk|sport|verletzung|lymph/))
+        setChips(['Termin ohne Verordnung buchen', 'Auch ohne Rezept möglich?', 'Pilates Reformer – was ist das?']);
+      else if (l.match(/stress|kiefer|kopf|migräne|osteo|check|erschöpf|verdauung|chronisch|bildschirm/))
+        setChips(['Osteopathie-Check buchen · 26,50 €', 'Übernimmt die Kasse das?', 'Wer ist Julia Mielke?']);
+      else if (l.match(/wechsel|hormon|beckenboden|menopause|schlaf|frau|40|she regulates/))
+        setChips(['Termin bei Hanna buchen', 'Was ist She Regulates?', 'Welche Behandlungen helfen?']);
       else if (l.match(/termin|buch|wann|öffnung/))
         setChips(['Online buchen', 'Ohne Verordnung?', 'Rückruf anfordern']);
       else if (l.match(/job|stell|bewer|gehalt/))
         setChips(['Gehalt & Benefits', 'Teilzeit möglich?', 'Per WhatsApp bewerben']);
-      else if (l.match(/massage|lymph|entspannung/))
-        setChips(['Termin buchen', 'Kassenleistung?', 'Weitere Frage']);
       else
         setChips(['Termin buchen', 'Öffnungszeiten', 'Noch eine Frage']);
     }
@@ -247,7 +247,7 @@ async function send() {
 inp.addEventListener('keydown', e => { if(e.key === 'Enter') { e.preventDefault(); send(); } });
 inp.addEventListener('keyup', e => { if(e.key === 'Enter') send(); });
 window.onload = () => {
-  addMsg('Guten Tag! Ich beantworte Ihre Fragen rund um Physiotherapie, Osteopathie, Behandlungen und alles weitere zu PhysioPro Lübeck – und erkläre Ihnen ehrlich, warum wir für Ihr Anliegen die richtige Adresse sind.', false);
+  addMsg('Guten Tag! Womit kann ich Ihnen helfen? Wählen Sie ein Thema oder stellen Sie direkt Ihre Frage – ich erkläre Ihnen, was bei Ihrem Anliegen hilft und warum PhysioPro dafür die richtige Adresse ist.', false);
   setChips(STARTER_CHIPS);
 };
 </script>
