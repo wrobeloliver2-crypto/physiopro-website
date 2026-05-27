@@ -98,7 +98,7 @@
 </div>
 </div>
 <!-- MOBILE: Statischer Spezialisierungstext vor der Slideshow -->
-<div class="mobile-spezialisierung" style="display:none;background:var(--beige-warm);border-radius:20px;border:1px solid var(--beige-mid);padding:1.75rem;margin-bottom:1rem;">
+<div class="mobile-spezialisierung" style="background:var(--beige-warm);border-radius:20px;border:1px solid var(--beige-mid);padding:1.75rem;margin-bottom:1rem;">
   <h4 style="margin-bottom:1rem;">Unsere Spezialisierung</h4>
   <div class="hero-why-item">
     <div class="hero-why-num" style="font-size:1.1rem;">ab 40</div>
@@ -515,12 +515,14 @@ Zu den Pilates-Kursen →
 </div>
 <style>
 .mobile-hero-img { display:none; }
+.mobile-spezialisierung { display:none; }
 @media(max-width:640px){
 #qa-modal { height:85vh !important; max-height:85vh !important; border-radius:20px 20px 0 0 !important; }
 #qa-overlay { align-items:flex-end !important; padding:0 !important; }
 .studio-banner { display:none; }
 .mobile-hero-img { display:block; }
 .mobile-spezialisierung { display:block !important; }
+.hw-slide-text { display:none !important; opacity:0 !important; pointer-events:none !important; }
 .voor-wen-block { grid-template-columns: 1fr !important; }
 .voor-wen-block .block-btn-col { border-left: none !important; border-top: 1px solid var(--beige-mid); padding-top: 1rem !important; }
 .pilates-mobile-btn { display:block !important; }
