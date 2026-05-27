@@ -197,6 +197,7 @@
             <p style="color:#fff;font-size:.9rem;">✓ Orientierung ob Osteopathie für Ihr Anliegen sinnvoll ist</p>
           </div>
           <a class="btn" href="https://otr.md-therapie.de/hilg2Tr6OiAQy24lckW1NUkTTcyhobik" target="_blank" style="background:#fff;color:#4a3828;font-weight:500;">Osteopathie-Check buchen · 26,50 €</a>
+          <button onclick="document.getElementById('rb-modal').style.display='flex'" style="margin-top:.75rem;background:transparent;border:1.5px solid rgba(255,255,255,.6);color:#fff;padding:.75rem 1.5rem;border-radius:var(--radius);font-family:var(--sans);font-size:.9rem;cursor:pointer;width:100%;transition:.2s;" onmouseover="this.style.background='rgba(255,255,255,.15)'" onmouseout="this.style.background='transparent'">📞 Rückruf anfordern</button>
         </div>
         <div style="background:rgba(255,255,255,.12);border-radius:var(--radius);padding:2rem;border:1px solid rgba(255,255,255,.25);">
           <h4 style="color:#fff;margin-bottom:1.25rem;opacity:1;">Für wen eignet sich der Check?</h4>
@@ -300,5 +301,41 @@ async function ostSubmit() {
 <form name="osteopathie" netlify netlify-honeypot="bot-field" hidden>
   <input name="firstname"><input name="phone"><input name="email"><input name="message">
 </form>
+<!-- RÜCKRUF MODAL -->
+<div id="rb-modal" style="display:none;position:fixed;inset:0;background:rgba(30,25,20,.7);z-index:9999;align-items:center;justify-content:center;padding:24px;">
+  <div style="background:#fff;max-width:400px;width:100%;padding:36px 32px;border-radius:var(--radius);position:relative;">
+    <button onclick="document.getElementById('rb-modal').style.display='none'" style="position:absolute;top:14px;right:18px;background:none;border:none;font-size:1.5rem;cursor:pointer;color:#888;line-height:1;">×</button>
+    <p style="font-size:.72rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:#8c6a55;margin-bottom:8px;">Kostenlos & unverbindlich</p>
+    <h3 style="font-family:var(--serif);font-size:1.6rem;font-weight:400;color:var(--text-dark);margin-bottom:6px;">Rückruf anfordern</h3>
+    <p style="font-size:.85rem;line-height:1.6;color:var(--text-mid);margin-bottom:20px;">Hinterlassen Sie Ihren Namen und Ihre Nummer – wir melden uns persönlich und schnell.</p>
+    <div id="rb-form">
+      <input id="rb-name" type="text" placeholder="Ihr Name" style="width:100%;padding:11px 14px;border:1.5px solid #d9c9bc;border-radius:8px;font-family:var(--sans);font-size:.9rem;margin-bottom:10px;outline:none;box-sizing:border-box;" />
+      <input id="rb-phone" type="tel" placeholder="Ihre Telefonnummer" style="width:100%;padding:11px 14px;border:1.5px solid #d9c9bc;border-radius:8px;font-family:var(--sans);font-size:.9rem;margin-bottom:16px;outline:none;box-sizing:border-box;" />
+      <button onclick="sendeRueckruf()" style="width:100%;background:#8c6a55;color:#fff;border:none;padding:13px;border-radius:8px;font-family:var(--sans);font-weight:500;font-size:.9rem;cursor:pointer;">Jetzt Rückruf anfordern</button>
+      <p id="rb-error" style="display:none;color:#c0392b;font-size:.8rem;margin-top:8px;text-align:center;"></p>
+    </div>
+    <div id="rb-success" style="display:none;text-align:center;padding:16px 0;">
+      <div style="font-size:2.2rem;margin-bottom:10px;">✓</div>
+      <p style="font-family:var(--serif);font-size:1.2rem;color:var(--text-dark);margin-bottom:6px;">Vielen Dank!</p>
+      <p style="font-size:.85rem;color:var(--text-mid);line-height:1.6;">Wir melden uns so schnell wie möglich bei Ihnen.</p>
+    </div>
+  </div>
+</div>
+<script>
+document.getElementById('rb-modal').addEventListener('click',function(e){if(e.target===this)this.style.display='none';});
+async function sendeRueckruf(){
+  const name=document.getElementById('rb-name').value.trim();
+  const phone=document.getElementById('rb-phone').value.trim();
+  const err=document.getElementById('rb-error');
+  err.style.display='none';
+  if(!name){err.textContent='Bitte Namen eingeben.';err.style.display='block';return;}
+  if(!phone){err.textContent='Bitte Telefonnummer eingeben.';err.style.display='block';return;}
+  try{
+    const res=await hsSubmit([{name:'firstname',value:name},{name:'phone',value:phone},{name:'message',value:'Rückrufanfrage – Osteopathie-Seite'}],'osteopathie');
+    if(res.ok){document.getElementById('rb-form').style.display='none';document.getElementById('rb-success').style.display='block';}
+    else{err.textContent='Fehler. Bitte direkt anrufen: 0451 / 400 730 73';err.style.display='block';}
+  }catch(e){err.textContent='Verbindungsfehler. Bitte direkt anrufen.';err.style.display='block';}
+}
+</script>
 </body>
 </html>
