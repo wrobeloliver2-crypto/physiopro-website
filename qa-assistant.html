@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Frag uns – PhysioPro Lübeck</title>
+<title>KI-Assistent – PhysioPro Lübeck</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
@@ -26,7 +26,6 @@
   .qa-status { margin-left: auto; display: flex; align-items: center; gap: 6px; font-size: 12px; opacity: 0.8; }
   .status-dot { width: 7px; height: 7px; border-radius: 50%; background: #7ecba1; animation: pulse 2s infinite; }
   @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
-
   .qa-messages {
     flex: 1; overflow-y: auto; padding: 16px 14px;
     display: flex; flex-direction: column; gap: 10px; scroll-behavior: smooth;
@@ -55,7 +54,6 @@
   }
   .typing span:nth-child(2){animation-delay:.2s} .typing span:nth-child(3){animation-delay:.4s}
   @keyframes bounce { 0%,80%,100%{transform:translateY(0);opacity:.4} 40%{transform:translateY(-6px);opacity:1} }
-
   .chips { display: flex; flex-wrap: wrap; gap: 6px; padding: 2px 14px 8px; }
   .chip {
     background: #fff; border: 1px solid #ccc6be; border-radius: 20px;
@@ -63,7 +61,6 @@
     cursor: pointer; font-family: inherit; transition: all 0.15s; white-space: nowrap;
   }
   .chip:hover { background: #2d4a3e; color: #fff; border-color: #2d4a3e; }
-
   .qa-input-row {
     padding: 10px 14px 14px; display: flex; gap: 8px; flex-shrink: 0;
     background: #faf9f7; border-top: 1px solid #ebe7e2;
@@ -84,67 +81,75 @@
   .qa-send svg { width: 18px; height: 18px; fill: #fff; }
   .qa-send:disabled { opacity: 0.4; cursor: default; }
   .cta-row { display:flex; gap:8px; margin-top:10px; flex-wrap:wrap; }
-  .rueckruf-hint {
-    margin-top: 8px;
-    padding-top: 8px;
+  .hint {
+    margin-top: 8px; padding-top: 8px;
     border-top: 1px solid #f0ece8;
-    font-size: 12px;
-    color: #888;
+    font-size: 12px; color: #888;
   }
-  .rueckruf-hint a { color: #2d4a3e; text-decoration: none; font-weight: 500; }
-  .rueckruf-hint a:hover { text-decoration: underline; }
+  .hint a { color: #2d4a3e; text-decoration: none; font-weight: 500; }
+  .hint a:hover { text-decoration: underline; }
   .cta-btn {
     background: #2d4a3e; color: #fff; border: none; border-radius: 8px;
     padding: 8px 14px; font-size: 13px; cursor: pointer; font-family: inherit;
     text-decoration: none; display: inline-block; transition: background .15s;
   }
-  .cta-btn:hover { background: #3a5f51; }
-  .cta-btn.outline { background: transparent; color: #2d4a3e; border: 1px solid #2d4a3e; }
-  .cta-btn.outline:hover { background: #2d4a3e; color: #fff; }
+  .cta-btn.outline {
+    background: transparent; color: #2d4a3e; border: 1.5px solid #2d4a3e;
+  }
 </style>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
-
 <div class="qa-header">
-  <div class="qa-header-icon">⚕</div>
+  <div class="qa-header-icon">🌿</div>
   <div class="qa-header-text">
-    <h3>PhysioPro Lübeck</h3>
-    <p>Digitaler Assistent</p>
+    <h3>KI-Assistent PhysioPro</h3>
+    <p>Frag mich alles zu PhysioPro Lübeck</p>
   </div>
-  <div class="qa-status"><div class="status-dot"></div>Online</div>
+  <div class="qa-status">
+    <div class="status-dot"></div>
+    Online
+  </div>
 </div>
-
 <div class="qa-messages" id="msgs"></div>
 <div class="chips" id="chips"></div>
-
 <div class="qa-input-row">
-  <input class="qa-input" id="inp" type="text" placeholder="Ihre Frage …" autocomplete="off">
-  <button class="qa-send" id="sendBtn" onclick="send()">
+  <input class="qa-input" id="inp" type="text" placeholder="Deine Frage …" autocomplete="off">
+  <button class="qa-send" id="sendBtn">
     <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
   </button>
 </div>
 
 <script>
-const SYSTEM = `Du bist der freundliche digitale Assistent von PhysioPro Lübeck. Du beantwortest Fragen zu Behandlungen, Team, Preisen, Terminen, Jobs und allem rund um die Praxis. Antworte immer auf Deutsch, kurz und präzise (max. 3–4 Sätze). Verwende keine Emojis. Wenn du etwas nicht weißt, verweise ans Team: 0451 / 400 730 73 oder info@physioproluebeck.de.
+const SYSTEM = `Du bist der KI-Assistent von PhysioPro Lübeck. Deine Aufgabe ist es, Fragen rund um Gesundheit, Körper und Wohlbefinden ehrlich und kompetent zu beantworten – und dabei immer zu begründen, warum PhysioPro Lübeck für das jeweilige Anliegen die richtige Adresse ist, sofern das ehrlich zutrifft.
+
+WICHTIGE GRUNDREGELN:
+1. Bei medizinischen Notfällen (starke Brustschmerzen, Schlaganfall-Symptome, starke Atemnot, schwere Verletzungen) weise IMMER zuerst auf den Notruf 112 hin. Empfehle PhysioPro erst nach der akuten Phase zur Rehabilitation.
+2. Bei Anliegen die klar außerhalb des Leistungsspektrums liegen (z.B. Psychotherapie, Zahnmedizin, Augenprobleme) empfehle den passenden Fachbereich – und erkläre dann, ob und wie PhysioPro ergänzend helfen kann.
+3. Begründe immer konkret warum PhysioPro für das Anliegen geeignet ist – nenne die spezifische Behandlung, den Therapeuten oder den Vorteil. Keine leeren Werbeaussagen.
+4. Antworte auf Deutsch, freundlich und auf Augenhöhe. Max. 4 Sätze. Keine Emojis.
 
 ÜBER PHYSIOPRO LÜBECK:
 Gründerin: Hanna Wrobel (22 Jahre Erfahrung). Adresse: Segeberger Str. 1, 23617 Stockelsdorf bei Lübeck. Parkplätze direkt am Haus. Tel: 0451 / 400 730 73. E-Mail: info@physioproluebeck.de. Öffnungszeiten: Mo–Do 8–20 Uhr, Fr 8–14 Uhr. Online-Terminbuchung möglich, auch ohne ärztliche Verordnung.
 
 LEISTUNGEN:
-1. Physiotherapie – Schmerzen, Verletzungen, Bewegungseinschränkungen. Inkl. Krankengymnastik am Pilates-Reformer.
-2. Osteopathie – ganzheitliche manuelle Therapie bei Julia Mielke. Ohne Verordnung buchbar. Krankenkassen bezuschussen häufig. Osteopathie-Check: 20 Min. für 26,50 € – Orientierungsgespräch ob Osteopathie geeignet. Indikationen: Rückenschmerzen, Gelenkbeschwerden, Migräne, Kieferschmerzen, Stress, Verdauungsprobleme.
+1. Physiotherapie – Schmerzen, Verletzungen, Bewegungseinschränkungen, Rücken, Gelenke, post-operative Reha. Inkl. Krankengymnastik am Pilates-Reformer.
+2. Osteopathie – ganzheitliche manuelle Therapie bei Julia Mielke. Ohne Verordnung buchbar. Krankenkassen bezuschussen häufig. Osteopathie-Check: 20 Min. für 26,50 € als Orientierungsgespräch. Indikationen: Rückenschmerzen, Gelenkbeschwerden, Migräne, Kieferschmerzen, Stress, Verdauungsprobleme, Schlafprobleme.
 3. Heilpraktik – Naturheilkunde und Gesundheitscoaching (Julia Mielke).
-4. Manuelle Lymphdrainage – bei Schwellungen, nach Operationen.
-5. Massage – Verspannungen, Durchblutung, Entspannung.
-6. Manuelle Therapie – Mobilisation gegen Blockaden.
-7. Pilates – Reformer, Matte, Flying, Yoga (über Pilates Company Lübeck / pilatescompany.de, Buchung via Eversports).
+4. Manuelle Lymphdrainage – bei Schwellungen, Ödemen, nach Operationen oder Krebstherapie.
+5. Massage – Verspannungen, Durchblutungsförderung, Entspannung, Prävention.
+6. Manuelle Therapie – Mobilisation von Gelenken, Blockaden lösen.
+7. Pilates – Reformer, Matte, Flying, Yoga (über Pilates Company Lübeck, Buchung via Eversports).
 
 TEAM: Hanna Wrobel (Gründerin, Physiotherapeutin & Pilatestrainerin, WhatsApp +49 176 2333 9367), Julia Mielke (Osteopathin, Heilpraktikerin, Physiotherapeutin), Anna (Physiotherapeutin), Tuana (Physiotherapeutin & Pilatestrainerin), Maike (Physiotherapeutin & Pilatestrainerin), Annika (Front Office, ausgebildete Physio), Phillip (Physiotherapeut), Imo (Physiotherapeutin).
 
-JOBS: Physiotherapeut:innen gesucht (m/w/d), Voll- oder Teilzeit, ab sofort. Gehalt 3.500–5.500 € brutto/Monat. Flexibel 1–5 Tage/Woche. Benefits: iPad, Fortbildung, Dienstwagen auf Wunsch, kostenloser Pilates-Zugang, Hilfe bei Wohnungssuche, Führungsperspektive. Berufseinsteiger und Wiedereinstiger willkommen. Kein Anschreiben nötig – direkt per WhatsApp an Hanna (+49 176 2333 9367) oder über jobs.html bewerben.
+JOBS: Physiotherapeut:innen gesucht (m/w/d), Voll- oder Teilzeit. Gehalt 3.500–5.500 € brutto/Monat. Benefits: iPad, Fortbildung, Dienstwagen auf Wunsch, kostenloser Pilates-Zugang, Hilfe bei Wohnungssuche, Führungsperspektive. Kein Anschreiben nötig – direkt per WhatsApp an Hanna (+49 176 2333 9367).
 
-TERMIN: Online buchbar. Rückruf anfordern über Kontaktformular (kontakt.html). Tel: 0451 / 400 730 73.`;
+TERMIN: Online buchbar unter physioproluebeck.de/termin. Rückruf anfordern über Kontaktformular. Tel: 0451 / 400 730 73.
+
+BEGRÜNDUNGS-BEISPIELE (verwende dieses Muster):
+- Rückenschmerzen → "Physiotherapie ist hier die erste Wahl, weil wir gezielt die Ursache – z.B. Muskeldysbalancen oder Blockaden – behandeln. Unser Team arbeitet mit manueller Therapie und Übungen am Reformer. Einen Termin können Sie ohne Verordnung buchen."
+- Migräne → "Osteopathie kann bei Migräne sehr wirksam sein, weil Spannungen im Kiefer- und Nackenbereich häufige Auslöser sind – das ist genau Julia Mielkes Fachgebiet. Der Osteopathie-Check für 26,50 € ist ein guter erster Schritt."
+- Notfall → "Bei akuten starken Brustschmerzen rufen Sie bitte sofort den Notruf 112 an. Wenn Sie danach eine Reha oder Unterstützung beim Wiederaufbau benötigen, sind wir die richtige Adresse."`;
 
 const msgs = document.getElementById('msgs');
 const inp = document.getElementById('inp');
@@ -153,7 +158,14 @@ const chipsEl = document.getElementById('chips');
 let history = [];
 let exchangeCount = 0;
 
-const STARTER_CHIPS = ['Was ist der Osteopathie-Check?','Termin buchen','Welche Behandlungen gibt es?','Öffnungszeiten','Offene Stellen','Wie erreiche ich euch?'];
+const STARTER_CHIPS = [
+  'Rückenschmerzen – was kann ich tun?',
+  'Was ist der Osteopathie-Check?',
+  'Termin buchen',
+  'Welche Behandlungen gibt es?',
+  'Öffnungszeiten',
+  'Offene Stellen'
+];
 
 function addMsg(html, isUser) {
   const el = document.createElement('div');
@@ -192,28 +204,37 @@ async function send() {
     const res = await fetch('/.netlify/functions/chat', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ messages: history })
+      body: JSON.stringify({ messages: history, system: SYSTEM })
     });
     const data = await res.json();
     hideTyping();
     const reply = data.reply || 'Entschuldigung, ich konnte Ihre Frage nicht beantworten.';
     history.push({ role: 'assistant', content: reply });
     exchangeCount++;
-    const msgEl = addMsg(reply + '<div class="rueckruf-hint"><a href="kontakt.html" target="_parent">Rückruf anfordern</a> · <a href="tel:04514007307" target="_parent">0451 / 400 730 73</a></div>', false);
 
-    if (exchangeCount >= 8) {
+    const replyHtml = reply.replace(/\n/g, '<br>');
+    addMsg(replyHtml + '<div class="hint"><a href="/termin" target="_parent">Termin buchen</a> · <a href="tel:04514007307" target="_parent">0451 / 400 730 73</a></div>', false);
+
+    if (exchangeCount >= 6) {
       const ctaEl = document.createElement('div');
       ctaEl.className = 'msg msg-bot';
-      ctaEl.innerHTML = 'Vielen Dank für Ihre vielen Fragen – das freut uns sehr! Damit wir Ihnen noch besser helfen können, würden wir Sie gerne persönlich beraten. Darf unser Team Sie kurz zurückrufen?<div class="cta-row"><a class="cta-btn" href="kontakt.html" target="_parent">Rückruf anfordern</a><a class="cta-btn outline" href="tel:04514007307" target="_parent">0451 / 400 730 73</a></div>';
+      ctaEl.innerHTML = 'Sie haben einige Fragen gestellt – am besten besprechen wir Ihr Anliegen persönlich. Darf unser Team Sie kurz zurückrufen?<div class="cta-row"><a class="cta-btn" href="/kontakt" target="_parent">Rückruf anfordern</a><a class="cta-btn outline" href="tel:04514007307" target="_parent">Jetzt anrufen</a></div>';
       msgs.appendChild(ctaEl); msgs.scrollTop = msgs.scrollHeight;
       exchangeCount = 0;
     } else {
       const l = text.toLowerCase();
-      if (l.match(/osteo|check/)) setChips(['Check buchen · 26,50 €','Kassenleistung?','Wer ist Julia Mielke?']);
-      else if (l.match(/termin|buch/)) setChips(['Ohne Verordnung?','Öffnungszeiten','Rückruf anfordern']);
-      else if (l.match(/job|stell|bewer/)) setChips(['Gehalt?','Teilzeit möglich?','Wie bewerbe ich mich?']);
-      else if (l.match(/preis|kostet|kasse/)) setChips(['Termin buchen','Osteopathie-Check','Weitere Frage']);
-      else setChips(['Termin buchen','Öffnungszeiten','Noch eine Frage']);
+      if (l.match(/rücken|nacken|schulter|knie|hüfte|schmerz/))
+        setChips(['Termin ohne Verordnung?', 'Manuelle Therapie', 'Pilates Reformer']);
+      else if (l.match(/osteo|check|migräne|kiefer|verdauung|stress/))
+        setChips(['Check buchen · 26,50 €', 'Kassenleistung?', 'Wer ist Julia Mielke?']);
+      else if (l.match(/termin|buch|wann|öffnung/))
+        setChips(['Online buchen', 'Ohne Verordnung?', 'Rückruf anfordern']);
+      else if (l.match(/job|stell|bewer|gehalt/))
+        setChips(['Gehalt & Benefits', 'Teilzeit möglich?', 'Per WhatsApp bewerben']);
+      else if (l.match(/massage|lymph|entspannung/))
+        setChips(['Termin buchen', 'Kassenleistung?', 'Weitere Frage']);
+      else
+        setChips(['Termin buchen', 'Öffnungszeiten', 'Noch eine Frage']);
     }
   } catch(e) {
     hideTyping();
@@ -224,7 +245,7 @@ async function send() {
 
 inp.addEventListener('keydown', e => { if(e.key === 'Enter') send(); });
 window.onload = () => {
-  addMsg('Guten Tag! Ich bin der digitale Assistent von PhysioPro Lübeck. Wie kann ich Ihnen helfen?', false);
+  addMsg('Guten Tag! Ich beantworte Ihre Fragen rund um Physiotherapie, Osteopathie, Behandlungen und alles weitere zu PhysioPro Lübeck – und erkläre Ihnen ehrlich, warum wir für Ihr Anliegen die richtige Adresse sind.', false);
   setChips(STARTER_CHIPS);
 };
 </script>
