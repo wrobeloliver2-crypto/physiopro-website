@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Physiotherapie Lübeck – PhysioPro Stockelsdorf</title>
+<meta name="description" content="Physiotherapie in Lübeck & Stockelsdorf bei PhysioPro. Kurze Wartezeiten, ganzheitlicher Ansatz, online buchbar. Behandlung bei Rückenschmerzen, Arthrose, Gelenkproblemen.">
+<meta name="keywords" content="Physiotherapie Lübeck, Physiotherapeut Lübeck, Krankengymnastik Lübeck, Physiotherapie Stockelsdorf, Rückenschmerzen Lübeck, manuelle Therapie Lübeck, Lymphdrainage Lübeck, Physiotherapie ohne Rezept Lübeck">
+<link rel="canonical" href="https://www.physioproluebeck.de/physiotherapie.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+
+<!-- Schema.org -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "PhysicalTherapy",
+  "name": "PhysioPro Lübeck",
+  "url": "https://www.physioproluebeck.de",
+  "telephone": "+4945140073073",
+  "email": "info@physioproluebeck.de",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Segeberger Straße 1",
+    "addressLocality": "Stockelsdorf",
+    "postalCode": "23617",
+    "addressCountry": "DE"
+  },
+  "areaServed": ["Lübeck", "Stockelsdorf", "Bad Schwartau"],
+  "description": "Physiotherapie in Stockelsdorf, direkt an der Lübecker Stadtgrenze. Kurze Wartezeiten, ganzheitlicher Ansatz, Reformer-KGG einmalig in der Region.",
+  "medicalSpecialty": "Physiotherapy"
+}
+</script>
+
+<style>
+.physio-hero {
+  background: linear-gradient(135deg, #2c2825 0%, #3d3530 60%, #55725e 100%);
+  padding: 4rem 2rem 3.5rem;
+  text-align: center;
+  color: #faf8f4;
+}
+.physio-hero .tag { background: rgba(255,255,255,.15); color: rgba(255,255,255,.9); border: 1px solid rgba(255,255,255,.25); }
+.physio-hero h1 { color: #faf8f4; font-size: clamp(2rem,5vw,3.5rem); margin-bottom: 1rem; }
+.physio-hero p { font-size: 1.05rem; color: rgba(255,255,255,.85); max-width: 560px; margin: 0 auto 2rem; line-height: 1.8; }
+.physio-hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+.btn-white { background: #fff; color: #2c2825; border-radius: 100px; padding: .75rem 2rem; font-family: var(--sans); font-size: .875rem; font-weight: 500; text-decoration: none; transition: .2s; border: none; cursor: pointer; }
+.btn-white:hover { opacity: .9; }
+.btn-ghost { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,.5); border-radius: 100px; padding: .75rem 2rem; font-family: var(--sans); font-size: .875rem; font-weight: 500; text-decoration: none; transition: .2s; cursor: pointer; }
+.btn-ghost:hover { background: rgba(255,255,255,.1); border-color: #fff; }
+
+.usp-strip {
+  background: var(--beige-warm);
+  border-bottom: 1px solid var(--beige-mid);
+  padding: 1.75rem 2rem;
+}
+.usp-strip-inner {
+  max-width: 900px; margin: 0 auto;
+  display: grid; grid-template-columns: repeat(4,1fr); gap: 1rem; text-align: center;
+}
+@media(max-width:600px){ .usp-strip-inner { grid-template-columns: repeat(2,1fr); } }
+.usp-strip-item strong { display: block; font-family: var(--serif); font-size: 1.4rem; font-weight: 300; color: #55725e; margin-bottom: .2rem; }
+.usp-strip-item span { font-size: .8rem; color: var(--text-mid); line-height: 1.4; }
+
+.leistungen-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); gap: 1.25rem;
+}
+.leistung-card {
+  background: #fff; border-radius: var(--radius); padding: 1.75rem 1.5rem;
+  border: 1px solid var(--beige-mid); transition: box-shadow .2s;
+}
+.leistung-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,.07); }
+.leistung-card h3 { font-size: 1.2rem; margin-bottom: .6rem; color: var(--text); }
+.leistung-card p { font-size: .875rem; color: var(--text-mid); line-height: 1.7; }
+.leistung-icon { font-size: 1.5rem; margin-bottom: .75rem; }
+
+.atmosphaere {
+  background: linear-gradient(135deg, #55725e, #3d5447);
+  color: #faf8f4; padding: 4rem 2rem; text-align: center;
+}
+.atmosphaere h2 { color: #faf8f4; margin-bottom: 1rem; }
+.atmosphaere p { color: rgba(255,255,255,.85); max-width: 640px; margin: 0 auto .8rem; font-size: 1rem; line-height: 1.8; }
+
+.zielgruppe-card {
+  background: #fff; border-radius: var(--radius); padding: 1.25rem 1.5rem;
+  border: 1px solid var(--beige-mid); display: flex; align-items: flex-start; gap: .75rem;
+}
+.zielgruppe-card::before { content: '✓'; color: #55725e; font-weight: 700; flex-shrink: 0; margin-top: .1rem; }
+.zielgruppe-card p { font-size: .875rem; color: var(--text-mid); line-height: 1.5; margin: 0; }
+.zielgruppe-card strong { color: var(--text); display: block; margin-bottom: .2rem; }
+
+.ablauf-step {
+  display: grid; grid-template-columns: 48px 1fr; gap: 1.25rem;
+  padding: 1.5rem 0; border-bottom: 1px solid var(--beige-mid);
+}
+.ablauf-step:last-child { border-bottom: none; }
+.ablauf-num { font-family: var(--serif); font-size: 1.8rem; font-weight: 300; color: #55725e; line-height: 1; }
+.ablauf-step h3 { font-size: 1.1rem; margin-bottom: .4rem; }
+.ablauf-step p { font-size: .875rem; color: var(--text-mid); line-height: 1.7; margin: 0; }
+
+.pilates-bridge {
+  background: var(--beige-warm); border: 1px solid var(--beige-mid);
+  border-radius: var(--radius); padding: 2.5rem; margin-top: 3rem;
+  display: grid; grid-template-columns: 1fr auto; gap: 2rem; align-items: center;
+}
+@media(max-width:600px){ .pilates-bridge { grid-template-columns: 1fr; } }
+.pilates-bridge h3 { font-size: 1.4rem; margin-bottom: .5rem; }
+.pilates-bridge p { font-size: .875rem; color: var(--text-mid); line-height: 1.7; margin: 0; }
+
+.cta-final {
+  background: #2c2825; color: #faf8f4; padding: 4rem 2rem; text-align: center;
+}
+.cta-final h2 { color: #faf8f4; margin-bottom: .75rem; }
+.cta-final p { color: rgba(255,255,255,.75); max-width: 480px; margin: 0 auto 2rem; font-size: .95rem; line-height: 1.8; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo"><img src="logo.png" alt="PhysioPro Lübeck"></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="team.html">Team</a></li>
+      <li><a href="jobs.html">Jobs</a></li>
+      <li><a href="therapie.html" class="active">Therapie</a></li>
+      <li><a href="osteopathie.html">Osteopathie</a></li>
+      <li><a href="pilates.html">Pilates</a></li>
+      <li><a href="kontakt.html">Kontakt</a></li>
+      <li><a href="termin.html" class="nav-cta">Termin buchen</a></li>
+    </ul>
+    <button class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="index.html" onclick="toggleMenu()">Home</a>
+  <a href="team.html" onclick="toggleMenu()">Team</a>
+  <a href="jobs.html" onclick="toggleMenu()">Jobs</a>
+  <a href="therapie.html" onclick="toggleMenu()">Therapie</a>
+  <a href="osteopathie.html" onclick="toggleMenu()">Osteopathie</a>
+  <a href="pilates.html" onclick="toggleMenu()">Pilates</a>
+  <a href="kontakt.html" onclick="toggleMenu()">Kontakt</a>
+  <a href="termin.html" onclick="toggleMenu()">Termin buchen</a>
+</div>
+
+<!-- HERO -->
+<div class="physio-hero">
+  <span class="tag" style="margin-bottom:1rem;display:inline-block;">Stockelsdorf · direkt an der Lübecker Stadtgrenze</span>
+  <h1>Physiotherapie Lübeck –<br>persönlich, ganzheitlich, wirksam</h1>
+  <p>Individuelle Behandlung bei Schmerzen, Bewegungseinschränkungen und Verletzungen. Kurze Wartezeiten, ein harmonisches Umfeld – und ein Team, das auch nach der Therapie für Sie da ist.</p>
+  <div class="physio-hero-btns">
+    <a href="termin.html" class="btn-white">Termin online buchen</a>
+    <button onclick="openRueckruf()" class="btn-ghost">📞 Rückruf anfordern</button>
+  </div>
+</div>
+
+<!-- USP STRIP -->
+<div class="usp-strip">
+  <div class="usp-strip-inner">
+    <div class="usp-strip-item"><strong>Kurz</strong><span>Wartezeiten – kurzfristig buchbar</span></div>
+    <div class="usp-strip-item"><strong>Wohl</strong><span>fühlen als Teil der Therapie</span></div>
+    <div class="usp-strip-item"><strong>Ohne</strong><span>Rezept direkt buchbar</span></div>
+    <div class="usp-strip-item"><strong>Danach</strong><span>weiter begleitet – via Pilates Company</span></div>
+  </div>
+</div>
+
+<!-- LEISTUNGEN -->
+<section class="container" style="padding:4rem 2rem;">
+  <h4>Was wir behandeln</h4>
+  <h2 style="margin-bottom:2.5rem;">Physiotherapeutische Leistungen</h2>
+  <div class="leistungen-grid">
+    <div class="leistung-card">
+      <div class="leistung-icon">🦴</div>
+      <h3>Krankengymnastik</h3>
+      <p>Gezielte Übungstherapie bei Rückenschmerzen, Bandscheibenproblemen, Hüft- und Kniebeschwerden sowie nach Operationen – abgestimmt auf Ihren Körper und Alltag.</p>
+    </div>
+    <div class="leistung-card">
+      <div class="leistung-icon">🤲</div>
+      <h3>Manuelle Therapie</h3>
+      <p>Gelenkmobilisation und Weichteiltechniken bei Verspannungen, Blockaden und eingeschränkter Beweglichkeit in Wirbelsäule, Schulter, Hüfte und Knie.</p>
+    </div>
+    <div class="leistung-card">
+      <div class="leistung-icon">💧</div>
+      <h3>Lymphdrainage</h3>
+      <p>Sanfte Entstauungstherapie bei Schwellungen und Ödemen – fördert den natürlichen Lymphfluss und unterstützt die Regeneration nach Operationen.</p>
+    </div>
+    <div class="leistung-card" style="border-color:#55725e; background:linear-gradient(135deg,#f0f4f1,#fff);">
+      <div class="leistung-icon">🏋️</div>
+      <h3>KGG am Pilates-Reformer</h3>
+      <p>Innovativer Ansatz: Krankengymnastik am Gerät (Reformer) – einmalig in der Region. Ideal zur Rehabilitation und Kräftigung bei Rücken- und Gelenkproblemen.</p>
+    </div>
+    <div class="leistung-card">
+      <div class="leistung-icon">🦷</div>
+      <h3>Kiefergelenksbehandlung</h3>
+      <p>Spezialisierte Therapie bei CMD, Zähneknirschen und damit verbundenen Kopf- und Nackenbeschwerden.</p>
+    </div>
+    <div class="leistung-card">
+      <div class="leistung-icon">⚡</div>
+      <h3>Elektrotherapie & Ultraschall</h3>
+      <p>Physikalische Verfahren zur Schmerzlinderung und Förderung der Durchblutung – ergänzend zur manuellen Behandlung eingesetzt.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ATMOSPHÄRE -->
+<div class="atmosphaere">
+  <div class="container">
+    <h4 style="color:rgba(255,255,255,.6);">Unsere Philosophie</h4>
+    <h2>Gesund werden beginnt mit dem richtigen Gefühl</h2>
+    <p>Wer sich nicht wohlfühlt, kann nicht richtig gesunden. Bei PhysioPro ist die Atmosphäre kein Zufall – sie ist Teil des Konzepts. Unsere Praxis ist modern, ruhig und herzlich. Vom ersten Schritt an spüren Sie: Hier bin ich richtig.</p>
+    <p>Ein entspannter Geist lässt den Körper los. Verspannungen lösen sich leichter, Therapie wirkt tiefer. Das ist keine Floskel – das erleben unsere Patienten täglich.</p>
+  </div>
+</div>
+
+<!-- ZIELGRUPPE -->
+<section class="container" style="padding:4rem 2rem;">
+  <h4>Besonders für</h4>
+  <h2 style="margin-bottom:.75rem;">Ältere Menschen & Senioren</h2>
+  <p style="color:var(--text-mid);max-width:640px;margin-bottom:2rem;font-size:.95rem;line-height:1.8;">Mit zunehmendem Alter verändern sich Muskulatur, Gelenke und Gleichgewicht. Wir behandeln diese Beschwerden ruhig, geduldig und mit viel Erfahrung – damit Sie so lange wie möglich selbstständig und aktiv bleiben.</p>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;">
+    <div class="zielgruppe-card"><p><strong>Rückenschmerzen & Bandscheibe</strong>Gezielte Therapie bei akuten und chronischen Beschwerden.</p></div>
+    <div class="zielgruppe-card"><p><strong>Arthrose in Hüfte, Knie & Schulter</strong>Beweglichkeit erhalten und Schmerzen dauerhaft reduzieren.</p></div>
+    <div class="zielgruppe-card"><p><strong>Gleichgewicht & Sturzprävention</strong>Sicherheit im Alltag durch gezieltes Koordinationstraining.</p></div>
+    <div class="zielgruppe-card"><p><strong>Rehabilitation nach OP</strong>Hüft-TEP, Knie-TEP – schrittweise zurück in Bewegung.</p></div>
+    <div class="zielgruppe-card"><p><strong>Nachlassende Kraft & Mobilität</strong>Muskelaufbau und Beweglichkeitstraining altersgerecht.</p></div>
+    <div class="zielgruppe-card"><p><strong>Schlaganfall & Parkinson</strong>Neurologische Rehabilitation mit Geduld und Expertise.</p></div>
+  </div>
+</section>
+
+<!-- ABLAUF -->
+<section style="background:var(--beige-warm);padding:4rem 2rem;">
+  <div class="container" style="max-width:720px;">
+    <h4>So läuft es ab</h4>
+    <h2 style="margin-bottom:2rem;">Von der Anfrage zur Behandlung</h2>
+    <div>
+      <div class="ablauf-step">
+        <div class="ablauf-num">01</div>
+        <div><h3>Termin buchen – ohne Wartezeit am Telefon</h3><p>Online oder per WhatsApp. Kein Warten in der Leitung. Auch ohne Rezept möglich.</p></div>
+      </div>
+      <div class="ablauf-step">
+        <div class="ablauf-num">02</div>
+        <div><h3>Erstbefundung & Anamnese</h3><p>Wir nehmen uns Zeit: Wo sind die Beschwerden? Was macht es besser oder schlechter? Was ist Ihr Ziel?</p></div>
+      </div>
+      <div class="ablauf-step">
+        <div class="ablauf-num">03</div>
+        <div><h3>Individueller Behandlungsplan</h3><p>Abgestimmt auf Ihren Körper, Ihren Alltag und Ihre Ziele – kein Schema F.</p></div>
+      </div>
+      <div class="ablauf-step">
+        <div class="ablauf-num">04</div>
+        <div><h3>Behandlung & ehrliche Begleitung</h3><p>Jede Einheit ist individuell. Wir erklären was wir tun, passen die Therapie laufend an – und sind auch für Fragen da.</p></div>
+      </div>
+      <div class="ablauf-step">
+        <div class="ablauf-num">05</div>
+        <div>
+          <h3>Langfristig gesund bleiben – via Pilates Company</h3>
+          <p>Nach der Therapie muss kein Schlussstrich gezogen werden. Über die <a href="https://www.pilatescompany.de" target="_blank" style="color:#55725e;">Pilates Company Lübeck</a> bleiben Sie in unserer Nähe: Reformer-Kurse, ein Team das Sie kennt, und Bewegung die auf Ihren Körper abgestimmt ist.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<div class="cta-final">
+  <div class="container">
+    <h2>Jetzt Termin vereinbaren</h2>
+    <p>Schmerzen müssen nicht der Normalzustand sein. Wir helfen Ihnen – schnell, persönlich und ohne Umwege.</p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+      <a href="termin.html" class="btn-white">Online buchen</a>
+      <button onclick="openRueckruf()" class="btn-ghost">Rückruf anfordern</button>
+    </div>
+  </div>
+</div>
+
+<!-- ADRESSE -->
+<div style="background:#1e1a17;color:rgba(250,248,244,.6);text-align:center;padding:2rem 1rem;font-size:.85rem;line-height:1.8;">
+  <strong style="color:#faf8f4;">PhysioPro Lübeck</strong><br>
+  Segeberger Straße 1 · 23617 Stockelsdorf · (direkt an der Lübecker Stadtgrenze)<br>
+  <a href="mailto:info@physioproluebeck.de" style="color:#8fb898;">info@physioproluebeck.de</a>
+</div>
+
+<!-- RÜCKRUF MODAL (aus shared.js) -->
+<div class="modal-overlay" id="rueckruf-overlay" onclick="if(event.target===this)closeRueckruf()">
+<div class="modal-box">
+<button class="modal-close" onclick="closeRueckruf()">✕</button>
+<div class="modal-header">
+<h3>Rückruf anfordern</h3>
+<p>Wir rufen Sie so schnell wie möglich zurück.</p>
+</div>
+<div class="modal-body">
+<div id="rb-form">
+<div class="form-field"><label>Name *</label><input id="rb-name" type="text" placeholder="Ihr Name"></div>
+<div class="form-field"><label>Telefonnummer *</label><input id="rb-tel" type="tel" placeholder="0451 ..."></div>
+<div class="form-field">
+<label>Worum geht es?</label>
+<div style="display:flex;flex-wrap:wrap;gap:.4rem;" id="rb-thema-group">
+<button type="button" onclick="selectRbThema(this,'Termin vereinbaren')" style="padding:.45rem .9rem;border:1.5px solid var(--beige-mid);border-radius:100px;background:#fff;font-family:var(--sans);font-size:.8rem;cursor:pointer;transition:.2s;color:var(--text-mid);">Termin vereinbaren</button>
+<button type="button" onclick="selectRbThema(this,'Frage zur Behandlung')" style="padding:.45rem .9rem;border:1.5px solid var(--beige-mid);border-radius:100px;background:#fff;font-family:var(--sans);font-size:.8rem;cursor:pointer;transition:.2s;color:var(--text-mid);">Frage zur Behandlung</button>
+<button type="button" onclick="selectRbThema(this,'Physiotherapie')" style="padding:.45rem .9rem;border:1.5px solid var(--beige-mid);border-radius:100px;background:#fff;font-family:var(--sans);font-size:.8rem;cursor:pointer;transition:.2s;color:var(--text-mid);">Physiotherapie</button>
+<button type="button" onclick="selectRbThema(this,'Sonstiges')" style="padding:.45rem .9rem;border:1.5px solid var(--beige-mid);border-radius:100px;background:#fff;font-family:var(--sans);font-size:.8rem;cursor:pointer;transition:.2s;color:var(--text-mid);">Sonstiges</button>
+</div>
+<input type="hidden" id="rb-thema" value="">
+</div>
+<div class="form-field">
+<label>Wann sollen wir anrufen?</label>
+<div class="radio-group" id="rb-prio-group">
+<label class="radio-opt" onclick="selectRbPrio(this)"><input type="radio" name="rb-prio" value="Sofort – so schnell wie möglich"><span><strong>Sofort</strong> – so schnell wie möglich</span></label>
+<label class="radio-opt" onclick="selectRbPrio(this)"><input type="radio" name="rb-prio" value="Heute noch – wenn möglich"><span><strong>Heute noch</strong> – wenn möglich</span></label>
+<label class="radio-opt" onclick="selectRbPrio(this)"><input type="radio" name="rb-prio" value="Keine Eile – nächste Tage reicht"><span><strong>Keine Eile</strong> – nächste Tage reicht</span></label>
+</div>
+</div>
+<div class="dsgvo-check"><input type="checkbox" id="rb-dsgvo"><label for="rb-dsgvo">Ich stimme der Verarbeitung meiner Daten zur Kontaktaufnahme zu. *</label></div>
+<div class="error-msg" id="rb-error"></div>
+<button class="btn btn-primary" style="width:100%;" onclick="rueckrufSubmit()" id="rb-btn">Rückruf anfordern</button>
+</div>
+<div class="success-msg" id="rb-success">
+<div class="success-icon">✓</div>
+<h3 style="margin-bottom:.4rem;">Rückruf angefordert!</h3>
+<p style="color:var(--text-mid);font-size:.875rem;">Wir melden uns so schnell wie möglich bei Ihnen.</p>
+</div>
+</div>
+</div>
+</div>
+
+<script src="shared.js"></script>
+<form name="rueckruf" netlify netlify-honeypot="bot-field" hidden>
+  <input name="firstname"><input name="phone"><input name="email"><input name="message">
+</form>
+
+</body>
+</html>
