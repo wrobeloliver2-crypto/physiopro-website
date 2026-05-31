@@ -35,9 +35,9 @@
 /allgemeinen-geschaftsbedingungen          /          301
 
 # Umleitungsfehler-Fixes
-/job-physiotherapeut-luebeck.html          /jobs      301
-/ki-arbeitgeber-finder-physiotherapie.html /jobs      301
-/job-physiotherapeut-finder.html           /jobs      301
+/job-physiotherapeut-luebeck.html          /jobs.html      301
+/ki-arbeitgeber-finder-physiotherapie.html /jobs.html      301
+/job-physiotherapeut-finder.html           /jobs.html      301
 
 # Neue SEO-Seiten: Clean URLs
 /wissen                               /wissen.html                                200
