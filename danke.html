@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vielen Dank – PhysioPro Lübeck</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" href="favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    .danke-section {
+      min-height: calc(100vh - var(--nav-h) - 200px);
+      display: flex;
+      align-items: center;
+      padding: 5rem 0;
+    }
+
+    .danke-card {
+      max-width: 680px;
+      margin: 0 auto;
+      text-align: center;
+      padding: 0 2rem;
+    }
+
+    .danke-icon {
+      width: 80px;
+      height: 80px;
+      background: var(--rose-light);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 2rem;
+      animation: scaleIn .5s ease;
+    }
+
+    .danke-icon svg {
+      width: 36px;
+      height: 36px;
+      stroke: var(--rose);
+    }
+
+    @keyframes scaleIn {
+      from { transform: scale(0.6); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .danke-card h1 {
+      margin-bottom: 1rem;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      animation: fadeUp .5s ease .1s both;
+    }
+
+    .danke-card .lead {
+      font-size: 1.1rem;
+      color: var(--text-mid);
+      line-height: 1.8;
+      margin-bottom: 3rem;
+      animation: fadeUp .5s ease .2s both;
+    }
+
+    @keyframes fadeUp {
+      from { transform: translateY(16px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .danke-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      background: var(--beige-warm);
+      border: 1px solid var(--beige-mid);
+      border-radius: 20px;
+      padding: 2rem 2.5rem;
+      text-align: left;
+      margin-bottom: 2.5rem;
+      animation: fadeUp .5s ease .3s both;
+    }
+
+    .danke-step {
+      display: flex;
+      gap: 1.25rem;
+      align-items: flex-start;
+      padding: 1.25rem 0;
+      border-bottom: 1px solid var(--beige-mid);
+    }
+
+    .danke-step:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .danke-step:first-child {
+      padding-top: 0;
+    }
+
+    .step-num {
+      width: 32px;
+      height: 32px;
+      min-width: 32px;
+      background: var(--rose);
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--serif);
+      font-size: 1rem;
+      font-weight: 400;
+      margin-top: 2px;
+    }
+
+    .step-text strong {
+      display: block;
+      font-family: var(--sans);
+      font-weight: 500;
+      font-size: .95rem;
+      color: var(--text);
+      margin-bottom: .25rem;
+    }
+
+    .step-text span {
+      font-size: .9rem;
+      color: var(--text-mid);
+      line-height: 1.6;
+    }
+
+    .danke-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: fadeUp .5s ease .4s both;
+    }
+
+    @media (max-width: 600px) {
+      .danke-steps { padding: 1.5rem; }
+      .danke-actions .btn { width: 100%; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<nav><div class="nav-inner">
+  <a href="index.html" class="logo"><img src="logo.png" alt="PhysioPro Lübeck"></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="team.html">Team</a></li>
+    <li><a href="jobs.html">Jobs</a></li>
+    <li><a href="therapie.html">Therapie</a></li>
+    <li><a href="osteopathie.html">Osteopathie</a></li>
+    <li><a href="pilates.html">Pilates</a></li>
+    <li><a href="kontakt.html">Kontakt</a></li>
+    <li><a href="termin.html" class="nav-cta">Termin buchen</a></li>
+  </ul>
+  <button class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+</div></nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" onclick="toggleMenu()">Home</a>
+  <a href="team.html" onclick="toggleMenu()">Team</a>
+  <a href="jobs.html" onclick="toggleMenu()">Jobs</a>
+  <a href="therapie.html" onclick="toggleMenu()">Therapie</a>
+  <a href="osteopathie.html" onclick="toggleMenu()">Osteopathie</a>
+  <a href="pilates.html" onclick="toggleMenu()">Pilates</a>
+  <a href="kontakt.html" onclick="toggleMenu()">Kontakt</a>
+  <a href="termin.html" onclick="toggleMenu()">Termin buchen</a>
+</div>
+
+<section class="danke-section">
+  <div class="container">
+    <div class="danke-card">
+
+      <div class="danke-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+      </div>
+
+      <span class="tag">Nachricht erhalten</span>
+      <h1>Vielen Dank –<br>wir melden uns!</h1>
+      <p class="lead">Ihre Anfrage ist bei uns eingegangen. Unser Team meldet sich so schnell wie möglich – in der Regel noch am selben Werktag.</p>
+
+      <div class="danke-steps">
+        <div class="danke-step">
+          <div class="step-num">1</div>
+          <div class="step-text">
+            <strong>Wir prüfen Ihre Anfrage</strong>
+            <span>Ihre Nachricht wird von Hanna oder einer Kollegin persönlich gelesen.</span>
+          </div>
+        </div>
+        <div class="danke-step">
+          <div class="step-num">2</div>
+          <div class="step-text">
+            <strong>Wir melden uns bei Ihnen</strong>
+            <span>Per Telefon oder E-Mail – je nach Ihrer Angabe. Mo–Do 8–20 Uhr, Fr 8–14 Uhr.</span>
+          </div>
+        </div>
+        <div class="danke-step">
+          <div class="step-num">3</div>
+          <div class="step-text">
+            <strong>Ihr Termin ist gesichert</strong>
+            <span>Wir finden gemeinsam einen passenden Termin – auch kurzfristig und ohne Rezept.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="danke-actions">
+        <a href="index.html" class="btn btn-primary">Zur Startseite</a>
+        <a href="termin.html" class="btn btn-outline">Online Termin buchen</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer><div class="container">
+  <div class="footer-grid">
+    <div class="footer-brand"><img src="logo.png" alt="PhysioPro Lübeck" style="height:40px;filter:brightness(0) invert(1);opacity:.8;"><p style="margin-top:.75rem;">Physiotherapie, Osteopathie, Heilpraktik und Pilates in Stockelsdorf bei Lübeck.</p></div>
+    <div class="footer-col"><h4>Leistungen</h4><ul><li><a href="therapie.html">Physiotherapie</a></li><li><a href="osteopathie.html">Osteopathie</a></li><li><a href="pilates.html">Pilates</a></li><li><a href="team.html">Team</a></li><li><a href="jobs.html">Jobs</a></li></ul></div>
+    <div class="footer-col"><h4>Kontakt</h4><ul><li><a href="tel:+4945140073073">0451 / 400 730 73</a></li><li><a href="mailto:info@physioproluebeck.de">info@physioproluebeck.de</a></li><li><a href="termin.html">Termin buchen</a></li></ul></div>
+    <div class="footer-col"><h4>Öffnungszeiten</h4><ul><li><a>Mo–Do: 8–20 Uhr</a></li><li><a>Fr: 8–14 Uhr</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><p>© 2026 PhysioPro Lübeck · Hanna Wrobel</p><div style="display:flex;gap:1.5rem;"><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a></div></div>
+</div></footer>
+
+<script src="shared.js"></script>
+</body>
+</html>
