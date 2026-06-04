@@ -36,10 +36,18 @@
 /allgemeinen-geschaftsbedingungen/         /          301
 /allgemeinen-geschaftsbedingungen          /          301
 
-# Umleitungsfehler-Fixes
-/job-physiotherapeut-luebeck.html          /jobs.html      301
-/ki-arbeitgeber-finder-physiotherapie.html /jobs.html      301
-/job-physiotherapeut-finder.html           /jobs.html      301
+# Umleitungsfehler-Fixes (direkt auf /jobs, keine Kette)
+/job-physiotherapeut-luebeck.html          /jobs      301
+/ki-arbeitgeber-finder-physiotherapie.html /jobs      301
+/job-physiotherapeut-finder.html           /jobs      301
+
+# Clean URLs für Job-Unterseiten
+/job-physiotherapeut-luebeck               /job-physiotherapeut-luebeck.html               200
+/job-physiotherapeut-luebeck/              /job-physiotherapeut-luebeck.html               200
+/ki-arbeitgeber-finder-physiotherapie      /ki-arbeitgeber-finder-physiotherapie.html      200
+/ki-arbeitgeber-finder-physiotherapie/     /ki-arbeitgeber-finder-physiotherapie.html      200
+/job-physiotherapeut-finder                /job-physiotherapeut-finder.html                200
+/job-physiotherapeut-finder/               /job-physiotherapeut-finder.html                200
 
 # Neue SEO-Seiten: Clean URLs
 /wissen                               /wissen.html                                200
