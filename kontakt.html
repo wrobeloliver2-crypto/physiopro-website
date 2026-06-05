@@ -97,7 +97,7 @@
                 <div><label style="display:block;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--warm-gray);margin-bottom:.35rem;">Nachname *</label><input id="kon-nachname" type="text" placeholder="Nachname" style="width:100%;padding:.8rem 1rem;border:1.5px solid var(--beige-mid);border-radius:8px;font-family:var(--sans);font-size:.9rem;outline:none;" onfocus="this.style.borderColor='var(--rose)'" onblur="this.style.borderColor='var(--beige-mid)'"></div>
               </div>
               <div style="margin-bottom:1rem;"><label style="display:block;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--warm-gray);margin-bottom:.35rem;">E-Mail *</label><input id="kon-email" type="email" placeholder="ihre@email.de" style="width:100%;padding:.8rem 1rem;border:1.5px solid var(--beige-mid);border-radius:8px;font-family:var(--sans);font-size:.9rem;outline:none;" onfocus="this.style.borderColor='var(--rose)'" onblur="this.style.borderColor='var(--beige-mid)'"></div>
-              <div style="margin-bottom:1.5rem;"><label style="display:block;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--warm-gray);margin-bottom:.35rem;">Telefon</label><input id="kon-telefon" type="tel" placeholder="0451 ..." style="width:100%;padding:.8rem 1rem;border:1.5px solid var(--beige-mid);border-radius:8px;font-family:var(--sans);font-size:.9rem;outline:none;" onfocus="this.style.borderColor='var(--rose)'" onblur="this.style.borderColor='var(--beige-mid)'"></div>
+              <div style="margin-bottom:1.5rem;"><label style="display:block;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--warm-gray);margin-bottom:.35rem;">Telefon</label><input id="kon-telefon" type="tel" placeholder="0451 ..." maxlength="16" pattern="[0-9\s\+\-]{7,16}" style="width:100%;padding:.8rem 1rem;border:1.5px solid var(--beige-mid);border-radius:8px;font-family:var(--sans);font-size:.9rem;outline:none;" onfocus="this.style.borderColor='var(--rose)'" onblur="this.style.borderColor='var(--beige-mid)'"></div>
               <button onclick="konNext()" class="btn btn-primary" style="width:100%;">Weiter →</button>
             </div>
             <div id="kon-s2" style="display:none;">
@@ -172,6 +172,10 @@ function selectKonThema(btn, thema) {
 function konNext() {
   const v=document.getElementById('kon-vorname').value.trim(),n=document.getElementById('kon-nachname').value.trim(),e=document.getElementById('kon-email').value.trim();
   if(!v||!n||!e){alert('Bitte Vorname, Nachname und E-Mail ausfüllen.');return;}
+  const emailRegex=/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  if(!emailRegex.test(e)){alert('Bitte eine gültige E-Mail-Adresse eingeben.');return;}
+  const telVal=document.getElementById('kon-telefon').value.trim();
+  if(telVal&&(telVal.replace(/[\s+\-]/g,'').length>15||!/^[0-9\s+\-]+$/.test(telVal))){alert('Bitte eine gültige Telefonnummer eingeben (max. 15 Ziffern).');return;}
   document.getElementById('kon-s1').style.display='none';document.getElementById('kon-s2').style.display='block';
   document.getElementById('kon-step-label').textContent='Schritt 2 von 2';document.getElementById('kon-step-title').textContent='Ihre Nachricht';document.getElementById('kon-progress').style.width='100%';
 }

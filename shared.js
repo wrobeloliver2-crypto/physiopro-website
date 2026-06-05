@@ -58,6 +58,7 @@ async function rueckrufSubmit() {
   const prio = document.querySelector('input[name="rb-prio"]:checked');
   const errEl = document.getElementById('rb-error');
   if (!name || !tel) { errEl.textContent = 'Bitte Name und Telefonnummer angeben.'; errEl.style.display='block'; return; }
+  if (tel.replace(/[\s+\-]/g,'').length > 15 || !/^[0-9\s+\-]+$/.test(tel)) { errEl.textContent = 'Bitte eine gültige Telefonnummer eingeben (max. 15 Ziffern).'; errEl.style.display='block'; return; }
   if (!dsgvo) { errEl.textContent = 'Bitte Datenschutz zustimmen.'; errEl.style.display='block'; return; }
   errEl.style.display = 'none';
   const btn = document.getElementById('rb-btn');
@@ -67,7 +68,7 @@ async function rueckrufSubmit() {
     body.append('form-name', 'rueckruf');
     body.append('firstname', name);
     body.append('phone', tel);
-    body.append('email', tel.replace(/\D/g,'') + '@rueckruf.physioproluebeck.de');
+    body.append('email', '');
     const thema = document.getElementById('rb-thema') ? document.getElementById('rb-thema').value : '';
     body.append('message', (thema ? 'Thema: ' + thema + ' | ' : '') + 'Rückruf | Priorität: ' + (prio ? prio.value : 'nicht angegeben'));
     const res = await fetch('/', {

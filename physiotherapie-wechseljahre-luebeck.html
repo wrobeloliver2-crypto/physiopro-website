@@ -174,7 +174,7 @@
     <div class="modal-body">
       <div id="rb-form">
         <div class="form-field"><label>Name *</label><input id="rb-name" type="text" placeholder="Ihr Name"></div>
-        <div class="form-field"><label>Telefonnummer *</label><input id="rb-tel" type="tel" placeholder="0451 ..."></div>
+        <div class="form-field"><label>Telefonnummer *</label><input id="rb-tel" type="tel" placeholder="0451 ..." maxlength="16" pattern="[0-9\s\+\-]{7,16}"></div>
         <div class="form-field"><label>Wann sollen wir anrufen?</label>
           <div class="radio-group" id="rb-prio-group">
             <label class="radio-opt" onclick="selectRbPrio(this)"><input type="radio" name="rb-prio" value="Sofort"><span><strong>Sofort</strong> – so schnell wie möglich</span></label>
