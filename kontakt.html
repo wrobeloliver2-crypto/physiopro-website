@@ -13,6 +13,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared.css">
 <script src="https://js-eu1.hsforms.net/forms/embed/147794864.js" defer></script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18174020065"></script>
+    <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'AW-18174020065');
+    </script>
+    </script>
 </head>
 <body>
 <nav><div class="nav-inner">
@@ -184,7 +193,7 @@ async function konSubmit(){
   const betreff=document.getElementById('kon-betreff').value.trim();
   try{
     const res=await hsSubmit([{name:'firstname',value:document.getElementById('kon-vorname').value.trim()},{name:'lastname',value:document.getElementById('kon-nachname').value.trim()},{name:'email',value:document.getElementById('kon-email').value.trim()},{name:'phone',value:document.getElementById('kon-telefon').value.trim()},{name:'message',value:betreff?'['+betreff+'] '+nachricht:nachricht}], 'kontakt');
-    if(res.ok){document.getElementById('kon-s2').style.display='none';document.getElementById('kon-success').style.display='block';}
+    if(res.ok){document.getElementById('kon-s2').style.display='none';document.getElementById('kon-success').style.display='block';gtag('event','conversion',{'send_to':'AW-18174020065/eYi9CN-qwbkcEOGThtpD'});}
     else{errEl.textContent='Fehler. Bitte anrufen: 0451 / 400 730 73';errEl.style.display='block';btn.textContent='Nachricht senden';btn.disabled=false;}
   }catch(e){errEl.textContent='Verbindungsfehler.';errEl.style.display='block';btn.textContent='Nachricht senden';btn.disabled=false;}
 }
