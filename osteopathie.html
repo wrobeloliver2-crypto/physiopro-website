@@ -24,7 +24,15 @@
   .ost-form-label:hover { border-color:var(--osteo-dark); background:var(--osteo-light); }
   .ost-form-label.selected { border-color:var(--osteo-dark); background:var(--osteo-light); }
 </style>
-<script src="https://js-eu1.hsforms.net/forms/embed/147794864.js" defer></script>
+<script src="https://js-eu1.hsforms.net/forms/embed/147794864.js" defer></script
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18174020065"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'AW-18174020065');
+  </script>
 </head>
 <body>
 <nav>
@@ -336,7 +344,7 @@ async function ostSubmit() {
   const msg = 'Behandlung: Osteopathie | Patient: '+(patient?patient.value:'-')+' | Wunschtermin: '+(wann?wann.value:'-')+(document.getElementById('ost-hinweis').value?' | '+document.getElementById('ost-hinweis').value:'');
   try {
     const res = await hsSubmit([{name:'firstname',value:name},{name:'phone',value:tel},{name:'email',value:document.getElementById('ost-email').value.trim()||tel.replace(/\D/g,'')+'@osteo.physioproluebeck.de'},{name:'message',value:msg}], 'osteopathie');
-    if(res.ok){document.getElementById('ost-s2').style.display='none';document.getElementById('ost-success').style.display='block';document.getElementById('ost-progress').style.width='100%';}
+    if(res.ok){gtag('event','conversion',{'send_to':'AW-18174020065/1WKnCOvMtrkcEOGThtpD'});document.getElementById('ost-s2').style.display='none';document.getElementById('ost-success').style.display='block';document.getElementById('ost-progress').style.width='100%';}
     else{errEl.textContent='Fehler. Bitte anrufen: 0451 / 400 730 73';errEl.style.display='block';btn.textContent='Termin anfragen';btn.disabled=false;}
   }catch(e){errEl.textContent='Verbindungsfehler.';errEl.style.display='block';btn.textContent='Termin anfragen';btn.disabled=false;}
 }
