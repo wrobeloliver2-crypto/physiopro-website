@@ -1,58 +1,60 @@
 # SEO-Fix: .html-URLs auf Clean-URLs redirecten
-/therapie.html     /physiotherapie    301
-/osteopathie.html  /osteopathie       301
-/pilates.html      /pilates           301
-/team.html         /team              301
-/kontakt.html      /kontakt           301
-/jobs.html         /jobs              301
-/impressum.html    /impressum         301
-/datenschutz.html  /datenschutz       301
-/termin.html       /termin            301
+/therapie.html    /therapie         301
+/osteopathie.html /osteopathie      301
+/pilates.html     /pilates          301
+/team.html        /team             301
+/kontakt.html     /kontakt          301
+/jobs.html        /jobs             301
+/impressum.html   /impressum        301
+/datenschutz.html /datenschutz      301
+/termin.html      /termin           301
 
 # Trailing Slash Redirects
-/physiotherapie/   /physiotherapie    301
-/osteopathie/      /osteopathie       301
-/pilates/          /pilates           301
-/team/             /team              301
-/kontakt/          /kontakt           301
-/jobs/             /jobs              301
-/impressum/        /impressum         301
-/datenschutz/      /datenschutz       301
-/termin/           /termin            301
+/physiotherapie/  /physiotherapie   301
+/therapie/        /therapie         301
+/osteopathie/     /osteopathie      301
+/pilates/         /pilates          301
+/team/            /team             301
+/kontakt/         /kontakt          301
+/jobs/            /jobs             301
+/impressum/       /impressum        301
+/datenschutz/     /datenschutz      301
+/termin/          /termin           301
 
 # 404-Fixes
-/offene-stellen/                           /jobs      301
-/offene-stellen                            /jobs      301
-/kursplan/                                 /          301
-/kursplan                                  /          301
-/pilates/datenschutz/                      /datenschutz 301
-/pilates/datenschutz                       /datenschutz 301
-/pilates-company/                          https://www.pilatescompany.de    301
-/pilates-company                           https://www.pilatescompany.de    301
-/ernahrungscoaching/                       /          301
-/ernahrungscoaching                        /          301
-/wir                                       /team      301
-/wir/                                      /team      301
-/allgemeinen-geschaftsbedingungen/         /          301
-/allgemeinen-geschaftsbedingungen          /          301
+/offene-stellen/                    /jobs     301
+/offene-stellen                     /jobs     301
+/kursplan/                          /         301
+/kursplan                           /         301
+/pilates/datenschutz/               /datenschutz 301
+/pilates/datenschutz                /datenschutz 301
+/pilates-company/                   https://www.pilatescompany.de  301
+/pilates-company                    https://www.pilatescompany.de  301
+/ernahrungscoaching/                /         301
+/ernahrungscoaching                 /         301
+/wir                                /team     301
+/wir/                               /team     301
+/allgemeinen-geschaftsbedingungen/  /         301
+/allgemeinen-geschaftsbedingungen   /         301
 
 # Umleitungsfehler-Fixes (direkt auf /jobs, keine Kette)
-/job-physiotherapeut-luebeck.html          /jobs      301
-/ki-arbeitgeber-finder-physiotherapie.html /jobs      301
-/job-physiotherapeut-finder.html           /jobs      301
+/job-physiotherapeut-luebeck.html         /jobs  301
+/ki-arbeitgeber-finder-physiotherapie.html /jobs  301
+/job-physiotherapeut-finder.html          /jobs  301
 
 # Clean URLs für Job-Unterseiten
-/job-physiotherapeut-luebeck               /job-physiotherapeut-luebeck.html               200
-/job-physiotherapeut-luebeck/              /job-physiotherapeut-luebeck.html               200
-/ki-arbeitgeber-finder-physiotherapie      /ki-arbeitgeber-finder-physiotherapie.html      200
-/ki-arbeitgeber-finder-physiotherapie/     /ki-arbeitgeber-finder-physiotherapie.html      200
-/job-physiotherapeut-finder                /job-physiotherapeut-finder.html                200
-/job-physiotherapeut-finder/               /job-physiotherapeut-finder.html                200
+/job-physiotherapeut-luebeck              /job-physiotherapeut-luebeck.html       200
+/job-physiotherapeut-luebeck/             /job-physiotherapeut-luebeck.html       200
+/ki-arbeitgeber-finder-physiotherapie     /ki-arbeitgeber-finder-physiotherapie.html 200
+/ki-arbeitgeber-finder-physiotherapie/    /ki-arbeitgeber-finder-physiotherapie.html 200
+/job-physiotherapeut-finder               /job-physiotherapeut-finder.html        200
+/job-physiotherapeut-finder/              /job-physiotherapeut-finder.html        200
 
 # Neue SEO-Seiten: Clean URLs
-/wissen                               /wissen.html                                200
-/wissen/                              /wissen.html                                200
-/physiotherapie-wechseljahre-luebeck      /physiotherapie-wechseljahre-luebeck.html  200
-/physiotherapie-wechseljahre-luebeck/     /physiotherapie-wechseljahre-luebeck.html  200
-/rueckenschmerzen-buero-luebeck           /rueckenschmerzen-buero-luebeck.html        200
-/rueckenschmerzen-buero-luebeck/          /rueckenschmerzen-buero-luebeck.html        200
+/therapie                                 /therapie.html                          200
+/wissen                                   /wissen.html                            200
+/wissen/                                  /wissen.html                            200
+/physiotherapie-wechseljahre-luebeck      /physiotherapie-wechseljahre-luebeck.html 200
+/physiotherapie-wechseljahre-luebeck/     /physiotherapie-wechseljahre-luebeck.html 200
+/rueckenschmerzen-buero-luebeck           /rueckenschmerzen-buero-luebeck.html    200
+/rueckenschmerzen-buero-luebeck/          /rueckenschmerzen-buero-luebeck.html    200
