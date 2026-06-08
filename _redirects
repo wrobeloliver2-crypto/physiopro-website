@@ -1,13 +1,3 @@
-# SEO-Fix: .html-URLs auf Clean-URLs redirecten
-/therapie.html    /therapie         301
-/osteopathie.html /osteopathie      301
-/pilates.html     /pilates          301
-/team.html        /team             301
-/kontakt.html     /kontakt          301
-/jobs.html        /jobs             301
-/impressum.html   /impressum        301
-/datenschutz.html /datenschutz      301
-/termin.html      /termin           301
 
 # Trailing Slash Redirects
 /physiotherapie/  /physiotherapie   301
