@@ -110,7 +110,6 @@ window.addEventListener('message', e => {
     modal.innerHTML = `
       <div id="qa-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:2100;align-items:center;justify-content:center;padding:1rem;backdrop-filter:blur(4px);" onclick="if(event.target===this)closeQA()">
         <div id="qa-modal" style="background:#fff;border-radius:20px;max-width:480px;width:100%;height:580px;overflow:hidden;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.2);">
-          <button onclick="closeQA()" style="position:absolute;top:.75rem;right:.75rem;background:rgba(0,0,0,.15);border:none;border-radius:50%;width:28px;height:28px;cursor:pointer;font-size:.9rem;color:#fff;z-index:10;display:flex;align-items:center;justify-content:center;">✕</button>
           <iframe src="/qa-assistant.html" style="width:100%;height:100%;border:none;" frameborder="0"></iframe>
         </div>
       </div>
@@ -163,3 +162,4 @@ window.addEventListener('message', e => {
   style.cssText = 'position:fixed;bottom:5.5rem;right:1.25rem;z-index:8000;width:52px;height:52px;border-radius:50%;background:#55725e;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,.2);text-decoration:none;';
   document.body.appendChild(btn);
 })();
+
