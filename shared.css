@@ -166,6 +166,8 @@ footer { background: var(--text); color: rgba(255,255,255,.7); padding: 4rem 0 2
   .hamburger { display: flex; }
   .hero { grid-template-columns: 1fr; gap: 2rem; padding: 2rem 1.5rem; }
   .hero-actions { flex-direction: column; }
+  .hero-actions .btn { width: 100%; text-align: center; }
+  .btn, .nav-cta { min-height: 44px; display: inline-flex; align-items: center; justify-content: center; }
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
   .stats-grid { justify-content: flex-start; }
   .stat-divider { display: none; }
