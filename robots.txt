@@ -1,3 +1,4 @@
 User-agent: *
 Allow: /
-Sitemap: https://www.physioproluebeck.de/sitemap.xml
+
+Sitemap: https://physioproluebeck.de/sitemap.xml
