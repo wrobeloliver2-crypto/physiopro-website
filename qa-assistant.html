@@ -34,6 +34,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .qa-header-text h3 { font-size: 15px; font-weight: 600; letter-spacing: -0.2px; }
   .qa-header-text p { font-size: 12px; opacity: 0.7; margin-top: 1px; }
   .qa-status { margin-left: auto; display: flex; align-items: center; gap: 6px; font-size: 12px; opacity: 0.8; }
+  .qa-close { margin-left: 12px; width: 30px; height: 30px; flex-shrink: 0; border: none; cursor: pointer;
+    background: rgba(255,255,255,0.15); border-radius: 50%; color: #fff; font-size: 16px; line-height: 1;
+    display: flex; align-items: center; justify-content: center; transition: background 0.2s; }
+  .qa-close:hover { background: rgba(255,255,255,0.3); }
   .status-dot { width: 7px; height: 7px; border-radius: 50%; background: #7ecba1; animation: pulse 2s infinite; }
   @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
   .qa-messages {
@@ -120,6 +124,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <div class="status-dot"></div>
     Online
   </div>
+  <button class="qa-close" aria-label="Schließen" onclick="window.parent.postMessage('close-qa','*')">✕</button>
 </div>
 <div class="qa-messages" id="msgs"></div>
 <div class="chips" id="chips"></div>

@@ -95,6 +95,11 @@ document.addEventListener('keydown', e => {
   if (e.key === 'Escape') { closeRueckruf(); closeQA(); }
 });
 
+// Schließen-Signal aus dem KI-Assistent-Iframe empfangen
+window.addEventListener('message', e => {
+  if (e.data === 'close-qa') { closeQA(); }
+});
+
 // Floating "Jetzt Fragen stellen" Button + QA Modal auf allen Seiten
 (function() {
   // Modal HTML einfügen falls noch nicht vorhanden
