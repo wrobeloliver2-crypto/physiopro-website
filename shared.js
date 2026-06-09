@@ -78,6 +78,8 @@ async function rueckrufSubmit() {
     if (res.ok) {
       document.getElementById('rb-form').style.display = 'none';
       document.getElementById('rb-success').style.display = 'block';
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: 'physio_lead_rueckruf' });
     } else {
       errEl.textContent = 'Fehler. Bitte anrufen: 0451 / 400 730 73';
       errEl.style.display = 'block';
