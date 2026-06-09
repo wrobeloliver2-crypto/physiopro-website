@@ -167,6 +167,22 @@ let selected = new Set();
 let qAnswers = {};
 let lastPct = 0;
 
+function goToResult() {
+  const missing = questions.find(q => !qAnswers[q.id]);
+  if (missing) {
+    const hint = document.getElementById('q-hint');
+    if (hint) {
+      hint.textContent = 'Bitte beantworte noch: „' + missing.text + '"';
+      hint.style.display = 'block';
+    }
+    const el = document.getElementById('qitem-' + missing.id);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return;
+  }
+  step = 3;
+  render();
+}
+
 function render() {
   const b = document.getElementById('body');
   if (step === 1) b.innerHTML = renderStep1();
@@ -213,7 +229,7 @@ function renderStep2() {
     <div class="step-sub">Schnell angetippt – damit wir dich besser einschätzen können.</div>
     <div class="q-wrap">
       ${questions.map(q => `
-        <div class="q-item">
+        <div class="q-item" id="qitem-${q.id}">
           <div class="q-text">${q.text}</div>
           <div class="q-opts">
             ${q.opts.map(o => `
@@ -222,6 +238,7 @@ function renderStep2() {
           </div>
         </div>`).join('')}
     </div>
+    <div id="q-hint" style="display:none;font-size:.82rem;color:#b25a3c;margin:.25rem 0 .5rem;"></div>
     <div class="btns">
       <div class="dots">
         <div class="dot"></div>
@@ -229,7 +246,7 @@ function renderStep2() {
       </div>
       <div style="display:flex;gap:.75rem">
         <button class="btn-back" onclick="step=1;render()">← Zurück</button>
-        <button class="btn-next" id="btn2" ${Object.keys(qAnswers).length<3?'disabled':''} onclick="step=3;render()">Ergebnis →</button>
+        <button class="btn-next" id="btn2" onclick="goToResult()">Ergebnis →</button>
       </div>
     </div>`;
 }
@@ -322,6 +339,8 @@ function attachEvents() {
   document.querySelectorAll('.qopt').forEach(o => {
     o.onclick = () => {
       qAnswers[o.dataset.q] = o.dataset.label;
+      const hint = document.getElementById('q-hint');
+      if (hint) hint.style.display = 'none';
       render();
     };
   });
