@@ -37,6 +37,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .ost-form-label { display:flex;align-items:center;gap:.75rem;padding:.8rem 1rem;border:1.5px solid #d9c9bc;border-radius:8px;cursor:pointer;transition:.2s; }
   .ost-form-label:hover { border-color:var(--osteo-dark); background:var(--osteo-light); }
   .ost-form-label.selected { border-color:var(--osteo-dark); background:var(--osteo-light); }
+  .chk-chip { display:inline-flex;align-items:center;justify-content:center;padding:.55rem .4rem;border:1.5px solid rgba(255,255,255,.35);border-radius:8px;cursor:pointer;transition:.2s;color:#fff;font-size:.82rem;font-family:var(--sans);user-select:none;text-align:center; }
+  .chk-chip:hover { border-color:#fff;background:rgba(255,255,255,.12); }
+  .chk-chip.selected { border-color:#fff;background:rgba(255,255,255,.22);font-weight:500; }
+  .chk-input { width:100%;padding:.7rem .9rem;border:1.5px solid rgba(255,255,255,.3);border-radius:8px;font-family:var(--sans);font-size:.875rem;outline:none;background:rgba(255,255,255,.1);color:#fff;box-sizing:border-box; }
+  .chk-input::placeholder { color:rgba(255,255,255,.5); }
+  .chk-input:focus { border-color:#fff; }
+  @media(max-width:480px){ .chk-tage-grid { grid-template-columns:repeat(3,1fr) !important; } }
 </style>
 <script src="https://js-eu1.hsforms.net/forms/embed/147794864.js" defer></script
   <!-- Google tag (gtag.js) -->
@@ -84,7 +91,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <div style="font-family:var(--serif);font-size:2rem;font-weight:300;color:#fff;line-height:1;">26,50 €</div>
         <div style="font-size:.72rem;color:rgba(255,255,255,.4);margin-top:.1rem;">Osteopathie-Check · einmalig</div>
       </div>
-      <a href="https://otr.md-therapie.de/hilg2Tr6OiAQy24lckW1NUkTTcyhobik" target="_blank" style="background:#55725e;color:#fff;padding:.7rem 1.2rem;border-radius:8px;font-family:var(--sans);font-weight:500;font-size:.85rem;text-decoration:none;white-space:nowrap;">Jetzt buchen</a>
+      <span style="color:rgba(255,255,255,.7);font-family:var(--sans);font-weight:500;font-size:.82rem;white-space:nowrap;display:flex;align-items:center;gap:.3rem;">Anfrage unten <span style="font-size:1rem;">↓</span></span>
     </div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:.4rem;">
       <div style="display:flex;gap:.5rem;align-items:flex-start;"><span style="color:#6e8f78;flex-shrink:0;font-size:.85rem;">✓</span><span style="color:rgba(255,255,255,.75);font-size:.8rem;line-height:1.4;">Gespräch mit Julia Mielke</span></div>
@@ -240,7 +247,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               </div>
             </div>
           </div>
-          <a href="https://otr.md-therapie.de/hilg2Tr6OiAQy24lckW1NUkTTcyhobik" target="_blank" class="btn" style="margin-top:1.5rem;background:#d9c9bc;color:#fff;display:inline-block;">Termin bei Julia buchen →</a>
         </div>
       </div>
     </div>
@@ -261,8 +267,43 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <p style="color:#fff;font-size:.9rem;">✓ Individuelle Empfehlungen</p>
             <p style="color:#fff;font-size:.9rem;">✓ Orientierung ob Osteopathie für Ihr Anliegen sinnvoll ist</p>
           </div>
-          <a class="btn" href="https://otr.md-therapie.de/hilg2Tr6OiAQy24lckW1NUkTTcyhobik" target="_blank" style="background:#fff;color:#4a3828;font-weight:500;">Osteopathie-Check buchen · 26,50 €</a>
-          <button onclick="document.getElementById('rb-modal').style.display='flex'" style="margin-top:.75rem;background:transparent;border:1.5px solid rgba(255,255,255,.6);color:#fff;padding:.75rem 1.5rem;border-radius:var(--radius);font-family:var(--sans);font-size:.9rem;cursor:pointer;width:100%;transition:.2s;" onmouseover="this.style.background='rgba(255,255,255,.15)'" onmouseout="this.style.background='transparent'">📞 Rückruf anfordern</button>
+          <div id="chk-form" style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);border-radius:var(--radius);padding:1.5rem;">
+            <p style="font-size:.72rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.7);margin:0 0 .4rem;">Termin anfragen</p>
+            <h4 style="color:#fff;margin:0 0 1.25rem;opacity:1;">Osteopathie-Check anfragen · 26,50 €</h4>
+
+            <p style="color:#fff;font-size:.85rem;font-weight:500;margin:0 0 .55rem;">An welchen Tagen passt es Ihnen?</p>
+            <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:.4rem;margin-bottom:1.25rem;" id="chk-tage" class="chk-tage-grid">
+              <div class="chk-chip" onclick="chkToggle(this)" data-val="Mo">Mo</div>
+              <div class="chk-chip" onclick="chkToggle(this)" data-val="Di">Di</div>
+              <div class="chk-chip" onclick="chkToggle(this)" data-val="Mi">Mi</div>
+              <div class="chk-chip" onclick="chkToggle(this)" data-val="Do">Do</div>
+              <div class="chk-chip" onclick="chkToggle(this)" data-val="Fr">Fr</div>
+            </div>
+
+            <p style="color:#fff;font-size:.85rem;font-weight:500;margin:0 0 .55rem;">Zu welcher Uhrzeit?</p>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:.4rem;margin-bottom:1.25rem;" id="chk-zeit">
+              <div class="chk-chip" onclick="chkToggle(this)" data-val="Vormittag (8–12 Uhr)">Vormittag · 8–12</div>
+              <div class="chk-chip" onclick="chkToggle(this)" data-val="Mittag (12–14 Uhr)">Mittag · 12–14</div>
+              <div class="chk-chip" onclick="chkToggle(this)" data-val="Nachmittag (14–17 Uhr)">Nachmittag · 14–17</div>
+              <div class="chk-chip" onclick="chkToggle(this)" data-val="Früher Abend (17–20 Uhr)">Früher Abend · 17–20</div>
+            </div>
+
+            <div style="display:grid;gap:.6rem;margin-bottom:1rem;">
+              <input id="chk-name" type="text" placeholder="Ihr Name *" class="chk-input">
+              <input id="chk-tel" type="tel" placeholder="Telefon *" class="chk-input">
+              <input id="chk-email" type="email" placeholder="E-Mail (optional)" class="chk-input">
+              <textarea id="chk-hinweis" placeholder="Hinweise (z.B. Beschwerden) – optional" class="chk-input" style="resize:vertical;min-height:56px;"></textarea>
+            </div>
+
+            <div style="display:flex;gap:.55rem;align-items:flex-start;margin-bottom:1rem;"><input type="checkbox" id="chk-dsgvo" style="margin-top:3px;accent-color:#fff;flex-shrink:0;"><label for="chk-dsgvo" style="font-size:.76rem;color:rgba(255,255,255,.8);line-height:1.5;">Ich stimme der Verarbeitung meiner Daten zur Terminvereinbarung zu. *</label></div>
+            <div id="chk-error" style="display:none;color:#ffd2cc;font-size:.8rem;margin-bottom:.75rem;padding:.6rem .9rem;background:rgba(192,57,43,.35);border-radius:8px;"></div>
+            <button onclick="chkSubmit()" id="chk-submit-btn" class="btn" style="width:100%;background:#fff;color:#4a3828;font-weight:500;">Osteopathie-Check anfragen</button>
+          </div>
+          <div id="chk-success" style="display:none;text-align:center;padding:1.5rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.3);border-radius:var(--radius);">
+            <div style="font-size:2rem;margin-bottom:.5rem;">✓</div>
+            <h4 style="color:#fff;margin:0 0 .5rem;opacity:1;">Anfrage gesendet!</h4>
+            <p style="color:rgba(255,255,255,.85);font-size:.88rem;margin:0;line-height:1.5;">Vielen Dank – wir melden uns schnellstmöglich bei Ihnen, um den Osteopathie-Check zu terminieren.</p>
+          </div>
         </div>
         <div style="background:rgba(255,255,255,.12);border-radius:var(--radius);padding:2rem;border:1px solid rgba(255,255,255,.25);">
           <h4 style="color:#fff;margin-bottom:1.25rem;opacity:1;">Für wen eignet sich der Check?</h4>
@@ -361,6 +402,27 @@ async function ostSubmit() {
     if(res.ok){gtag('event','conversion',{'send_to':'AW-18174020065/1WKnCOvMtrkcEOGThtpD'});document.getElementById('ost-s2').style.display='none';document.getElementById('ost-success').style.display='block';document.getElementById('ost-progress').style.width='100%';}
     else{errEl.textContent='Fehler. Bitte anrufen: 0451 / 400 730 73';errEl.style.display='block';btn.textContent='Termin anfragen';btn.disabled=false;}
   }catch(e){errEl.textContent='Verbindungsfehler.';errEl.style.display='block';btn.textContent='Termin anfragen';btn.disabled=false;}
+}
+function chkToggle(el){ el.classList.toggle('selected'); }
+async function chkSubmit(){
+  const name=document.getElementById('chk-name').value.trim();
+  const tel=document.getElementById('chk-tel').value.trim();
+  const dsgvo=document.getElementById('chk-dsgvo').checked;
+  const errEl=document.getElementById('chk-error');
+  if(!name||!tel){errEl.textContent='Bitte Name und Telefon angeben.';errEl.style.display='block';return;}
+  if(!dsgvo){errEl.textContent='Bitte Datenschutz zustimmen.';errEl.style.display='block';return;}
+  errEl.style.display='none';
+  const btn=document.getElementById('chk-submit-btn');
+  btn.textContent='Wird gesendet...';btn.disabled=true;
+  const tage=Array.from(document.querySelectorAll('#chk-tage .chk-chip.selected')).map(c=>c.dataset.val).join(', ')||'-';
+  const zeit=Array.from(document.querySelectorAll('#chk-zeit .chk-chip.selected')).map(c=>c.dataset.val).join(', ')||'-';
+  const hinweis=document.getElementById('chk-hinweis').value.trim();
+  const msg='Anliegen: Osteopathie-Check (26,50 €) | Wunschtage: '+tage+' | Wunschzeit: '+zeit+(hinweis?' | '+hinweis:'');
+  try{
+    const res=await hsSubmit([{name:'firstname',value:name},{name:'phone',value:tel},{name:'email',value:document.getElementById('chk-email').value.trim()||tel.replace(/\D/g,'')+'@osteo.physioproluebeck.de'},{name:'message',value:msg}],'osteopathie');
+    if(res.ok){if(typeof gtag==='function'){gtag('event','conversion',{'send_to':'AW-18174020065/1WKnCOvMtrkcEOGThtpD'});}document.getElementById('chk-form').style.display='none';document.getElementById('chk-success').style.display='block';}
+    else{errEl.textContent='Fehler. Bitte anrufen: 0451 / 400 730 73';errEl.style.display='block';btn.textContent='Osteopathie-Check anfragen';btn.disabled=false;}
+  }catch(e){errEl.textContent='Verbindungsfehler.';errEl.style.display='block';btn.textContent='Osteopathie-Check anfragen';btn.disabled=false;}
 }
 </script>
 <form name="osteopathie" netlify netlify-honeypot="bot-field" hidden>
