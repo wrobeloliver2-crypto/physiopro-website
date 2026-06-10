@@ -42,7 +42,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="icon" href="favicon-192.png" sizes="192x192" type="image/png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=DM+Sans:wght@300;400;500&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"></noscript>
 <link rel="stylesheet" href="shared.css">
 <script src="https://js-eu1.hsforms.net/forms/embed/147794864.js" defer></script>
 </head>
@@ -90,6 +91,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 
 <!-- HERO -->
+<main>
 <div class="hero">
 <div class="hero-text">
 <span class="tag">Stockelsdorf · Lübeck</span>
@@ -181,7 +183,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <!-- Erfolg -->
       <div id="idx-success" style="display:none;text-align:center;padding:1.5rem 0;">
         <div style="font-size:2rem;margin-bottom:.75rem;">✓</div>
-        <h3 style="font-family:var(--serif);font-weight:300;margin-bottom:.5rem;">Anfrage gesendet!</h3>
+        <p style="font-family:var(--serif);font-weight:300;font-size:1.3rem;margin-bottom:.5rem;">Anfrage gesendet!</p>
         <p style="font-size:.9rem;color:var(--text-mid);">Wir melden uns persönlich bei Ihnen.</p>
       </div>
     </div>
@@ -194,7 +196,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- MOBILE: Statischer Spezialisierungstext -->
 <div class="mobile-spezialisierung hw-text" style="background:var(--beige-warm);border-radius:20px;border:1px solid var(--beige-mid);padding:1.75rem;">
-  <h4 style="margin-bottom:1rem;">Unsere Spezialisierung</h4>
+  <h2 class="eyebrow" style="margin-bottom:1rem;">Unsere Spezialisierung</h2>
   <div class="hero-why-item">
     <div class="hero-why-num" style="font-size:1.1rem;">ab 40</div>
     <div><strong>Frauen ab 40 & Wechseljahre</strong><p>Hanna Wrobel – Physiotherapeutin seit über 20 Jahren, spezialisiert auf Frauen in den Wechseljahren. Begründerin des <em>She Regulates</em>-Ansatzes.</p></div>
@@ -217,7 +219,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- SLIDE 1: Spezialisierung – nur Desktop -->
     <div class="hw-slide hw-active hw-slide-text" style="position:absolute;inset:0;padding:2rem 2.5rem;overflow:hidden;">
       <div style="margin-bottom:1.25rem;">
-        <h4 style="margin:0;">Unsere Spezialisierung</h4>
+        <p class="eyebrow" style="margin:0;">Unsere Spezialisierung</p>
       </div>
       <div>
         <div class="hero-why-item">
@@ -237,17 +239,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <!-- SLIDE 2: Hanna -->
     <div class="hw-slide" style="position:absolute;inset:0;border-radius:20px;overflow:hidden;">
-      <img src="team-hanna.jpg" alt="Hanna Wrobel" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;">
+      <img src="team-hanna.webp" alt="Hanna Wrobel" width="768" height="1127" fetchpriority="high" decoding="async" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;">
     </div>
 
     <!-- SLIDE 3: Empfang -->
     <div class="hw-slide" style="position:absolute;inset:0;border-radius:20px;overflow:hidden;">
-      <img src="hero-startseite.jpg" alt="Empfang PhysioPro" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;">
+      <img src="hero-startseite.webp" alt="Empfang PhysioPro" width="1600" height="1200" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;">
     </div>
 
     <!-- SLIDE 4: Reformer Raum -->
     <div class="hw-slide" style="position:absolute;inset:0;border-radius:20px;overflow:hidden;">
-      <img src="studio-reformer-room.jpg" alt="Reformer Raum PhysioPro" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;">
+      <img src="studio-reformer-room.webp" alt="Reformer Raum PhysioPro" width="1050" height="1400" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;">
     </div>
 
   </div>
@@ -306,7 +308,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- STUDIOBILD -->
 <div class="studio-banner">
-<img src="hero-startseite.jpg" alt="PhysioPro Lübeck – Empfang">
+<img src="hero-startseite.webp" alt="PhysioPro Lübeck – Empfang" width="1600" height="1200" loading="lazy" decoding="async">
 </div>
 
 <div class="divider"></div>
@@ -314,7 +316,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- FÜR WEN / DREI BLÖCKE -->
 <section class="section" style="background:#fff;">
 <div class="container">
-  <h4>Für wen wir da sind</h4>
+  <p class="eyebrow">Für wen wir da sind</p>
   <h2 style="margin-bottom:2rem;">Menschen, die funktionieren –<br>und dabei ihren Körper verlieren</h2>
   <div style="display:flex;flex-direction:column;gap:1.5rem;">
 
@@ -383,7 +385,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="container">
 <div class="pilates-partner-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;max-width:900px;margin:0 auto;">
 <div>
-<h4>Unser Pilates-Partner</h4>
+<p class="eyebrow">Unser Pilates-Partner</p>
 <h2 style="font-size:clamp(1.6rem,3vw,2.2rem);margin-bottom:1rem;">Reformer Pilates & Aerial Yoga in Stockelsdorf</h2>
 <p style="color:var(--text-mid);line-height:1.8;margin-bottom:1.5rem;">Unsere Partnerpraxis <strong>Pilates Company Lübeck</strong> bietet direkt nebenan spezialisierte Pilates-Kurse an – Reformer Pilates, Aerial Yoga, Barre und Classic Pilates. Ideal als Ergänzung zur Physiotherapie.</p>
 <a href="https://www.pilatescompany.de/kurse" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:.5rem;background:#d9a49a;color:#fff;padding:.75rem 1.5rem;border-radius:100px;font-size:.875rem;font-weight:500;text-decoration:none;transition:.2s;" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">
@@ -448,7 +450,7 @@ Zu den Pilates-Kursen →
 <a class="btn" href="https://otr.md-therapie.de/hilg2Tr6OiAQy24lckW1NUkTTcyhobik" target="_blank" style="background:#fff;color:#d9a49a;font-weight:500;">Osteopathie-Check buchen · 26,50 €</a>
 </div>
 <div style="background:rgba(255,255,255,.15);border-radius:var(--radius);padding:2rem;border:1px solid rgba(255,255,255,.3);">
-<h4 style="color:#fff;margin-bottom:1.25rem;">Für wen eignet sich der Check?</h4>
+<p class="eyebrow" style="color:#fff;margin-bottom:1.25rem;">Für wen eignet sich der Check?</p>
 <div style="display:flex;flex-direction:column;gap:.5rem;">
 <p style="color:rgba(255,255,255,.85);font-size:.875rem;">· Rückenbeschwerden & Verspannungen</p>
 <p style="color:rgba(255,255,255,.85);font-size:.875rem;">· Bewegungs- und Gelenkeinschränkungen</p>
@@ -458,7 +460,7 @@ Zu den Pilates-Kursen →
 <p style="color:rgba(255,255,255,.85);font-size:.875rem;">· Verdauungs- & Funktionsstörungen</p>
 </div>
 <div style="margin-top:1.5rem;display:flex;gap:1rem;align-items:center;">
-<img src="team-julia.jpg" alt="Julia Mielke" style="width:48px;height:48px;border-radius:50%;object-fit:cover;object-position:center 10%;border:2px solid rgba(255,255,255,.5);">
+<img src="team-julia.webp" alt="Julia Mielke" width="48" height="48" loading="lazy" decoding="async" style="width:48px;height:48px;border-radius:50%;object-fit:cover;object-position:center 10%;border:2px solid rgba(255,255,255,.5);">
 <p style="color:rgba(255,255,255,.85);font-size:.875rem;margin:0;"><strong style="color:#fff;">Julia Mielke</strong> · Osteopathin & Heilpraktikerin</p>
 </div>
 </div>
@@ -497,6 +499,7 @@ Zu den Pilates-Kursen →
     </div>
   </div>
 </section>
+</main>
 
 <footer>
 <div class="container">
@@ -507,7 +510,7 @@ Zu den Pilates-Kursen →
 <p style="margin-top:.5rem;font-size:.8rem;">Segeberger Str. 1 · 23617 Stockelsdorf</p>
 </div>
 <div class="footer-col">
-<h4>Leistungen</h4>
+<h2>Leistungen</h2>
 <ul>
 <li><a href="/therapie">Physiotherapie</a></li>
 <li><a href="/osteopathie">Osteopathie</a></li>
@@ -518,7 +521,7 @@ Zu den Pilates-Kursen →
 </ul>
 </div>
 <div class="footer-col">
-<h4>Kontakt</h4>
+<h2>Kontakt</h2>
 <ul>
 <li><a href="tel:+4945140073073">0451 / 400 730 73</a></li>
 <li><a href="mailto:info@physioproluebeck.de">info@physioproluebeck.de</a></li>
@@ -527,12 +530,12 @@ Zu den Pilates-Kursen →
 </ul>
 </div>
 <div class="footer-col">
-<h4>Öffnungszeiten</h4>
+<h2>Öffnungszeiten</h2>
 <ul>
 <li><a>Mo–Do: 8–20 Uhr</a></li>
 <li><a>Fr: 8–14 Uhr</a></li>
 </ul>
-<h4 style="margin-top:1.5rem;">Folgen Sie uns</h4>
+<h2 style="margin-top:1.5rem;">Folgen Sie uns</h2>
 <ul>
 <li><a href="https://www.instagram.com/physioproluebeck" target="_blank">Instagram</a></li>
 </ul>
