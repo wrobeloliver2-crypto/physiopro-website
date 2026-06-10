@@ -67,7 +67,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 }
 .usp-strip-inner {
   max-width: 900px; margin: 0 auto;
-  display: grid; grid-template-columns: repeat(4,1fr); gap: 1rem; text-align: center;
+  display: grid; grid-template-columns: repeat(auto-fit,minmax(140px,1fr)); gap: 1rem; text-align: center;
 }
 @media(max-width:600px){ .usp-strip-inner { grid-template-columns: repeat(2,1fr); } }
 .usp-strip-item strong { display: block; font-family: var(--serif); font-size: 1.4rem; font-weight: 300; color: #55725e; margin-bottom: .2rem; }
