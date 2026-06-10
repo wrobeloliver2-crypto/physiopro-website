@@ -28,6 +28,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .tab-btn { background:#fff; border:1.5px solid #d9c9bc; border-radius:10px; padding:.75rem 1rem; cursor:pointer; font-family:var(--sans); font-size:.85rem; color:var(--text-mid); transition:.2s; text-align:center; }
   .tab-btn.active { background:var(--osteo-dark); color:#fff; border-color:var(--osteo-dark); }
   .tab-btn:hover:not(.active) { border-color:var(--osteo-dark); color:var(--osteo-dark); }
+  @media (max-width: 600px) {
+    .ost-tabs { grid-template-columns: repeat(2, 1fr) !important; }
+    .tab-btn { min-height: 44px; display: flex; align-items: center; justify-content: center; }
+  }
   .ost-form-label { display:flex;align-items:center;gap:.75rem;padding:.8rem 1rem;border:1.5px solid #d9c9bc;border-radius:8px;cursor:pointer;transition:.2s; }
   .ost-form-label:hover { border-color:var(--osteo-dark); background:var(--osteo-light); }
   .ost-form-label.selected { border-color:var(--osteo-dark); background:var(--osteo-light); }
@@ -98,7 +102,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- TABS -->
 <div style="background:var(--beige-warm);border-bottom:1px solid #d9c9bc;padding:1.25rem 0;position:sticky;top:var(--nav-h);z-index:50;">
   <div class="container">
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:.75rem;">
+    <div class="ost-tabs" style="display:grid;grid-template-columns:repeat(4,1fr);gap:.75rem;">
       <button class="tab-btn active" onclick="showOstTab('uebersicht',this)">Übersicht</button>
       <button class="tab-btn" onclick="showOstTab('was',this)">Was ist Osteopathie?</button>
       <button class="tab-btn" onclick="showOstTab('julia',this)">Julia Mielke</button>
