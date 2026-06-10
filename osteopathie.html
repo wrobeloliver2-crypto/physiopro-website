@@ -31,6 +31,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   @media (max-width: 600px) {
     .ost-tabs { grid-template-columns: repeat(2, 1fr) !important; }
     .tab-btn { min-height: 44px; display: flex; align-items: center; justify-content: center; }
+    .julia-grid { grid-template-columns: 1fr !important; gap: 1.5rem !important; }
+    .julia-grid > div:first-child { max-width: 280px; }
   }
   .ost-form-label { display:flex;align-items:center;gap:.75rem;padding:.8rem 1rem;border:1.5px solid #d9c9bc;border-radius:8px;cursor:pointer;transition:.2s; }
   .ost-form-label:hover { border-color:var(--osteo-dark); background:var(--osteo-light); }
@@ -207,7 +209,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div id="ost-julia" class="otab">
   <section class="section" style="background:var(--beige-warm);">
     <div class="container">
-      <div style="display:grid;grid-template-columns:380px 1fr;gap:4rem;align-items:start;">
+      <div class="julia-grid" style="display:grid;grid-template-columns:380px 1fr;gap:4rem;align-items:start;">
         <div style="border-radius:var(--radius);overflow:hidden;"><img src="team-julia.jpg" alt="Julia Mielke" style="width:100%;display:block;"></div>
         <div>
           <span class="tag" style="background:var(--osteo-light);color:var(--osteo-dark);">Ihre Therapeutin</span>
