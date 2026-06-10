@@ -291,7 +291,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div style="display:grid;gap:.6rem;margin-bottom:1rem;">
               <input id="chk-name" type="text" placeholder="Ihr Name *" class="chk-input">
               <input id="chk-tel" type="tel" placeholder="Telefon *" class="chk-input">
-              <input id="chk-email" type="email" placeholder="E-Mail (optional)" class="chk-input">
+              <input id="chk-email" type="email" placeholder="E-Mail *" class="chk-input">
               <textarea id="chk-hinweis" placeholder="Hinweise (z.B. Beschwerden) – optional" class="chk-input" style="resize:vertical;min-height:56px;"></textarea>
             </div>
 
@@ -407,9 +407,11 @@ function chkToggle(el){ el.classList.toggle('selected'); }
 async function chkSubmit(){
   const name=document.getElementById('chk-name').value.trim();
   const tel=document.getElementById('chk-tel').value.trim();
+  const email=document.getElementById('chk-email').value.trim();
   const dsgvo=document.getElementById('chk-dsgvo').checked;
   const errEl=document.getElementById('chk-error');
   if(!name||!tel){errEl.textContent='Bitte Name und Telefon angeben.';errEl.style.display='block';return;}
+  if(!email||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){errEl.textContent='Bitte eine gültige E-Mail-Adresse angeben.';errEl.style.display='block';return;}
   if(!dsgvo){errEl.textContent='Bitte Datenschutz zustimmen.';errEl.style.display='block';return;}
   errEl.style.display='none';
   const btn=document.getElementById('chk-submit-btn');
@@ -419,7 +421,7 @@ async function chkSubmit(){
   const hinweis=document.getElementById('chk-hinweis').value.trim();
   const msg='Anliegen: Osteopathie-Check (26,50 €) | Wunschtage: '+tage+' | Wunschzeit: '+zeit+(hinweis?' | '+hinweis:'');
   try{
-    const res=await hsSubmit([{name:'firstname',value:name},{name:'phone',value:tel},{name:'email',value:document.getElementById('chk-email').value.trim()||tel.replace(/\D/g,'')+'@osteo.physioproluebeck.de'},{name:'message',value:msg}],'osteopathie');
+    const res=await hsSubmit([{name:'firstname',value:name},{name:'phone',value:tel},{name:'email',value:email},{name:'message',value:msg}],'osteopathie');
     if(res.ok){if(typeof gtag==='function'){gtag('event','conversion',{'send_to':'AW-18174020065/1WKnCOvMtrkcEOGThtpD'});}document.getElementById('chk-form').style.display='none';document.getElementById('chk-success').style.display='block';}
     else{errEl.textContent='Fehler. Bitte anrufen: 0451 / 400 730 73';errEl.style.display='block';btn.textContent='Osteopathie-Check anfragen';btn.disabled=false;}
   }catch(e){errEl.textContent='Verbindungsfehler.';errEl.style.display='block';btn.textContent='Osteopathie-Check anfragen';btn.disabled=false;}
