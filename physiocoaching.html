@@ -30,13 +30,29 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .pc-coach-avatar { width:64px;height:64px;border-radius:50%;background:var(--coach-light);color:var(--coach-dark);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:1.8rem;flex-shrink:0; }
   .pc-check-row { display:flex;gap:.75rem;align-items:flex-start;padding:.6rem 0; }
   .pc-check-row span.ic { color:var(--coach);flex-shrink:0;font-size:1.05rem;line-height:1.5; }
-  /* KI-Finder Chat */
-  .pcf-input { width:100%;padding:.8rem 1rem;border:1.5px solid var(--border);border-radius:8px;font-family:var(--sans);font-size:.9rem;outline:none;box-sizing:border-box; }
-  .pcf-input:focus { border-color:var(--coach); }
-  .pcf-msg-user { background:var(--coach);color:#fff;padding:.7rem 1rem;border-radius:14px 14px 4px 14px;max-width:85%;align-self:flex-end;font-size:.9rem;line-height:1.5; }
-  .pcf-msg-bot { background:#fff;border:1px solid var(--border);color:var(--text);padding:.7rem 1rem;border-radius:14px 14px 14px 4px;max-width:90%;align-self:flex-start;font-size:.9rem;line-height:1.6; }
-  .pcf-chip { display:inline-flex;align-items:center;padding:.5rem .9rem;border:1.5px solid var(--coach);border-radius:100px;cursor:pointer;transition:.2s;color:var(--coach-dark);font-size:.82rem;font-family:var(--sans);background:#fff; }
-  .pcf-chip:hover { background:var(--coach);color:#fff; }
+  /* KI-Finder – geführter Quiz-Assistent */
+  .pcf-shell { max-width:580px;margin:0 auto;border:1px solid var(--border);border-radius:18px;overflow:hidden;background:#fff; }
+  .pcf-head { display:flex;align-items:center;gap:10px;padding:14px 18px;border-bottom:1px solid var(--border);background:var(--coach-light); }
+  .pcf-avatar { width:36px;height:36px;border-radius:50%;background:var(--coach);display:flex;align-items:center;justify-content:center;flex:none;color:#fff;font-family:var(--serif);font-size:1.2rem; }
+  .pcf-nm { font-size:.95rem;font-weight:500;color:var(--text); }
+  .pcf-st { font-size:.78rem;color:var(--coach);display:flex;align-items:center;gap:5px; }
+  .pcf-st i { width:7px;height:7px;border-radius:50%;background:var(--coach);display:inline-block; }
+  .pcf-body { padding:18px;display:flex;flex-direction:column;gap:12px;min-height:130px; }
+  .bub-bot { align-self:flex-start;max-width:88%;background:var(--coach-light);color:var(--text);padding:11px 14px;border-radius:14px 14px 14px 4px;font-size:.92rem;line-height:1.55; }
+  .bub-user { align-self:flex-end;max-width:85%;background:var(--coach);color:#fff;padding:11px 14px;border-radius:14px 14px 4px 14px;font-size:.92rem;line-height:1.5; }
+  .pcf-opts { padding:0 18px 18px;display:flex;flex-wrap:wrap;gap:8px; }
+  .chat-opt { border:1.5px solid var(--border);background:#fff;color:var(--text);padding:9px 15px;border-radius:999px;font-size:.85rem;cursor:pointer;transition:all .15s;font-family:var(--sans); }
+  .chat-opt:hover { background:var(--coach-light);border-color:var(--coach); }
+  .result-card { align-self:stretch;border:2px solid var(--coach);border-radius:16px;padding:18px;margin-top:2px;background:var(--coach-light); }
+  .rc-head { display:flex;gap:14px;align-items:center;margin-bottom:12px; }
+  .rc-ic { width:48px;height:48px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;flex:none;font-family:var(--serif);font-size:1.5rem;color:var(--coach-dark); }
+  .result-card h3 { font-size:1.15rem;margin:0;color:var(--text); }
+  .rc-sub { font-size:.78rem;color:var(--text-mid);margin-top:2px; }
+  .rc-body { font-size:.92rem;line-height:1.6;color:var(--text); }
+  .chat-cta { border:0;background:var(--coach);color:#fff;padding:12px 22px;border-radius:999px;font-size:.9rem;font-weight:500;cursor:pointer;text-decoration:none;display:inline-block;font-family:var(--sans); }
+  .chat-cta:hover { background:var(--coach-dark); }
+  .chat-restart { border:1.5px solid var(--border);background:#fff;color:var(--text-mid);padding:12px 18px;border-radius:999px;font-size:.85rem;cursor:pointer;font-family:var(--sans); }
+  .chat-restart:hover { border-color:var(--coach); }
   /* Anfrageformular dunkel */
   .pc-form-input { width:100%;padding:.75rem .9rem;border:1.5px solid rgba(255,255,255,.3);border-radius:8px;font-family:var(--sans);font-size:.9rem;outline:none;background:rgba(255,255,255,.1);color:#fff;box-sizing:border-box; }
   .pc-form-input::placeholder { color:rgba(255,255,255,.5); }
@@ -196,27 +212,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <h2 style="text-align:center;max-width:22ch;margin:0 auto 1rem;">Ist Physiocoaching das Richtige für dich?</h2>
     <p style="text-align:center;max-width:58ch;margin:0 auto 2.5rem;color:var(--text-mid);line-height:1.7;">Beantworte ein paar kurze Fragen – unser Physiocoach-Assistent findet heraus, wer am besten zu dir passt: Hanna, Nico oder beide.</p>
 
-    <div style="max-width:640px;margin:0 auto;background:var(--coach-light);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;">
-      <div style="background:var(--coach-dark);color:#fff;padding:1rem 1.25rem;display:flex;align-items:center;gap:.75rem;">
-        <div style="width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;font-size:1.1rem;">✦</div>
+    <div class="pcf-shell">
+      <div class="pcf-head">
+        <div class="pcf-avatar">✦</div>
         <div>
-          <div style="font-weight:500;font-size:.95rem;">Physiocoach-Assistent</div>
-          <div style="font-size:.75rem;color:rgba(255,255,255,.6);">Online · antwortet sofort</div>
+          <div class="pcf-nm">Physiocoach-Assistent</div>
+          <div class="pcf-st"><i></i>Online · antwortet sofort</div>
         </div>
       </div>
-      <div id="pcf-messages" style="padding:1.25rem;display:flex;flex-direction:column;gap:.85rem;min-height:180px;max-height:380px;overflow-y:auto;">
-        <div class="pcf-msg-bot">Hi! Ich helfe dir herauszufinden, ob Physiocoaching zu dir passt – und welcher Coach. Erzähl mir kurz: Was möchtest du erreichen, oder was beschäftigt dich gerade körperlich?</div>
-      </div>
-      <div id="pcf-chips" style="padding:0 1.25rem 1rem;display:flex;gap:.5rem;flex-wrap:wrap;">
-        <span class="pcf-chip" onclick="pcfQuick(this.textContent)">Wieder fit nach OP</span>
-        <span class="pcf-chip" onclick="pcfQuick(this.textContent)">Rückenschmerzen</span>
-        <span class="pcf-chip" onclick="pcfQuick(this.textContent)">Einstieg über 40</span>
-        <span class="pcf-chip" onclick="pcfQuick(this.textContent)">Muskelaufbau</span>
-      </div>
-      <div style="padding:0 1.25rem 1.25rem;display:flex;gap:.6rem;">
-        <input id="pcf-input" class="pcf-input" type="text" placeholder="Deine Nachricht…" onkeydown="if(event.key==='Enter')pcfSend()">
-        <button onclick="pcfSend()" id="pcf-send" class="btn btn-primary" style="flex-shrink:0;">Senden</button>
-      </div>
+      <div class="pcf-body" id="chatBody"></div>
+      <div class="pcf-opts" id="chatOpts"></div>
     </div>
   </div>
 </section>
@@ -376,58 +381,67 @@ async function pcSubmit(){
   }catch(e){errEl.textContent='Verbindungsfehler. Bitte anrufen: 0451 – 160 830 19';errEl.style.display='block';btn.textContent='Anfrage senden';btn.disabled=false;}
 }
 
-// ===== KI-Finder Chat =====
-const PCF_SYSTEM = `Du bist der Physiocoach-Assistent von Pilates Company Lübeck (dieses Angebot wird auch auf der PhysioPro-Website präsentiert). Du hilfst Interessenten herauszufinden, ob das 1:1 Physiocoaching am Reformer zu ihnen passt und welcher der beiden Coaches geeignet ist.
+// ===== Physiocoach-Finder – geführter Quiz-Assistent =====
+(function(){
+  var Q=[
+    {bot:"Hi! Schön, dass du da bist. 👋 Ich helfe dir herauszufinden, welcher Physiocoach am besten zu dir passt – Hanna, Nico oder beide. Lass uns starten: Was ist gerade dein wichtigstes Ziel?",
+     a:[{t:"Kraft & Muskeln aufbauen",n:2,h:0},{t:"Beschwerden in den Griff bekommen",n:0,h:2},{t:"Fit & beweglich bleiben",n:1,h:1},{t:"Sicher wieder einsteigen",n:0,h:2}]},
+    {bot:"Verstanden. Und wie würdest du deine aktuelle Situation beschreiben?",
+     a:[{t:"Ich bin grundsätzlich fit",n:2,h:0},{t:"Ich habe ein paar Baustellen",n:0,h:2},{t:"Frau 40+, mit besonderen Themen",n:0,h:3},{t:"Gemischt – beides trifft zu",n:1,h:1}]},
+    {bot:"Gut zu wissen. Eine wichtige Frage: Wie wichtig ist dir gezielter Muskelaufbau?",
+     a:[{t:"Sehr wichtig – mein Fokus",n:3,h:0},{t:"Wichtig, aber sicher",n:1,h:1},{t:"Eher zweitrangig",n:0,h:2},{t:"Weiß ich nicht genau",n:1,h:1}]},
+    {bot:"Macht Sinn. Worauf legst du bei der Betreuung am meisten Wert?",
+     a:[{t:"Effektives, forderndes Coaching",n:2,h:0},{t:"Erfahrung & tiefes Körperverständnis",n:0,h:2},{t:"Einfühlsame, geduldige Begleitung",n:0,h:2},{t:"Beides gleichermaßen",n:1,h:1}]},
+    {bot:"Letzte Frage – was beschreibt dich am ehesten?",
+     a:[{t:"Ich will an meine Grenzen",n:2,h:0},{t:"Ich will mich sicher fühlen",n:0,h:2},{t:"40+, die es richtig machen will",n:1,h:2},{t:"Offen für den besten Weg",n:1,h:1}]}
+  ];
+  var step=0,nico=0,hannah=0;
+  var body=document.getElementById('chatBody');
+  var opts=document.getElementById('chatOpts');
+  if(!body) return;
 
-PRODUKT: Private Reformer Class, 1:1 Coaching am Pilates Reformer, 60 Minuten, 89 € pro Einheit, Mo–Sa, jedes Level. Standort: Segeberger Str. 1, 23617 Stockelsdorf (direkt an der Grenze zu Lübeck). Geleitet von hochqualifizierten Physiotherapeuten. Jede Einheit startet mit physiotherapeutischem Check-in (Anamnese), dann Aufwärmen am Reformer, individuelles Krafttraining mit Echtzeit-Korrektur, Ausklang.
+  function bot(t){var d=document.createElement('div');d.className='bub-bot';d.textContent=t;body.appendChild(d);}
+  function usr(t){var d=document.createElement('div');d.className='bub-user';d.textContent=t;body.appendChild(d);}
 
-COACHES:
-- Hanna: Physiotherapeutin mit über 20 Jahren Erfahrung, Gründerin & Inhaberin. Arbeitet besonders gern mit Frauen ab 40 – Wechseljahre, Beckenboden, ganzheitlich und langfristig.
-- Nico: Physiotherapeut & Fitnesscoach. Profil folgt, aber gut für allgemeinen Kraftaufbau und Fitness geeignet.
-
-IDEAL FÜR: Menschen mit Beschwerden/Vorgeschichte (Rücken, Knie, Schulter, nach OP), die sich im normalen Studio unsicher fühlen; Menschen deren Physiotherapie ausläuft; Menschen über 40; Wiedereinstieg nach Pause/Krankheit/Schwangerschaft; sicherer Muskelaufbau.
-
-DEINE AUFGABE: Stelle 1–2 kurze Rückfragen, gib dann eine klare Empfehlung (Hanna, Nico oder beide passen) und ermutige zur Anfrage über das Formular weiter unten auf der Seite oder per Telefon 0451 – 160 830 19. Antworte auf Deutsch, freundlich, per Du, konkret und kurz (max. 4 Sätze). Erfinde keine medizinischen Heilversprechen. Bei akuten/ernsten Beschwerden empfehle ärztliche Abklärung bzw. zuerst eine physiotherapeutische Behandlung.`;
-
-let pcfHistory = [];
-function pcfAddMsg(text, who){
-  const box=document.getElementById('pcf-messages');
-  const d=document.createElement('div');
-  d.className = who==='user'?'pcf-msg-user':'pcf-msg-bot';
-  d.textContent=text;
-  box.appendChild(d);
-  box.scrollTop=box.scrollHeight;
-  return d;
-}
-function pcfQuick(text){
-  document.getElementById('pcf-input').value=text;
-  pcfSend();
-}
-async function pcfSend(){
-  const input=document.getElementById('pcf-input');
-  const text=input.value.trim();
-  if(!text)return;
-  document.getElementById('pcf-chips').style.display='none';
-  pcfAddMsg(text,'user');
-  pcfHistory.push({role:'user',content:text});
-  input.value='';
-  const btn=document.getElementById('pcf-send');btn.disabled=true;
-  const typing=pcfAddMsg('…','bot');
-  try{
-    const res=await fetch('/.netlify/functions/chat',{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({system:PCF_SYSTEM, messages:pcfHistory})
+  function render(){
+    var item=Q[step];opts.innerHTML='';
+    item.a.forEach(function(o){
+      var b=document.createElement('button');b.className='chat-opt';b.textContent=o.t;
+      b.onclick=function(){
+        usr(o.t);nico+=o.n;hannah+=o.h;step++;opts.innerHTML='';
+        setTimeout(function(){if(step<Q.length){bot(Q[step].bot);render();}else{result();}},420);
+      };
+      opts.appendChild(b);
     });
-    const data=await res.json();
-    const reply=data.reply||'Entschuldige, das hat nicht geklappt. Ruf uns gern an: 0451 – 160 830 19';
-    typing.textContent=reply;
-    pcfHistory.push({role:'assistant',content:reply});
-  }catch(e){
-    typing.textContent='Verbindungsfehler. Ruf uns gern an: 0451 – 160 830 19';
   }
-  btn.disabled=false;
-}
+
+  function result(){
+    var total=nico+hannah,diff=Math.abs(nico-hannah);
+    var mode=diff<=2?'both':(nico>hannah?'nico':'hannah');
+    var title,sub,bd,ic;
+    if(mode==='nico'){ic='N';title='Dein Physiocoach ist Nico';sub='Physiotherapeut · Schwerpunkt Muskelaufbau';
+      bd='Dein Fokus ist klar: stärker werden und Muskeln aufbauen. Nico verbindet physiotherapeutisches Wissen mit gezieltem Aufbau-Know-how – fordernd, aber nie über die Grenze deines Körpers hinaus.';}
+    else if(mode==='hannah'){ic='H';title='Deine Physiocoachin ist Hanna';sub='Physiotherapeutin · 20+ Jahre Erfahrung';
+      bd='Du bringst Themen mit, bei denen Erfahrung und Feingefühl zählen – besonders als Frau 40+. Hanna versteht genau, worauf es ankommt. Und ja: Auch für dich ist Muskelaufbau ein Schlüssel – sie baut ihn behutsam mit ein.';}
+    else{ic='✦';title='Du brauchst beide';sub='Hanna & Nico im Zusammenspiel';
+      bd='Deine Themen sind vielschichtig – genau dann spielt unser Studio seine Stärke aus. Du profitierst von Hannas Erfahrung UND Nicos Aufbau-Kompetenz. Denn gerade wenn der Körper Aufmerksamkeit braucht, ist Muskelaufbau der Schlüssel: für stabile Gelenke, starke Knochen und Kraft für die nächsten Jahre.';}
+
+    bot('Ich hab da was für dich. ✨');
+    var c=document.createElement('div');c.className='result-card';
+    c.innerHTML='<div class="rc-head"><div class="rc-ic">'+ic+'</div><div><h3>'+title+'</h3><div class="rc-sub">'+sub+'</div></div></div>'+
+      '<div class="rc-body">'+bd+'</div>';
+    body.appendChild(c);
+    bot('Wenn das für dich passt, hinterlass uns einfach deine Daten – wir melden uns persönlich bei dir und finden gemeinsam einen Termin.');
+
+    var cta=document.createElement('a');cta.className='chat-cta';cta.href='#anfrage';cta.textContent='Anfrage senden →';
+    opts.appendChild(cta);
+    var r=document.createElement('button');r.className='chat-restart';r.textContent='Nochmal';
+    r.onclick=function(){step=0;nico=0;hannah=0;body.innerHTML='';opts.innerHTML='';bot(Q[0].bot);render();};
+    opts.appendChild(r);
+  }
+
+  bot(Q[0].bot);render();
+})();
 </script>
 
 <!-- FOOTER -->
