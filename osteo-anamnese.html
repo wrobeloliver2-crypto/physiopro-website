@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Osteopathie Anamnese · Julia Mielke</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --sand: #d2c8b4;
+  --sand-dark: #9e9080;
+  --sand-text: #3a3028;
+  --sand-muted: #6a5e50;
+  --white: #fafaf8;
+}
+body {
+  background: var(--sand);
+  min-height: 100vh;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: var(--sand-text);
+  -webkit-tap-highlight-color: transparent;
+}
+.header {
+  padding: 1.25rem 1.25rem 1rem;
+  display: flex; align-items: center; gap: 12px;
+  position: sticky; top: 0; z-index: 10;
+  background: var(--sand);
+  border-bottom: 0.5px solid rgba(58,48,40,0.2);
+}
+.header img { width: 84px; height: 50px; object-fit: cover; border-radius: 3px; flex-shrink: 0; }
+.header-text h1 {
+  font-size: 14px; font-weight: 400; letter-spacing: 0.1em;
+  color: var(--white); text-transform: uppercase;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.25);
+}
+.header-text p {
+  font-size: 11px; letter-spacing: 0.07em;
+  color: rgba(58,48,40,0.6); text-transform: uppercase; margin-top: 2px;
+}
+.content { padding: 0 1rem 2rem; max-width: 700px; margin: 0 auto; }
+
+.section-head {
+  font-size: 12px; font-weight: 600; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--sand-text);
+  padding: 1.1rem 0 0.5rem;
+  border-bottom: 1.5px solid rgba(58,48,40,0.3);
+  margin-bottom: 0.75rem;
+}
+.field { margin-bottom: 0.8rem; }
+.field label {
+  display: block; font-size: 13px; font-weight: 600;
+  letter-spacing: 0.04em; text-transform: uppercase;
+  color: var(--sand-text); margin-bottom: 5px;
+}
+.field input[type=text], .field textarea {
+  width: 100%; font-size: 16px; padding: 10px 11px;
+  border: 1px solid rgba(58,48,40,0.35);
+  border-radius: 5px;
+  background: rgba(255,255,255,0.35);
+  color: var(--sand-text); font-family: inherit;
+  -webkit-appearance: none;
+}
+.field input[type=text]::placeholder,
+.field textarea::placeholder { color: rgba(58,48,40,0.4); font-size: 14px; }
+.field textarea { height: 60px; resize: none; }
+
+.two-col { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 8px; }
+
+.chips { display: flex; flex-wrap: wrap; gap: 7px; }
+.chip {
+  font-size: 15px; padding: 9px 15px;
+  border: 1px solid rgba(58,48,40,0.4);
+  border-radius: 24px; cursor: pointer;
+  background: rgba(255,255,255,0.28);
+  color: var(--sand-text);
+  user-select: none;
+  -webkit-user-select: none;
+  transition: all 0.1s;
+}
+.chip.sel {
+  background: rgba(58,48,40,0.82);
+  border-color: rgba(58,48,40,0.9);
+  color: #f5f0e8;
+}
+
+.yn { display: flex; gap: 7px; }
+.yn-btn {
+  flex: 1; padding: 12px 4px; font-size: 15px;
+  border: 1px solid rgba(58,48,40,0.4);
+  border-radius: 5px; cursor: pointer;
+  background: rgba(255,255,255,0.28);
+  color: var(--sand-text);
+  text-align: center; font-family: inherit;
+}
+.yn-btn.on {
+  background: rgba(58,48,40,0.82);
+  border-color: rgba(58,48,40,0.9);
+  color: #f5f0e8;
+}
+
+.tag-wrap {
+  display: flex; flex-wrap: wrap; gap: 6px; align-items: center;
+  border: 1px solid rgba(58,48,40,0.35); border-radius: 5px;
+  padding: 7px 10px; background: rgba(255,255,255,0.32); min-height: 44px;
+}
+.tag-wrap input {
+  border: none; outline: none; font-size: 15px;
+  flex: 1; min-width: 80px;
+  background: transparent; color: var(--sand-text); font-family: inherit;
+}
+.tag-wrap input::placeholder { color: rgba(58,48,40,0.4); }
+.tag {
+  font-size: 13px; padding: 4px 10px;
+  background: rgba(58,48,40,0.18);
+  border: 0.5px solid rgba(58,48,40,0.35);
+  border-radius: 14px; cursor: pointer; color: var(--sand-text);
+}
+
+.quick-chips { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 6px; }
+.q-chip {
+  font-size: 13px; padding: 5px 11px;
+  border: 0.5px solid rgba(58,48,40,0.3); border-radius: 14px; cursor: pointer;
+  background: rgba(255,255,255,0.15); color: var(--sand-muted);
+}
+.q-chip.used { opacity: 0.3; pointer-events: none; }
+
+.pdf-btn {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  width: 100%; margin-top: 2rem; padding: 17px;
+  background: rgba(58,48,40,0.85); color: #f5f0e8;
+  border: none; border-radius: 5px;
+  font-size: 14px; letter-spacing: 0.1em; text-transform: uppercase;
+  font-weight: 400; cursor: pointer; font-family: inherit;
+}
+.pdf-btn:active { opacity: 0.75; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <img src="logo-osteo.png" alt="PhysioPro Osteopathie">
+  <div class="header-text">
+    <h1>Anamnese · Julia Mielke</h1>
+    <p>Osteopathie · Heilpraktik</p>
+  </div>
+</div>
+
+<div class="content">
+
+<div class="section-head">Patient</div>
+<div class="two-col">
+  <div class="field"><label>Name</label><input type="text" id="f_name" placeholder="Nachname, Vorname" autocomplete="off"></div>
+  <div class="field"><label>Alter</label><input type="text" id="f_alter" placeholder="z. B. 42" autocomplete="off"></div>
+</div>
+<div class="field"><label>Beruf</label><input type="text" id="f_beruf" placeholder="Tätigkeit" autocomplete="off"></div>
+<div class="field"><label>Sozialanamnese</label><textarea id="f_sozial" placeholder="Lebensumstände, Familie, Sport …"></textarea></div>
+
+<div class="section-head">Hauptproblem</div>
+<div class="field"><textarea id="f_haupt" style="height:70px" placeholder="Hauptbeschwerden …"></textarea></div>
+
+<div class="section-head">Vorgeschichte</div>
+<div class="field"><label>Diagnosen / Nebenerkrankungen</label>
+  <div class="tag-wrap" id="diag_wrap"><input type="text" id="diag_in" placeholder="Eingabe + Enter" autocomplete="off"></div>
+  <div class="quick-chips">
+    <span class="q-chip" data-t="diag">Diabetes</span>
+    <span class="q-chip" data-t="diag">Bluthochdruck</span>
+    <span class="q-chip" data-t="diag">Schilddrüse</span>
+    <span class="q-chip" data-t="diag">Rheuma</span>
+    <span class="q-chip" data-t="diag">Osteoporose</span>
+    <span class="q-chip" data-t="diag">Herzerkrankung</span>
+    <span class="q-chip" data-t="diag">Asthma</span>
+    <span class="q-chip" data-t="diag">Depression/Angst</span>
+  </div>
+</div>
+<div class="field"><label>Medikamente</label>
+  <div class="tag-wrap" id="medi_wrap"><input type="text" id="medi_in" placeholder="Eingabe + Enter" autocomplete="off"></div>
+</div>
+<div class="two-col">
+  <div class="field"><label>Operationen</label>
+    <div class="tag-wrap" id="op_wrap"><input type="text" id="op_in" placeholder="+ Enter" autocomplete="off"></div>
+  </div>
+  <div class="field"><label>Frakturen</label>
+    <div class="tag-wrap" id="frak_wrap"><input type="text" id="frak_in" placeholder="+ Enter" autocomplete="off"></div>
+  </div>
+</div>
+<div class="field"><label>Stürze / Unfälle</label>
+  <div class="tag-wrap" id="unfall_wrap"><input type="text" id="unfall_in" placeholder="Eingabe + Enter" autocomplete="off"></div>
+</div>
+
+<div class="section-head">Viszeral</div>
+<div class="field"><label>Verdauung</label>
+  <div class="chips">
+    <span class="chip" data-g="verd">Unauffällig</span>
+    <span class="chip" data-g="verd">Blähungen</span>
+    <span class="chip" data-g="verd">Verstopfung</span>
+    <span class="chip" data-g="verd">Durchfall</span>
+    <span class="chip" data-g="verd">Sodbrennen</span>
+    <span class="chip" data-g="verd">Übelkeit</span>
+    <span class="chip" data-g="verd">Reizdarm</span>
+  </div>
+</div>
+<div class="field" style="margin-top:8px"><label>Stuhlgang</label>
+  <div class="chips">
+    <span class="chip" data-s="stuhl">Regelmäßig</span>
+    <span class="chip" data-s="stuhl">Unregelmäßig</span>
+  </div>
+</div>
+<div class="field" style="margin-top:8px"><label>Magen</label>
+  <div class="chips">
+    <span class="chip" data-g="magen">Unauffällig</span>
+    <span class="chip" data-g="magen">Schmerzen</span>
+    <span class="chip" data-g="magen">Gastritis</span>
+    <span class="chip" data-g="magen">Ulkus</span>
+    <span class="chip" data-g="magen">OP vorbekannt</span>
+  </div>
+</div>
+<div class="field" style="margin-top:8px"><label>Unverträglichkeiten</label>
+  <div class="chips">
+    <span class="chip" data-g="unv">Keine</span>
+    <span class="chip" data-g="unv">Laktose</span>
+    <span class="chip" data-g="unv">Gluten</span>
+    <span class="chip" data-g="unv">Fructose</span>
+    <span class="chip" data-g="unv">Histamin</span>
+    <span class="chip" data-g="unv">Sonstige</span>
+  </div>
+</div>
+
+<div class="section-head">Cranio</div>
+<div class="field"><label>Nasennebenhöhlen</label>
+  <div class="chips">
+    <span class="chip" data-g="nnh">Unauffällig</span>
+    <span class="chip" data-g="nnh">Chronisch</span>
+    <span class="chip" data-g="nnh">Rezidivierend</span>
+    <span class="chip" data-g="nnh">Akut</span>
+    <span class="chip" data-g="nnh">OP vorbekannt</span>
+  </div>
+</div>
+<div class="field" style="margin-top:8px"><label>Kopfschmerzen</label>
+  <div class="chips">
+    <span class="chip" data-g="kopf">Keine</span>
+    <span class="chip" data-g="kopf">Gelegentlich</span>
+    <span class="chip" data-g="kopf">Migräne</span>
+    <span class="chip" data-g="kopf">Spannungskopfschmerz</span>
+    <span class="chip" data-g="kopf">Täglich</span>
+  </div>
+</div>
+<div class="field" style="margin-top:8px"><label>Tinnitus</label>
+  <div class="yn" id="yn_tin">
+    <div class="yn-btn" data-v="Nein">Nein</div>
+    <div class="yn-btn" data-v="Gelegentlich">Gelegentlich</div>
+    <div class="yn-btn" data-v="Ja, dauerhaft">Dauerhaft</div>
+  </div>
+</div>
+<div class="field" style="margin-top:8px"><label>Schwindel</label>
+  <div class="yn" id="yn_sw">
+    <div class="yn-btn" data-v="Nein">Nein</div>
+    <div class="yn-btn" data-v="Gelegentlich">Gelegentlich</div>
+    <div class="yn-btn" data-v="Ja, häufig">Häufig</div>
+  </div>
+</div>
+
+<div class="section-head">Gynäkologie</div>
+<div class="field"><label>Menstruation</label>
+  <div class="chips">
+    <span class="chip" data-g="mens">Regelmäßig</span>
+    <span class="chip" data-g="mens">Unregelmäßig</span>
+    <span class="chip" data-g="mens">Dysmenorrhoe</span>
+    <span class="chip" data-g="mens">Amenorrhoe</span>
+    <span class="chip" data-g="mens">Pille/Hormonal</span>
+    <span class="chip" data-g="mens">Nicht relevant</span>
+  </div>
+</div>
+<div class="field" style="margin-top:8px"><label>Wechseljahre</label>
+  <div class="yn" id="yn_wj">
+    <div class="yn-btn" data-v="Nein">Nein</div>
+    <div class="yn-btn" data-v="Perimenopause">Peri</div>
+    <div class="yn-btn" data-v="Ja">Ja</div>
+  </div>
+</div>
+
+<div class="section-head">Allgemein</div>
+<div class="field"><label>Stress</label>
+  <div class="chips">
+    <span class="chip" data-s="stress">Niedrig</span>
+    <span class="chip" data-s="stress">Mittel</span>
+    <span class="chip" data-s="stress">Hoch</span>
+    <span class="chip" data-s="stress">Sehr hoch</span>
+  </div>
+</div>
+<div class="field" style="margin-top:8px"><label>Schlaf</label>
+  <div class="chips">
+    <span class="chip" data-g="schlaf">Gut</span>
+    <span class="chip" data-g="schlaf">Einschlafprobleme</span>
+    <span class="chip" data-g="schlaf">Durchschlafprobleme</span>
+    <span class="chip" data-g="schlaf">Nicht erholt</span>
+    <span class="chip" data-g="schlaf">Schlafmittel</span>
+  </div>
+</div>
+<div class="field" style="margin-top:8px"><label>Notizen / Sonstiges</label>
+  <textarea id="f_notizen" style="height:64px" placeholder="Weitere Befunde, Besonderheiten …"></textarea>
+</div>
+
+<button class="pdf-btn" id="pdfBtn">PDF Anamnese speichern</button>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+const st={verd:[],magen:[],unv:[],nnh:[],kopf:[],mens:[],schlaf:[],stuhl:'',stress:'',yn_tin:'',yn_sw:'',yn_wj:'',diag:[],medi:[],op:[],frak:[],unfall:[]};
+
+document.querySelectorAll('.chip[data-g]').forEach(c=>{
+  c.addEventListener('click',()=>{const g=c.dataset.g,v=c.textContent;if(st[g].includes(v)){st[g]=st[g].filter(x=>x!==v);c.classList.remove('sel');}else{st[g].push(v);c.classList.add('sel');}});
+});
+document.querySelectorAll('.chip[data-s]').forEach(c=>{
+  c.addEventListener('click',()=>{const g=c.dataset.s;document.querySelectorAll('.chip[data-s="'+g+'"]').forEach(x=>x.classList.remove('sel'));st[g]=c.textContent;c.classList.add('sel');});
+});
+['tin','sw','wj'].forEach(k=>{
+  document.querySelectorAll('#yn_'+k+' .yn-btn').forEach(b=>{
+    b.addEventListener('click',()=>{document.querySelectorAll('#yn_'+k+' .yn-btn').forEach(x=>x.classList.remove('on'));st['yn_'+k]=b.dataset.v;b.classList.add('on');});
+  });
+});
+
+function setupTag(inId,wrapId,key){
+  const inp=document.getElementById(inId),wrap=document.getElementById(wrapId);
+  inp.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===',')&&inp.value.trim()){e.preventDefault();addTag(inp.value.trim(),wrap,key);inp.value='';}});
+}
+function addTag(val,wrap,key){
+  if(st[key].includes(val))return;
+  st[key].push(val);
+  const t=document.createElement('span');t.className='tag';t.textContent=val+' \u00d7';
+  t.onclick=()=>{st[key]=st[key].filter(v=>v!==val);t.remove();};
+  wrap.insertBefore(t,wrap.querySelector('input'));
+}
+[['diag_in','diag_wrap','diag'],['medi_in','medi_wrap','medi'],['op_in','op_wrap','op'],['frak_in','frak_wrap','frak'],['unfall_in','unfall_wrap','unfall']].forEach(function(a){setupTag(a[0],a[1],a[2]);});
+
+document.querySelectorAll('.q-chip[data-t]').forEach(c=>{
+  c.addEventListener('click',()=>{const t=c.dataset.t,wrap=document.getElementById(t+'_wrap');addTag(c.textContent,wrap,t);c.classList.add('used');});
+});
+
+document.getElementById('pdfBtn').addEventListener('click',function(){
+  const{jsPDF}=window.jspdf;
+  const doc=new jsPDF({format:'a4',unit:'mm'});
+  const sand=[210,200,180],dk=[100,90,80],wh=[255,255,255];
+  let y=18;const lm=18,rm=192,lh=7;
+  doc.setFillColor(...sand);doc.rect(0,0,210,297,'F');
+  doc.setFillColor(...dk);doc.rect(0,0,210,24,'F');
+  doc.setFont('helvetica','normal');doc.setFontSize(13);doc.setTextColor(...wh);
+  doc.text('Anamnese \u00b7 Julia Mielke',lm,13);
+  doc.setFontSize(8);doc.setTextColor(220,210,195);
+  doc.text('Osteopathie \u00b7 Heilpraktik \u00b7 '+new Date().toLocaleDateString('de-DE'),lm,19);
+  y=32;
+  function sec(t){y+=3;doc.setFillColor(...dk);doc.rect(lm-2,y-4,rm-lm+4,6,'F');doc.setFont('helvetica','normal');doc.setFontSize(8);doc.setTextColor(...wh);doc.text(t.toUpperCase(),lm,y);y+=6;doc.setFont('helvetica','normal');doc.setFontSize(10);doc.setTextColor(50,40,30);}
+  function row(label,val){if(!val)return;doc.setFont('helvetica','bold');doc.setFontSize(8.5);doc.setTextColor(...dk);doc.text(label,lm,y);doc.setFont('helvetica','normal');doc.setTextColor(50,40,30);const lines=doc.splitTextToSize(val,rm-lm-42);doc.text(lines,lm+42,y);y+=Math.max(lh,lines.length*5+2);if(y>278){doc.addPage();doc.setFillColor(...sand);doc.rect(0,0,210,297,'F');y=18;}}
+  const g=function(id){return(document.getElementById(id)||{}).value||'';};
+  sec('Patient');row('Name',g('f_name'));row('Alter',g('f_alter'));row('Beruf',g('f_beruf'));row('Sozialanamnese',g('f_sozial'));
+  sec('Hauptproblem');row('Beschwerden',g('f_haupt'));
+  sec('Vorgeschichte');row('Diagnosen',st.diag.join(', '));row('Medikamente',st.medi.join(', '));row('Operationen',st.op.join(', '));row('Frakturen',st.frak.join(', '));row('Unf\u00e4lle',st.unfall.join(', '));
+  sec('Viszeral');row('Verdauung',st.verd.join(', '));row('Stuhlgang',st.stuhl);row('Magen',st.magen.join(', '));row('Unvertr\u00e4glichkeiten',st.unv.join(', '));
+  sec('Cranio');row('Nasennebenh\u00f6hlen',st.nnh.join(', '));row('Kopfschmerzen',st.kopf.join(', '));row('Tinnitus',st.yn_tin);row('Schwindel',st.yn_sw);
+  sec('Gyn\u00e4kologie');row('Menstruation',st.mens.join(', '));row('Wechseljahre',st.yn_wj);
+  sec('Allgemein');row('Stress',st.stress);row('Schlaf',st.schlaf.join(', '));row('Notizen',g('f_notizen'));
+  const name=g('f_name').replace(/[^a-zA-Z\u00e4\u00f6\u00fc\u00c4\u00d6\u00dc\u00df0-9]/g,'_')||'Patient';
+  const d=new Date().toLocaleDateString('de-DE').replace(/\./g,'-');
+  doc.save('Anamnese_'+name+'_'+d+'.pdf');
+});
+</script>
+</body>
+</html>
