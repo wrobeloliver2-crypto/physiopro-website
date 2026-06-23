@@ -2,6 +2,17 @@
 // PhysioPro Lübeck – Shared JS v2.0
 // ═══════════════════════════════════
 
+// UTM-Parameter aus der Landing-URL an einen URLSearchParams-Body anhängen.
+// Wird von allen Ads-relevanten Formularen genutzt (termin, osteopathie, rueckruf).
+function appendUTMs(body) {
+  var up = new URLSearchParams(window.location.search);
+  ['utm_source','utm_medium','utm_campaign','utm_content','gclid'].forEach(function(k){
+    var v = up.get(k);
+    if (v) body.append(k, v);
+  });
+  return body;
+}
+
 // Q&A Modal
 function openQA() {
   const overlay = document.getElementById('qa-overlay');
@@ -70,6 +81,7 @@ async function rueckrufSubmit() {
     body.append('email', tel.replace(/\D/g,'') + '@rueckruf.physioproluebeck.de');
     const thema = document.getElementById('rb-thema') ? document.getElementById('rb-thema').value : '';
     body.append('message', (thema ? 'Thema: ' + thema + ' | ' : '') + 'Rückruf | Priorität: ' + (prio ? prio.value : 'nicht angegeben'));
+    appendUTMs(body);
     const res = await fetch('/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
