@@ -346,10 +346,26 @@ function getCookie(name) {
   const v = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
   return v ? v.pop() : '';
 }
+function getUtmParams() {
+  const p = new URLSearchParams(window.location.search);
+  return {
+    utm_source:   p.get('utm_source')   || '',
+    utm_medium:   p.get('utm_medium')   || '',
+    utm_campaign: p.get('utm_campaign') || '',
+    utm_content:  p.get('utm_content')  || '',
+    gclid:        p.get('gclid')        || ''
+  };
+}
 async function hsSubmit(fields, formId) {
   const body = new URLSearchParams();
   body.append('form-name', formId || 'kontakt');
   fields.forEach(f => body.append(f.name, f.value));
+  const utm = getUtmParams();
+  if (utm.utm_source)   body.append('utm_source',   utm.utm_source);
+  if (utm.utm_medium)   body.append('utm_medium',   utm.utm_medium);
+  if (utm.utm_campaign) body.append('utm_campaign', utm.utm_campaign);
+  if (utm.utm_content)  body.append('utm_content',  utm.utm_content);
+  if (utm.gclid)        body.append('gclid',        utm.gclid);
   const res = await fetch('/', {
     method: 'POST',
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -429,6 +445,7 @@ async function chkSubmit(){
 </script>
 <form name="osteopathie" netlify netlify-honeypot="bot-field" hidden>
   <input name="firstname"><input name="phone"><input name="email"><input name="message">
+  <input name="utm_source"><input name="utm_medium"><input name="utm_campaign"><input name="utm_content"><input name="gclid">
 </form>
 <!-- RÜCKRUF MODAL -->
 <div id="rb-modal" style="display:none;position:fixed;inset:0;background:rgba(30,25,20,.7);z-index:9999;align-items:center;justify-content:center;padding:24px;">

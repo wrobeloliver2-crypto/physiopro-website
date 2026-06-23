@@ -616,11 +616,9 @@ Zu den Pilates-Kursen →
 </div>
 
 <script src="shared.js"></script>
-<form name="kontakt" netlify netlify-honeypot="bot-field" hidden>
-<input name="firstname"><input name="lastname"><input name="email"><input name="phone"><input name="message">
-</form>
-<form name="rueckruf" netlify netlify-honeypot="bot-field" hidden>
+<form name="termin" netlify netlify-honeypot="bot-field" hidden>
 <input name="firstname"><input name="phone"><input name="email"><input name="message">
+<input name="utm_source"><input name="utm_medium"><input name="utm_campaign"><input name="utm_content"><input name="gclid">
 </form>
 <div id="qa-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:2100;align-items:center;justify-content:center;padding:1rem;backdrop-filter:blur(4px);" onclick="if(event.target===this)closeQA()">
 <div id="qa-modal" style="background:#fff;border-radius:20px;max-width:480px;width:100%;height:580px;overflow:hidden;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.2);">
@@ -693,6 +691,12 @@ async function idxSubmit(){
     var body=new URLSearchParams();
     body.append('form-name','termin');
     [{name:'firstname',value:name},{name:'phone',value:tel},{name:'email',value:document.getElementById('idx-email').value.trim()||tel.replace(/[^0-9]/g,'')+'@termin.physioproluebeck.de'},{name:'message',value:msg}].forEach(function(f){body.append(f.name,f.value);});
+    var up=new URLSearchParams(window.location.search);
+    if(up.get('utm_source'))   body.append('utm_source',  up.get('utm_source'));
+    if(up.get('utm_medium'))   body.append('utm_medium',  up.get('utm_medium'));
+    if(up.get('utm_campaign')) body.append('utm_campaign',up.get('utm_campaign'));
+    if(up.get('utm_content'))  body.append('utm_content', up.get('utm_content'));
+    if(up.get('gclid'))        body.append('gclid',       up.get('gclid'));
     var res=await fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:body.toString()});
     if(res.ok){document.getElementById('idx-s3').style.display='none';document.getElementById('idx-success').style.display='block';document.getElementById('idx-progress').style.width='100%';}
     else{errEl.textContent='Fehler. Bitte anrufen: 0451 / 400 730 73';errEl.style.display='block';btn.textContent='Termin anfragen';btn.disabled=false;}
