@@ -20,3 +20,6 @@
 # ── Ergaenzt 09.06.2026: Tippfehler-/Alt-Varianten aus GSC-404 ──
 /ernahrungcoaching                  /            301
 /ernahrungcoaching/                 /            301
+
+# ── Ergaenzt 25.06.2026: Kurzlink Rueckruf-SMS (Query-Params werden durchgereicht) ──
+/r   /rueckruf-sms   200
