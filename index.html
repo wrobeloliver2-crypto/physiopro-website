@@ -705,7 +705,7 @@ async function idxSubmit(){
     if(up.get('utm_content'))  body.append('utm_content', up.get('utm_content'));
     if(up.get('gclid'))        body.append('gclid',       up.get('gclid'));
     var res=await fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:body.toString()});
-    if(res.ok){document.getElementById('idx-s3').style.display='none';document.getElementById('idx-success').style.display='block';document.getElementById('idx-progress').style.width='100%';}
+    if(res.ok){window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'physio_lead_termin'});document.getElementById('idx-s3').style.display='none';document.getElementById('idx-success').style.display='block';document.getElementById('idx-progress').style.width='100%';}
     else{errEl.textContent='Fehler. Bitte anrufen: 0451 / 400 730 73';errEl.style.display='block';btn.textContent='Termin anfragen';btn.disabled=false;}
   }catch(e){errEl.textContent='Verbindungsfehler.';errEl.style.display='block';btn.textContent='Termin anfragen';btn.disabled=false;}
 }
