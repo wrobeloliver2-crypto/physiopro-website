@@ -108,8 +108,14 @@
     zeigeScreen('screen-laden');
 
     try {
-      // Ruft die öffentliche (no-auth) Netlify Function auf dem gleichen Host auf
-      const res = await fetch('/.netlify/functions/rueckruf-bestaetigung', {
+      // Dashboard-Function liegt auf anderer Domain → volle URL.
+      // ?env=test im Link nutzt die Testumgebung (develop), sonst Production.
+      const istTest = new URLSearchParams(window.location.search).get('env') === 'test';
+      const DASHBOARD = istTest
+        ? 'https://develop--leadmanagementphysiopro.netlify.app'
+        : 'https://leadmanagementphysiopro.netlify.app';
+
+      const res = await fetch(DASHBOARD + '/.netlify/functions/rueckruf-bestaetigung', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ telefon: tel }),
