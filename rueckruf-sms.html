@@ -91,18 +91,33 @@
 
 <script>
   // Rufnummer aus URL vorausfüllen
-  const rawTel = new URLSearchParams(window.location.search).get('tel') || '';
+  // Rufnummer aus URL lesen. WICHTIG: Ein nacktes '+' in der URL wird vom
+  // Browser zu einem Leerzeichen — daher zusätzlich den rohen Querystring
+  // prüfen und Leerzeichen als Ziffern-Trenner ignorieren.
+  function leseTelParam() {
+    // 1. Standard-Weg
+    const viaAPI = new URLSearchParams(window.location.search).get('tel') || '';
+    // 2. Roher Querystring (fängt '+'→' ' und +→%2B-Fälle ab)
+    const match = window.location.search.match(/[?&]tel=([^&]*)/);
+    const roh = match ? match[1] : '';
+    // Den längeren/ziffernreicheren der beiden nehmen
+    const a = viaAPI.replace(/[^0-9]/g, '');
+    const b = decodeURIComponent(roh.replace(/\+/g, ' ')).replace(/[^0-9]/g, '');
+    return b.length >= a.length ? b : a;
+  }
+
+  const rawTel = leseTelParam();
   const telInput = document.getElementById('tel-input');
 
-  function normalisiereAnzeige(raw) {
-    if (!raw) return '';
-    // URL macht aus '+' ein Leerzeichen → entfernen; nur Ziffern behalten
-    let n = decodeURIComponent(raw).replace(/\s/g, '').replace(/[^0-9]/g, '');
+  function normalisiereAnzeige(n) {
     if (!n) return '';
-    if (n.startsWith('0049')) n = n.slice(4);   // 0049170... → 170...
-    else if (n.startsWith('49')) n = n.slice(2); // 49170...   → 170...
-    else if (n.startsWith('0')) return n;        // 0170...    → unverändert
-    return '0' + n;                              // 170...     → 0170...
+    n = String(n).replace(/[^0-9]/g, '');
+    if (!n) return '';
+    if (n.startsWith('0049')) n = n.slice(4);    // 0049170... → 170...
+    else if (n.startsWith('49')) n = n.slice(2);  // 49170...   → 170...
+    else if (n.startsWith('0')) return n;         // 0170...    → unverändert
+    if (!n) return '';
+    return '0' + n;                               // 170...     → 0170...
   }
 
   telInput.value = normalisiereAnzeige(rawTel);
