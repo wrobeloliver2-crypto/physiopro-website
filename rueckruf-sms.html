@@ -93,8 +93,19 @@
   // Rufnummer aus URL vorausfüllen
   const rawTel = new URLSearchParams(window.location.search).get('tel') || '';
   const telInput = document.getElementById('tel-input');
-  // +49... → 0... für lesbare Anzeige
-  telInput.value = rawTel.startsWith('+49') ? '0' + decodeURIComponent(rawTel).slice(3) : decodeURIComponent(rawTel);
+
+  function normalisiereAnzeige(raw) {
+    if (!raw) return '';
+    // URL macht aus '+' ein Leerzeichen → entfernen; nur Ziffern behalten
+    let n = decodeURIComponent(raw).replace(/\s/g, '').replace(/[^0-9]/g, '');
+    if (!n) return '';
+    if (n.startsWith('0049')) n = n.slice(4);   // 0049170... → 170...
+    else if (n.startsWith('49')) n = n.slice(2); // 49170...   → 170...
+    else if (n.startsWith('0')) return n;        // 0170...    → unverändert
+    return '0' + n;                              // 170...     → 0170...
+  }
+
+  telInput.value = normalisiereAnzeige(rawTel);
 
   function zeigeScreen(id) {
     document.querySelectorAll('.screen').forEach(s => s.classList.remove('aktiv'));
