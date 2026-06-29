@@ -8,6 +8,9 @@
   --rose: #55725e;
   --rose-dark: #3d5445;
   --rose-light: #eef3f0;
+  --green: #55725e;
+  --green-dark: #3d5445;
+  --green-light: #eef3f0;
   --beige: #c4b09a;
   --beige-warm: #f7f0e8;
   --beige-mid: #e8ddd0;
@@ -173,12 +176,54 @@ footer { background: var(--text); color: rgba(255,255,255,.7); padding: 4rem 0 2
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
   .stats-grid { justify-content: flex-start; }
   .stat-divider { display: none; }
+
+  /* Sidebar-/Zwei-Spalten-Layouts mit fester px-Spalte (z.B. jobs: 1fr 380px) */
+  [style*="grid-template-columns:1fr 380px"],
+  [style*="grid-template-columns: 1fr 380px"],
+  [style*="grid-template-columns:1fr 360px"],
+  [style*="grid-template-columns:1fr 340px"] { grid-template-columns: 1fr !important; gap: 2rem !important; }
+  .sticky-box { position: static !important; }
 }
-@media (max-width: 480px) {
+@media (max-width: 600px) {
   .container { padding: 0 1.25rem; }
   .section { padding: 3rem 0; }
   .footer-grid { grid-template-columns: 1fr; }
-  div[style*="grid-template-columns:1fr 1fr"],
-  div[style*="grid-template-columns: 1fr 1fr"],
-  div[style*="grid-template-columns:repeat(3"] { grid-template-columns: 1fr !important; }
+
+  /* Inline-Grids zusammenklappen (Title-Case-Varianten) */
+  [style*="grid-template-columns:1fr 1fr"],
+  [style*="grid-template-columns: 1fr 1fr"],
+  [style*="grid-template-columns:repeat(3"],
+  [style*="grid-template-columns: repeat(3"],
+  [style*="grid-template-columns:1fr auto"],
+  [style*="grid-template-columns: 1fr auto"] { grid-template-columns: 1fr !important; }
+
+  /* Service-Bloecke (1fr auto): Button-Spalte korrekt unter den Inhalt,
+     Trennlinie links -> oben */
+  .voor-wen-block { grid-template-columns: 1fr !important; }
+  .voor-wen-block .block-btn-col { border-left: none !important; border-top: 1px solid var(--beige-mid) !important; }
+
+  /* CTA-Reihen aus nebeneinanderstehenden Buttons sauber stapeln
+     (Footer-Job-Banner "Offene Stelle / WhatsApp", Rueckruf-CTA usw.) */
+  section[style*="background:#2c3e30"] .container,
+  section[style*="background:#2c3e30"] .container > div { flex-direction: column !important; align-items: stretch !important; }
+  section[style*="background:#2c3e30"] .container > div > .btn { width: 100% !important; text-align: center !important; }
+
+  /* Footer-Bottom-Linkreihe umbrechen lassen (Impressum/Datenschutz/...) */
+  .footer-bottom { flex-direction: column !important; gap: 1rem !important; align-items: flex-start !important; }
+  .footer-bottom > div { flex-wrap: wrap !important; gap: 1rem 1.25rem !important; }
+
+  /* Page-Hero-CTA-Buttons (z.B. therapie: "Rueckruf anfordern" + Telefon)
+     full-width stapeln, statt nebeneinander ueberzulaufen */
+  .page-hero .container > div[style*="display:flex"] > .btn,
+  .page-hero > .container > div[style*="display:flex"] > .btn { width: 100% !important; text-align: center !important; }
+
+  /* Allgemein: CTA-Button-Reihen direkt im Container (Hero-Banner mit
+     2 nebeneinanderstehenden Buttons) auf Mobil voll-breit stapeln */
+  .container > div[style*="display:flex"][style*="flex-wrap:wrap"] > .btn { flex: 1 1 100% !important; width: 100% !important; text-align: center !important; }
+
+  /* CTA-Karten ("Jetzt Termin vereinbaren"): nicht-schrumpfende Button-
+     Gruppen voll-breit stapeln + uebergrosse Innenabstaende reduzieren */
+  div[style*="flex-shrink:0"] > .btn { flex: 1 1 100% !important; width: 100% !important; text-align: center !important; }
+  div[style*="padding:2.5rem 3rem"] { padding: 2rem 1.5rem !important; }
+  div[style*="padding:2.5rem 3rem"] > div[style*="flex-shrink:0"] { width: 100% !important; }
 }
