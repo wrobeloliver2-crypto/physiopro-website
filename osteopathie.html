@@ -478,7 +478,7 @@ async function sendeRueckruf(){
   if(!phone){err.textContent='Bitte Telefonnummer eingeben.';err.style.display='block';return;}
   try{
     const res=await hsSubmit([{name:'firstname',value:name},{name:'phone',value:phone},{name:'message',value:'Rückrufanfrage – Osteopathie-Seite'}],'osteopathie');
-    if(res.ok){document.getElementById('rb-form').style.display='none';document.getElementById('rb-success').style.display='block';}
+    if(res.ok){document.getElementById('rb-form').style.display='none';document.getElementById('rb-success').style.display='block';window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'physio_lead_rueckruf'});}
     else{err.textContent='Fehler. Bitte direkt anrufen: 0451 / 400 730 73';err.style.display='block';}
   }catch(e){err.textContent='Verbindungsfehler. Bitte direkt anrufen.';err.style.display='block';}
 }
