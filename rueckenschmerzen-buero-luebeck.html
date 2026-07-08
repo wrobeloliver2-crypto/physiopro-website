@@ -691,7 +691,7 @@ async function idxSubmit(){
     [{name:'firstname',value:name},{name:'phone',value:tel},{name:'email',value:document.getElementById('idx-email').value.trim()||tel.replace(/[^0-9]/g,'')+'@termin.physioproluebeck.de'},{name:'message',value:msg}].forEach(function(f){body.append(f.name,f.value);});
     appendUTMs(body);
     var res=await fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:body.toString()});
-    if(res.ok){document.getElementById('idx-s3').style.display='none';document.getElementById('idx-success').style.display='block';document.getElementById('idx-progress').style.width='100%';}
+    if(res.ok){document.getElementById('idx-s3').style.display='none';document.getElementById('idx-success').style.display='block';document.getElementById('idx-progress').style.width='100%';window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'physio_lead_termin'});}
     else{errEl.textContent='Fehler. Bitte anrufen: 0451 / 400 730 73';errEl.style.display='block';btn.textContent='Termin anfragen';btn.disabled=false;}
   }catch(e){errEl.textContent='Verbindungsfehler.';errEl.style.display='block';btn.textContent='Termin anfragen';btn.disabled=false;}
 }
