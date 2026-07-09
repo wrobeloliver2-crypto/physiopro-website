@@ -54,7 +54,8 @@ a { text-decoration: none; color: inherit; }
 
 /* ── TAG ── */
 .tag { display: inline-block; font-size: .75rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--beige-dark); background: var(--rose-light); padding: .3rem .75rem; border-radius: 100px; margin-bottom: 1rem; }
-.hero-motto { font-family: var(--serif); font-style: italic; font-weight: 400; font-size: clamp(1.25rem,2.5vw,1.65rem); color: var(--rose-dark); margin: 0 0 .5rem; line-height: 1.2; }
+.hero-motto { font-style: italic; margin-bottom: .5rem; }
+.hero-subhead { font-family: var(--serif); font-weight: 400; font-size: clamp(1.4rem,3vw,2.1rem); color: var(--text-mid); line-height: 1.3; margin-bottom: 1.25rem; }
 
 /* ── NAV ── */
 nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; height: var(--nav-h); background: rgba(250,248,244,.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--beige-mid); display: flex; align-items: center; }
