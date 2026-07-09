@@ -54,6 +54,7 @@ a { text-decoration: none; color: inherit; }
 
 /* ── TAG ── */
 .tag { display: inline-block; font-size: .75rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--beige-dark); background: var(--rose-light); padding: .3rem .75rem; border-radius: 100px; margin-bottom: 1rem; }
+.hero-motto { font-family: var(--serif); font-style: italic; font-weight: 400; font-size: clamp(1.25rem,2.5vw,1.65rem); color: var(--rose-dark); margin: 0 0 .5rem; line-height: 1.2; }
 
 /* ── NAV ── */
 nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; height: var(--nav-h); background: rgba(250,248,244,.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--beige-mid); display: flex; align-items: center; }
@@ -136,6 +137,7 @@ footer { background: var(--text); color: rgba(255,255,255,.7); padding: 4rem 0 2
 .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: .5rem; }
 .footer-col ul li a { color: rgba(255,255,255,.6); text-decoration: none; font-size: .875rem; transition: color .2s; }
 .footer-col ul li a:hover { color: var(--rose); }
+.footer-motto { font-family: var(--serif); font-style: italic; font-size: .95rem; color: rgba(255,255,255,.55); text-align: center; margin: 0 0 1.5rem; }
 .footer-bottom { border-top: 1px solid rgba(255,255,255,.1); padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; font-size: .8rem; }
 .footer-bottom a { color: rgba(255,255,255,.5); text-decoration: none; }
 .footer-bottom a:hover { color: var(--rose); }
