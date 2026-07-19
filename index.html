@@ -331,17 +331,64 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </div>
 
-    <!-- SLIDE 2: Hanna -->
+    <!-- SLIDE 2: Hanna (Therapeutin) -->
     <div class="hw-slide" style="position:absolute;inset:0;border-radius:20px;overflow:hidden;">
       <img src="team-hanna.webp" alt="Hanna Wrobel" width="768" height="1127" fetchpriority="high" decoding="async" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;">
+      <div class="hw-photo-overlay">
+        <div class="hw-photo-name">Hanna Wrobel<span>Gründerin &amp; Inhaberin</span></div>
+        <p class="mini-quote-rotator hw-photo-quote">
+          <em class="mini-quote active">„Mein Ziel: dass Sie sich ernst genommen und gut aufgeklärt fühlen – bei jeder Behandlung.“</em>
+          <em class="mini-quote">„Ich bin Trainerin, Begleiterin und manchmal auch einfach Motivationsquelle.“</em>
+          <em class="mini-quote">„Let’s go for it!“</em>
+        </p>
+      </div>
     </div>
 
-    <!-- SLIDE 3: Empfang -->
+    <!-- SLIDE 3: Annika (nicht Therapeutin - Empfang) -->
+    <div class="hw-slide" style="position:absolute;inset:0;border-radius:20px;overflow:hidden;">
+      <img src="team-annika.jpg" alt="Annika" width="1025" height="1025" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;">
+      <div class="hw-photo-overlay">
+        <div class="hw-photo-name">Annika<span>Empfang</span></div>
+        <p class="mini-quote-rotator hw-photo-quote">
+          <em class="mini-quote active">„Bei mir fühlt sich der Patient herzlich willkommen, gut informiert und bestens aufgehoben.“</em>
+          <em class="mini-quote">„Ruhe, Übersicht und Verlässlichkeit – das möchte ich am Empfang mitbringen.“</em>
+          <em class="mini-quote">„Ich bin das organisatorische Herzstück der Praxis – mit 24 Jahren Erfahrung im Gesundheitswesen.“</em>
+        </p>
+      </div>
+    </div>
+
+    <!-- SLIDE 4: Julia (Therapeutin) -->
+    <div class="hw-slide" style="position:absolute;inset:0;border-radius:20px;overflow:hidden;">
+      <img src="team-julia.jpg" alt="Julia Mielke" width="768" height="768" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;">
+      <div class="hw-photo-overlay">
+        <div class="hw-photo-name">Julia Mielke<span>Osteopathin &amp; Heilpraktikerin</span></div>
+        <p class="mini-quote-rotator hw-photo-quote">
+          <em class="mini-quote active">„Ich nehme mir Zeit, wirklich hinzuhören.“</em>
+          <em class="mini-quote">„Bei mir sind Sie gut aufgehoben – ob nach OP, in der Schwangerschaft oder einfach im stressigen Alltag.“</em>
+          <em class="mini-quote">„Osteopathie heißt für mich: den ganzen Menschen in Bewegung verstehen.“</em>
+        </p>
+      </div>
+    </div>
+
+    <!-- SLIDE 5: Empfang-Raum (nicht Therapeut) -->
     <div class="hw-slide" style="position:absolute;inset:0;border-radius:20px;overflow:hidden;">
       <img src="hero-startseite.webp" alt="Empfang PhysioPro" width="1600" height="1200" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;">
     </div>
 
-    <!-- SLIDE 4: Reformer Raum -->
+    <!-- SLIDE 6: Anna (Therapeutin) -->
+    <div class="hw-slide" style="position:absolute;inset:0;border-radius:20px;overflow:hidden;">
+      <img src="team-anna.jpg" alt="Anna" width="768" height="768" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;">
+      <div class="hw-photo-overlay">
+        <div class="hw-photo-name">Anna<span>Physiotherapeutin</span></div>
+        <p class="mini-quote-rotator hw-photo-quote">
+          <em class="mini-quote active">„Bei mir fühlen sich Menschen verstanden.“</em>
+          <em class="mini-quote">„Ich höre erstmal zu – dann schauen wir gemeinsam, was Sie wirklich brauchen.“</em>
+          <em class="mini-quote">„Am schönsten ist es, wenn ich sehe, wie jemand wieder selbstständig wird.“</em>
+        </p>
+      </div>
+    </div>
+
+    <!-- SLIDE 7: Reformer Raum (nicht Therapeut) -->
     <div class="hw-slide" style="position:absolute;inset:0;border-radius:20px;overflow:hidden;">
       <img src="studio-reformer-room.webp" alt="Reformer Raum PhysioPro" width="1050" height="1400" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;">
     </div>
@@ -358,7 +405,53 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 .hw-slide.hw-active {
   opacity: 1;
 }
+.hw-photo-overlay {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  padding: 2.25rem 2rem 1.75rem;
+  background: linear-gradient(to top, rgba(20,18,14,.75) 0%, rgba(20,18,14,.4) 55%, rgba(20,18,14,0) 100%);
+  color: #fff;
+}
+.hw-photo-name {
+  font-family: var(--serif); font-size: 1.25rem; font-weight: 400; margin-bottom: .6rem;
+}
+.hw-photo-name span {
+  display: block; font-family: var(--sans); font-size: .78rem; font-weight: 400;
+  letter-spacing: .04em; text-transform: uppercase; opacity: .85; margin-top: .2rem;
+}
+.hw-photo-quote .mini-quote {
+  font-style: italic; color: #fff; font-size: .95rem; line-height: 1.5;
+}
+.hw-photo-quote.mini-quote-rotator { min-height: 3em; }
 </style>
+
+<script>
+(function() {
+  // Jede Zitat-Gruppe merkt sich ihre eigenen Zitate + aktuellen Index (WeakMap, unabhaengig
+  // davon in welcher Slide/Karte sie steckt - funktioniert fuer Text-Karte UND Foto-Slides).
+  const state = new WeakMap();
+  function getState(wrap) {
+    let s = state.get(wrap);
+    if (!s) { s = { items: wrap.querySelectorAll('.mini-quote'), cur: 0 }; state.set(wrap, s); }
+    return s;
+  }
+  function advanceOne(wrap) {
+    const s = getState(wrap);
+    if (s.items.length < 2) return;
+    s.items[s.cur].classList.remove('active');
+    s.cur = (s.cur + 1) % s.items.length;
+    s.items[s.cur].classList.add('active');
+  }
+  // Schaltet alle Zitat-Rotatoren innerhalb von root (z.B. einer gerade aktiv gewordenen Slide)
+  // einen Schritt weiter - so wechselt das Zitat genau dann, wenn man es auch sieht.
+  function advanceWithin(root) {
+    root.querySelectorAll('.mini-quote-rotator').forEach(advanceOne);
+  }
+  window.advanceMiniQuotesIn = advanceWithin;
+
+  // Auf Mobile ist die Text-Karte immer sichtbar (kein Karussell) - eigener Timer noetig.
+  if (window.innerWidth <= 640) setInterval(function() { advanceWithin(document); }, 5000);
+})();
+</script>
 
 <script>
 (function() {
@@ -368,43 +461,28 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   const slides = isMobile
     ? Array.from(allSlides).filter(s => !s.classList.contains('hw-slide-text'))
     : Array.from(allSlides);
-  const textSlide = slides.find(function(s) { return s.classList.contains('hw-slide-text'); });
 
   // Set first active
   allSlides.forEach(s => s.classList.remove('hw-active'));
   slides[0].classList.add('hw-active');
 
+  // Beim allerersten Zeigen einer Slide soll das erste (im HTML aktive) Zitat stehen bleiben -
+  // erst ab dem zweiten Mal wird weitergeschaltet.
+  const seen = new Set([slides[0]]);
+
   let cur = 0;
   setInterval(function() {
     slides[cur].classList.remove('hw-active');
     cur = (cur + 1) % slides.length;
-    slides[cur].classList.add('hw-active');
-    // Spezialisierung-Karte wieder da? Team-Zitate (Julia, Anna, ...) einen Schritt weiterschalten.
-    if (slides[cur] === textSlide && window.advanceMiniQuotes) window.advanceMiniQuotes();
+    const activeSlide = slides[cur];
+    activeSlide.classList.add('hw-active');
+    if (seen.has(activeSlide)) {
+      // Team-Zitate (Hanna, Julia, Anna, Annika, ...) in der wieder sichtbaren Slide weiterschalten.
+      if (window.advanceMiniQuotesIn) window.advanceMiniQuotesIn(activeSlide);
+    } else {
+      seen.add(activeSlide);
+    }
   }, 4000);
-})();
-</script>
-
-<script>
-(function() {
-  // Jede Gruppe merkt sich ihre eigenen Zitate + aktuellen Index.
-  const groups = Array.from(document.querySelectorAll('.mini-quote-rotator')).map(function(wrap) {
-    return { items: wrap.querySelectorAll('.mini-quote'), cur: 0 };
-  }).filter(function(g) { return g.items.length > 1; });
-
-  function advance() {
-    groups.forEach(function(g) {
-      g.items[g.cur].classList.remove('active');
-      g.cur = (g.cur + 1) % g.items.length;
-      g.items[g.cur].classList.add('active');
-    });
-  }
-  // Wird vom Hero-Bildkarussell (hw-slides, s.o.) aufgerufen, sobald die Spezialisierung-Karte
-  // wieder eingeblendet wird - so wechselt das Zitat genau dann, wenn man es auch sieht.
-  window.advanceMiniQuotes = advance;
-
-  // Auf Mobile ist die Karte immer sichtbar (kein Karussell) - eigener Timer noetig.
-  if (window.innerWidth <= 640) setInterval(advance, 5000);
 })();
 </script>
 
