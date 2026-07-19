@@ -149,6 +149,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 })();
 </script>
 
+<!-- Rotierende Mini-Zitate fuer Team-Karten in der Spezialisierung-Box (Julia, Anna, ...) -->
+<style>
+.mini-quote-rotator { position: relative; min-height: 2.5em; margin: 0; }
+.mini-quote { font-style: normal; opacity: 0; transition: opacity .6s ease; position: absolute; left: 0; top: 0; right: 0; margin: 0; }
+.mini-quote.active { opacity: 1; position: relative; }
+</style>
+
 <!-- MOBILE: Terminformular inline -->
 <div id="idx-termin-form" style="display:none;margin-top:1.5rem;">
   <div style="background:#fff;border-radius:var(--radius);border:1px solid var(--beige-mid);overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.05);">
@@ -246,7 +253,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
   <div class="hero-why-item">
     <div class="hero-why-num" style="font-size:1.1rem;">Büro</div>
-    <div><strong>Büro, Stress & Alltagsbelastung</strong><p>Nacken, Rücken, Kiefer – die häufigsten Beschwerden der modernen Arbeitswelt. Auch ohne Wartezeit und ohne Rezept möglich.</p></div>
+    <div>
+      <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.3rem;">
+        <img src="team-anna.jpg" alt="Anna" width="36" height="36" loading="lazy" decoding="async" style="width:36px;height:36px;border-radius:50%;object-fit:cover;object-position:top center;border:2px solid var(--beige-warm);flex-shrink:0;">
+        <strong style="margin-bottom:0;">Büro, Stress & Alltagsbelastung</strong>
+      </div>
+      <p class="mini-quote-rotator">
+        <em class="mini-quote active">„Bei mir fühlen sich Menschen verstanden.“</em>
+        <em class="mini-quote">„Mir geht es um echte, langfristige Verbesserung – nicht nur kurzfristige Linderung.“</em>
+        <em class="mini-quote">„Am schönsten ist es, wenn ich sehe, wie jemand wieder selbstständig wird.“</em>
+      </p>
+      <p>— Anna, Physiotherapeutin. Manuelle Therapie & Krankengymnastik bei Nacken-, Rücken- und Kieferbeschwerden, auch ohne Rezept.</p>
+    </div>
   </div>
   <div class="hero-why-item">
     <div class="hero-why-num" style="font-size:1.1rem;">Osteo</div>
@@ -255,7 +273,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <img src="team-julia.jpg" alt="Julia Mielke" width="36" height="36" loading="lazy" decoding="async" style="width:36px;height:36px;border-radius:50%;object-fit:cover;object-position:top center;border:2px solid var(--beige-warm);flex-shrink:0;">
         <strong style="margin-bottom:0;">Osteopathie bei Julia Mielke</strong>
       </div>
-      <p><em>„Ich nehme mir Zeit, wirklich hinzuhören.“</em> — Julia Mielke, Osteopathin & Heilpraktikerin. Osteopathie-Check ab 26,50 €.</p>
+      <p class="mini-quote-rotator">
+        <em class="mini-quote active">„Ich nehme mir Zeit, wirklich hinzuhören.“</em>
+        <em class="mini-quote">„Mir geht es darum, die Ursache zu finden – nicht nur das Symptom zu behandeln.“</em>
+        <em class="mini-quote">„Osteopathie heißt für mich: den ganzen Menschen in Bewegung verstehen.“</em>
+      </p>
+      <p>— Julia Mielke, Osteopathin & Heilpraktikerin. Osteopathie-Check ab 26,50 €.</p>
     </div>
   </div>
 </div>
@@ -277,7 +300,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
         <div class="hero-why-item">
           <div class="hero-why-num" style="font-size:1.1rem;">Büro</div>
-          <div><strong>Büro, Stress & Alltagsbelastung</strong><p>Nacken, Rücken, Kiefer – wir behandeln die häufigsten Beschwerden der modernen Arbeitswelt. Auch ohne Wartezeit und ohne Rezept möglich.</p></div>
+          <div>
+            <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.3rem;">
+              <img src="team-anna.jpg" alt="Anna" width="36" height="36" loading="lazy" decoding="async" style="width:36px;height:36px;border-radius:50%;object-fit:cover;object-position:top center;border:2px solid var(--beige-warm);flex-shrink:0;">
+              <strong style="margin-bottom:0;">Büro, Stress & Alltagsbelastung</strong>
+            </div>
+            <p class="mini-quote-rotator">
+              <em class="mini-quote active">„Bei mir fühlen sich Menschen verstanden.“</em>
+              <em class="mini-quote">„Mir geht es um echte, langfristige Verbesserung – nicht nur kurzfristige Linderung.“</em>
+              <em class="mini-quote">„Am schönsten ist es, wenn ich sehe, wie jemand wieder selbstständig wird.“</em>
+            </p>
+            <p>— Anna, Physiotherapeutin. Manuelle Therapie & Krankengymnastik bei Nacken-, Rücken- und Kieferbeschwerden, auch ohne Rezept.</p>
+          </div>
         </div>
         <div class="hero-why-item">
           <div class="hero-why-num" style="font-size:1.1rem;">Osteo</div>
@@ -286,7 +320,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <img src="team-julia.jpg" alt="Julia Mielke" width="36" height="36" loading="lazy" decoding="async" style="width:36px;height:36px;border-radius:50%;object-fit:cover;object-position:top center;border:2px solid var(--beige-warm);flex-shrink:0;">
               <strong style="margin-bottom:0;">Osteopathie bei Julia Mielke</strong>
             </div>
-            <p><em>„Ich nehme mir Zeit, wirklich hinzuhören.“</em> — Julia Mielke, Osteopathin & Heilpraktikerin, direkt buchbar. Osteopathie-Check ab 26,50 €.</p>
+            <p class="mini-quote-rotator">
+              <em class="mini-quote active">„Ich nehme mir Zeit, wirklich hinzuhören.“</em>
+              <em class="mini-quote">„Mir geht es darum, die Ursache zu finden – nicht nur das Symptom zu behandeln.“</em>
+              <em class="mini-quote">„Osteopathie heißt für mich: den ganzen Menschen in Bewegung verstehen.“</em>
+            </p>
+            <p>— Julia Mielke, Osteopathin & Heilpraktikerin, direkt buchbar. Osteopathie-Check ab 26,50 €.</p>
           </div>
         </div>
       </div>
@@ -329,6 +368,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   const slides = isMobile
     ? Array.from(allSlides).filter(s => !s.classList.contains('hw-slide-text'))
     : Array.from(allSlides);
+  const textSlide = slides.find(function(s) { return s.classList.contains('hw-slide-text'); });
 
   // Set first active
   allSlides.forEach(s => s.classList.remove('hw-active'));
@@ -339,7 +379,32 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     slides[cur].classList.remove('hw-active');
     cur = (cur + 1) % slides.length;
     slides[cur].classList.add('hw-active');
+    // Spezialisierung-Karte wieder da? Team-Zitate (Julia, Anna, ...) einen Schritt weiterschalten.
+    if (slides[cur] === textSlide && window.advanceMiniQuotes) window.advanceMiniQuotes();
   }, 4000);
+})();
+</script>
+
+<script>
+(function() {
+  // Jede Gruppe merkt sich ihre eigenen Zitate + aktuellen Index.
+  const groups = Array.from(document.querySelectorAll('.mini-quote-rotator')).map(function(wrap) {
+    return { items: wrap.querySelectorAll('.mini-quote'), cur: 0 };
+  }).filter(function(g) { return g.items.length > 1; });
+
+  function advance() {
+    groups.forEach(function(g) {
+      g.items[g.cur].classList.remove('active');
+      g.cur = (g.cur + 1) % g.items.length;
+      g.items[g.cur].classList.add('active');
+    });
+  }
+  // Wird vom Hero-Bildkarussell (hw-slides, s.o.) aufgerufen, sobald die Spezialisierung-Karte
+  // wieder eingeblendet wird - so wechselt das Zitat genau dann, wenn man es auch sieht.
+  window.advanceMiniQuotes = advance;
+
+  // Auf Mobile ist die Karte immer sichtbar (kein Karussell) - eigener Timer noetig.
+  if (window.innerWidth <= 640) setInterval(advance, 5000);
 })();
 </script>
 
