@@ -110,6 +110,45 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </a>
 <a class="btn btn-outline" href="/therapie" id="idx-leistungen-btn">Leistungen entdecken</a>
 </div>
+
+<!-- Vertrauens-Signatur: Hanna -->
+<div class="hanna-signature">
+  <img src="team-hanna.webp" alt="Hanna Wrobel" width="52" height="52" loading="lazy" decoding="async">
+  <div class="hanna-signature-text">
+    <div class="hanna-signature-name">Persönlich geleitet von Hanna Wrobel, Gründerin &amp; Inhaberin</div>
+    <div class="hanna-signature-quotes" id="hannaQuotes">
+      <span class="hanna-quote active">„Für mich hört Physiotherapie nicht beim Körper auf – es geht immer auch um mentale Stärke.“</span>
+      <span class="hanna-quote">„Ich schaue immer auf den ganzen Menschen, nicht nur auf das Symptom.“</span>
+      <span class="hanna-quote">„Wir bringen Menschen dazu, selbst aktiv zu werden.“</span>
+    </div>
+  </div>
+</div>
+<style>
+.hanna-signature {
+  display: flex; align-items: flex-start; gap: 14px;
+  background: #fff; border: 1px solid var(--beige-mid); border-radius: var(--radius);
+  padding: 14px 18px; max-width: 480px; margin-top: 1.5rem;
+  box-shadow: 0 2px 10px rgba(0,0,0,.04);
+}
+.hanna-signature img { width: 52px; height: 52px; border-radius: 50%; object-fit: cover; object-position: top center; border: 2px solid var(--beige-warm); flex-shrink: 0; }
+.hanna-signature-text { font-size: .85rem; line-height: 1.4; color: var(--text-mid); }
+.hanna-signature-name { font-weight: 500; color: var(--text); margin-bottom: .25rem; }
+.hanna-signature-quotes { position: relative; min-height: 2.4em; }
+.hanna-quote { font-style: italic; opacity: 0; transition: opacity .6s ease; position: absolute; left: 0; top: 0; right: 0; }
+.hanna-quote.active { opacity: 1; position: relative; }
+</style>
+<script>
+(function() {
+  const quotes = document.querySelectorAll('#hannaQuotes .hanna-quote');
+  let cur = 0;
+  setInterval(function() {
+    quotes[cur].classList.remove('active');
+    cur = (cur + 1) % quotes.length;
+    quotes[cur].classList.add('active');
+  }, 5000);
+})();
+</script>
+
 <!-- MOBILE: Terminformular inline -->
 <div id="idx-termin-form" style="display:none;margin-top:1.5rem;">
   <div style="background:#fff;border-radius:var(--radius);border:1px solid var(--beige-mid);overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.05);">
