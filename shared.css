@@ -198,7 +198,9 @@ footer { background: var(--text); color: rgba(255,255,255,.7); padding: 4rem 0 2
   [style*="grid-template-columns:repeat(3"],
   [style*="grid-template-columns: repeat(3"],
   [style*="grid-template-columns:1fr auto"],
-  [style*="grid-template-columns: 1fr auto"] { grid-template-columns: 1fr !important; }
+  [style*="grid-template-columns: 1fr auto"],
+  [style*="grid-template-columns:1.2fr 1fr"],
+  [style*="grid-template-columns: 1.2fr 1fr"] { grid-template-columns: 1fr !important; }
 }
 @media (max-width: 600px) {
   .container { padding: 0 1.25rem; }
