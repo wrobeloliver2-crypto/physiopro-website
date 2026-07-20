@@ -33,6 +33,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .bs-photo-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:2rem 0; }
   .bs-photo-grid img { width:100%;height:220px;object-fit:cover;border-radius:var(--radius); }
   @media(max-width:640px){ .bs-photo-grid{ grid-template-columns:1fr; } }
+  .bs-hero-slide { position:absolute;inset:0;opacity:0;transition:opacity 1.4s ease-in-out;background:var(--beige-warm); }
+  .bs-hero-slide.bs-active { opacity:1; }
 </style>
 </head>
 <body>
@@ -67,13 +69,42 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="hero-actions" style="margin-top:1.5rem;">
         <a href="#termin-form" class="btn btn-primary">Termin anfragen</a>
         <a href="tel:+4945140073073" class="btn btn-outline">0451 / 400 730 73</a>
+        <button class="btn btn-outline" onclick="openRueckruf()">Rückruf anfordern</button>
       </div>
     </div>
-    <div style="border-radius:20px;overflow:hidden;border:1px solid var(--beige-mid);height:460px;">
-      <img src="foto-empfang.jpg" alt="Empfang der neuen Praxis am Eutiner Ring 4A, Bad Schwartau" style="width:100%;height:100%;object-fit:cover;">
+    <div style="border-radius:20px;overflow:hidden;border:1px solid var(--beige-mid);height:460px;position:relative;" id="bs-hero-slides">
+      <div class="bs-hero-slide bs-active">
+        <img src="foto-empfang.jpg" alt="Empfang der neuen Praxis am Eutiner Ring 4A, Bad Schwartau" style="width:100%;height:100%;object-fit:cover;">
+      </div>
+      <div class="bs-hero-slide">
+        <img src="foto-behandlungsraum.jpg" alt="Behandlungsraum der Praxis in Bad Schwartau" style="width:100%;height:100%;object-fit:cover;">
+      </div>
+      <div class="bs-hero-slide">
+        <img src="foto-flur.jpg" alt="Wartebereich der Praxis in Bad Schwartau" style="width:100%;height:100%;object-fit:cover;">
+      </div>
+      <div class="bs-hero-slide" style="display:flex;flex-direction:column;">
+        <div style="flex:1;overflow:hidden;"><img src="/team-hanna.jpg" alt="Hanna Wrobel" style="width:100%;height:100%;object-fit:cover;object-position:center top;"></div>
+        <div style="padding:1rem 1.5rem;background:#fff;flex-shrink:0;">
+          <p style="font-style:italic;color:var(--text);margin:0;font-size:.95rem;">„Bei mir fühlen sich Menschen verstanden.“</p>
+          <p style="font-size:.75rem;color:var(--beige-dark);margin-top:.35rem;letter-spacing:.05em;text-transform:uppercase;">Hanna Wrobel · Inhaberin von PhysioPro</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
+<script>
+(function(){
+  var slides = document.querySelectorAll('#bs-hero-slides .bs-hero-slide');
+  var cur = 0;
+  if (slides.length > 1) {
+    setInterval(function(){
+      slides[cur].classList.remove('bs-active');
+      cur = (cur + 1) % slides.length;
+      slides[cur].classList.add('bs-active');
+    }, 4000);
+  }
+})();
+</script>
 
 <!-- STATS -->
 <section class="stats-bar">
@@ -81,7 +112,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="stats-grid" style="display:flex;align-items:center;justify-content:center;">
 <div class="stat-item"><div class="stat-num">22</div><div class="stat-label">Jahre Erfahrung</div></div>
 <div class="stat-divider"></div>
-<div class="stat-item"><div class="stat-num">3</div><div class="stat-label">Standorte in der Region</div></div>
+<div class="stat-item"><div class="stat-num">2</div><div class="stat-label">Standorte in der Region</div></div>
 <div class="stat-divider"></div>
 <div class="stat-item"><div class="stat-num">7–19</div><div class="stat-label">Uhr, Mo–Fr geöffnet</div></div>
 </div>
@@ -249,4 +280,67 @@ async function bsSubmit(){
 <form name="bad-schwartau-termin" netlify netlify-honeypot="bot-field" hidden>
   <input name="firstname"><input name="phone"><input name="email"><input name="message">
 </form>
+<form name="rueckruf" netlify netlify-honeypot="bot-field" hidden>
+  <input name="firstname"><input name="phone"><input name="email"><input name="message">
+</form>
+
+<!-- RÜCKRUF MODAL -->
+<div class="modal-overlay" id="rueckruf-overlay" onclick="if(event.target===this)closeRueckruf()">
+<div class="modal-box">
+<button class="modal-close" onclick="closeRueckruf()">✕</button>
+<div class="modal-header">
+<h3>Rückruf anfordern</h3>
+<p>Wir rufen Sie so schnell wie möglich zurück.</p>
+</div>
+<div class="modal-body">
+<div id="rb-form">
+<div class="form-field">
+<label>Name *</label>
+<input id="rb-name" type="text" placeholder="Ihr Name">
+</div>
+<div class="form-field">
+<label>Telefonnummer *</label>
+<input id="rb-tel" type="tel" placeholder="0451 ...">
+</div>
+<div class="form-field">
+<label>Worum geht es?</label>
+<div style="display:flex;flex-wrap:wrap;gap:.4rem;" id="rb-thema-group">
+<button type="button" onclick="selectRbThema(this,'Termin ab 1. August')" style="padding:.45rem .9rem;border:1.5px solid var(--beige-mid);border-radius:100px;background:#fff;font-family:var(--sans);font-size:.8rem;cursor:pointer;transition:.2s;color:var(--text-mid);">Termin ab 1. August</button>
+<button type="button" onclick="selectRbThema(this,'Frage zum Standort')" style="padding:.45rem .9rem;border:1.5px solid var(--beige-mid);border-radius:100px;background:#fff;font-family:var(--sans);font-size:.8rem;cursor:pointer;transition:.2s;color:var(--text-mid);">Frage zum Standort</button>
+<button type="button" onclick="selectRbThema(this,'Sonstiges')" style="padding:.45rem .9rem;border:1.5px solid var(--beige-mid);border-radius:100px;background:#fff;font-family:var(--sans);font-size:.8rem;cursor:pointer;transition:.2s;color:var(--text-mid);">Sonstiges</button>
+</div>
+<input type="hidden" id="rb-thema" value="">
+</div>
+<div class="form-field">
+<label>Wann sollen wir anrufen?</label>
+<div class="radio-group" id="rb-prio-group">
+<label class="radio-opt" onclick="selectRbPrio(this)">
+<input type="radio" name="rb-prio" value="Sofort – so schnell wie möglich">
+<span><strong>Sofort</strong> – so schnell wie möglich</span>
+</label>
+<label class="radio-opt" onclick="selectRbPrio(this)">
+<input type="radio" name="rb-prio" value="Heute noch – wenn möglich">
+<span><strong>Heute noch</strong> – wenn möglich</span>
+</label>
+<label class="radio-opt" onclick="selectRbPrio(this)">
+<input type="radio" name="rb-prio" value="Keine Eile – nächste Tage reicht">
+<span><strong>Keine Eile</strong> – nächste Tage reicht</span>
+</label>
+</div>
+</div>
+<div class="dsgvo-check">
+<input type="checkbox" id="rb-dsgvo">
+<label for="rb-dsgvo">Ich stimme der Verarbeitung meiner Daten zur Kontaktaufnahme zu. *</label>
+</div>
+<div class="error-msg" id="rb-error"></div>
+<button class="btn btn-primary" style="width:100%;" onclick="rueckrufSubmit()" id="rb-btn">Rückruf anfordern</button>
+</div>
+<div class="success-msg" id="rb-success">
+<div class="success-icon">✓</div>
+<h3 style="margin-bottom:.4rem;">Rückruf angefordert!</h3>
+<p style="color:var(--text-mid);font-size:.875rem;">Wir melden uns so schnell wie möglich bei Ihnen.</p>
+</div>
+</div>
+</div>
+</div>
 </body></html>
