@@ -55,11 +55,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <a href="/kontakt" onclick="toggleMenu()">Kontakt</a><a href="/termin" onclick="toggleMenu()">Termin buchen</a>
 </div>
 
-<section class="page-hero">
-  <div class="container">
-    <span class="tag">Bad Schwartau</span>
-    <h1>Eutiner Ring 4A, Bad Schwartau – ab 1. August neu bei PhysioPro</h1>
-    <p class="hero-subhead">Wir eröffnen hier eine neue Praxis unter neuer Leitung. Fragen Sie jetzt schon Ihren Termin ab dem 1. August an.</p>
+<section class="page-hero" style="padding:0;border-bottom:none;">
+  <div class="hero">
+    <div class="hero-text">
+      <div style="display:flex;gap:.5rem;flex-wrap:wrap;">
+        <span class="tag">Bad Schwartau</span>
+        <span class="tag">Ab 1. August</span>
+      </div>
+      <h1>Eutiner Ring 4A – neu ab 1. August bei PhysioPro</h1>
+      <p class="hero-subhead" style="margin-bottom:0;">Wir eröffnen hier eine neue Praxis unter neuer Leitung. Fragen Sie jetzt schon Ihren Termin an.</p>
+      <div class="hero-actions" style="margin-top:1.5rem;">
+        <a href="#termin-form" class="btn btn-primary">Termin anfragen</a>
+        <a href="tel:+4945140073073" class="btn btn-outline">0451 / 400 730 73</a>
+      </div>
+    </div>
+    <div style="border-radius:20px;overflow:hidden;border:1px solid var(--beige-mid);height:460px;">
+      <img src="foto-empfang.jpg" alt="Empfang der neuen Praxis am Eutiner Ring 4A, Bad Schwartau" style="width:100%;height:100%;object-fit:cover;">
+    </div>
   </div>
 </section>
 
@@ -82,8 +94,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <h2 class="eyebrow">Was hier passiert</h2>
     <p style="margin-top:1rem;font-size:1.05rem;color:var(--text-mid);">Am Eutiner Ring 4A in Bad Schwartau entsteht ab dem 1. August 2026 eine neue Praxis unter der Marke PhysioPro. Hanna Wrobel, Inhaberin von PhysioPro, übernimmt den Standort persönlich und startet hier mit einer neuen fachlichen Leitung vor Ort. Ein großer Teil des erfahrenen Teams bleibt erhalten – Sie treffen also auch vertraute Gesichter wieder.</p>
 
-    <div class="bs-photo-grid">
-      <img src="foto-empfang.jpg" alt="Empfang der Praxis am Eutiner Ring 4A, Bad Schwartau" loading="lazy">
+    <div class="bs-photo-grid" style="grid-template-columns:repeat(2,1fr);">
       <img src="foto-behandlungsraum.jpg" alt="Behandlungsraum der Praxis in Bad Schwartau" loading="lazy">
       <img src="foto-flur.jpg" alt="Wartebereich der Praxis in Bad Schwartau" loading="lazy">
     </div>
@@ -144,7 +155,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </section>
 
 <!-- e) Terminanfrage / Lead-Formular -->
-<section class="section" style="padding-top:0;">
+<section class="section" style="padding-top:0;" id="termin-form">
   <div class="container" style="max-width:800px;">
     <div style="display:grid;grid-template-columns:1.2fr 1fr;gap:2.5rem;align-items:start;">
       <div>
