@@ -324,44 +324,24 @@ async function bsSubmit(){
 <button class="modal-close" onclick="closeRueckruf()">✕</button>
 <div class="modal-header">
 <h3>Rückruf anfordern</h3>
-<p>Wir rufen Sie so schnell wie möglich zurück.</p>
+<p>Name, Nummer, fertig – wir rufen so schnell wie möglich zurück.</p>
 </div>
 <div class="modal-body">
 <div id="rb-form">
 <div class="form-field">
 <label>Name *</label>
-<input id="rb-name" type="text" placeholder="Ihr Name">
+<input id="rb-name" type="text" placeholder="Ihr Name" autocomplete="name">
 </div>
 <div class="form-field">
 <label>Telefonnummer *</label>
-<input id="rb-tel" type="tel" placeholder="0451 ...">
+<input id="rb-tel" type="tel" placeholder="0451 ..." autocomplete="tel" inputmode="tel">
 </div>
-<div class="form-field">
-<label>Worum geht es?</label>
-<div style="display:flex;flex-wrap:wrap;gap:.4rem;" id="rb-thema-group">
-<button type="button" onclick="selectRbThema(this,'Termin ab 1. August')" style="padding:.45rem .9rem;border:1.5px solid var(--beige-mid);border-radius:100px;background:#fff;font-family:var(--sans);font-size:.8rem;cursor:pointer;transition:.2s;color:var(--text-mid);">Termin ab 1. August</button>
-<button type="button" onclick="selectRbThema(this,'Frage zum Standort')" style="padding:.45rem .9rem;border:1.5px solid var(--beige-mid);border-radius:100px;background:#fff;font-family:var(--sans);font-size:.8rem;cursor:pointer;transition:.2s;color:var(--text-mid);">Frage zum Standort</button>
-<button type="button" onclick="selectRbThema(this,'Sonstiges')" style="padding:.45rem .9rem;border:1.5px solid var(--beige-mid);border-radius:100px;background:#fff;font-family:var(--sans);font-size:.8rem;cursor:pointer;transition:.2s;color:var(--text-mid);">Sonstiges</button>
-</div>
-<input type="hidden" id="rb-thema" value="">
-</div>
-<div class="form-field">
-<label>Wann sollen wir anrufen?</label>
-<div class="radio-group" id="rb-prio-group">
-<label class="radio-opt" onclick="selectRbPrio(this)">
-<input type="radio" name="rb-prio" value="Sofort – so schnell wie möglich">
-<span><strong>Sofort</strong> – so schnell wie möglich</span>
-</label>
-<label class="radio-opt" onclick="selectRbPrio(this)">
-<input type="radio" name="rb-prio" value="Heute noch – wenn möglich">
-<span><strong>Heute noch</strong> – wenn möglich</span>
-</label>
-<label class="radio-opt" onclick="selectRbPrio(this)">
-<input type="radio" name="rb-prio" value="Keine Eile – nächste Tage reicht">
-<span><strong>Keine Eile</strong> – nächste Tage reicht</span>
-</label>
-</div>
-</div>
+<!-- Bewusst kein "Worum geht es?" / "Wann anrufen?" mehr: auf dieser Seite kommt
+     jede Rückruf-Anfrage von der Bad-Schwartau-Landingpage, also ist Thema und
+     Dringlichkeit (Sofort/rot im Dashboard) automatisch klar. Nur Name+Telefon
+     nötig, um den Rückruf-Fingertipp so kurz wie möglich zu halten. -->
+<input type="hidden" id="rb-thema" value="Bad Schwartau (Eutiner Ring 4A) – Termin ab 1. August">
+<input type="radio" name="rb-prio" value="Sofort – so schnell wie möglich" checked hidden>
 <div class="dsgvo-check">
 <input type="checkbox" id="rb-dsgvo">
 <label for="rb-dsgvo">Ich stimme der Verarbeitung meiner Daten zur Kontaktaufnahme zu. *</label>
