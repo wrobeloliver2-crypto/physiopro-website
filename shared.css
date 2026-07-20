@@ -187,19 +187,23 @@ footer { background: var(--text); color: rgba(255,255,255,.7); padding: 4rem 0 2
   [style*="grid-template-columns:1fr 360px"],
   [style*="grid-template-columns:1fr 340px"] { grid-template-columns: 1fr !important; gap: 2rem !important; }
   .sticky-box { position: static !important; }
-}
-@media (max-width: 600px) {
-  .container { padding: 0 1.25rem; }
-  .section { padding: 3rem 0; }
-  .footer-grid { grid-template-columns: 1fr; }
 
-  /* Inline-Grids zusammenklappen (Title-Case-Varianten) */
+  /* Inline-Grids zusammenklappen (Title-Case-Varianten). Bereits ab 768px,
+     nicht erst ab 600px, damit sie im gleichen Moment stapeln wie die
+     Nav auf Hamburger umschaltet — sonst bleiben zweispaltige Inline-Grids
+     zwischen 601-768px eingequetscht/ueberlappend (z.B. Termin-Formular +
+     "Lieber direkt?"-Box nebeneinander statt gestapelt). */
   [style*="grid-template-columns:1fr 1fr"],
   [style*="grid-template-columns: 1fr 1fr"],
   [style*="grid-template-columns:repeat(3"],
   [style*="grid-template-columns: repeat(3"],
   [style*="grid-template-columns:1fr auto"],
   [style*="grid-template-columns: 1fr auto"] { grid-template-columns: 1fr !important; }
+}
+@media (max-width: 600px) {
+  .container { padding: 0 1.25rem; }
+  .section { padding: 3rem 0; }
+  .footer-grid { grid-template-columns: 1fr; }
 
   /* Service-Bloecke (1fr auto): Button-Spalte korrekt unter den Inhalt,
      Trennlinie links -> oben */
