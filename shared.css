@@ -158,6 +158,18 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; height: var(--n
 @media(max-width: 768px) { .trainer-grid { grid-template-columns: repeat(2, 1fr); } }
 @media(max-width: 480px) { .trainer-grid { grid-template-columns: 1fr; } }
 
+/* Hanna-Block (Team-Seite, oberhalb des Grids): feste 280px-Fotospalte + Text,
+   volle Breite. Ab 768px gestapelt, sonst quetscht sich die Textspalte auf
+   Handybreite in wenige Pixel und wird rechts aus dem Container geschoben. */
+.hanna-block { display: grid; grid-template-columns: 280px 1fr; gap: 2rem; align-items: center; background: #fff; border: 1px solid var(--beige-mid); border-radius: var(--radius); overflow: hidden; margin-bottom: 3rem; }
+.hanna-block-photo { height: 240px; overflow: hidden; }
+.hanna-block-text { padding: 1.25rem 1.75rem 1.25rem 0; }
+@media (max-width: 768px) {
+  .hanna-block { grid-template-columns: 1fr; }
+  .hanna-block-photo { height: 220px; }
+  .hanna-block-text { padding: 1.25rem 1.5rem 1.5rem; }
+}
+
 /* ── FOOTER ── */
 footer { background: var(--text); color: rgba(255,255,255,.7); padding: 4rem 0 2rem; }
 .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
