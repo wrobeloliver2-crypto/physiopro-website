@@ -40,27 +40,26 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <a href="/kontakt" onclick="toggleMenu()">Kontakt</a><a href="/termin" onclick="toggleMenu()">Termin buchen</a>
 </div>
 
-<section class="page-hero">
+<section class="page-hero" style="padding:2.25rem 0 2rem;">
   <div class="container">
     <span class="tag">Unser Team</span>
-    <h1>Menschen, die wirklich helfen</h1>
-    <p>Erfahrene Therapeut:innen, die mit Herz, Fachkompetenz und Leidenschaft für Ihre Gesundheit da sind.</p>
+    <h1 style="font-size:clamp(1.7rem,3.5vw,2.5rem);margin-top:.4rem;">Menschen, die „Wir bewegen Gesundheit" leben</h1>
+    <p style="margin-top:.5rem;font-size:.92rem;">Mit Herz, Fachkompetenz und Leidenschaft für Ihre Gesundheit da.</p>
   </div>
 </section>
 
 <section class="section">
   <div class="container">
-    <!-- Hanna – groß -->
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;margin-bottom:4rem;padding-bottom:4rem;border-bottom:1px solid var(--border);">
-      <div style="border-radius:var(--radius);overflow:hidden;height:480px;"><img src="team-hanna.jpg" alt="Hanna Wrobel" style="width:100%;height:100%;object-fit:cover;object-position:center top;"></div>
-      <div>
-        <span class="tag">Gründerin & Inhaberin</span>
-        <h2 style="margin-top:.5rem;">Hanna Wrobel</h2>
-        <p style="color:var(--beige-dark);font-size:1.05rem;margin-top:.25rem;font-style:italic;">Physiotherapeutin · Pilatestrainerin</p>
-        <p style="color:var(--text-mid);margin-top:1.5rem;line-height:1.8;">Hanna Wrobel gründete PhysioPro Lübeck nach über 22 Jahren therapeutischer Erfahrung. Ihr Ansatz verbindet klassische Physiotherapie mit modernen Methoden wie Pilates am Reformer – immer mit dem Ziel, nachhaltige Gesundheit zu fördern.</p>
-        <div style="margin-top:1.5rem;display:flex;gap:1rem;flex-wrap:wrap;">
-          <a href="https://wa.me/4917623339367" target="_blank" class="btn btn-primary" style="font-size:.875rem;">WhatsApp</a>
-          <a href="tel:+4945140073073" class="btn btn-outline" style="font-size:.875rem;">0451 / 400 730 73</a>
+    <!-- Hanna – volle Breite, aber kompakt und optisch an die Team-Karten angeglichen -->
+    <div style="display:grid;grid-template-columns:280px 1fr;gap:2rem;align-items:center;background:#fff;border:1px solid var(--beige-mid);border-radius:var(--radius);overflow:hidden;margin-bottom:3rem;">
+      <div style="height:240px;overflow:hidden;"><img src="team-hanna.jpg" alt="Hanna Wrobel" style="width:100%;height:100%;object-fit:cover;object-position:center top;"></div>
+      <div style="padding:1.25rem 1.75rem 1.25rem 0;">
+        <span class="tag" style="margin-bottom:.5rem;">Gründerin & Inhaberin</span>
+        <h3 style="margin-top:.2rem;">Hanna Wrobel</h3>
+        <p style="color:var(--beige-dark);font-size:.85rem;margin-top:.2rem;font-weight:500;letter-spacing:.03em;">Physiotherapeutin · Pilatestrainerin</p>
+        <p style="color:var(--text-mid);margin-top:.75rem;line-height:1.6;font-size:.88rem;">Hanna Wrobel gründete PhysioPro Lübeck nach über 22 Jahren therapeutischer Erfahrung. Ihr Ansatz verbindet klassische Physiotherapie mit modernen Methoden wie Pilates am Reformer – immer mit dem Ziel, nachhaltige Gesundheit zu fördern.</p>
+        <div style="margin-top:1rem;display:flex;gap:.75rem;flex-wrap:wrap;">
+          <a href="https://wa.me/4917623339367" target="_blank" class="btn btn-primary" style="font-size:.8rem;padding:.55rem 1rem;">WhatsApp</a>
         </div>
       </div>
     </div>
@@ -68,34 +67,145 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <!-- Team Grid -->
     <h4 style="margin-bottom:2rem;">Das Team</h4>
     <div class="trainer-grid">
-      <div class="trainer-card">
+      <div class="trainer-card trainer-card--done">
         <div class="trainer-img"><img src="team-anna.jpg" alt="Anna"></div>
-        <div class="trainer-info"><h3>Anna</h3><p class="trainer-specialty">Physiotherapeutin</p></div>
+        <div class="trainer-info">
+          <h3>Anna</h3>
+          <p class="trainer-specialty">Physiotherapeutin</p>
+
+          <div class="trainer-methods">
+            <span>Manuelle Therapie</span>
+            <span>Krankengymnastik (KGG)</span>
+            <span>Lymphdrainage</span>
+            <span>CMD / Kiefergelenk</span>
+            <span>Pilates-Reformer</span>
+          </div>
+          <p class="trainer-quals">Staatsexamen Physiotherapie · Manuelle Therapie (zertifiziert) · Lymphdrainage-Ausbildung</p>
+
+          <p class="trainer-claim">„Bei mir fühlen sich Menschen verstanden."</p>
+
+          <p class="trainer-needs-label">Du bist bei Anna richtig, wenn …</p>
+          <ul class="trainer-needs">
+            <li>… du mit akuten oder chronischen Schmerzen zu ihr kommst</li>
+            <li>… du jemanden suchst, der wirklich zuhört, bevor er behandelt</li>
+            <li>… du nicht nur Symptome lindern, sondern langfristig etwas verändern willst</li>
+            <li>… du dich nach der Behandlung aufgeklärt und sicher in deinem Körper fühlen willst</li>
+          </ul>
+        </div>
       </div>
-      <div class="trainer-card">
+      <div class="trainer-card trainer-card--done" style="order:-2;">
         <div class="trainer-img"><img src="team-julia.jpg" alt="Julia Mielke" style="object-position:center 10%;"></div>
-        <div class="trainer-info"><h3>Julia Mielke</h3><p class="trainer-specialty">Osteopathin · Heilpraktikerin · Physiotherapeutin</p></div>
+        <div class="trainer-info">
+          <h3>Julia Mielke</h3>
+          <p class="trainer-specialty">Osteopathin · Heilpraktikerin · Physiotherapeutin</p>
+
+          <div class="trainer-methods">
+            <span style="background:var(--osteo-light);color:var(--osteo-dark);font-weight:600;">Osteopathie</span>
+            <span>CMD / Kiefergelenk</span>
+            <span>Prävention</span>
+          </div>
+          <p class="trainer-quals">Osteopathin – SKOM Hamburg, 1.350 Ausbildungsstunden · Heilpraktikerin · Staatsexamen Physiotherapie</p>
+
+          <p class="trainer-claim">„Ich nehme mir Zeit, wirklich hinzuhören."</p>
+
+          <p class="trainer-needs-label">Du bist bei Julia richtig, wenn …</p>
+          <ul class="trainer-needs">
+            <li>… du die Ursache finden willst, nicht nur das Symptom behandeln</li>
+            <li>… du unter Kiefer- oder Kopfschmerzen (CMD) leidest</li>
+            <li>… du unter den Folgen von Stress oder Alltagsbelastung leidest</li>
+            <li>… du in der Schwangerschaft oder nach der Geburt Unterstützung brauchst</li>
+          </ul>
+        </div>
       </div>
+      <!-- Tuana vorübergehend raus (Wunsch aus dem Chat, 21.07.2026) -->
+      <!--
       <div class="trainer-card">
         <div class="trainer-img"><img src="team-tuana.jpg" alt="Tuana"></div>
         <div class="trainer-info"><h3>Tuana</h3><p class="trainer-specialty">Physiotherapeutin · Pilatestrainerin</p></div>
       </div>
-      <div class="trainer-card">
+      -->
+      <div class="trainer-card trainer-card--done">
         <div class="trainer-img"><img src="team-maike.jpg" alt="Maike"></div>
-        <div class="trainer-info"><h3>Maike</h3><p class="trainer-specialty">Physiotherapeutin · Pilatestrainerin</p></div>
+        <div class="trainer-info">
+          <h3>Maike</h3>
+          <p class="trainer-specialty">Physiotherapeutin · Pilatestrainerin</p>
+
+          <div class="trainer-methods">
+            <span>Krankengymnastik (KGG)</span>
+            <span>Lymphdrainage</span>
+            <span>Pilates-Reformer</span>
+            <span>Prävention</span>
+          </div>
+          <p class="trainer-quals">Staatsexamen Physiotherapie · Lymphdrainage-Ausbildung · Krankengymnastik am Gerät</p>
+
+          <p class="trainer-claim">„Ich sehe den Menschen, nicht nur die Diagnose."</p>
+
+          <p class="trainer-needs-label">Du bist bei Maike richtig, wenn …</p>
+          <ul class="trainer-needs">
+            <li>… du als Bewegungseinsteiger:in oder nach langer Pause wieder reinfinden willst</li>
+            <li>… du dir jemanden wünschst, der dich mit Humor und Geduld motiviert, statt nur Ansagen zu machen</li>
+            <li>… du in der Schwangerschaft oder nach der Geburt Unterstützung suchst</li>
+            <li>… du langfristig etwas verändern willst, nicht nur kurzfristig Symptome lindern</li>
+          </ul>
+        </div>
       </div>
-      <div class="trainer-card">
+      <div class="trainer-card trainer-card--pinned">
         <div class="trainer-img"><img src="team-annika.jpg" alt="Annika"></div>
-        <div class="trainer-info"><h3>Annika</h3><p class="trainer-specialty">Front Office & Administration</p><p class="trainer-bio">Erste Ansprechpartnerin – ausgebildete Physiotherapeutin</p></div>
+        <div class="trainer-info">
+          <h3>Annika</h3>
+          <p class="trainer-specialty">Front Office & Administration</p>
+
+          <div class="trainer-methods">
+            <span>Physiotherapeutin</span>
+            <span>24 Jahre Berufserfahrung</span>
+            <span>Erfahrung im Gesundheitswesen</span>
+            <span>Organisationstalent</span>
+          </div>
+
+          <p class="trainer-claim">„Bei mir fühlt sich der Patient herzlich willkommen, gut informiert und durch meine ruhige Art und meine fachliche Expertise bestens aufgehoben."</p>
+
+          <p class="trainer-needs-label">Du bist bei Annika richtig, wenn …</p>
+          <ul class="trainer-needs">
+            <li>… du schon am Empfang eine fachlich fundierte Einschätzung willst – nicht nur einen Termin</li>
+            <li>… du dich von Anfang an willkommen und gut aufgehoben fühlen möchtest</li>
+            <li>… du klare Informationen und Ruhe schätzt, auch wenn in der Praxis viel los ist</li>
+            <li>… du dich auf Verlässlichkeit verlassen willst – von der Terminplanung bis zur Rezeptverwaltung</li>
+          </ul>
+        </div>
       </div>
-      <div class="trainer-card">
+      <div class="trainer-card trainer-card--done">
         <div class="trainer-img"><img src="team-phillip.jpg" alt="Phillip" style="object-position:center 30%;transform:scale(1.4);transform-origin:center 30%;"></div>
-        <div class="trainer-info"><h3>Phillip</h3><p class="trainer-specialty">Physiotherapeut</p></div>
+        <div class="trainer-info">
+          <h3>Phillip</h3>
+          <p class="trainer-specialty">Physiotherapeut</p>
+
+          <div class="trainer-methods">
+            <span>Krankengymnastik (KGG)</span>
+            <span>Lymphdrainage</span>
+            <span>Trainingstherapie</span>
+            <span>Schmerztherapie</span>
+            <span>Prävention</span>
+          </div>
+          <p class="trainer-quals">Staatsexamen Physiotherapie · Lymphdrainage-Ausbildung</p>
+
+          <p class="trainer-claim">„Ich helfe Menschen, wieder Vertrauen in ihren Körper zu gewinnen."</p>
+
+          <p class="trainer-needs-label">Du bist bei Phillip richtig, wenn …</p>
+          <ul class="trainer-needs">
+            <li>… du nach einer OP oder Reha Schritt für Schritt wieder Sicherheit in deinem Körper finden willst</li>
+            <li>… du jemanden suchst, der dir wirklich zuhört, bevor er loslegt</li>
+            <li>… du Erklärungen willst, die du wirklich verstehst – statt Fachchinesisch</li>
+            <li>… dir Büroalltag oder Stress zusetzen und du wieder in Bewegung kommen willst</li>
+          </ul>
+        </div>
       </div>
+      <!-- Imo vorübergehend raus (Wunsch aus dem Chat, 21.07.2026) -->
+      <!--
       <div class="trainer-card">
         <div class="trainer-img trainer-img--logo"><img src="logo.png" alt="Imo"></div>
         <div class="trainer-info"><h3>Imo</h3><p class="trainer-specialty">Physiotherapeutin</p><p class="trainer-bio" style="font-style:italic;">Foto folgt in Kürze</p></div>
       </div>
+      -->
     </div>
 
     <!-- Jobs CTA -->
