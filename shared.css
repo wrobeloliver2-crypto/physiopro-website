@@ -164,10 +164,19 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; height: var(--n
 .hanna-block { display: grid; grid-template-columns: 280px 1fr; gap: 2rem; align-items: center; background: #fff; border: 1px solid var(--beige-mid); border-radius: var(--radius); overflow: hidden; margin-bottom: 3rem; }
 .hanna-block-photo { height: 240px; overflow: hidden; }
 .hanna-block-text { padding: 1.25rem 1.75rem 1.25rem 0; }
+/* Luft zwischen dem WhatsApp-CTA und der Team-Ueberschrift darunter. Wichtig:
+   .hanna-block (margin-bottom) und die Ueberschrift (margin-top) sind normale
+   Block-Geschwister -> ihre Vertikal-Margins kollabieren (es zaehlt jeweils
+   nur der GROESSERE Wert, sie addieren sich nicht). Darum reicht es nicht,
+   an der Ueberschrift ein kleines margin-top zu ergaenzen - der massgebliche
+   Wert ist margin-bottom von .hanna-block selbst, und der muss hoch genug
+   sein, vor allem mobil, wo es sonst gequetscht wirkt. */
+.team-grid-heading { margin-bottom: 2rem; }
 @media (max-width: 768px) {
-  .hanna-block { grid-template-columns: 1fr; }
+  .hanna-block { grid-template-columns: 1fr; margin-bottom: 4rem; }
   .hanna-block-photo { height: 220px; }
   .hanna-block-text { padding: 1.25rem 1.5rem 1.5rem; }
+  .team-grid-heading { margin-bottom: 1.5rem; }
 }
 
 /* ── FOOTER ── */
