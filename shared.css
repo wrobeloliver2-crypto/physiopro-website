@@ -138,6 +138,15 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; height: var(--n
 .trainer-needs { list-style: none; margin: 0; padding: 0; display: grid; gap: .4rem; }
 .trainer-needs li { font-size: .82rem; line-height: 1.55; color: var(--text-mid); padding-left: 1.1rem; position: relative; }
 .trainer-needs li::before { content: ""; position: absolute; left: 0; top: .55em; width: 5px; height: 5px; border-radius: 50%; background: var(--rose); }
+
+/* Fertige Profile (3-Ebenen-Format) rutschen automatisch nach oben und bekommen
+   eine einheitliche Kartenhöhe, damit sie untereinander gleich groß wirken.
+   --pinned (Annika, Sonderrolle Empfang+Physiotherapeutin) steht IMMER an erster
+   Stelle, noch vor allen anderen fertigen Profilen. Einfach --trainer-card--done
+   auf jede neu fertiggestellte Karte setzen, der Rest passiert automatisch. */
+.trainer-card--done, .trainer-card--pinned { order: -1; }
+.trainer-card--pinned { order: -2; }
+.trainer-card--done .trainer-info, .trainer-card--pinned .trainer-info { height: 590px; overflow: hidden; }
 @media(max-width: 768px) { .trainer-grid { grid-template-columns: repeat(2, 1fr); } }
 @media(max-width: 480px) { .trainer-grid { grid-template-columns: 1fr; } }
 
