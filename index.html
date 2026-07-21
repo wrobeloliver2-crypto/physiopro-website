@@ -332,6 +332,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </div>
 
+    <!-- SLIDE: Tuana (Therapeutin) -->
+    <div class="hw-slide" data-therapist="true" style="position:absolute;inset:0;overflow:hidden;">
+      <img src="team-tuana.jpg" alt="Tuana" width="768" height="768" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;">
+      <div class="hw-photo-overlay">
+        <div class="hw-photo-name">Tuana<span>Physiotherapeutin &amp; Pilates-Trainerin</span></div>
+        <p class="mini-quote-rotator hw-photo-quote">
+          <em class="mini-quote active">„Bei mir merkt man: Bewegung darf auch Spaß machen.“</em>
+          <em class="mini-quote">„Ich liebe es, Fortschritte mitzuerleben – wenn jemand wieder selbstständig wird.“</em>
+          <em class="mini-quote">„Gesundheit ist für mich keine Sache, die man behandelt, sondern etwas, das man in Bewegung bringt.“</em>
+        </p>
+      </div>
+    </div>
+
     <!-- SLIDE 6: Reformer Raum (nicht Therapeut) -->
     <div class="hw-slide" data-therapist="false" style="position:absolute;inset:0;overflow:hidden;">
       <img src="studio-reformer-room.webp" alt="Reformer Raum PhysioPro" width="1050" height="1400" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;">
@@ -343,7 +356,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <style>
 .hw-slide {
   opacity: 0;
-  transition: opacity 1.4s ease-in-out;
+  transition: opacity .7s ease-in-out;
   background: var(--beige-warm);
 }
 .hw-slide.hw-active {
@@ -417,19 +430,28 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     return slide.dataset.therapist === 'true' ? THERAPIST_DURATION : BASE_DURATION;
   }
 
+  // Bild + Zitat der aktuellen Slide blenden erst vollstaendig aus, bevor die naechste Slide
+  // einblendet (statt beide gleichzeitig ueberlappend zu animieren) - so entsteht keine
+  // "Geister"-Doppelbelichtung aus zwei Gesichtern/Texten waehrend des Wechsels.
+  // FADE_MS muss zur CSS-Transition-Dauer von .hw-slide passen (siehe <style> oben).
+  const FADE_MS = 700;
+
   let cur = 0;
   function tick() {
-    slides[cur].classList.remove('hw-active');
-    cur = (cur + 1) % slides.length;
-    const activeSlide = slides[cur];
-    activeSlide.classList.add('hw-active');
-    if (seen.has(activeSlide)) {
-      // Team-Zitate (Hanna, Julia, Anna, Annika, ...) in der wieder sichtbaren Slide weiterschalten.
-      if (window.advanceMiniQuotesIn) window.advanceMiniQuotesIn(activeSlide);
-    } else {
-      seen.add(activeSlide);
-    }
-    setTimeout(tick, durationFor(activeSlide));
+    const outgoing = slides[cur];
+    outgoing.classList.remove('hw-active');
+    setTimeout(() => {
+      cur = (cur + 1) % slides.length;
+      const activeSlide = slides[cur];
+      activeSlide.classList.add('hw-active');
+      if (seen.has(activeSlide)) {
+        // Team-Zitate (Hanna, Julia, Anna, Annika, ...) in der wieder sichtbaren Slide weiterschalten.
+        if (window.advanceMiniQuotesIn) window.advanceMiniQuotesIn(activeSlide);
+      } else {
+        seen.add(activeSlide);
+      }
+      setTimeout(tick, durationFor(activeSlide));
+    }, FADE_MS);
   }
   setTimeout(tick, durationFor(slides[cur]));
 })();
