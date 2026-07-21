@@ -25,6 +25,12 @@
   --radius: 12px;
   --sans: 'DM Sans', system-ui, sans-serif;
   --serif: 'Cormorant Garamond', Georgia, serif;
+  /* Gleiche Osteopathie-Akzentfarbe wie auf osteopathie.html, fuer konsistente
+     Kennzeichnung von Osteopathie-Inhalten seitenuebergreifend (z.B. Julias
+     Team-Karte). */
+  --osteo: #d9c9bc;
+  --osteo-dark: #8c6a55;
+  --osteo-light: #f5ede6;
 }
 
 html { scroll-behavior: smooth; }
@@ -142,10 +148,12 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; height: var(--n
 /* Fertige Profile (3-Ebenen-Format) rutschen automatisch nach oben und bekommen
    eine einheitliche Kartenhöhe, damit sie untereinander gleich groß wirken.
    --pinned (Annika, Sonderrolle Empfang+Physiotherapeutin) steht IMMER an erster
-   Stelle, noch vor allen anderen fertigen Profilen. Einfach --trainer-card--done
-   auf jede neu fertiggestellte Karte setzen, der Rest passiert automatisch. */
+   Stelle. Einfach --trainer-card--done auf jede neu fertiggestellte Karte
+   setzen, der Rest passiert automatisch (order:-1, hinter --pinned).
+   Für eine explizite Platzierung dazwischen (z.B. Julia an Position 2) reicht
+   ein inline style="order:-2" auf der einzelnen Karte, siehe team.html. */
 .trainer-card--done, .trainer-card--pinned { order: -1; }
-.trainer-card--pinned { order: -2; }
+.trainer-card--pinned { order: -10; }
 .trainer-card--done .trainer-info, .trainer-card--pinned .trainer-info { height: 590px; overflow: hidden; }
 @media(max-width: 768px) { .trainer-grid { grid-template-columns: repeat(2, 1fr); } }
 @media(max-width: 480px) { .trainer-grid { grid-template-columns: 1fr; } }
