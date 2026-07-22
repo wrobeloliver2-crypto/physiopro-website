@@ -35,11 +35,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   @media(max-width:640px){ .bs-photo-grid{ grid-template-columns:1fr; } }
   .bs-hero-slide { position:absolute;inset:0;opacity:0;transition:opacity 1.4s ease-in-out;background:var(--beige-warm); }
   .bs-hero-slide.bs-active { opacity:1; }
-  .bs-graphic { flex:1;position:relative;overflow:hidden;background:var(--beige-warm); }
-  .bs-graphic-bg { position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:blur(34px);transform:scale(1.25);opacity:.55; }
-  .bs-graphic-img { position:absolute;inset:0;margin:auto;max-width:100%;max-height:100%;width:auto;height:auto;z-index:1; }
-  /* Story-Grafiken sind Hochformat/textlastig – nur auf Mobil im Slider zeigen, auf Desktop nur die Fotos */
-  @media(min-width:769px){ .bs-graphic-slide { display:none !important; } }
+  /* Kampagnen-Storys: eigener, formatrichtiger Bereich – nur auf Mobil */
+  .bs-storys { display:none; padding:1.75rem 0 .25rem; }
+  @media(max-width:768px){ .bs-storys { display:block; } }
+  .bs-story-frame { position:relative; width:100%; max-width:420px; margin:0 auto; aspect-ratio:1554/3240; border-radius:20px; overflow:hidden; border:1px solid var(--beige-mid); background:var(--beige-warm); }
+  .bs-story-slide { position:absolute; inset:0; opacity:0; transition:opacity 1s ease-in-out; }
+  .bs-story-slide.bs-active { opacity:1; }
+  .bs-story-slide img { width:100%; height:100%; object-fit:cover; display:block; }
+  .bs-story-dots { display:flex; justify-content:center; gap:.5rem; margin-top:1rem; }
+  .bs-story-dots span { width:8px; height:8px; border-radius:50%; background:var(--beige-mid); transition:background .3s; }
+  .bs-story-dots span.on { background:var(--rose); }
 </style>
 </head>
 <body>
@@ -85,14 +90,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
       </div>
       <div class="bs-hero-slide" style="display:flex;flex-direction:column;">
-        <div style="flex:1;overflow:hidden;"><img src="/team-hanna.jpg" alt="Hanna Wrobel" style="width:100%;height:100%;object-fit:cover;object-position:center top;"></div>
+        <div style="flex:1;overflow:hidden;"><img src="/team-hanna.jpg" alt="Hanna Wrobel" style="width:100%;height:100%;object-fit:cover; object-position:center top;"></div>
         <div style="padding:1rem 1.5rem;background:#fff;flex-shrink:0;">
           <p style="font-style:italic;color:var(--text);margin:0;font-size:.95rem;">„Freuen Sie sich auf bekannte Gesichter und gleichzeitig auf neue Kompetenzen in unserem Team in Bad Schwartau.“</p>
           <p style="font-size:.75rem;color:var(--beige-dark);margin-top:.35rem;letter-spacing:.05em;text-transform:uppercase;">Hanna Wrobel · Inhaberin von PhysioPro</p>
         </div>
-      </div>
-      <div class="bs-hero-slide bs-graphic-slide" data-duration="10000" style="display:flex;flex-direction:column;">
-        <div class="bs-graphic"><img class="bs-graphic-bg" src="mobil-1-titel.png" alt="" aria-hidden="true"><img class="bs-graphic-img" src="mobil-1-titel.png" alt="PhysioPro Neustart am Eutiner Ring 4A, Bad Schwartau – Start 1. August 2026"></div>
       </div>
       <div class="bs-hero-slide" style="display:flex;flex-direction:column;">
         <div style="flex:1;overflow:hidden;"><img src="foto-behandlungsraum.jpg" alt="Behandlungsraum der Praxis in Bad Schwartau" style="width:100%;height:100%;object-fit:cover;"></div>
@@ -102,14 +104,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
       </div>
       <div class="bs-hero-slide" style="display:flex;flex-direction:column;">
-        <div style="flex:1;overflow:hidden;"><img src="/team-hanna.jpg" alt="Hanna Wrobel" style="width:100%;height:100%;object-fit:cover;object-position:center top;"></div>
+        <div style="flex:1;overflow:hidden;"><img src="/team-hanna.jpg" alt="Hanna Wrobel" style="width:100%;height:100%;object-fit:cover; object-position:center top;"></div>
         <div style="padding:1rem 1.5rem;background:#fff;flex-shrink:0;">
           <p style="font-style:italic;color:var(--text);margin:0;font-size:.95rem;">„Wir bringen Menschen dazu, selbst aktiv zu werden“</p>
           <p style="font-size:.75rem;color:var(--beige-dark);margin-top:.35rem;letter-spacing:.05em;text-transform:uppercase;">Hanna Wrobel · Inhaberin von PhysioPro</p>
         </div>
-      </div>
-      <div class="bs-hero-slide bs-graphic-slide" data-duration="10000" style="display:flex;flex-direction:column;">
-        <div class="bs-graphic"><img class="bs-graphic-bg" src="mobil-2-neues-kapitel.png" alt="" aria-hidden="true"><img class="bs-graphic-img" src="mobil-2-neues-kapitel.png" alt="Ein neues Kapitel in Bad Schwartau – Eutiner Ring 4A"></div>
       </div>
       <div class="bs-hero-slide" style="display:flex;flex-direction:column;">
         <div style="flex:1;overflow:hidden;"><img src="foto-flur.jpg" alt="Wartebereich der Praxis in Bad Schwartau" style="width:100%;height:100%;object-fit:cover;"></div>
@@ -119,14 +118,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
       </div>
       <div class="bs-hero-slide" style="display:flex;flex-direction:column;">
-        <div style="flex:1;overflow:hidden;"><img src="/team-hanna.jpg" alt="Hanna Wrobel" style="width:100%;height:100%;object-fit:cover;object-position:center top;"></div>
+        <div style="flex:1;overflow:hidden;"><img src="/team-hanna.jpg" alt="Hanna Wrobel" style="width:100%;height:100%;object-fit:cover; object-position:center top;"></div>
         <div style="padding:1rem 1.5rem;background:#fff;flex-shrink:0;">
           <p style="font-style:italic;color:var(--text);margin:0;font-size:.95rem;">„Ich freue mich auf die Menschen in Bad Schwartau.“</p>
           <p style="font-size:.75rem;color:var(--beige-dark);margin-top:.35rem;letter-spacing:.05em;text-transform:uppercase;">Hanna Wrobel · Inhaberin von PhysioPro</p>
         </div>
-      </div>
-      <div class="bs-hero-slide bs-graphic-slide" data-duration="10000" style="display:flex;flex-direction:column;">
-        <div class="bs-graphic"><img class="bs-graphic-bg" src="mobil-3-philosophie.png" alt="" aria-hidden="true"><img class="bs-graphic-img" src="mobil-3-philosophie.png" alt="Die Philosophie: Aktiv statt Passiv – Wir bewegen Gesundheit"></div>
       </div>
       <div class="bs-hero-slide" style="display:flex;flex-direction:column;">
         <div style="flex:1;overflow:hidden;"><img src="foto-empfang.jpg" alt="Empfang der neuen Praxis am Eutiner Ring 4A, Bad Schwartau" style="width:100%;height:100%;object-fit:cover;"></div>
@@ -136,14 +132,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
       </div>
       <div class="bs-hero-slide" style="display:flex;flex-direction:column;">
-        <div style="flex:1;overflow:hidden;"><img src="/team-hanna.jpg" alt="Hanna Wrobel" style="width:100%;height:100%;object-fit:cover;object-position:center top;"></div>
+        <div style="flex:1;overflow:hidden;"><img src="/team-hanna.jpg" alt="Hanna Wrobel" style="width:100%;height:100%;object-fit:cover; object-position:center top;"></div>
         <div style="padding:1rem 1.5rem;background:#fff;flex-shrink:0;">
           <p style="font-style:italic;color:var(--text);margin:0;font-size:.95rem;">„Ab 1. August begleite ich den neuen Standort persönlich.“</p>
           <p style="font-size:.75rem;color:var(--beige-dark);margin-top:.35rem;letter-spacing:.05em;text-transform:uppercase;">Hanna Wrobel · Inhaberin von PhysioPro</p>
         </div>
-      </div>
-      <div class="bs-hero-slide bs-graphic-slide" data-duration="10000" style="display:flex;flex-direction:column;">
-        <div class="bs-graphic"><img class="bs-graphic-bg" src="mobil-4-team.png" alt="" aria-hidden="true"><img class="bs-graphic-img" src="mobil-4-team.png" alt="Ihr Team vor Ort in Bad Schwartau: Nadine &amp; Mascha, Petra Drewitz &amp; Vera Köhn, Nicole Clasen, Hanna Wrobel"></div>
       </div>
       <div class="bs-hero-slide" style="display:flex;flex-direction:column;">
         <div style="flex:1;overflow:hidden;"><img src="foto-behandlungsraum.jpg" alt="Behandlungsraum der Praxis in Bad Schwartau" style="width:100%;height:100%;object-fit:cover;"></div>
@@ -153,45 +146,52 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
       </div>
       <div class="bs-hero-slide" style="display:flex;flex-direction:column;">
-        <div style="flex:1;overflow:hidden;"><img src="/team-hanna.jpg" alt="Hanna Wrobel" style="width:100%;height:100%;object-fit:cover;object-position:center top;"></div>
+        <div style="flex:1;overflow:hidden;"><img src="/team-hanna.jpg" alt="Hanna Wrobel" style="width:100%;height:100%;object-fit:cover; object-position:center top;"></div>
         <div style="padding:1rem 1.5rem;background:#fff;flex-shrink:0;">
           <p style="font-style:italic;color:var(--text);margin:0;font-size:.95rem;">„Hier starten wir ganz neu – mit Erfahrung und Herz.“</p>
           <p style="font-size:.75rem;color:var(--beige-dark);margin-top:.35rem;letter-spacing:.05em;text-transform:uppercase;">Hanna Wrobel · Inhaberin von PhysioPro</p>
         </div>
-      </div>
-      <div class="bs-hero-slide bs-graphic-slide" data-duration="10000" style="display:flex;flex-direction:column;">
-        <div class="bs-graphic"><img class="bs-graphic-bg" src="mobil-5-rezept.png" alt="" aria-hidden="true"><img class="bs-graphic-img" src="mobil-5-rezept.png" alt="Mit normalem Rezept – alle Behandlungen am Eutiner Ring 4A möglich"></div>
       </div>
     </div>
   </div>
 </section>
 <script>
 (function(){
-  var slides = Array.prototype.slice.call(document.querySelectorAll('#bs-hero-slides .bs-hero-slide'));
+  var slides = document.querySelectorAll('#bs-hero-slides .bs-hero-slide');
   var cur = 0;
-  function isVisible(el){ return el.offsetParent !== null; } // display:none -> null (Grafiken auf Desktop)
-  function nextVisible(from){
-    for (var k = 1; k <= slides.length; k++){
-      var i = (from + k) % slides.length;
-      if (isVisible(slides[i])) return i;
-    }
-    return from;
-  }
-  function schedule(){
-    var dur = parseInt(slides[cur].getAttribute('data-duration'), 10) || 4000;
-    setTimeout(function(){
-      var nxt = nextVisible(cur);
-      if (nxt !== cur){
-        slides[cur].classList.remove('bs-active');
-        slides[nxt].classList.add('bs-active');
-        cur = nxt;
-      }
-      schedule();
-    }, dur);
-  }
   if (slides.length > 1) {
-    schedule();
+    setInterval(function(){
+      slides[cur].classList.remove('bs-active');
+      cur = (cur + 1) % slides.length;
+      slides[cur].classList.add('bs-active');
+    }, 4000);
   }
+})();
+</script>
+
+<!-- KAMPAGNEN-STORYS (nur Mobil) -->
+<section class="bs-storys">
+  <div class="container">
+    <div class="bs-story-frame" id="bs-story-frame">
+      <div class="bs-story-slide bs-active"><img src="mobil-1-titel.png" alt="PhysioPro Neustart am Eutiner Ring 4A, Bad Schwartau – Start 1. August 2026"></div>
+      <div class="bs-story-slide"><img src="mobil-2-neues-kapitel.png" alt="Ein neues Kapitel in Bad Schwartau – Eutiner Ring 4A"></div>
+      <div class="bs-story-slide"><img src="mobil-3-philosophie.png" alt="Die Philosophie: Aktiv statt Passiv – Wir bewegen Gesundheit"></div>
+      <div class="bs-story-slide"><img src="mobil-4-team.png" alt="Ihr Team vor Ort in Bad Schwartau: Nadine &amp; Mascha, Petra Drewitz &amp; Vera Köhn, Nicole Clasen, Hanna Wrobel"></div>
+      <div class="bs-story-slide"><img src="mobil-5-rezept.png" alt="Mit normalem Rezept – alle Behandlungen am Eutiner Ring 4A möglich"></div>
+    </div>
+    <div class="bs-story-dots" id="bs-story-dots"></div>
+  </div>
+</section>
+<script>
+(function(){
+  var slides = document.querySelectorAll('#bs-story-frame .bs-story-slide');
+  var dotsWrap = document.getElementById('bs-story-dots');
+  if (slides.length < 1 || !dotsWrap) return;
+  var dots = [];
+  for (var i=0;i<slides.length;i++){ var d=document.createElement('span'); if(i===0)d.className='on'; dotsWrap.appendChild(d); dots.push(d); }
+  var cur = 0;
+  function go(n){ slides[cur].classList.remove('bs-active'); dots[cur].className=''; cur=n; slides[cur].classList.add('bs-active'); dots[cur].className='on'; }
+  if (slides.length > 1){ setInterval(function(){ go((cur+1)%slides.length); }, 10000); }
 })();
 </script>
 
