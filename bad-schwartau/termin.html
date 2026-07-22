@@ -35,16 +35,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   @media(max-width:640px){ .bs-photo-grid{ grid-template-columns:1fr; } }
   .bs-hero-slide { position:absolute;inset:0;opacity:0;transition:opacity 1.4s ease-in-out;background:var(--beige-warm); }
   .bs-hero-slide.bs-active { opacity:1; }
-  /* Kampagnen-Storys: eigener, formatrichtiger Bereich – nur auf Mobil */
+  /* Kampagnen-Storys: eigener, wischbarer Bereich – nur auf Mobil */
   .bs-storys { display:none; padding:1.75rem 0 .25rem; }
   @media(max-width:768px){ .bs-storys { display:block; } }
-  .bs-story-frame { position:relative; width:100%; max-width:420px; margin:0 auto; aspect-ratio:1554/1603; border-radius:20px; overflow:hidden; border:1px solid var(--beige-mid); background:var(--beige-warm); }
-  .bs-story-slide { position:absolute; inset:0; opacity:0; transition:opacity 1s ease-in-out; }
-  .bs-story-slide.bs-active { opacity:1; }
+  .bs-story-track { display:flex; overflow-x:auto; overflow-y:hidden; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; max-width:420px; margin:0 auto; border-radius:20px; border:1px solid var(--beige-mid); background:var(--beige-warm); scrollbar-width:none; }
+  .bs-story-track::-webkit-scrollbar { display:none; }
+  .bs-story-slide { flex:0 0 100%; scroll-snap-align:start; aspect-ratio:1554/1603; }
   .bs-story-slide img { width:100%; height:100%; object-fit:cover; display:block; }
   .bs-story-dots { display:flex; justify-content:center; gap:.5rem; margin-top:1rem; }
-  .bs-story-dots span { width:8px; height:8px; border-radius:50%; background:var(--beige-mid); transition:background .3s; }
-  .bs-story-dots span.on { background:var(--rose); }
+  .bs-story-dots button { width:8px; height:8px; padding:0; border:none; border-radius:50%; background:var(--beige-mid); cursor:pointer; transition:background .3s; }
+  .bs-story-dots button.on { background:var(--rose); }
 </style>
 </head>
 <body>
@@ -169,11 +169,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })();
 </script>
 
-<!-- KAMPAGNEN-STORYS (nur Mobil) -->
+<!-- KAMPAGNEN-STORYS (nur Mobil, wischbar) -->
 <section class="bs-storys">
   <div class="container">
-    <div class="bs-story-frame" id="bs-story-frame">
-      <div class="bs-story-slide bs-active"><img src="mobil-1-titel.png" alt="PhysioPro Neustart am Eutiner Ring 4A, Bad Schwartau – Start 1. August 2026"></div>
+    <div class="bs-story-track" id="bs-story-track">
       <div class="bs-story-slide"><img src="mobil-2-neues-kapitel.png" alt="Ein neues Kapitel in Bad Schwartau – Eutiner Ring 4A"></div>
       <div class="bs-story-slide"><img src="mobil-3-philosophie.png" alt="Die Philosophie: Aktiv statt Passiv – Wir bewegen Gesundheit"></div>
       <div class="bs-story-slide"><img src="mobil-4-team.png" alt="Ihr Team vor Ort in Bad Schwartau: Nadine &amp; Mascha, Petra Drewitz &amp; Vera Köhn, Nicole Clasen, Hanna Wrobel"></div>
@@ -184,14 +183,46 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </section>
 <script>
 (function(){
-  var slides = document.querySelectorAll('#bs-story-frame .bs-story-slide');
+  var track = document.getElementById('bs-story-track');
   var dotsWrap = document.getElementById('bs-story-dots');
-  if (slides.length < 1 || !dotsWrap) return;
+  if(!track || !dotsWrap) return;
+  var slides = track.querySelectorAll('.bs-story-slide');
+  if(slides.length < 1) return;
   var dots = [];
-  for (var i=0;i<slides.length;i++){ var d=document.createElement('span'); if(i===0)d.className='on'; dotsWrap.appendChild(d); dots.push(d); }
+  for(var i=0;i<slides.length;i++){
+    (function(idx){
+      var d = document.createElement('button');
+      d.type = 'button';
+      d.setAttribute('aria-label', 'Grafik ' + (idx+1) + ' anzeigen');
+      if(idx===0) d.className = 'on';
+      d.addEventListener('click', function(){ stopAuto(); track.scrollTo({left: idx*track.clientWidth, behavior:'smooth'}); });
+      dotsWrap.appendChild(d); dots.push(d);
+    })(i);
+  }
   var cur = 0;
-  function go(n){ slides[cur].classList.remove('bs-active'); dots[cur].className=''; cur=n; slides[cur].classList.add('bs-active'); dots[cur].className='on'; }
-  if (slides.length > 1){ setInterval(function(){ go((cur+1)%slides.length); }, 10000); }
+  function setActive(n){ if(n===cur) return; dots[cur].className=''; cur=n; dots[cur].className='on'; }
+  var raf;
+  track.addEventListener('scroll', function(){
+    if(raf) cancelAnimationFrame(raf);
+    raf = requestAnimationFrame(function(){
+      var w = track.clientWidth || 1;
+      var n = Math.round(track.scrollLeft / w);
+      if(n < 0) n = 0; if(n > slides.length-1) n = slides.length-1;
+      setActive(n);
+    });
+  }, {passive:true});
+  var auto = null;
+  function startAuto(){
+    if(auto) return;
+    auto = setInterval(function(){
+      var n = (cur + 1) % slides.length;
+      track.scrollTo({left: n*track.clientWidth, behavior:'smooth'});
+    }, 10000);
+  }
+  function stopAuto(){ if(auto){ clearInterval(auto); auto = null; } }
+  track.addEventListener('touchstart', stopAuto, {passive:true});
+  track.addEventListener('mousedown', stopAuto);
+  startAuto();
 })();
 </script>
 
