@@ -35,6 +35,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   @media(max-width:640px){ .bs-photo-grid{ grid-template-columns:1fr; } }
   .bs-hero-slide { position:absolute;inset:0;opacity:0;transition:opacity 1.4s ease-in-out;background:var(--beige-warm); }
   .bs-hero-slide.bs-active { opacity:1; }
+  .bs-graphic { flex:1;position:relative;overflow:hidden;background:var(--beige-warm); }
+  .bs-graphic-bg { position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:blur(34px);transform:scale(1.25);opacity:.55; }
+  .bs-graphic-img { position:absolute;inset:0;margin:auto;max-width:100%;max-height:100%;width:auto;height:auto;z-index:1; }
 </style>
 </head>
 <body>
@@ -87,7 +90,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
       </div>
       <div class="bs-hero-slide" data-duration="10000" style="display:flex;flex-direction:column;">
-        <div style="flex:1;overflow:hidden;display:flex;align-items:center;justify-content:center;background:var(--beige-warm);"><img src="mobil-1-titel.png" alt="PhysioPro Neustart am Eutiner Ring 4A, Bad Schwartau – Start 1. August 2026" style="max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;"></div>
+        <div class="bs-graphic"><img class="bs-graphic-bg" src="mobil-1-titel.png" alt="" aria-hidden="true"><img class="bs-graphic-img" src="mobil-1-titel.png" alt="PhysioPro Neustart am Eutiner Ring 4A, Bad Schwartau – Start 1. August 2026"></div>
       </div>
       <div class="bs-hero-slide" style="display:flex;flex-direction:column;">
         <div style="flex:1;overflow:hidden;"><img src="foto-behandlungsraum.jpg" alt="Behandlungsraum der Praxis in Bad Schwartau" style="width:100%;height:100%;object-fit:cover;"></div>
@@ -104,7 +107,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
       </div>
       <div class="bs-hero-slide" data-duration="10000" style="display:flex;flex-direction:column;">
-        <div style="flex:1;overflow:hidden;display:flex;align-items:center;justify-content:center;background:var(--beige-warm);"><img src="mobil-2-neues-kapitel.png" alt="Ein neues Kapitel in Bad Schwartau – Eutiner Ring 4A" style="max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;"></div>
+        <div class="bs-graphic"><img class="bs-graphic-bg" src="mobil-2-neues-kapitel.png" alt="" aria-hidden="true"><img class="bs-graphic-img" src="mobil-2-neues-kapitel.png" alt="Ein neues Kapitel in Bad Schwartau – Eutiner Ring 4A"></div>
       </div>
       <div class="bs-hero-slide" style="display:flex;flex-direction:column;">
         <div style="flex:1;overflow:hidden;"><img src="foto-flur.jpg" alt="Wartebereich der Praxis in Bad Schwartau" style="width:100%;height:100%;object-fit:cover;"></div>
@@ -121,7 +124,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
       </div>
       <div class="bs-hero-slide" data-duration="10000" style="display:flex;flex-direction:column;">
-        <div style="flex:1;overflow:hidden;display:flex;align-items:center;justify-content:center;background:var(--beige-warm);"><img src="mobil-3-philosophie.png" alt="Die Philosophie: Aktiv statt Passiv – Wir bewegen Gesundheit" style="max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;"></div>
+        <div class="bs-graphic"><img class="bs-graphic-bg" src="mobil-3-philosophie.png" alt="" aria-hidden="true"><img class="bs-graphic-img" src="mobil-3-philosophie.png" alt="Die Philosophie: Aktiv statt Passiv – Wir bewegen Gesundheit"></div>
       </div>
       <div class="bs-hero-slide" style="display:flex;flex-direction:column;">
         <div style="flex:1;overflow:hidden;"><img src="foto-empfang.jpg" alt="Empfang der neuen Praxis am Eutiner Ring 4A, Bad Schwartau" style="width:100%;height:100%;object-fit:cover;"></div>
@@ -138,7 +141,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
       </div>
       <div class="bs-hero-slide" data-duration="10000" style="display:flex;flex-direction:column;">
-        <div style="flex:1;overflow:hidden;display:flex;align-items:center;justify-content:center;background:var(--beige-warm);"><img src="mobil-4-team.png" alt="Ihr Team vor Ort in Bad Schwartau: Nadine &amp; Mascha, Petra Drewitz &amp; Vera Köhn, Nicole Clasen, Hanna Wrobel" style="max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;"></div>
+        <div class="bs-graphic"><img class="bs-graphic-bg" src="mobil-4-team.png" alt="" aria-hidden="true"><img class="bs-graphic-img" src="mobil-4-team.png" alt="Ihr Team vor Ort in Bad Schwartau: Nadine &amp; Mascha, Petra Drewitz &amp; Vera Köhn, Nicole Clasen, Hanna Wrobel"></div>
       </div>
       <div class="bs-hero-slide" style="display:flex;flex-direction:column;">
         <div style="flex:1;overflow:hidden;"><img src="foto-behandlungsraum.jpg" alt="Behandlungsraum der Praxis in Bad Schwartau" style="width:100%;height:100%;object-fit:cover;"></div>
@@ -155,7 +158,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
       </div>
       <div class="bs-hero-slide" data-duration="10000" style="display:flex;flex-direction:column;">
-        <div style="flex:1;overflow:hidden;display:flex;align-items:center;justify-content:center;background:var(--beige-warm);"><img src="mobil-5-rezept.png" alt="Mit normalem Rezept – alle Behandlungen am Eutiner Ring 4A möglich" style="max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;"></div>
+        <div class="bs-graphic"><img class="bs-graphic-bg" src="mobil-5-rezept.png" alt="" aria-hidden="true"><img class="bs-graphic-img" src="mobil-5-rezept.png" alt="Mit normalem Rezept – alle Behandlungen am Eutiner Ring 4A möglich"></div>
       </div>
     </div>
   </div>
