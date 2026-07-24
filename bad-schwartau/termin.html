@@ -17,9 +17,76 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="icon" href="/favicon-192.png" sizes="192x192" type="image/png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Space+Grotesk:wght@400;500;600;700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/shared.css?v=20260721">
+<!-- ═══════════════════════════════════════════════════════════════
+     Design-Standard „Warm Editorial" – nur für diese Unterseite
+     (Bad Schwartau · Termin). Überschreibt die globalen Design-Tokens
+     aus shared.css lokal in diesem Dokument; andere Seiten bleiben
+     unangetastet. Test/Staging vor Live-Übernahme.
+     ═══════════════════════════════════════════════════════════════ -->
 <style>
+  :root {
+    --sans: 'Instrument Sans', system-ui, sans-serif;
+    --serif: 'Newsreader', Georgia, serif;
+    --meta: 'Space Grotesk', system-ui, sans-serif;
+    --accent-italic: #5e7a52;
+
+    --rose: #2f4a37;        /* Primär-Grün (Buttons, CTAs) */
+    --rose-dark: #23392a;
+    --rose-light: #e6ecdd;  /* Chip-Hintergrund */
+    --green: #2f4a37;
+    --green-dark: #23392a;
+    --green-light: #e6ecdd;
+
+    --beige: #a08a5e;       /* Bronze / Sekundärakzent */
+    --beige-warm: #efe9dc;  /* Sektion alternierend */
+    --beige-mid: #ece4d3;   /* Kartenrahmen */
+    --beige-dark: #8a8368;  /* Meta / Label / tertiärer Text */
+    --beige-light: #efe9dc;
+    --cream: #f6f1e7;       /* Papier-Hintergrund */
+
+    --text: #2c2a22;        /* Text primär */
+    --text-mid: #54513f;    /* Text sekundär */
+    --warm-gray: #8a8368;   /* Meta-Label-Farbe */
+    --border: #ddd4c0;      /* Trennlinien */
+    --radius: 16px;
+  }
+
+  body { background: var(--cream); }
+
+  h1, h2, h3 { font-weight: 500; letter-spacing: -0.02em; }
+  h1 { line-height: 1.04; }
+  h2, h3 { line-height: 1.12; }
+  h1 em, h2 em, h3 em, .hero-motto em { font-style: italic; color: var(--accent-italic); font-weight: 500; }
+  h4, .eyebrow, h2.eyebrow {
+    font-family: var(--meta); font-weight: 500; font-size: 11.5px;
+    letter-spacing: .13em; text-transform: uppercase; color: var(--beige-dark);
+  }
+  .stat-label { font-family: var(--meta); letter-spacing: .13em; }
+
+  /* Chips / Tags – pill, Salbei-Grün */
+  .tag { background: var(--rose-light); color: #3c5a41; font-family: var(--meta); letter-spacing: .1em; }
+
+  /* Buttons – primär auf Papier, sekundär mit Rahmen */
+  .btn-primary { background: var(--rose); color: var(--cream); }
+  .btn-primary:hover { background: var(--rose-dark); }
+  .btn-outline { border: 1.5px solid var(--rose); color: var(--rose); }
+  .btn-outline:hover { background: var(--rose); color: var(--cream); border-color: var(--rose); }
+
+  /* Keine Gradients: dunkelgrüne Flächen als bewusste Zäsur, flach */
+  .stats-bar { background: #2f4a37; }
+  .page-hero { background: var(--cream); border-bottom: 1px solid var(--beige-mid); }
+  .modal-header { background: #2f4a37; }
+  footer { background: #2f4a37; color: rgba(246,241,231,.7); }
+  footer .footer-col h4, footer .footer-col h2 { color: #f6f1e7; }
+  footer .footer-col ul li a { color: rgba(246,241,231,.62); }
+  footer .footer-col ul li a:hover, .footer-bottom a:hover { color: #c6d9b8; }
+  .footer-motto { color: rgba(246,241,231,.55); }
+
+  /* Formularfelder: Labels in Space Grotesk, ruhigere Radien */
+  label[style*="text-transform:uppercase"] { font-family: var(--meta) !important; letter-spacing: .11em !important; }
+
   .bs-team-card { display:grid;grid-template-columns:180px 1fr;gap:1.75rem;align-items:center;background:#fff;border:1px solid var(--beige-mid);border-radius:var(--radius);padding:1.75rem;margin-bottom:1.25rem; }
   .bs-team-card img, .bs-team-avatar-placeholder { width:180px;height:180px;border-radius:50%;object-fit:cover;object-position:center top; }
   .bs-team-avatar-placeholder { display:flex;align-items:center;justify-content:center;background:var(--rose-light);color:var(--rose-dark);font-family:var(--serif);font-size:2.5rem;font-weight:400; }
@@ -48,6 +115,24 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   /* Osteopathie-Block (Julia Mielke, einmal woechentlich) */
   .bs-osteo-grid { display:grid; grid-template-columns:200px 1fr; align-items:stretch; }
   @media(max-width:640px){ .bs-osteo-grid { grid-template-columns:1fr; } .bs-osteo-grid > img { max-height:280px; } }
+
+  /* Sticky Bottom-Bar – primäre Aktion mobil immer erreichbar */
+  .bs-sticky-cta { display:none; }
+  @media(max-width:768px){
+    .bs-sticky-cta {
+      display:flex; align-items:center; gap:.6rem;
+      position:fixed; left:0; right:0; bottom:0; z-index:900;
+      padding:.6rem .75rem calc(.6rem + env(safe-area-inset-bottom));
+      background:rgba(246,241,231,.92); backdrop-filter:blur(10px);
+      border-top:1px solid var(--beige-mid);
+    }
+    .bs-sticky-cta a.btn { flex:1; text-align:center; margin:0; }
+    .bs-sticky-cta .bs-sticky-call {
+      width:44px; height:44px; flex-shrink:0; border-radius:12px;
+      background:var(--rose); display:flex; align-items:center; justify-content:center;
+    }
+    body { padding-bottom: 68px; }
+  }
 </style>
 </head>
 <body>
@@ -77,82 +162,82 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <span class="tag">Bad Schwartau</span>
         <span class="tag">Ab 1. August</span>
       </div>
-      <h1>Eutiner Ring 4A – neu ab 1. August bei PhysioPro</h1>
+      <h1>Eutiner Ring 4A – <em>neu</em> ab 1. August bei PhysioPro</h1>
       <p class="hero-subhead" style="margin-bottom:0;">Wir eröffnen hier eine neue Praxis unter neuer Leitung. Fragen Sie jetzt schon Ihren Termin an.</p>
       <div class="hero-actions" style="margin-top:1.5rem;">
         <a href="#termin-form" class="btn btn-primary">Termin anfragen</a>
         <button class="btn btn-outline" onclick="openRueckruf()">Sofort Rückruf anfordern</button>
       </div>
     </div>
-    <div style="border-radius:20px;overflow:hidden;border:1px solid var(--beige-mid);height:460px;position:relative;" id="bs-hero-slides">
+    <div style="border-radius:14px 14px 90px 14px;overflow:hidden;border:1px solid var(--beige-mid);height:460px;position:relative;" id="bs-hero-slides">
       <div class="bs-hero-slide bs-active" style="display:flex;flex-direction:column;">
         <div style="flex:1;overflow:hidden;"><img src="foto-empfang.jpg" alt="Empfang der neuen Praxis am Eutiner Ring 4A, Bad Schwartau" style="width:100%;height:100%;object-fit:cover;"></div>
-        <div style="padding:1rem 1.5rem;background:#fff;flex-shrink:0;">
-          <p style="font-style:italic;color:var(--text);margin:0;font-size:.95rem;">„Herzlich willkommen in Ihrer neuen Praxis für Physiotherapie in Bad Schwartau.“</p>
-          <p style="font-size:.75rem;color:var(--beige-dark);margin-top:.35rem;letter-spacing:.05em;text-transform:uppercase;">Empfangsbereich · Eutiner Ring 4A</p>
+        <div style="padding:1.1rem 1.5rem;background:#2f4a37;flex-shrink:0;">
+          <p style="font-style:italic;color:#f6f1e7;margin:0;font-size:.95rem;font-family:var(--serif);">„Herzlich willkommen in Ihrer neuen Praxis für Physiotherapie in Bad Schwartau.“</p>
+          <p style="font-size:.72rem;color:#c6d9b8;margin-top:.4rem;letter-spacing:.12em;text-transform:uppercase;font-family:var(--meta);">Empfangsbereich · Eutiner Ring 4A</p>
         </div>
       </div>
       <div class="bs-hero-slide" style="display:flex;flex-direction:column;">
         <div style="flex:1;overflow:hidden;"><img src="/team-hanna.jpg" alt="Hanna Wrobel" style="width:100%;height:100%;object-fit:cover; object-position:center top;"></div>
-        <div style="padding:1rem 1.5rem;background:#fff;flex-shrink:0;">
-          <p style="font-style:italic;color:var(--text);margin:0;font-size:.95rem;">„Freuen Sie sich auf bekannte Gesichter und gleichzeitig auf neue Kompetenzen in unserem Team in Bad Schwartau.“</p>
-          <p style="font-size:.75rem;color:var(--beige-dark);margin-top:.35rem;letter-spacing:.05em;text-transform:uppercase;">Hanna Wrobel · Inhaberin von PhysioPro</p>
+        <div style="padding:1.1rem 1.5rem;background:#2f4a37;flex-shrink:0;">
+          <p style="font-style:italic;color:#f6f1e7;margin:0;font-size:.95rem;font-family:var(--serif);">„Freuen Sie sich auf bekannte Gesichter und gleichzeitig auf neue Kompetenzen in unserem Team in Bad Schwartau.“</p>
+          <p style="font-size:.72rem;color:#c6d9b8;margin-top:.4rem;letter-spacing:.12em;text-transform:uppercase;font-family:var(--meta);">Hanna Wrobel · Inhaberin von PhysioPro</p>
         </div>
       </div>
       <div class="bs-hero-slide" style="display:flex;flex-direction:column;">
         <div style="flex:1;overflow:hidden;"><img src="foto-behandlungsraum.jpg" alt="Behandlungsraum der Praxis in Bad Schwartau" style="width:100%;height:100%;object-fit:cover;"></div>
-        <div style="padding:1rem 1.5rem;background:#fff;flex-shrink:0;">
-          <p style="font-style:italic;color:var(--text);margin:0;font-size:.95rem;">„Ein Raum zum Durchatmen – und zum Wiederherstellen.“</p>
-          <p style="font-size:.75rem;color:var(--beige-dark);margin-top:.35rem;letter-spacing:.05em;text-transform:uppercase;">Behandlungsraum · Eutiner Ring 4A</p>
+        <div style="padding:1.1rem 1.5rem;background:#2f4a37;flex-shrink:0;">
+          <p style="font-style:italic;color:#f6f1e7;margin:0;font-size:.95rem;font-family:var(--serif);">„Ein Raum zum Durchatmen – und zum Wiederherstellen.“</p>
+          <p style="font-size:.72rem;color:#c6d9b8;margin-top:.4rem;letter-spacing:.12em;text-transform:uppercase;font-family:var(--meta);">Behandlungsraum · Eutiner Ring 4A</p>
         </div>
       </div>
       <div class="bs-hero-slide" style="display:flex;flex-direction:column;">
         <div style="flex:1;overflow:hidden;"><img src="/team-hanna.jpg" alt="Hanna Wrobel" style="width:100%;height:100%;object-fit:cover; object-position:center top;"></div>
-        <div style="padding:1rem 1.5rem;background:#fff;flex-shrink:0;">
-          <p style="font-style:italic;color:var(--text);margin:0;font-size:.95rem;">„Wir bringen Menschen dazu, selbst aktiv zu werden“</p>
-          <p style="font-size:.75rem;color:var(--beige-dark);margin-top:.35rem;letter-spacing:.05em;text-transform:uppercase;">Hanna Wrobel · Inhaberin von PhysioPro</p>
+        <div style="padding:1.1rem 1.5rem;background:#2f4a37;flex-shrink:0;">
+          <p style="font-style:italic;color:#f6f1e7;margin:0;font-size:.95rem;font-family:var(--serif);">„Wir bringen Menschen dazu, selbst aktiv zu werden“</p>
+          <p style="font-size:.72rem;color:#c6d9b8;margin-top:.4rem;letter-spacing:.12em;text-transform:uppercase;font-family:var(--meta);">Hanna Wrobel · Inhaberin von PhysioPro</p>
         </div>
       </div>
       <div class="bs-hero-slide" style="display:flex;flex-direction:column;">
         <div style="flex:1;overflow:hidden;"><img src="foto-flur.jpg" alt="Wartebereich der Praxis in Bad Schwartau" style="width:100%;height:100%;object-fit:cover;"></div>
-        <div style="padding:1rem 1.5rem;background:#fff;flex-shrink:0;">
-          <p style="font-style:italic;color:var(--text);margin:0;font-size:.95rem;">„Ein Ort, an dem Sie ankommen und durchatmen können.“</p>
-          <p style="font-size:.75rem;color:var(--beige-dark);margin-top:.35rem;letter-spacing:.05em;text-transform:uppercase;">Wartebereich · Eutiner Ring 4A</p>
+        <div style="padding:1.1rem 1.5rem;background:#2f4a37;flex-shrink:0;">
+          <p style="font-style:italic;color:#f6f1e7;margin:0;font-size:.95rem;font-family:var(--serif);">„Ein Ort, an dem Sie ankommen und durchatmen können.“</p>
+          <p style="font-size:.72rem;color:#c6d9b8;margin-top:.4rem;letter-spacing:.12em;text-transform:uppercase;font-family:var(--meta);">Wartebereich · Eutiner Ring 4A</p>
         </div>
       </div>
       <div class="bs-hero-slide" style="display:flex;flex-direction:column;">
         <div style="flex:1;overflow:hidden;"><img src="/team-hanna.jpg" alt="Hanna Wrobel" style="width:100%;height:100%;object-fit:cover; object-position:center top;"></div>
-        <div style="padding:1rem 1.5rem;background:#fff;flex-shrink:0;">
-          <p style="font-style:italic;color:var(--text);margin:0;font-size:.95rem;">„Ich freue mich auf die Menschen in Bad Schwartau.“</p>
-          <p style="font-size:.75rem;color:var(--beige-dark);margin-top:.35rem;letter-spacing:.05em;text-transform:uppercase;">Hanna Wrobel · Inhaberin von PhysioPro</p>
+        <div style="padding:1.1rem 1.5rem;background:#2f4a37;flex-shrink:0;">
+          <p style="font-style:italic;color:#f6f1e7;margin:0;font-size:.95rem;font-family:var(--serif);">„Ich freue mich auf die Menschen in Bad Schwartau.“</p>
+          <p style="font-size:.72rem;color:#c6d9b8;margin-top:.4rem;letter-spacing:.12em;text-transform:uppercase;font-family:var(--meta);">Hanna Wrobel · Inhaberin von PhysioPro</p>
         </div>
       </div>
       <div class="bs-hero-slide" style="display:flex;flex-direction:column;">
         <div style="flex:1;overflow:hidden;"><img src="foto-empfang.jpg" alt="Empfang der neuen Praxis am Eutiner Ring 4A, Bad Schwartau" style="width:100%;height:100%;object-fit:cover;"></div>
-        <div style="padding:1rem 1.5rem;background:#fff;flex-shrink:0;">
-          <p style="font-style:italic;color:var(--text);margin:0;font-size:.95rem;">„Herzlich willkommen in Ihrer neuen Praxis für Physiotherapie in Bad Schwartau.“</p>
-          <p style="font-size:.75rem;color:var(--beige-dark);margin-top:.35rem;letter-spacing:.05em;text-transform:uppercase;">Empfangsbereich · Eutiner Ring 4A</p>
+        <div style="padding:1.1rem 1.5rem;background:#2f4a37;flex-shrink:0;">
+          <p style="font-style:italic;color:#f6f1e7;margin:0;font-size:.95rem;font-family:var(--serif);">„Herzlich willkommen in Ihrer neuen Praxis für Physiotherapie in Bad Schwartau.“</p>
+          <p style="font-size:.72rem;color:#c6d9b8;margin-top:.4rem;letter-spacing:.12em;text-transform:uppercase;font-family:var(--meta);">Empfangsbereich · Eutiner Ring 4A</p>
         </div>
       </div>
       <div class="bs-hero-slide" style="display:flex;flex-direction:column;">
         <div style="flex:1;overflow:hidden;"><img src="/team-hanna.jpg" alt="Hanna Wrobel" style="width:100%;height:100%;object-fit:cover; object-position:center top;"></div>
-        <div style="padding:1rem 1.5rem;background:#fff;flex-shrink:0;">
-          <p style="font-style:italic;color:var(--text);margin:0;font-size:.95rem;">„Ab 1. August begleite ich den neuen Standort persönlich.“</p>
-          <p style="font-size:.75rem;color:var(--beige-dark);margin-top:.35rem;letter-spacing:.05em;text-transform:uppercase;">Hanna Wrobel · Inhaberin von PhysioPro</p>
+        <div style="padding:1.1rem 1.5rem;background:#2f4a37;flex-shrink:0;">
+          <p style="font-style:italic;color:#f6f1e7;margin:0;font-size:.95rem;font-family:var(--serif);">„Ab 1. August begleite ich den neuen Standort persönlich.“</p>
+          <p style="font-size:.72rem;color:#c6d9b8;margin-top:.4rem;letter-spacing:.12em;text-transform:uppercase;font-family:var(--meta);">Hanna Wrobel · Inhaberin von PhysioPro</p>
         </div>
       </div>
       <div class="bs-hero-slide" style="display:flex;flex-direction:column;">
         <div style="flex:1;overflow:hidden;"><img src="foto-behandlungsraum.jpg" alt="Behandlungsraum der Praxis in Bad Schwartau" style="width:100%;height:100%;object-fit:cover;"></div>
-        <div style="padding:1rem 1.5rem;background:#fff;flex-shrink:0;">
-          <p style="font-style:italic;color:var(--text);margin:0;font-size:.95rem;">„Ein Raum zum Durchatmen – und zum Wiederherstellen.“</p>
-          <p style="font-size:.75rem;color:var(--beige-dark);margin-top:.35rem;letter-spacing:.05em;text-transform:uppercase;">Behandlungsraum · Eutiner Ring 4A</p>
+        <div style="padding:1.1rem 1.5rem;background:#2f4a37;flex-shrink:0;">
+          <p style="font-style:italic;color:#f6f1e7;margin:0;font-size:.95rem;font-family:var(--serif);">„Ein Raum zum Durchatmen – und zum Wiederherstellen.“</p>
+          <p style="font-size:.72rem;color:#c6d9b8;margin-top:.4rem;letter-spacing:.12em;text-transform:uppercase;font-family:var(--meta);">Behandlungsraum · Eutiner Ring 4A</p>
         </div>
       </div>
       <div class="bs-hero-slide" style="display:flex;flex-direction:column;">
         <div style="flex:1;overflow:hidden;"><img src="/team-hanna.jpg" alt="Hanna Wrobel" style="width:100%;height:100%;object-fit:cover; object-position:center top;"></div>
-        <div style="padding:1rem 1.5rem;background:#fff;flex-shrink:0;">
-          <p style="font-style:italic;color:var(--text);margin:0;font-size:.95rem;">„Hier starten wir ganz neu – mit Erfahrung und Herz.“</p>
-          <p style="font-size:.75rem;color:var(--beige-dark);margin-top:.35rem;letter-spacing:.05em;text-transform:uppercase;">Hanna Wrobel · Inhaberin von PhysioPro</p>
+        <div style="padding:1.1rem 1.5rem;background:#2f4a37;flex-shrink:0;">
+          <p style="font-style:italic;color:#f6f1e7;margin:0;font-size:.95rem;font-family:var(--serif);">„Hier starten wir ganz neu – mit Erfahrung und Herz.“</p>
+          <p style="font-size:.72rem;color:#c6d9b8;margin-top:.4rem;letter-spacing:.12em;text-transform:uppercase;font-family:var(--meta);">Hanna Wrobel · Inhaberin von PhysioPro</p>
         </div>
       </div>
     </div>
@@ -306,9 +391,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="bs-osteo-grid">
         <img src="/team-julia.jpg" alt="Julia Mielke – Osteopathin, Heilpraktikerin, Physiotherapeutin" style="width:100%;height:100%;object-fit:cover;object-position:center top;min-height:220px;">
         <div style="padding:1.75rem 2rem;">
-          <span class="tag" style="background:#efe4d8;color:#8c6a55;">Neu · Einmal pro Woche vor Ort</span>
+          <span class="tag" style="background:rgba(160,138,94,.14);color:#a08a5e;">Neu · Einmal pro Woche vor Ort</span>
           <h3 style="margin:.5rem 0 .3rem;">Osteopathie mit Julia Mielke</h3>
-          <p style="color:#8c6a55;font-size:.9rem;font-style:italic;margin:0 0 1rem;">Osteopathin · Heilpraktikerin · Physiotherapeutin</p>
+          <p style="color:#a08a5e;font-size:.9rem;font-style:italic;margin:0 0 1rem;">Osteopathin · Heilpraktikerin · Physiotherapeutin</p>
           <p style="color:var(--text-mid);font-size:.92rem;line-height:1.7;margin:0 0 1.25rem;">Julia Mielke ist <strong>einmal pro Woche direkt am Eutiner Ring 4A</strong> in Bad Schwartau. Osteopathie und der Osteopathie-Check sind <strong>ohne Rezept</strong> buchbar (Selbstzahler- bzw. Privatleistung – einige Kassen erstatten anteilig).</p>
           <div style="display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;margin-bottom:1.25rem;">
             <span style="font-size:.85rem;color:var(--text-mid);">✓ Gespräch mit Julia Mielke</span>
@@ -317,11 +402,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <span style="font-size:.85rem;color:var(--text-mid);">✓ Ohne Rezept buchbar</span>
           </div>
           <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;">
-            <div style="background:#8c6a55;color:#fff;border-radius:10px;padding:.5rem .9rem;line-height:1.15;">
+            <div style="background:#a08a5e;color:#fff;border-radius:100px;padding:.5rem .9rem;line-height:1.15;">
               <span style="font-family:var(--serif);font-size:1.35rem;font-weight:300;">26,50 €</span>
               <span style="display:block;font-size:.68rem;opacity:.85;">Osteopathie-Check · 20 Min. · einmalig</span>
             </div>
-            <a href="#bs-osteo-form" class="btn btn-primary" style="background:#8c6a55;">Osteopathie anfragen</a>
+            <a href="#bs-osteo-form" class="btn btn-primary" style="background:#a08a5e;">Osteopathie anfragen</a>
           </div>
         </div>
       </div>
@@ -331,16 +416,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div id="bso-form">
         <h4 id="bs-osteo-form" style="margin:0 0 .25rem;">Osteopathie in Bad Schwartau anfragen</h4>
         <p style="color:var(--text-mid);font-size:.85rem;margin:0 0 1.25rem;">Wir stimmen Ihren Termin mit Julia ab und melden uns – spätestens am nächsten Werktag.</p>
-        <div style="margin-bottom:1rem;"><label style="display:block;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--warm-gray);margin-bottom:.35rem;">Name *</label><input id="bso-name" type="text" placeholder="Ihr Name" style="width:100%;padding:.8rem 1rem;border:1.5px solid var(--beige-mid);border-radius:8px;font-family:var(--sans);font-size:.9rem;outline:none;"></div>
-        <div style="margin-bottom:1rem;"><label style="display:block;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--warm-gray);margin-bottom:.35rem;">Telefon *</label><input id="bso-tel" type="tel" placeholder="0451 ..." style="width:100%;padding:.8rem 1rem;border:1.5px solid var(--beige-mid);border-radius:8px;font-family:var(--sans);font-size:.9rem;outline:none;"></div>
-        <div style="margin-bottom:1rem;"><label style="display:block;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--warm-gray);margin-bottom:.35rem;">E-Mail</label><input id="bso-email" type="email" placeholder="ihre@email.de" style="width:100%;padding:.8rem 1rem;border:1.5px solid var(--beige-mid);border-radius:8px;font-family:var(--sans);font-size:.9rem;outline:none;"></div>
-        <div style="margin-bottom:1.25rem;"><label style="display:block;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--warm-gray);margin-bottom:.35rem;">Anliegen</label><textarea id="bso-hinweis" placeholder="z.B. Beschwerden, bevorzugte Uhrzeit..." style="width:100%;padding:.8rem 1rem;border:1.5px solid var(--beige-mid);border-radius:8px;font-family:var(--sans);font-size:.9rem;outline:none;resize:vertical;min-height:70px;"></textarea></div>
-        <div style="display:flex;gap:.75rem;align-items:flex-start;margin-bottom:1.25rem;"><input type="checkbox" id="bso-dsgvo" style="margin-top:4px;accent-color:#8c6a55;flex-shrink:0;"><label for="bso-dsgvo" style="font-size:.8rem;color:var(--text-mid);line-height:1.55;">Ich stimme der Verarbeitung meiner Daten zur Terminvereinbarung zu. *</label></div>
-        <div id="bso-error" style="display:none;color:#c0392b;font-size:.82rem;margin-bottom:1rem;padding:.7rem 1rem;background:#fdf0f0;border-radius:8px;"></div>
-        <button onclick="bsoSubmit()" class="btn btn-primary" style="width:100%;background:#8c6a55;" id="bso-submit-btn">Osteopathie-Check anfragen</button>
+        <div style="margin-bottom:1rem;"><label style="display:block;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--warm-gray);margin-bottom:.35rem;">Name *</label><input id="bso-name" type="text" placeholder="Ihr Name" style="width:100%;padding:.8rem 1rem;border:1.5px solid var(--beige-mid);border-radius:12px;font-family:var(--sans);font-size:.9rem;outline:none;"></div>
+        <div style="margin-bottom:1rem;"><label style="display:block;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--warm-gray);margin-bottom:.35rem;">Telefon *</label><input id="bso-tel" type="tel" placeholder="0451 ..." style="width:100%;padding:.8rem 1rem;border:1.5px solid var(--beige-mid);border-radius:12px;font-family:var(--sans);font-size:.9rem;outline:none;"></div>
+        <div style="margin-bottom:1rem;"><label style="display:block;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--warm-gray);margin-bottom:.35rem;">E-Mail</label><input id="bso-email" type="email" placeholder="ihre@email.de" style="width:100%;padding:.8rem 1rem;border:1.5px solid var(--beige-mid);border-radius:12px;font-family:var(--sans);font-size:.9rem;outline:none;"></div>
+        <div style="margin-bottom:1.25rem;"><label style="display:block;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--warm-gray);margin-bottom:.35rem;">Anliegen</label><textarea id="bso-hinweis" placeholder="z.B. Beschwerden, bevorzugte Uhrzeit..." style="width:100%;padding:.8rem 1rem;border:1.5px solid var(--beige-mid);border-radius:12px;font-family:var(--sans);font-size:.9rem;outline:none;resize:vertical;min-height:70px;"></textarea></div>
+        <div style="display:flex;gap:.75rem;align-items:flex-start;margin-bottom:1.25rem;"><input type="checkbox" id="bso-dsgvo" style="margin-top:4px;accent-color:#a08a5e;flex-shrink:0;"><label for="bso-dsgvo" style="font-size:.8rem;color:var(--text-mid);line-height:1.55;">Ich stimme der Verarbeitung meiner Daten zur Terminvereinbarung zu. *</label></div>
+        <div id="bso-error" style="display:none;color:#c0392b;font-size:.82rem;margin-bottom:1rem;padding:.7rem 1rem;background:#fdf0f0;border-radius:12px;"></div>
+        <button onclick="bsoSubmit()" class="btn btn-primary" style="width:100%;background:#a08a5e;" id="bso-submit-btn">Osteopathie-Check anfragen</button>
       </div>
       <div id="bso-success" style="display:none;text-align:center;padding:1.5rem 0;">
-        <div style="width:56px;height:56px;border-radius:50%;background:var(--beige-warm);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;color:#8c6a55;font-size:1.5rem;">✓</div>
+        <div style="width:56px;height:56px;border-radius:50%;background:var(--beige-warm);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;color:#a08a5e;font-size:1.5rem;">✓</div>
         <h3 style="margin-bottom:.5rem;">Anfrage gesendet!</h3>
         <p style="color:var(--text-mid);font-size:.9rem;">Vielen Dank! Wir stimmen Ihren Osteopathie-Termin mit Julia ab und melden uns – spätestens am nächsten Werktag.</p>
       </div>
@@ -352,9 +437,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <section class="section" style="padding-top:0;">
   <div class="container" style="max-width:800px;">
     <h2 class="eyebrow" style="margin-bottom:1.5rem;">So läuft es ab</h2>
-    <div style="display:grid;grid-template-columns:48px 1fr;gap:1.25rem;padding:1.25rem 0;border-bottom:1px solid var(--beige-mid);"><div style="font-family:var(--serif);font-size:1.8rem;font-weight:300;color:#55725e;line-height:1;">01</div><div><h3 style="font-size:1.05rem;margin-bottom:.3rem;">Termin anfragen</h3><p style="font-size:.875rem;color:var(--text-mid);line-height:1.7;margin:0;">Online über das Formular oder per Rückruf – auch ohne Rezept möglich.</p></div></div>
-    <div style="display:grid;grid-template-columns:48px 1fr;gap:1.25rem;padding:1.25rem 0;border-bottom:1px solid var(--beige-mid);"><div style="font-family:var(--serif);font-size:1.8rem;font-weight:300;color:#55725e;line-height:1;">02</div><div><h3 style="font-size:1.05rem;margin-bottom:.3rem;">Wir melden uns</h3><p style="font-size:.875rem;color:var(--text-mid);line-height:1.7;margin:0;">Spätestens am nächsten Werktag, um Ihren Termin ab dem 1. August zu bestätigen.</p></div></div>
-    <div style="display:grid;grid-template-columns:48px 1fr;gap:1.25rem;padding:1.25rem 0;"><div style="font-family:var(--serif);font-size:1.8rem;font-weight:300;color:#55725e;line-height:1;">03</div><div><h3 style="font-size:1.05rem;margin-bottom:.3rem;">Erste Behandlung am Eutiner Ring 4A</h3><p style="font-size:.875rem;color:var(--text-mid);line-height:1.7;margin:0;">Ab 1. August empfängt Sie das Team direkt vor Ort in Bad Schwartau.</p></div></div>
+    <div style="display:grid;grid-template-columns:48px 1fr;gap:1.25rem;padding:1.25rem 0;border-bottom:1px solid var(--border);"><div style="font-family:var(--serif);font-size:1.8rem;font-weight:500;color:#a08a5e;line-height:1;">01</div><div><h3 style="font-size:1.05rem;margin-bottom:.3rem;">Termin anfragen</h3><p style="font-size:.875rem;color:var(--text-mid);line-height:1.7;margin:0;">→ Online über das Formular oder per Rückruf – auch ohne Rezept möglich.</p></div></div>
+    <div style="display:grid;grid-template-columns:48px 1fr;gap:1.25rem;padding:1.25rem 0;border-bottom:1px solid var(--border);"><div style="font-family:var(--serif);font-size:1.8rem;font-weight:500;color:#a08a5e;line-height:1;">02</div><div><h3 style="font-size:1.05rem;margin-bottom:.3rem;">Wir melden uns</h3><p style="font-size:.875rem;color:var(--text-mid);line-height:1.7;margin:0;">→ Spätestens am nächsten Werktag, um Ihren Termin ab dem 1. August zu bestätigen.</p></div></div>
+    <div style="display:grid;grid-template-columns:48px 1fr;gap:1.25rem;padding:1.25rem 0;"><div style="font-family:var(--serif);font-size:1.8rem;font-weight:500;color:#a08a5e;line-height:1;">03</div><div><h3 style="font-size:1.05rem;margin-bottom:.3rem;">Erste Behandlung am Eutiner Ring 4A</h3><p style="font-size:.875rem;color:var(--text-mid);line-height:1.7;margin:0;">→ Ab 1. August empfängt Sie das Team direkt vor Ort in Bad Schwartau.</p></div></div>
   </div>
 </section>
 
@@ -366,12 +451,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <h3 style="margin-bottom:1.5rem;">Termin ab 1. August anfragen</h3>
         <div style="background:#fff;border-radius:var(--radius);border:1px solid var(--beige-mid);overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.05);padding:1.75rem;">
           <div id="bs-form">
-            <div style="margin-bottom:1rem;"><label style="display:block;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--warm-gray);margin-bottom:.35rem;">Name *</label><input id="bs-name" type="text" placeholder="Ihr Name" style="width:100%;padding:.8rem 1rem;border:1.5px solid var(--beige-mid);border-radius:8px;font-family:var(--sans);font-size:.9rem;outline:none;"></div>
-            <div style="margin-bottom:1rem;"><label style="display:block;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--warm-gray);margin-bottom:.35rem;">Telefon *</label><input id="bs-tel" type="tel" placeholder="0451 ..." style="width:100%;padding:.8rem 1rem;border:1.5px solid var(--beige-mid);border-radius:8px;font-family:var(--sans);font-size:.9rem;outline:none;"></div>
-            <div style="margin-bottom:1rem;"><label style="display:block;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--warm-gray);margin-bottom:.35rem;">E-Mail</label><input id="bs-email" type="email" placeholder="ihre@email.de" style="width:100%;padding:.8rem 1rem;border:1.5px solid var(--beige-mid);border-radius:8px;font-family:var(--sans);font-size:.9rem;outline:none;"></div>
-            <div style="margin-bottom:1.25rem;"><label style="display:block;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--warm-gray);margin-bottom:.35rem;">Nachricht</label><textarea id="bs-hinweis" placeholder="z.B. bevorzugte Uhrzeit, Anliegen..." style="width:100%;padding:.8rem 1rem;border:1.5px solid var(--beige-mid);border-radius:8px;font-family:var(--sans);font-size:.9rem;outline:none;resize:vertical;min-height:70px;"></textarea></div>
+            <div style="margin-bottom:1rem;"><label style="display:block;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--warm-gray);margin-bottom:.35rem;">Name *</label><input id="bs-name" type="text" placeholder="Ihr Name" style="width:100%;padding:.8rem 1rem;border:1.5px solid var(--beige-mid);border-radius:12px;font-family:var(--sans);font-size:.9rem;outline:none;"></div>
+            <div style="margin-bottom:1rem;"><label style="display:block;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--warm-gray);margin-bottom:.35rem;">Telefon *</label><input id="bs-tel" type="tel" placeholder="0451 ..." style="width:100%;padding:.8rem 1rem;border:1.5px solid var(--beige-mid);border-radius:12px;font-family:var(--sans);font-size:.9rem;outline:none;"></div>
+            <div style="margin-bottom:1rem;"><label style="display:block;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--warm-gray);margin-bottom:.35rem;">E-Mail</label><input id="bs-email" type="email" placeholder="ihre@email.de" style="width:100%;padding:.8rem 1rem;border:1.5px solid var(--beige-mid);border-radius:12px;font-family:var(--sans);font-size:.9rem;outline:none;"></div>
+            <div style="margin-bottom:1.25rem;"><label style="display:block;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--warm-gray);margin-bottom:.35rem;">Nachricht</label><textarea id="bs-hinweis" placeholder="z.B. bevorzugte Uhrzeit, Anliegen..." style="width:100%;padding:.8rem 1rem;border:1.5px solid var(--beige-mid);border-radius:12px;font-family:var(--sans);font-size:.9rem;outline:none;resize:vertical;min-height:70px;"></textarea></div>
             <div style="display:flex;gap:.75rem;align-items:flex-start;margin-bottom:1.25rem;"><input type="checkbox" id="bs-dsgvo" style="margin-top:4px;accent-color:var(--rose);flex-shrink:0;"><label for="bs-dsgvo" style="font-size:.8rem;color:var(--text-mid);line-height:1.55;">Ich stimme der Verarbeitung meiner Daten zur Terminvereinbarung zu. *</label></div>
-            <div id="bs-error" style="display:none;color:#c0392b;font-size:.82rem;margin-bottom:1rem;padding:.7rem 1rem;background:#fdf0f0;border-radius:8px;"></div>
+            <div id="bs-error" style="display:none;color:#c0392b;font-size:.82rem;margin-bottom:1rem;padding:.7rem 1rem;background:#fdf0f0;border-radius:12px;"></div>
             <button onclick="bsSubmit()" class="btn btn-primary" style="width:100%;" id="bs-submit-btn">Termin anfragen</button>
           </div>
           <div id="bs-success" style="display:none;text-align:center;padding:1.5rem 0;">
@@ -417,6 +502,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <p class="footer-motto">Wir bewegen Menschen</p>
 <div class="footer-bottom"><p>© 2026 PhysioPro Lübeck · Hanna Wrobel</p><div style="display:flex;gap:1.5rem;"><a href="/impressum">Impressum</a><a href="/datenschutz">Datenschutz</a></div></div>
 </div></footer>
+<!-- STICKY BOTTOM-CTA (nur Mobil) -->
+<div class="bs-sticky-cta">
+  <a href="#termin-form" class="btn btn-primary">Termin anfragen</a>
+  <a href="tel:+4945140073073" class="bs-sticky-call" aria-label="Anrufen: 0451 400 730 73">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f6f1e7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+  </a>
+</div>
 <script src="/shared.js?v=20260721"></script>
 <script>
 async function bsSubmit(){
