@@ -28,3 +28,8 @@
 /bad-schwartau                       /bad-schwartau/termin   301
 /bad-schwartau/                      /bad-schwartau/termin   301
 /bad-schwartau.html                  /bad-schwartau/termin   301
+
+# ── Ergaenzt 24.07.2026: physiotherapie.html entfernt (verwaist, durch /therapie ersetzt) ──
+/physiotherapie                      /therapie    301
+/physiotherapie/                     /therapie    301
+/physiotherapie.html                 /therapie    301
