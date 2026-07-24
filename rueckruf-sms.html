@@ -7,15 +7,15 @@
   <meta name="robots" content="noindex, nofollow" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,500;1,500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --green: #55725e; --green-dark: #3d5445; --green-light: #eef3f0;
-      --cream: #faf8f4; --beige-mid: #e8ddd0;
-      --text: #2c2825; --text-mid: #5a5450;
-      --sans: 'DM Sans', system-ui, sans-serif;
-      --serif: 'Cormorant Garamond', Georgia, serif;
+      --green: #2f4a37; --green-dark: #23392a; --green-light: #e6ecdd;
+      --cream: #f6f1e7; --beige-mid: #ece4d3;
+      --text: #2c2a22; --text-mid: #54513f;
+      --sans: 'Instrument Sans', system-ui, sans-serif;
+      --serif: 'Newsreader', Georgia, serif;
     }
     body { font-family: var(--sans); background: var(--cream); color: var(--text);
       min-height: 100vh; display: flex; flex-direction: column;
@@ -24,9 +24,10 @@
       max-width: 420px; width: 100%; box-shadow: 0 2px 20px rgba(0,0,0,0.06); text-align: center; }
     .logo { margin-bottom: 2rem; }
     .logo img { height: 80px; width: auto; }
-    h1 { font-family: var(--serif); font-weight: 300; font-size: 1.9rem; line-height: 1.2; margin-bottom: 0.75rem; }
+    h1 { font-family: var(--serif); font-weight: 500; letter-spacing: -0.02em; font-size: 1.9rem; line-height: 1.15; margin-bottom: 0.75rem; }
+    h1 em { font-style: italic; color: #5e7a52; }
     .sub { color: var(--text-mid); font-size: 0.95rem; line-height: 1.6; margin-bottom: 2rem; }
-    .tel-box { background: var(--green-light); border-radius: 10px; padding: 0.9rem 1.25rem;
+    .tel-box { background: var(--green-light); border-radius: 14px; padding: 0.9rem 1.25rem;
       margin-bottom: 2rem; display: flex; align-items: center; gap: 0.75rem; }
     .tel-box label { font-size: 0.8rem; font-weight: 500; letter-spacing: 0.06em;
       text-transform: uppercase; color: var(--green-dark); white-space: nowrap; }
@@ -55,7 +56,7 @@
   <div class="logo"><img src="/logo-physio.svg" alt="PhysioPro Lübeck" /></div>
 
   <div id="screen-form" class="screen aktiv">
-    <h1>Rückruf gewünscht?</h1>
+    <h1>Rückruf <em>gewünscht</em>?</h1>
     <p class="sub">Wir rufen Sie gerne zurück. Bitte bestätigen Sie Ihre Telefonnummer.</p>
     <div class="tel-box">
       <label>Telefon</label>
