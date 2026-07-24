@@ -19,8 +19,35 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="icon" href="favicon-192.png" sizes="192x192" type="image/png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Space+Grotesk:wght@400;500;600;700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared.css?v=202607212100">
+<style>
+  :root {
+    --sans: 'Instrument Sans', system-ui, sans-serif;
+    --serif: 'Newsreader', Georgia, serif;
+    --meta: 'Space Grotesk', system-ui, sans-serif;
+    --accent-italic: #5e7a52;
+    --rose: #2f4a37; --rose-dark: #23392a; --rose-light: #e6ecdd;
+    --green: #2f4a37; --green-dark: #23392a; --green-light: #e6ecdd;
+    --beige: #a08a5e; --beige-warm: #efe9dc; --beige-mid: #ece4d3;
+    --beige-dark: #8a8368; --beige-light: #efe9dc; --cream: #f6f1e7;
+    --text: #2c2a22; --text-mid: #54513f; --warm-gray: #8a8368;
+    --border: #ddd4c0; --radius: 16px;
+  }
+  body { background: var(--cream); }
+  h1, h2, h3 { font-weight: 500; letter-spacing: -0.02em; }
+  h1 em, h2 em, h3 em { font-style: italic; color: var(--accent-italic); font-weight: 500; }
+  .tag { background: var(--rose-light); color: #3c5a41; font-family: var(--meta); letter-spacing: .1em; }
+  .btn-primary { background: var(--rose); color: var(--cream); }
+  .btn-primary:hover { background: var(--rose-dark); }
+  .stats-bar { background: #2f4a37; }
+  .modal-header { background: #2f4a37; }
+  footer { background: #2f4a37; color: rgba(246,241,231,.7); }
+  footer .footer-col h4, footer .footer-col h2 { color: #f6f1e7; font-size: .75rem; letter-spacing: .1em; }
+  footer .footer-col ul li a { color: rgba(246,241,231,.62); }
+  footer .footer-col ul li a:hover, .footer-bottom a:hover { color: #c6d9b8; }
+  .footer-motto { color: rgba(246,241,231,.55); }
+</style>
 
 <!-- Schema.org -->
 <script type="application/ld+json">
@@ -46,16 +73,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <style>
 .physio-hero {
-  background: linear-gradient(135deg, #2c2825 0%, #3d3530 60%, #55725e 100%);
+  background: #2f4a37;
   padding: 4rem 2rem 3.5rem;
   text-align: center;
-  color: #faf8f4;
+  color: #f6f1e7;
 }
 .physio-hero .tag { background: rgba(255,255,255,.15); color: rgba(255,255,255,.9); border: 1px solid rgba(255,255,255,.25); }
-.physio-hero h1 { color: #faf8f4; font-size: clamp(2rem,5vw,3.5rem); margin-bottom: 1rem; }
+.physio-hero h1 { color: #f6f1e7; font-size: clamp(2rem,5vw,3.5rem); margin-bottom: 1rem; }
 .physio-hero p { font-size: 1.05rem; color: rgba(255,255,255,.85); max-width: 560px; margin: 0 auto 2rem; line-height: 1.8; }
 .physio-hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-.btn-white { background: #fff; color: #2c2825; border-radius: 100px; padding: .75rem 2rem; font-family: var(--sans); font-size: .875rem; font-weight: 500; text-decoration: none; transition: .2s; border: none; cursor: pointer; }
+.btn-white { background: #fff; color: #2c2a22; border-radius: 100px; padding: .75rem 2rem; font-family: var(--sans); font-size: .875rem; font-weight: 500; text-decoration: none; transition: .2s; border: none; cursor: pointer; }
 .btn-white:hover { opacity: .9; }
 .btn-ghost { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,.5); border-radius: 100px; padding: .75rem 2rem; font-family: var(--sans); font-size: .875rem; font-weight: 500; text-decoration: none; transition: .2s; cursor: pointer; }
 .btn-ghost:hover { background: rgba(255,255,255,.1); border-color: #fff; }
@@ -70,7 +97,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   display: grid; grid-template-columns: repeat(auto-fit,minmax(140px,1fr)); gap: 1rem; text-align: center;
 }
 @media(max-width:600px){ .usp-strip-inner { grid-template-columns: repeat(2,1fr); } }
-.usp-strip-item strong { display: block; font-family: var(--serif); font-size: 1.4rem; font-weight: 300; color: #55725e; margin-bottom: .2rem; }
+.usp-strip-item strong { display: block; font-family: var(--serif); font-size: 1.4rem; font-weight: 300; color: #2f4a37; margin-bottom: .2rem; }
 .usp-strip-item span { font-size: .8rem; color: var(--text-mid); line-height: 1.4; }
 
 .leistungen-grid {
@@ -86,17 +113,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 .leistung-icon { font-size: 1.5rem; margin-bottom: .75rem; }
 
 .atmosphaere {
-  background: linear-gradient(135deg, #55725e, #3d5447);
-  color: #faf8f4; padding: 4rem 2rem; text-align: center;
+  background: #2f4a37;
+  color: #f6f1e7; padding: 4rem 2rem; text-align: center;
 }
-.atmosphaere h2 { color: #faf8f4; margin-bottom: 1rem; }
+.atmosphaere h2 { color: #f6f1e7; margin-bottom: 1rem; }
 .atmosphaere p { color: rgba(255,255,255,.85); max-width: 640px; margin: 0 auto .8rem; font-size: 1rem; line-height: 1.8; }
 
 .zielgruppe-card {
   background: #fff; border-radius: var(--radius); padding: 1.25rem 1.5rem;
   border: 1px solid var(--beige-mid); display: flex; align-items: flex-start; gap: .75rem;
 }
-.zielgruppe-card::before { content: '✓'; color: #55725e; font-weight: 700; flex-shrink: 0; margin-top: .1rem; }
+.zielgruppe-card::before { content: '✓'; color: #2f4a37; font-weight: 700; flex-shrink: 0; margin-top: .1rem; }
 .zielgruppe-card p { font-size: .875rem; color: var(--text-mid); line-height: 1.5; margin: 0; }
 .zielgruppe-card strong { color: var(--text); display: block; margin-bottom: .2rem; }
 
@@ -105,7 +132,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   padding: 1.5rem 0; border-bottom: 1px solid var(--beige-mid);
 }
 .ablauf-step:last-child { border-bottom: none; }
-.ablauf-num { font-family: var(--serif); font-size: 1.8rem; font-weight: 300; color: #55725e; line-height: 1; }
+.ablauf-num { font-family: var(--serif); font-size: 1.8rem; font-weight: 300; color: #2f4a37; line-height: 1; }
 .ablauf-step h3 { font-size: 1.1rem; margin-bottom: .4rem; }
 .ablauf-step p { font-size: .875rem; color: var(--text-mid); line-height: 1.7; margin: 0; }
 
@@ -119,9 +146,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 .pilates-bridge p { font-size: .875rem; color: var(--text-mid); line-height: 1.7; margin: 0; }
 
 .cta-final {
-  background: #2c2825; color: #faf8f4; padding: 4rem 2rem; text-align: center;
+  background: #2f4a37; color: #f6f1e7; padding: 4rem 2rem; text-align: center;
 }
-.cta-final h2 { color: #faf8f4; margin-bottom: .75rem; }
+.cta-final h2 { color: #f6f1e7; margin-bottom: .75rem; }
 .cta-final p { color: rgba(255,255,255,.75); max-width: 480px; margin: 0 auto 2rem; font-size: .95rem; line-height: 1.8; }
 </style>
 </head>
@@ -160,11 +187,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <span class="tag" style="display:inline-block;">Lübeck · Stockelsdorf</span>
     <a class="tag" style="display:inline-block;" href="/bad-schwartau/termin">Bad Schwartau · ab August</a>
   </div>
-  <h1>Physiotherapie Lübeck –<br>persönlich, ganzheitlich, wirksam</h1>
+  <h1>Physiotherapie Lübeck –<br>persönlich, ganzheitlich, <em style="color:#c6d9b8;">wirksam</em></h1>
   <p>Individuelle Behandlung bei Schmerzen, Bewegungseinschränkungen und Verletzungen. Kurze Wartezeiten, ein harmonisches Umfeld – und ein Team, das auch nach der Therapie für Sie da ist.</p>
   <div class="physio-hero-btns">
     <a href="/termin" class="btn-white">Termin online buchen</a>
-    <button onclick="openRueckruf()" class="btn-ghost">📞 Rückruf anfordern</button>
+    <button onclick="openRueckruf()" class="btn-ghost">Rückruf anfordern</button>
   </div>
 </div>
 
@@ -184,32 +211,26 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <h2 style="margin-bottom:2.5rem;">Physiotherapeutische Leistungen</h2>
   <div class="leistungen-grid">
     <div class="leistung-card">
-      <div class="leistung-icon">🦴</div>
       <h3>Krankengymnastik</h3>
       <p>Gezielte Übungstherapie bei Rückenschmerzen, Bandscheibenproblemen, Hüft- und Kniebeschwerden sowie nach Operationen – abgestimmt auf Ihren Körper und Alltag.</p>
     </div>
     <div class="leistung-card">
-      <div class="leistung-icon">🤲</div>
       <h3>Manuelle Therapie</h3>
       <p>Gelenkmobilisation und Weichteiltechniken bei Verspannungen, Blockaden und eingeschränkter Beweglichkeit in Wirbelsäule, Schulter, Hüfte und Knie.</p>
     </div>
     <div class="leistung-card">
-      <div class="leistung-icon">💧</div>
       <h3>Lymphdrainage</h3>
       <p>Sanfte Entstauungstherapie bei Schwellungen und Ödemen – fördert den natürlichen Lymphfluss und unterstützt die Regeneration nach Operationen.</p>
     </div>
-    <div class="leistung-card" style="border-color:#55725e; background:linear-gradient(135deg,#f0f4f1,#fff);">
-      <div class="leistung-icon">🏋️</div>
+    <div class="leistung-card" style="border-color:#2f4a37; background:#e6ecdd;">
       <h3>KGG am Pilates-Reformer</h3>
       <p>Innovativer Ansatz: Krankengymnastik am Gerät (Reformer) – einmalig in der Region. Ideal zur Rehabilitation und Kräftigung bei Rücken- und Gelenkproblemen.</p>
     </div>
     <div class="leistung-card">
-      <div class="leistung-icon">🦷</div>
       <h3>Kiefergelenksbehandlung</h3>
       <p>Spezialisierte Therapie bei CMD, Zähneknirschen und damit verbundenen Kopf- und Nackenbeschwerden.</p>
     </div>
     <div class="leistung-card">
-      <div class="leistung-icon">⚡</div>
       <h3>Elektrotherapie & Ultraschall</h3>
       <p>Physikalische Verfahren zur Schmerzlinderung und Förderung der Durchblutung – ergänzend zur manuellen Behandlung eingesetzt.</p>
     </div>
@@ -267,7 +288,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <div class="ablauf-num">05</div>
         <div>
           <h3>Langfristig gesund bleiben – via Pilates Company</h3>
-          <p>Nach der Therapie muss kein Schlussstrich gezogen werden. Über die <a href="https://www.pilatescompany.de" target="_blank" style="color:#55725e;">Pilates Company Lübeck</a> bleiben Sie in unserer Nähe: Reformer-Kurse, ein Team das Sie kennt, und Bewegung die auf Ihren Körper abgestimmt ist.</p>
+          <p>Nach der Therapie muss kein Schlussstrich gezogen werden. Über die <a href="https://www.pilatescompany.de" target="_blank" style="color:#2f4a37;">Pilates Company Lübeck</a> bleiben Sie in unserer Nähe: Reformer-Kurse, ein Team das Sie kennt, und Bewegung die auf Ihren Körper abgestimmt ist.</p>
         </div>
       </div>
     </div>
@@ -287,10 +308,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 
 <!-- ADRESSE -->
-<div style="background:#1e1a17;color:rgba(250,248,244,.6);text-align:center;padding:2rem 1rem;font-size:.85rem;line-height:1.8;">
-  <strong style="color:#faf8f4;">PhysioPro Lübeck</strong><br>
+<div style="background:#23392a;color:rgba(250,248,244,.6);text-align:center;padding:2rem 1rem;font-size:.85rem;line-height:1.8;">
+  <strong style="color:#f6f1e7;">PhysioPro Lübeck</strong><br>
   Segeberger Straße 1 · 23617 Stockelsdorf · (direkt an der Lübecker Stadtgrenze)<br>
-  <a href="mailto:info@physioproluebeck.de" style="color:#8fb898;">info@physioproluebeck.de</a>
+  <a href="mailto:info@physioproluebeck.de" style="color:#c6d9b8;">info@physioproluebeck.de</a>
 </div>
 
 <!-- RÜCKRUF MODAL (aus shared.js) -->
