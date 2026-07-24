@@ -18,7 +18,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="icon" href="favicon-192.png" sizes="192x192" type="image/png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Space+Grotesk:wght@400;500;600;700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared.css?v=202607212100">
 <style>
   /* FILTER TABS */
@@ -183,6 +183,37 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   /* HIDDEN CARDS */
   .wissen-card[data-hidden="true"] { display: none; }
 </style>
+<!-- ═══ Design-Standard „Warm Editorial" – nur diese Seite, gleiche Token-Werte
+     wie index.html / team.html / therapie.html / osteopathie.html / physiocoaching.html / pilates.html / bad-schwartau/termin.html.
+     Die Rose-Akzentfarbe (#d9a49a) von „She Regulates" / Hanna Wrobel bleibt bewusst unverändert. ═══ -->
+<style>
+  :root {
+    --sans: 'Instrument Sans', system-ui, sans-serif;
+    --serif: 'Newsreader', Georgia, serif;
+    --meta: 'Space Grotesk', system-ui, sans-serif;
+    --accent-italic: #5e7a52;
+    --rose: #2f4a37; --rose-dark: #23392a; --rose-light: #e6ecdd;
+    --green: #2f4a37; --green-dark: #23392a; --green-light: #e6ecdd;
+    --beige: #a08a5e; --beige-warm: #efe9dc; --beige-mid: #ece4d3;
+    --beige-dark: #8a8368; --beige-light: #efe9dc; --cream: #f6f1e7;
+    --text: #2c2a22; --text-mid: #54513f; --warm-gray: #8a8368;
+    --border: #ddd4c0; --radius: 16px;
+  }
+  body { background: var(--cream); }
+  h1, h2, h3 { font-weight: 500; letter-spacing: -0.02em; }
+  h1 { line-height: 1.06; } h2, h3 { line-height: 1.15; }
+  h1 em, h2 em, h3 em { font-style: italic; color: var(--accent-italic); font-weight: 500; }
+  h4, .eyebrow, h2.eyebrow { font-family: var(--meta); font-weight: 500; font-size: 11.5px; letter-spacing: .13em; text-transform: uppercase; color: var(--beige-dark); }
+  .tag { background: var(--rose-light); color: #3c5a41; font-family: var(--meta); letter-spacing: .1em; }
+  .btn-primary { background: var(--rose); color: var(--cream); }
+  .btn-primary:hover { background: var(--rose-dark); }
+  footer { background: #2f4a37; color: rgba(246,241,231,.7); }
+  footer .footer-col h4, footer .footer-col h2 { color: #f6f1e7; font-size: .75rem; letter-spacing: .1em; }
+  footer .footer-col ul li a { color: rgba(246,241,231,.62); }
+  footer .footer-col ul li a:hover, .footer-bottom a:hover { color: #c6d9b8; }
+  .footer-motto { color: rgba(246,241,231,.55); }
+  #pp-call-btn { background: #2f4a37 !important; }
+</style>
 </head>
 <body>
 
@@ -214,7 +245,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 
 <!-- HERO -->
-<div style="background:linear-gradient(135deg,#2a2520,#5a3e35);padding:4rem 2rem 3rem;">
+<div style="background:#2f4a37;padding:4rem 2rem 3rem;">
   <div class="container">
     <span style="display:inline-block;font-size:.75rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.6);background:rgba(255,255,255,.12);padding:.3rem .75rem;border-radius:100px;margin-bottom:1rem;">Frau ab 40 · She Regulates · Hanna Wrobel</span>
     <h1 style="color:#fff;font-size:clamp(2rem,5vw,3rem);margin-bottom:.75rem;">Dein Körper. <em style="font-style:italic;color:#d9a49a;">Verstehen.</em></h1>
@@ -305,7 +336,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <li>Schlaf priorisieren – das Nervensystem regeneriert nachts</li>
       </ul>
       <div class="wissen-card-cta">
-        <a href="/osteopathie" class="btn" style="background:#8c6a55;color:#fff;font-size:.85rem;">Osteopathie bei Julia</a>
+        <a href="/osteopathie" class="btn" style="background:#a08a5e;color:#fff;font-size:.85rem;">Osteopathie bei Julia</a>
       </div>
     </div>
   </div>
@@ -485,7 +516,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div id="hanna-modal" style="display:none;position:fixed;inset:0;background:rgba(30,25,20,.7);z-index:9999;align-items:center;justify-content:center;padding:1.5rem;overflow-y:auto;" onclick="if(event.target===this)closeHannaModal()">
   <div style="background:#fff;max-width:540px;width:100%;border-radius:var(--radius);overflow:hidden;position:relative;max-height:90vh;overflow-y:auto;">
     <button onclick="closeHannaModal()" style="position:absolute;top:1rem;right:1rem;background:rgba(255,255,255,.2);border:none;border-radius:50%;width:28px;height:28px;cursor:pointer;font-size:1rem;color:#fff;z-index:10;display:flex;align-items:center;justify-content:center;">✕</button>
-    <div style="background:linear-gradient(135deg,#2a2520,#d9a49a);padding:1.75rem 2rem;">
+    <div style="background:#d9a49a;padding:1.75rem 2rem;">
       <div style="font-size:.72rem;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.7);margin-bottom:.4rem;">Hanna Wrobel · She Regulates</div>
       <h3 style="color:#fff;font-size:1.25rem;margin-bottom:.25rem;">Erkennst du dich wieder?</h3>
       <p style="color:rgba(255,255,255,.8);font-size:.85rem;line-height:1.6;margin:0;">Schildere Hanna kurz deine Situation – sie meldet sich persönlich bei dir.</p>
@@ -494,27 +525,27 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div style="margin-bottom:1.25rem;">
         <p style="font-size:.75rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:#d9a49a;margin-bottom:.6rem;">Was beschäftigt dich?</p>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:.4rem;" id="hanna-beschwerden">
-          <label class="hanna-check-label" style="display:flex;align-items:center;gap:.5rem;padding:.55rem .75rem;border:1.5px solid var(--beige-mid);border-radius:8px;cursor:pointer;font-size:.82rem;color:var(--text-mid);"><input type="checkbox" value="Schlafprobleme & innere Unruhe" style="accent-color:#d9a49a;flex-shrink:0;"> Schlafprobleme & Unruhe</label>
-          <label class="hanna-check-label" style="display:flex;align-items:center;gap:.5rem;padding:.55rem .75rem;border:1.5px solid var(--beige-mid);border-radius:8px;cursor:pointer;font-size:.82rem;color:var(--text-mid);"><input type="checkbox" value="Verspannungen & Gelenkschmerzen" style="accent-color:#d9a49a;flex-shrink:0;"> Verspannungen & Gelenke</label>
-          <label class="hanna-check-label" style="display:flex;align-items:center;gap:.5rem;padding:.55rem .75rem;border:1.5px solid var(--beige-mid);border-radius:8px;cursor:pointer;font-size:.82rem;color:var(--text-mid);"><input type="checkbox" value="Erschöpfung & nachlassende Kraft" style="accent-color:#d9a49a;flex-shrink:0;"> Erschöpfung & Kraft</label>
-          <label class="hanna-check-label" style="display:flex;align-items:center;gap:.5rem;padding:.55rem .75rem;border:1.5px solid var(--beige-mid);border-radius:8px;cursor:pointer;font-size:.82rem;color:var(--text-mid);"><input type="checkbox" value="Beckenboden & Haltungsprobleme" style="accent-color:#d9a49a;flex-shrink:0;"> Beckenboden & Haltung</label>
-          <label class="hanna-check-label" style="display:flex;align-items:center;gap:.5rem;padding:.55rem .75rem;border:1.5px solid var(--beige-mid);border-radius:8px;cursor:pointer;font-size:.82rem;color:var(--text-mid);"><input type="checkbox" value="Gewichtsveränderung & Stoffwechsel" style="accent-color:#d9a49a;flex-shrink:0;"> Gewicht & Stoffwechsel</label>
-          <label class="hanna-check-label" style="display:flex;align-items:center;gap:.5rem;padding:.55rem .75rem;border:1.5px solid var(--beige-mid);border-radius:8px;cursor:pointer;font-size:.82rem;color:var(--text-mid);"><input type="checkbox" value="Stimmungsschwankungen & Nervensystem" style="accent-color:#d9a49a;flex-shrink:0;"> Stimmung & Nervensystem</label>
-          <label class="hanna-check-label" style="display:flex;align-items:center;gap:.5rem;padding:.55rem .75rem;border:1.5px solid var(--beige-mid);border-radius:8px;cursor:pointer;font-size:.82rem;color:var(--text-mid);"><input type="checkbox" value="Haut, Haare & Bindegewebe" style="accent-color:#d9a49a;flex-shrink:0;"> Haut, Haare & Bindegewebe</label>
-          <label class="hanna-check-label" style="display:flex;align-items:center;gap:.5rem;padding:.55rem .75rem;border:1.5px solid var(--beige-mid);border-radius:8px;cursor:pointer;font-size:.82rem;color:var(--text-mid);"><input type="checkbox" value="Ich weiß es noch nicht genau" style="accent-color:#d9a49a;flex-shrink:0;"> Ich weiß noch nicht genau</label>
+          <label class="hanna-check-label" style="display:flex;align-items:center;gap:.5rem;padding:.55rem .75rem;border:1.5px solid var(--beige-mid);border-radius:12px;cursor:pointer;font-size:.82rem;color:var(--text-mid);"><input type="checkbox" value="Schlafprobleme & innere Unruhe" style="accent-color:#d9a49a;flex-shrink:0;"> Schlafprobleme & Unruhe</label>
+          <label class="hanna-check-label" style="display:flex;align-items:center;gap:.5rem;padding:.55rem .75rem;border:1.5px solid var(--beige-mid);border-radius:12px;cursor:pointer;font-size:.82rem;color:var(--text-mid);"><input type="checkbox" value="Verspannungen & Gelenkschmerzen" style="accent-color:#d9a49a;flex-shrink:0;"> Verspannungen & Gelenke</label>
+          <label class="hanna-check-label" style="display:flex;align-items:center;gap:.5rem;padding:.55rem .75rem;border:1.5px solid var(--beige-mid);border-radius:12px;cursor:pointer;font-size:.82rem;color:var(--text-mid);"><input type="checkbox" value="Erschöpfung & nachlassende Kraft" style="accent-color:#d9a49a;flex-shrink:0;"> Erschöpfung & Kraft</label>
+          <label class="hanna-check-label" style="display:flex;align-items:center;gap:.5rem;padding:.55rem .75rem;border:1.5px solid var(--beige-mid);border-radius:12px;cursor:pointer;font-size:.82rem;color:var(--text-mid);"><input type="checkbox" value="Beckenboden & Haltungsprobleme" style="accent-color:#d9a49a;flex-shrink:0;"> Beckenboden & Haltung</label>
+          <label class="hanna-check-label" style="display:flex;align-items:center;gap:.5rem;padding:.55rem .75rem;border:1.5px solid var(--beige-mid);border-radius:12px;cursor:pointer;font-size:.82rem;color:var(--text-mid);"><input type="checkbox" value="Gewichtsveränderung & Stoffwechsel" style="accent-color:#d9a49a;flex-shrink:0;"> Gewicht & Stoffwechsel</label>
+          <label class="hanna-check-label" style="display:flex;align-items:center;gap:.5rem;padding:.55rem .75rem;border:1.5px solid var(--beige-mid);border-radius:12px;cursor:pointer;font-size:.82rem;color:var(--text-mid);"><input type="checkbox" value="Stimmungsschwankungen & Nervensystem" style="accent-color:#d9a49a;flex-shrink:0;"> Stimmung & Nervensystem</label>
+          <label class="hanna-check-label" style="display:flex;align-items:center;gap:.5rem;padding:.55rem .75rem;border:1.5px solid var(--beige-mid);border-radius:12px;cursor:pointer;font-size:.82rem;color:var(--text-mid);"><input type="checkbox" value="Haut, Haare & Bindegewebe" style="accent-color:#d9a49a;flex-shrink:0;"> Haut, Haare & Bindegewebe</label>
+          <label class="hanna-check-label" style="display:flex;align-items:center;gap:.5rem;padding:.55rem .75rem;border:1.5px solid var(--beige-mid);border-radius:12px;cursor:pointer;font-size:.82rem;color:var(--text-mid);"><input type="checkbox" value="Ich weiß es noch nicht genau" style="accent-color:#d9a49a;flex-shrink:0;"> Ich weiß noch nicht genau</label>
         </div>
       </div>
       <div style="margin-bottom:1rem;">
         <p style="font-size:.75rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:#d9a49a;margin-bottom:.6rem;">Wie können wir dich erreichen?</p>
-        <input id="hanna-name" type="text" placeholder="Dein Name" style="width:100%;padding:.7rem 1rem;border:1.5px solid var(--beige-mid);border-radius:8px;font-family:var(--sans);font-size:.875rem;margin-bottom:.5rem;outline:none;box-sizing:border-box;">
-        <input id="hanna-tel" type="tel" placeholder="Deine Telefonnummer" style="width:100%;padding:.7rem 1rem;border:1.5px solid var(--beige-mid);border-radius:8px;font-family:var(--sans);font-size:.875rem;outline:none;box-sizing:border-box;">
+        <input id="hanna-name" type="text" placeholder="Dein Name" style="width:100%;padding:.7rem 1rem;border:1.5px solid var(--beige-mid);border-radius:12px;font-family:var(--sans);font-size:.875rem;margin-bottom:.5rem;outline:none;box-sizing:border-box;">
+        <input id="hanna-tel" type="tel" placeholder="Deine Telefonnummer" style="width:100%;padding:.7rem 1rem;border:1.5px solid var(--beige-mid);border-radius:12px;font-family:var(--sans);font-size:.875rem;outline:none;box-sizing:border-box;">
       </div>
       <div style="display:flex;gap:.5rem;align-items:flex-start;margin-bottom:1rem;">
         <input type="checkbox" id="hanna-dsgvo" style="margin-top:3px;accent-color:#d9a49a;flex-shrink:0;">
         <label for="hanna-dsgvo" style="font-size:.78rem;color:var(--text-mid);line-height:1.5;">Ich stimme der Verarbeitung meiner Daten zur Kontaktaufnahme zu. *</label>
       </div>
-      <div id="hanna-error" style="display:none;color:#c0392b;font-size:.8rem;margin-bottom:.75rem;padding:.5rem .9rem;background:#fdf0f0;border-radius:8px;"></div>
-      <button onclick="sendeHannaAnfrage()" style="width:100%;background:#d9a49a;color:#fff;border:none;padding:.9rem;border-radius:8px;font-family:var(--sans);font-weight:500;font-size:.9rem;cursor:pointer;">Hanna persönlich anfragen</button>
+      <div id="hanna-error" style="display:none;color:#c0392b;font-size:.8rem;margin-bottom:.75rem;padding:.5rem .9rem;background:#fdf0f0;border-radius:12px;"></div>
+      <button onclick="sendeHannaAnfrage()" style="width:100%;background:#d9a49a;color:#fff;border:none;padding:.9rem;border-radius:12px;font-family:var(--sans);font-weight:500;font-size:.9rem;cursor:pointer;">Hanna persönlich anfragen</button>
     </div>
     <div id="hanna-success" style="display:none;text-align:center;padding:2.5rem 2rem;">
       <div style="width:52px;height:52px;border-radius:50%;background:#faf7f3;display:flex;align-items:center;justify-content:center;margin:0 auto .75rem;color:#d9a49a;font-size:1.4rem;">✓</div>
