@@ -80,7 +80,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="icon" href="favicon-192.png" sizes="192x192" type="image/png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Space+Grotesk:wght@400;500;600;700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared.css?v=202607212100">
 <style>
   .benefit-card { background: var(--rose-light); border-radius: var(--radius); padding: 1.5rem; }
@@ -95,6 +95,40 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     #finder-teaser-grid { grid-template-columns:1fr !important; gap:1.5rem !important; }
     .sticky-box { position: static; }
   }
+</style>
+<!-- ═══ Design-Standard „Warm Editorial" – nur diese Seite, gleiche Token-Werte
+     wie index.html / team.html / therapie.html / osteopathie.html / physiocoaching.html / pilates.html / wissen.html / kontakt.html / termin.html / bad-schwartau.html ═══ -->
+<style>
+  :root {
+    --sans: 'Instrument Sans', system-ui, sans-serif;
+    --serif: 'Newsreader', Georgia, serif;
+    --meta: 'Space Grotesk', system-ui, sans-serif;
+    --accent-italic: #5e7a52;
+    --rose: #2f4a37; --rose-dark: #23392a; --rose-light: #e6ecdd;
+    --green: #2f4a37; --green-dark: #23392a; --green-light: #e6ecdd;
+    --beige: #a08a5e; --beige-warm: #efe9dc; --beige-mid: #ece4d3;
+    --beige-dark: #8a8368; --beige-light: #efe9dc; --cream: #f6f1e7;
+    --text: #2c2a22; --text-mid: #54513f; --warm-gray: #8a8368;
+    --border: #ddd4c0; --radius: 16px;
+  }
+  body { background: var(--cream); }
+  h1, h2, h3 { font-weight: 500; letter-spacing: -0.02em; }
+  h1 { line-height: 1.06; } h2, h3 { line-height: 1.15; }
+  h1 em, h2 em, h3 em { font-style: italic; color: var(--accent-italic); font-weight: 500; }
+  h4, .eyebrow, h2.eyebrow { font-family: var(--meta); font-weight: 500; font-size: 11.5px; letter-spacing: .13em; text-transform: uppercase; color: var(--beige-dark); }
+  .tag { background: var(--rose-light); color: #3c5a41; font-family: var(--meta); letter-spacing: .1em; }
+  .btn-primary { background: var(--rose); color: var(--cream); }
+  .btn-primary:hover { background: var(--rose-dark); }
+  .btn-outline { border: 1.5px solid var(--rose); color: var(--rose); }
+  .btn-outline:hover { background: var(--rose); color: var(--cream); border-color: var(--rose); }
+  .stats-bar { background: #2f4a37; }
+  .modal-header { background: #2f4a37; }
+  footer { background: #2f4a37; color: rgba(246,241,231,.7); }
+  footer .footer-col h4, footer .footer-col h2 { color: #f6f1e7; font-size: .75rem; letter-spacing: .1em; }
+  footer .footer-col ul li a { color: rgba(246,241,231,.62); }
+  footer .footer-col ul li a:hover, .footer-bottom a:hover { color: #c6d9b8; }
+  .footer-motto { color: rgba(246,241,231,.55); }
+  #pp-call-btn { background: #2f4a37 !important; }
 </style>
 <script src="https://js-eu1.hsforms.net/forms/embed/147794864.js" defer></script>
 </head>
@@ -141,7 +175,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <section class="page-hero">
   <div class="container">
     <span class="tag">Jetzt bewerben</span>
-    <h1 style="font-size:clamp(2rem,5vw,3.8rem);">Physiotherapeut:in gesucht<br>in Lübeck, Stockelsdorf & Bad Schwartau</h1>
+    <h1 style="font-size:clamp(2rem,5vw,3.8rem);">Physiotherapeut:in <em>gesucht</em><br>in Lübeck, Stockelsdorf & Bad Schwartau</h1>
     <p style="max-width:620px;">Ob Berufseinsteiger:in, Wiedereinsteiger:in oder erfahrene Fachkraft – bei PhysioPro Lübeck findest du eine moderne Praxis, die zu deinem Leben passt. Ab August suchen wir auch Verstärkung für unseren neuen Standort in Bad Schwartau.</p>
     <div style="margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap;">
       <a class="btn btn-primary" href="https://wa.me/4917623339367?text=Hallo%20Hanna%2C%20ich%20interessiere%20mich%20f%C3%BCr%20eine%20Stelle%20bei%20PhysioPro%20L%C3%BCbeck." target="_blank" style="display:flex;align-items:center;gap:.6rem;">
@@ -154,7 +188,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </section>
 
 <!-- KI-FINDER TEASER -->
-<div style="background:linear-gradient(135deg,#2c2825,#3d5445);padding:3rem 0;">
+<div style="background:#2f4a37;padding:3rem 0;">
   <div class="container">
     <div style="display:grid;grid-template-columns:1fr auto;gap:3rem;align-items:center;" id="finder-teaser-grid">
       <div>
@@ -166,8 +200,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <p style="color:rgba(255,255,255,.7);font-size:.9rem;line-height:1.7;max-width:480px;">Nicht jede Praxis passt zu jedem Menschen. Unser KI-Finder analysiert in 2 Minuten ob unsere Kultur, Arbeitsweise und Werte zu dir passen – ehrlich und ohne Marketingsprache.</p>
       </div>
       <div style="flex-shrink:0;">
-        <button onclick="openFinder()" style="background:#fff;color:#2c2825;border:none;border-radius:12px;padding:1.25rem 2rem;font-family:var(--sans);font-size:.95rem;font-weight:500;cursor:pointer;display:flex;align-items:center;gap:.75rem;white-space:nowrap;">
-          <span style="width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,#55725e,#3d5445);display:flex;align-items:center;justify-content:center;">
+        <button onclick="openFinder()" style="background:#fff;color:#2f4a37;border:none;border-radius:12px;padding:1.25rem 2rem;font-family:var(--sans);font-size:.95rem;font-weight:500;cursor:pointer;display:flex;align-items:center;gap:.75rem;white-space:nowrap;">
+          <span style="width:32px;height:32px;border-radius:12px;background:#2f4a37;display:flex;align-items:center;justify-content:center;">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
           </span>
           KI-Finder starten
@@ -307,19 +341,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div style="margin-bottom:1.25rem;">
               <label style="display:block;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--warm-gray);margin-bottom:.75rem;">Ich bin... *</label>
               <div style="display:flex;flex-direction:column;gap:.5rem;" id="bew-typ-group">
-                <label style="display:flex;align-items:center;gap:.75rem;padding:.85rem 1rem;border:1.5px solid var(--beige-mid);border-radius:8px;cursor:pointer;transition:.2s;" onclick="selectBewTyp(this)">
+                <label style="display:flex;align-items:center;gap:.75rem;padding:.85rem 1rem;border:1.5px solid var(--beige-mid);border-radius:12px;cursor:pointer;transition:.2s;" onclick="selectBewTyp(this)">
                   <input type="radio" name="bew-typ" value="Berufseinsteiger:in" style="accent-color:var(--rose);">
                   <span>Berufseinsteiger:in – frisch aus der Ausbildung</span>
                 </label>
-                <label style="display:flex;align-items:center;gap:.75rem;padding:.85rem 1rem;border:1.5px solid var(--beige-mid);border-radius:8px;cursor:pointer;transition:.2s;" onclick="selectBewTyp(this)">
+                <label style="display:flex;align-items:center;gap:.75rem;padding:.85rem 1rem;border:1.5px solid var(--beige-mid);border-radius:12px;cursor:pointer;transition:.2s;" onclick="selectBewTyp(this)">
                   <input type="radio" name="bew-typ" value="Wiedereinsteiger:in" style="accent-color:var(--rose);">
                   <span>Wiedereinsteiger:in – z.B. nach Elternzeit</span>
                 </label>
-                <label style="display:flex;align-items:center;gap:.75rem;padding:.85rem 1rem;border:1.5px solid var(--beige-mid);border-radius:8px;cursor:pointer;transition:.2s;" onclick="selectBewTyp(this)">
+                <label style="display:flex;align-items:center;gap:.75rem;padding:.85rem 1rem;border:1.5px solid var(--beige-mid);border-radius:12px;cursor:pointer;transition:.2s;" onclick="selectBewTyp(this)">
                   <input type="radio" name="bew-typ" value="Erfahrene Fachkraft" style="accent-color:var(--rose);">
                   <span>Erfahrene Fachkraft – mit Berufserfahrung</span>
                 </label>
-                <label style="display:flex;align-items:center;gap:.75rem;padding:.85rem 1rem;border:1.5px solid var(--beige-mid);border-radius:8px;cursor:pointer;transition:.2s;" onclick="selectBewTyp(this)">
+                <label style="display:flex;align-items:center;gap:.75rem;padding:.85rem 1rem;border:1.5px solid var(--beige-mid);border-radius:12px;cursor:pointer;transition:.2s;" onclick="selectBewTyp(this)">
                   <input type="radio" name="bew-typ" value="Mit Führungsambitionen" style="accent-color:var(--rose);">
                   <span>Mit Führungsambitionen</span>
                 </label>
@@ -328,16 +362,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div style="margin-bottom:1.25rem;">
               <label style="display:block;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--warm-gray);margin-bottom:.75rem;">Gewünschte Wochentage</label>
               <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(56px,1fr));gap:.4rem;">
-                <button type="button" onclick="toggleBewTag(this,'Mo')" style="padding:.5rem .25rem;border:1.5px solid var(--beige-mid);border-radius:8px;background:#fff;font-size:.8rem;cursor:pointer;transition:.2s;font-family:var(--sans);">Mo</button>
-                <button type="button" onclick="toggleBewTag(this,'Di')" style="padding:.5rem .25rem;border:1.5px solid var(--beige-mid);border-radius:8px;background:#fff;font-size:.8rem;cursor:pointer;transition:.2s;font-family:var(--sans);">Di</button>
-                <button type="button" onclick="toggleBewTag(this,'Mi')" style="padding:.5rem .25rem;border:1.5px solid var(--beige-mid);border-radius:8px;background:#fff;font-size:.8rem;cursor:pointer;transition:.2s;font-family:var(--sans);">Mi</button>
-                <button type="button" onclick="toggleBewTag(this,'Do')" style="padding:.5rem .25rem;border:1.5px solid var(--beige-mid);border-radius:8px;background:#fff;font-size:.8rem;cursor:pointer;transition:.2s;font-family:var(--sans);">Do</button>
-                <button type="button" onclick="toggleBewTag(this,'Fr')" style="padding:.5rem .25rem;border:1.5px solid var(--beige-mid);border-radius:8px;background:#fff;font-size:.8rem;cursor:pointer;transition:.2s;font-family:var(--sans);">Fr</button>
+                <button type="button" onclick="toggleBewTag(this,'Mo')" style="padding:.5rem .25rem;border:1.5px solid var(--beige-mid);border-radius:12px;background:#fff;font-size:.8rem;cursor:pointer;transition:.2s;font-family:var(--sans);">Mo</button>
+                <button type="button" onclick="toggleBewTag(this,'Di')" style="padding:.5rem .25rem;border:1.5px solid var(--beige-mid);border-radius:12px;background:#fff;font-size:.8rem;cursor:pointer;transition:.2s;font-family:var(--sans);">Di</button>
+                <button type="button" onclick="toggleBewTag(this,'Mi')" style="padding:.5rem .25rem;border:1.5px solid var(--beige-mid);border-radius:12px;background:#fff;font-size:.8rem;cursor:pointer;transition:.2s;font-family:var(--sans);">Mi</button>
+                <button type="button" onclick="toggleBewTag(this,'Do')" style="padding:.5rem .25rem;border:1.5px solid var(--beige-mid);border-radius:12px;background:#fff;font-size:.8rem;cursor:pointer;transition:.2s;font-family:var(--sans);">Do</button>
+                <button type="button" onclick="toggleBewTag(this,'Fr')" style="padding:.5rem .25rem;border:1.5px solid var(--beige-mid);border-radius:12px;background:#fff;font-size:.8rem;cursor:pointer;transition:.2s;font-family:var(--sans);">Fr</button>
               </div>
             </div>
             <div style="margin-bottom:1.5rem;">
               <label style="display:block;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--warm-gray);margin-bottom:.4rem;">Frühestmöglicher Start</label>
-              <select id="bew-start" style="width:100%;padding:.85rem 1rem;border:1.5px solid var(--beige-mid);border-radius:8px;font-family:var(--sans);font-size:.95rem;background:#fff;outline:none;">
+              <select id="bew-start" style="width:100%;padding:.85rem 1rem;border:1.5px solid var(--beige-mid);border-radius:12px;font-family:var(--sans);font-size:.95rem;background:#fff;outline:none;">
                 <option value="">Bitte wählen</option>
                 <option>Sofort</option>
                 <option>In 1–3 Monaten</option>
@@ -350,10 +384,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
           <!-- S2: Kontakt -->
           <div id="bew-s2" style="display:none;">
-            <div style="margin-bottom:1rem;"><label style="display:block;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--warm-gray);margin-bottom:.4rem;">Vorname *</label><input id="bew-vorname" type="text" placeholder="Dein Vorname" style="width:100%;padding:.85rem 1rem;border:1.5px solid var(--beige-mid);border-radius:8px;font-family:var(--sans);font-size:.95rem;outline:none;" onfocus="this.style.borderColor='var(--rose)'" onblur="this.style.borderColor='var(--beige-mid)'"></div>
-            <div style="margin-bottom:1rem;"><label style="display:block;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--warm-gray);margin-bottom:.4rem;">Nachname *</label><input id="bew-nachname" type="text" placeholder="Dein Nachname" style="width:100%;padding:.85rem 1rem;border:1.5px solid var(--beige-mid);border-radius:8px;font-family:var(--sans);font-size:.95rem;outline:none;" onfocus="this.style.borderColor='var(--rose)'" onblur="this.style.borderColor='var(--beige-mid)'"></div>
-            <div style="margin-bottom:1rem;"><label style="display:block;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--warm-gray);margin-bottom:.4rem;">E-Mail *</label><input id="bew-email" type="email" placeholder="deine@email.de" style="width:100%;padding:.85rem 1rem;border:1.5px solid var(--beige-mid);border-radius:8px;font-family:var(--sans);font-size:.95rem;outline:none;" onfocus="this.style.borderColor='var(--rose)'" onblur="this.style.borderColor='var(--beige-mid)'"></div>
-            <div style="margin-bottom:1.5rem;"><label style="display:block;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--warm-gray);margin-bottom:.4rem;">Telefon</label><input id="bew-telefon" type="tel" placeholder="0451 ..." style="width:100%;padding:.85rem 1rem;border:1.5px solid var(--beige-mid);border-radius:8px;font-family:var(--sans);font-size:.95rem;outline:none;" onfocus="this.style.borderColor='var(--rose)'" onblur="this.style.borderColor='var(--beige-mid)'"></div>
+            <div style="margin-bottom:1rem;"><label style="display:block;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--warm-gray);margin-bottom:.4rem;">Vorname *</label><input id="bew-vorname" type="text" placeholder="Dein Vorname" style="width:100%;padding:.85rem 1rem;border:1.5px solid var(--beige-mid);border-radius:12px;font-family:var(--sans);font-size:.95rem;outline:none;" onfocus="this.style.borderColor='var(--rose)'" onblur="this.style.borderColor='var(--beige-mid)'"></div>
+            <div style="margin-bottom:1rem;"><label style="display:block;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--warm-gray);margin-bottom:.4rem;">Nachname *</label><input id="bew-nachname" type="text" placeholder="Dein Nachname" style="width:100%;padding:.85rem 1rem;border:1.5px solid var(--beige-mid);border-radius:12px;font-family:var(--sans);font-size:.95rem;outline:none;" onfocus="this.style.borderColor='var(--rose)'" onblur="this.style.borderColor='var(--beige-mid)'"></div>
+            <div style="margin-bottom:1rem;"><label style="display:block;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--warm-gray);margin-bottom:.4rem;">E-Mail *</label><input id="bew-email" type="email" placeholder="deine@email.de" style="width:100%;padding:.85rem 1rem;border:1.5px solid var(--beige-mid);border-radius:12px;font-family:var(--sans);font-size:.95rem;outline:none;" onfocus="this.style.borderColor='var(--rose)'" onblur="this.style.borderColor='var(--beige-mid)'"></div>
+            <div style="margin-bottom:1.5rem;"><label style="display:block;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--warm-gray);margin-bottom:.4rem;">Telefon</label><input id="bew-telefon" type="tel" placeholder="0451 ..." style="width:100%;padding:.85rem 1rem;border:1.5px solid var(--beige-mid);border-radius:12px;font-family:var(--sans);font-size:.95rem;outline:none;" onfocus="this.style.borderColor='var(--rose)'" onblur="this.style.borderColor='var(--beige-mid)'"></div>
             <div style="display:flex;gap:.75rem;">
               <button onclick="bewBack(2)" class="btn btn-outline" style="flex:1;">← Zurück</button>
               <button onclick="bewNext(2)" class="btn btn-primary" style="flex:2;">Weiter →</button>
@@ -364,13 +398,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div id="bew-s3" style="display:none;">
             <div style="margin-bottom:1.25rem;">
               <label style="display:block;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--warm-gray);margin-bottom:.4rem;">Was motiviert dich? *</label>
-              <textarea id="bew-nachricht" placeholder="Was zieht dich zu PhysioPro? Ein Satz reicht." style="width:100%;padding:.85rem 1rem;border:1.5px solid var(--beige-mid);border-radius:8px;font-family:var(--sans);font-size:.95rem;outline:none;resize:vertical;min-height:120px;" onfocus="this.style.borderColor='var(--rose)'" onblur="this.style.borderColor='var(--beige-mid)'"></textarea>
+              <textarea id="bew-nachricht" placeholder="Was zieht dich zu PhysioPro? Ein Satz reicht." style="width:100%;padding:.85rem 1rem;border:1.5px solid var(--beige-mid);border-radius:12px;font-family:var(--sans);font-size:.95rem;outline:none;resize:vertical;min-height:120px;" onfocus="this.style.borderColor='var(--rose)'" onblur="this.style.borderColor='var(--beige-mid)'"></textarea>
             </div>
             <div style="display:flex;gap:.75rem;align-items:flex-start;margin-bottom:1.5rem;">
               <input type="checkbox" id="bew-dsgvo" style="margin-top:4px;accent-color:var(--rose);flex-shrink:0;">
               <label for="bew-dsgvo" style="font-size:.82rem;color:var(--text-mid);line-height:1.55;">Ich bin damit einverstanden, dass meine Angaben zur Kontaktaufnahme gespeichert werden. *</label>
             </div>
-            <div id="bew-error" style="display:none;color:#c0392b;font-size:.85rem;margin-bottom:1rem;padding:.75rem 1rem;background:#fdf0f0;border-radius:8px;"></div>
+            <div id="bew-error" style="display:none;color:#c0392b;font-size:.85rem;margin-bottom:1rem;padding:.75rem 1rem;background:#fdf0f0;border-radius:12px;"></div>
             <div style="display:flex;gap:.75rem;">
               <button onclick="bewBack(3)" class="btn btn-outline" style="flex:1;">← Zurück</button>
               <button onclick="bewSubmit()" class="btn btn-primary" style="flex:2;" id="bew-submit-btn">Bewerbung absenden</button>
