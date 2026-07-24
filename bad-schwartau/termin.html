@@ -35,9 +35,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   @media(max-width:640px){ .bs-photo-grid{ grid-template-columns:1fr; } }
   .bs-hero-slide { position:absolute;inset:0;opacity:0;transition:opacity 1.4s ease-in-out;background:var(--beige-warm); }
   .bs-hero-slide.bs-active { opacity:1; }
-  .bs-graphic { flex:1;position:relative;overflow:hidden;background:var(--beige-warm); }
-  .bs-graphic-bg { position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:blur(34px);transform:scale(1.25);opacity:.55; }
-  .bs-graphic-img { position:absolute;inset:0;margin:auto;max-width:100%;max-height:100%;width:auto;height:auto;z-index:1; }
+  /* Kampagnen-Storys: eigener, wischbarer Bereich – nur auf Mobil */
+  .bs-storys { display:none; padding:1.75rem 0 .25rem; }
+  @media(max-width:768px){ .bs-storys { display:block; } }
+  .bs-story-track { display:flex; overflow-x:auto; overflow-y:hidden; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; max-width:420px; margin:0 auto; border-radius:20px; border:1px solid var(--beige-mid); background:var(--beige-warm); scrollbar-width:none; }
+  .bs-story-track::-webkit-scrollbar { display:none; }
+  .bs-story-slide { flex:0 0 100%; scroll-snap-align:start; aspect-ratio:1554/1603; }
+  .bs-story-slide img { width:100%; height:100%; object-fit:cover; display:block; }
+  .bs-story-dots { display:flex; justify-content:center; gap:.5rem; margin-top:1rem; }
+  .bs-story-dots button { width:8px; height:8px; padding:0; border:none; border-radius:50%; background:var(--beige-mid); cursor:pointer; transition:background .3s; }
+  .bs-story-dots button.on { background:var(--rose); }
+  /* Osteopathie-Block (Julia Mielke, einmal woechentlich) */
+  .bs-osteo-grid { display:grid; grid-template-columns:200px 1fr; align-items:stretch; }
+  @media(max-width:640px){ .bs-osteo-grid { grid-template-columns:1fr; } .bs-osteo-grid > img { max-height:280px; } }
 </style>
 </head>
 <body>
@@ -83,14 +93,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
       </div>
       <div class="bs-hero-slide" style="display:flex;flex-direction:column;">
-        <div style="flex:1;overflow:hidden;"><img src="/team-hanna.jpg" alt="Hanna Wrobel" style="width:100%;height:100%;object-fit:cover;object-position:center top;"></div>
+        <div style="flex:1;overflow:hidden;"><img src="/team-hanna.jpg" alt="Hanna Wrobel" style="width:100%;height:100%;object-fit:cover; object-position:center top;"></div>
         <div style="padding:1rem 1.5rem;background:#fff;flex-shrink:0;">
           <p style="font-style:italic;color:var(--text);margin:0;font-size:.95rem;">„Freuen Sie sich auf bekannte Gesichter und gleichzeitig auf neue Kompetenzen in unserem Team in Bad Schwartau.“</p>
           <p style="font-size:.75rem;color:var(--beige-dark);margin-top:.35rem;letter-spacing:.05em;text-transform:uppercase;">Hanna Wrobel · Inhaberin von PhysioPro</p>
         </div>
-      </div>
-      <div class="bs-hero-slide" data-duration="10000" style="display:flex;flex-direction:column;">
-        <div class="bs-graphic"><img class="bs-graphic-bg" src="mobil-1-titel.png" alt="" aria-hidden="true"><img class="bs-graphic-img" src="mobil-1-titel.png" alt="PhysioPro Neustart am Eutiner Ring 4A, Bad Schwartau – Start 1. August 2026"></div>
       </div>
       <div class="bs-hero-slide" style="display:flex;flex-direction:column;">
         <div style="flex:1;overflow:hidden;"><img src="foto-behandlungsraum.jpg" alt="Behandlungsraum der Praxis in Bad Schwartau" style="width:100%;height:100%;object-fit:cover;"></div>
@@ -100,14 +107,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
       </div>
       <div class="bs-hero-slide" style="display:flex;flex-direction:column;">
-        <div style="flex:1;overflow:hidden;"><img src="/team-hanna.jpg" alt="Hanna Wrobel" style="width:100%;height:100%;object-fit:cover;object-position:center top;"></div>
+        <div style="flex:1;overflow:hidden;"><img src="/team-hanna.jpg" alt="Hanna Wrobel" style="width:100%;height:100%;object-fit:cover; object-position:center top;"></div>
         <div style="padding:1rem 1.5rem;background:#fff;flex-shrink:0;">
           <p style="font-style:italic;color:var(--text);margin:0;font-size:.95rem;">„Wir bringen Menschen dazu, selbst aktiv zu werden“</p>
           <p style="font-size:.75rem;color:var(--beige-dark);margin-top:.35rem;letter-spacing:.05em;text-transform:uppercase;">Hanna Wrobel · Inhaberin von PhysioPro</p>
         </div>
-      </div>
-      <div class="bs-hero-slide" data-duration="10000" style="display:flex;flex-direction:column;">
-        <div class="bs-graphic"><img class="bs-graphic-bg" src="mobil-2-neues-kapitel.png" alt="" aria-hidden="true"><img class="bs-graphic-img" src="mobil-2-neues-kapitel.png" alt="Ein neues Kapitel in Bad Schwartau – Eutiner Ring 4A"></div>
       </div>
       <div class="bs-hero-slide" style="display:flex;flex-direction:column;">
         <div style="flex:1;overflow:hidden;"><img src="foto-flur.jpg" alt="Wartebereich der Praxis in Bad Schwartau" style="width:100%;height:100%;object-fit:cover;"></div>
@@ -117,14 +121,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
       </div>
       <div class="bs-hero-slide" style="display:flex;flex-direction:column;">
-        <div style="flex:1;overflow:hidden;"><img src="/team-hanna.jpg" alt="Hanna Wrobel" style="width:100%;height:100%;object-fit:cover;object-position:center top;"></div>
+        <div style="flex:1;overflow:hidden;"><img src="/team-hanna.jpg" alt="Hanna Wrobel" style="width:100%;height:100%;object-fit:cover; object-position:center top;"></div>
         <div style="padding:1rem 1.5rem;background:#fff;flex-shrink:0;">
           <p style="font-style:italic;color:var(--text);margin:0;font-size:.95rem;">„Ich freue mich auf die Menschen in Bad Schwartau.“</p>
           <p style="font-size:.75rem;color:var(--beige-dark);margin-top:.35rem;letter-spacing:.05em;text-transform:uppercase;">Hanna Wrobel · Inhaberin von PhysioPro</p>
         </div>
-      </div>
-      <div class="bs-hero-slide" data-duration="10000" style="display:flex;flex-direction:column;">
-        <div class="bs-graphic"><img class="bs-graphic-bg" src="mobil-3-philosophie.png" alt="" aria-hidden="true"><img class="bs-graphic-img" src="mobil-3-philosophie.png" alt="Die Philosophie: Aktiv statt Passiv – Wir bewegen Gesundheit"></div>
       </div>
       <div class="bs-hero-slide" style="display:flex;flex-direction:column;">
         <div style="flex:1;overflow:hidden;"><img src="foto-empfang.jpg" alt="Empfang der neuen Praxis am Eutiner Ring 4A, Bad Schwartau" style="width:100%;height:100%;object-fit:cover;"></div>
@@ -134,14 +135,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
       </div>
       <div class="bs-hero-slide" style="display:flex;flex-direction:column;">
-        <div style="flex:1;overflow:hidden;"><img src="/team-hanna.jpg" alt="Hanna Wrobel" style="width:100%;height:100%;object-fit:cover;object-position:center top;"></div>
+        <div style="flex:1;overflow:hidden;"><img src="/team-hanna.jpg" alt="Hanna Wrobel" style="width:100%;height:100%;object-fit:cover; object-position:center top;"></div>
         <div style="padding:1rem 1.5rem;background:#fff;flex-shrink:0;">
           <p style="font-style:italic;color:var(--text);margin:0;font-size:.95rem;">„Ab 1. August begleite ich den neuen Standort persönlich.“</p>
           <p style="font-size:.75rem;color:var(--beige-dark);margin-top:.35rem;letter-spacing:.05em;text-transform:uppercase;">Hanna Wrobel · Inhaberin von PhysioPro</p>
         </div>
-      </div>
-      <div class="bs-hero-slide" data-duration="10000" style="display:flex;flex-direction:column;">
-        <div class="bs-graphic"><img class="bs-graphic-bg" src="mobil-4-team.png" alt="" aria-hidden="true"><img class="bs-graphic-img" src="mobil-4-team.png" alt="Ihr Team vor Ort in Bad Schwartau: Nadine &amp; Mascha, Petra Drewitz &amp; Vera Köhn, Nicole Clasen, Hanna Wrobel"></div>
       </div>
       <div class="bs-hero-slide" style="display:flex;flex-direction:column;">
         <div style="flex:1;overflow:hidden;"><img src="foto-behandlungsraum.jpg" alt="Behandlungsraum der Praxis in Bad Schwartau" style="width:100%;height:100%;object-fit:cover;"></div>
@@ -151,14 +149,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
       </div>
       <div class="bs-hero-slide" style="display:flex;flex-direction:column;">
-        <div style="flex:1;overflow:hidden;"><img src="/team-hanna.jpg" alt="Hanna Wrobel" style="width:100%;height:100%;object-fit:cover;object-position:center top;"></div>
+        <div style="flex:1;overflow:hidden;"><img src="/team-hanna.jpg" alt="Hanna Wrobel" style="width:100%;height:100%;object-fit:cover; object-position:center top;"></div>
         <div style="padding:1rem 1.5rem;background:#fff;flex-shrink:0;">
           <p style="font-style:italic;color:var(--text);margin:0;font-size:.95rem;">„Hier starten wir ganz neu – mit Erfahrung und Herz.“</p>
           <p style="font-size:.75rem;color:var(--beige-dark);margin-top:.35rem;letter-spacing:.05em;text-transform:uppercase;">Hanna Wrobel · Inhaberin von PhysioPro</p>
         </div>
-      </div>
-      <div class="bs-hero-slide" data-duration="10000" style="display:flex;flex-direction:column;">
-        <div class="bs-graphic"><img class="bs-graphic-bg" src="mobil-5-rezept.png" alt="" aria-hidden="true"><img class="bs-graphic-img" src="mobil-5-rezept.png" alt="Mit normalem Rezept – alle Behandlungen am Eutiner Ring 4A möglich"></div>
       </div>
     </div>
   </div>
@@ -167,18 +162,70 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 (function(){
   var slides = document.querySelectorAll('#bs-hero-slides .bs-hero-slide');
   var cur = 0;
-  function schedule(){
-    var dur = parseInt(slides[cur].getAttribute('data-duration'), 10) || 4000;
-    setTimeout(function(){
+  if (slides.length > 1) {
+    setInterval(function(){
       slides[cur].classList.remove('bs-active');
       cur = (cur + 1) % slides.length;
       slides[cur].classList.add('bs-active');
-      schedule();
-    }, dur);
+    }, 4000);
   }
-  if (slides.length > 1) {
-    schedule();
+})();
+</script>
+
+<!-- KAMPAGNEN-STORYS (nur Mobil, wischbar) -->
+<section class="bs-storys">
+  <div class="container">
+    <div class="bs-story-track" id="bs-story-track">
+      <div class="bs-story-slide"><img src="mobil-2-neues-kapitel.png" alt="Ein neues Kapitel in Bad Schwartau – Eutiner Ring 4A"></div>
+      <div class="bs-story-slide"><img src="mobil-3-philosophie.png" alt="Die Philosophie: Aktiv statt Passiv – Wir bewegen Menschen"></div>
+      <div class="bs-story-slide"><img src="mobil-4-team.png" alt="Ihr Team vor Ort in Bad Schwartau: Nadine &amp; Mascha, Petra Drewitz &amp; Vera Köhn, Nicole Clasen, Hanna Wrobel"></div>
+      <div class="bs-story-slide"><img src="mobil-5-rezept.png" alt="Mit normalem Rezept – alle Behandlungen am Eutiner Ring 4A möglich"></div>
+    </div>
+    <div class="bs-story-dots" id="bs-story-dots"></div>
+  </div>
+</section>
+<script>
+(function(){
+  var track = document.getElementById('bs-story-track');
+  var dotsWrap = document.getElementById('bs-story-dots');
+  if(!track || !dotsWrap) return;
+  var slides = track.querySelectorAll('.bs-story-slide');
+  if(slides.length < 1) return;
+  var dots = [];
+  for(var i=0;i<slides.length;i++){
+    (function(idx){
+      var d = document.createElement('button');
+      d.type = 'button';
+      d.setAttribute('aria-label', 'Grafik ' + (idx+1) + ' anzeigen');
+      if(idx===0) d.className = 'on';
+      d.addEventListener('click', function(){ stopAuto(); track.scrollTo({left: idx*track.clientWidth, behavior:'smooth'}); });
+      dotsWrap.appendChild(d); dots.push(d);
+    })(i);
   }
+  var cur = 0;
+  function setActive(n){ if(n===cur) return; dots[cur].className=''; cur=n; dots[cur].className='on'; }
+  var raf;
+  track.addEventListener('scroll', function(){
+    if(raf) cancelAnimationFrame(raf);
+    raf = requestAnimationFrame(function(){
+      var w = track.clientWidth || 1;
+      var n = Math.round(track.scrollLeft / w);
+      if(n < 0) n = 0; if(n > slides.length-1) n = slides.length-1;
+      setActive(n);
+    });
+  }, {passive:true});
+  var auto = null;
+  function startAuto(){
+    if(auto) return;
+    auto = setInterval(function(){
+      var n = (cur + 1) % slides.length;
+      track.scrollTo({left: n*track.clientWidth, behavior:'smooth'});
+    }, 10000);
+  }
+  function stopAuto(){ if(auto){ clearInterval(auto); auto = null; } }
+  track.addEventListener('touchstart', stopAuto, {passive:true});
+  track.addEventListener('mousedown', stopAuto);
+  startAuto();
 })();
 </script>
 
@@ -245,7 +292,57 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       </div>
       <div style="background:var(--beige-warm);border-radius:var(--radius);padding:1.5rem;border:1px solid var(--beige-mid);" id="bs-leistungen">
         <h4 style="margin-bottom:.75rem;">Leistungen</h4>
-        <p style="color:var(--text-mid);font-size:.9rem;line-height:1.8;">Physiotherapie, Krankengymnastik, Massage, manuelle Lymphdrainage – auch ohne ärztliche Verordnung buchbar. Das vollständige Leistungsangebot steht rechtzeitig zur Eröffnung fest.</p>
+        <p style="color:var(--text-mid);font-size:.9rem;line-height:1.8;">Physiotherapie, Krankengymnastik, Massage, manuelle Lymphdrainage – auch ohne ärztliche Verordnung buchbar. Zusätzlich einmal pro Woche Osteopathie mit Julia Mielke. Das vollständige Leistungsangebot steht rechtzeitig zur Eröffnung fest.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- c2) Osteopathie – einmal pro Woche mit Julia Mielke -->
+<section class="section" style="padding-top:0;" id="bs-osteopathie">
+  <div class="container" style="max-width:800px;">
+    <h2 class="eyebrow" style="margin-bottom:1.5rem;">Auch Osteopathie – einmal pro Woche vor Ort</h2>
+    <div style="background:var(--beige-warm);border:1px solid var(--beige-mid);border-radius:var(--radius);overflow:hidden;">
+      <div class="bs-osteo-grid">
+        <img src="/team-julia.jpg" alt="Julia Mielke – Osteopathin, Heilpraktikerin, Physiotherapeutin" style="width:100%;height:100%;object-fit:cover;object-position:center top;min-height:220px;">
+        <div style="padding:1.75rem 2rem;">
+          <span class="tag" style="background:#efe4d8;color:#8c6a55;">Neu · Einmal pro Woche vor Ort</span>
+          <h3 style="margin:.5rem 0 .3rem;">Osteopathie mit Julia Mielke</h3>
+          <p style="color:#8c6a55;font-size:.9rem;font-style:italic;margin:0 0 1rem;">Osteopathin · Heilpraktikerin · Physiotherapeutin</p>
+          <p style="color:var(--text-mid);font-size:.92rem;line-height:1.7;margin:0 0 1.25rem;">Julia Mielke ist <strong>einmal pro Woche direkt am Eutiner Ring 4A</strong> in Bad Schwartau. Osteopathie und der Osteopathie-Check sind <strong>ohne Rezept</strong> buchbar (Selbstzahler- bzw. Privatleistung – einige Kassen erstatten anteilig).</p>
+          <div style="display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;margin-bottom:1.25rem;">
+            <span style="font-size:.85rem;color:var(--text-mid);">✓ Gespräch mit Julia Mielke</span>
+            <span style="font-size:.85rem;color:var(--text-mid);">✓ Einschätzung &amp; Empfehlung</span>
+            <span style="font-size:.85rem;color:var(--text-mid);">✓ Erste Untersuchung inklusive</span>
+            <span style="font-size:.85rem;color:var(--text-mid);">✓ Ohne Rezept buchbar</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;">
+            <div style="background:#8c6a55;color:#fff;border-radius:10px;padding:.5rem .9rem;line-height:1.15;">
+              <span style="font-family:var(--serif);font-size:1.35rem;font-weight:300;">26,50 €</span>
+              <span style="display:block;font-size:.68rem;opacity:.85;">Osteopathie-Check · 20 Min. · einmalig</span>
+            </div>
+            <a href="#bs-osteo-form" class="btn btn-primary" style="background:#8c6a55;">Osteopathie anfragen</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:1.5rem;background:#fff;border:1px solid var(--beige-mid);border-radius:var(--radius);padding:1.75rem;box-shadow:0 4px 20px rgba(0,0,0,.05);">
+      <div id="bso-form">
+        <h4 id="bs-osteo-form" style="margin:0 0 .25rem;">Osteopathie in Bad Schwartau anfragen</h4>
+        <p style="color:var(--text-mid);font-size:.85rem;margin:0 0 1.25rem;">Wir stimmen Ihren Termin mit Julia ab und melden uns – spätestens am nächsten Werktag.</p>
+        <div style="margin-bottom:1rem;"><label style="display:block;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--warm-gray);margin-bottom:.35rem;">Name *</label><input id="bso-name" type="text" placeholder="Ihr Name" style="width:100%;padding:.8rem 1rem;border:1.5px solid var(--beige-mid);border-radius:8px;font-family:var(--sans);font-size:.9rem;outline:none;"></div>
+        <div style="margin-bottom:1rem;"><label style="display:block;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--warm-gray);margin-bottom:.35rem;">Telefon *</label><input id="bso-tel" type="tel" placeholder="0451 ..." style="width:100%;padding:.8rem 1rem;border:1.5px solid var(--beige-mid);border-radius:8px;font-family:var(--sans);font-size:.9rem;outline:none;"></div>
+        <div style="margin-bottom:1rem;"><label style="display:block;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--warm-gray);margin-bottom:.35rem;">E-Mail</label><input id="bso-email" type="email" placeholder="ihre@email.de" style="width:100%;padding:.8rem 1rem;border:1.5px solid var(--beige-mid);border-radius:8px;font-family:var(--sans);font-size:.9rem;outline:none;"></div>
+        <div style="margin-bottom:1.25rem;"><label style="display:block;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--warm-gray);margin-bottom:.35rem;">Anliegen</label><textarea id="bso-hinweis" placeholder="z.B. Beschwerden, bevorzugte Uhrzeit..." style="width:100%;padding:.8rem 1rem;border:1.5px solid var(--beige-mid);border-radius:8px;font-family:var(--sans);font-size:.9rem;outline:none;resize:vertical;min-height:70px;"></textarea></div>
+        <div style="display:flex;gap:.75rem;align-items:flex-start;margin-bottom:1.25rem;"><input type="checkbox" id="bso-dsgvo" style="margin-top:4px;accent-color:#8c6a55;flex-shrink:0;"><label for="bso-dsgvo" style="font-size:.8rem;color:var(--text-mid);line-height:1.55;">Ich stimme der Verarbeitung meiner Daten zur Terminvereinbarung zu. *</label></div>
+        <div id="bso-error" style="display:none;color:#c0392b;font-size:.82rem;margin-bottom:1rem;padding:.7rem 1rem;background:#fdf0f0;border-radius:8px;"></div>
+        <button onclick="bsoSubmit()" class="btn btn-primary" style="width:100%;background:#8c6a55;" id="bso-submit-btn">Osteopathie-Check anfragen</button>
+      </div>
+      <div id="bso-success" style="display:none;text-align:center;padding:1.5rem 0;">
+        <div style="width:56px;height:56px;border-radius:50%;background:var(--beige-warm);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;color:#8c6a55;font-size:1.5rem;">✓</div>
+        <h3 style="margin-bottom:.5rem;">Anfrage gesendet!</h3>
+        <p style="color:var(--text-mid);font-size:.9rem;">Vielen Dank! Wir stimmen Ihren Osteopathie-Termin mit Julia ab und melden uns – spätestens am nächsten Werktag.</p>
       </div>
     </div>
   </div>
@@ -317,10 +414,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <div class="footer-col"><h4>Kontakt</h4><ul><li><a href="tel:+4945140073073">0451 / 400 730 73</a></li><li><a href="mailto:info@physioproluebeck.de">info@physioproluebeck.de</a></li><li><a href="/termin">Termin buchen</a></li></ul></div>
     <div class="footer-col"><h4>Öffnungszeiten</h4><ul><li><a>Mo–Fr: 7–19 Uhr</a></li></ul></div>
   </div>
-  <p class="footer-motto">Wir bewegen Gesundheit</p>
+  <p class="footer-motto">Wir bewegen Menschen</p>
 <div class="footer-bottom"><p>© 2026 PhysioPro Lübeck · Hanna Wrobel</p><div style="display:flex;gap:1.5rem;"><a href="/impressum">Impressum</a><a href="/datenschutz">Datenschutz</a></div></div>
 </div></footer>
-<script src="/shared.js?v=20260709"></script>
+<script src="/shared.js?v=20260721"></script>
 <script>
 async function bsSubmit(){
   const name=document.getElementById('bs-name').value.trim(),tel=document.getElementById('bs-tel').value.trim(),dsgvo=document.getElementById('bs-dsgvo').checked,errEl=document.getElementById('bs-error');
@@ -352,11 +449,41 @@ async function bsSubmit(){
     errEl.textContent='Verbindungsfehler.';errEl.style.display='block';btn.textContent='Termin anfragen';btn.disabled=false;
   }
 }
+async function bsoSubmit(){
+  const name=document.getElementById('bso-name').value.trim(),tel=document.getElementById('bso-tel').value.trim(),dsgvo=document.getElementById('bso-dsgvo').checked,errEl=document.getElementById('bso-error');
+  if(!name||!tel){errEl.textContent='Bitte Name und Telefon angeben.';errEl.style.display='block';return;}
+  if(!dsgvo){errEl.textContent='Bitte Datenschutz zustimmen.';errEl.style.display='block';return;}
+  errEl.style.display='none';
+  const btn=document.getElementById('bso-submit-btn');btn.textContent='Wird gesendet...';btn.disabled=true;
+  const email=document.getElementById('bso-email').value.trim()||tel.replace(/\D/g,'')+'@badschwartau.physioproluebeck.de';
+  const hinweis=document.getElementById('bso-hinweis').value.trim();
+  const msg='Osteopathie · Standort: Bad Schwartau (Eutiner Ring 4A) · einmal wöchentlich mit Julia Mielke'+(hinweis?' | '+hinweis:'');
+  try{
+    const body=new URLSearchParams();
+    body.append('form-name','bad-schwartau-termin');
+    body.append('firstname',name);
+    body.append('phone',tel);
+    body.append('email',email);
+    body.append('message',msg);
+    if(typeof appendUTMs==='function')appendUTMs(body);
+    const res=await fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:body.toString()});
+    if(res.ok){
+      document.getElementById('bso-form').style.display='none';
+      document.getElementById('bso-success').style.display='block';
+      window.dataLayer=window.dataLayer||[];
+      window.dataLayer.push({event:'physio_lead_termin_badschwartau'});
+    } else {
+      errEl.textContent='Fehler. Bitte anrufen: 0451 / 400 730 73';errEl.style.display='block';btn.textContent='Osteopathie-Check anfragen';btn.disabled=false;
+    }
+  }catch(e){
+    errEl.textContent='Verbindungsfehler.';errEl.style.display='block';btn.textContent='Osteopathie-Check anfragen';btn.disabled=false;
+  }
+}
 </script>
 <form name="bad-schwartau-termin" netlify netlify-honeypot="bot-field" hidden>
   <input name="firstname"><input name="phone"><input name="email"><input name="message">
 </form>
-<form name="rueckruf" netlify netlify-honeypot="bot-field" hidden>
+<form name="rueckruf-badschwartau" netlify netlify-honeypot="bot-field" hidden>
   <input name="firstname"><input name="phone"><input name="email"><input name="message">
 </form>
 

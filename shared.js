@@ -13,6 +13,13 @@ function appendUTMs(body) {
   return body;
 }
 
+// Standort-Suffix für dataLayer-Events.
+// Bad Schwartau bekommt ein eigenes Suffix, damit Conversions pro Standort
+// getrennt in Google Ads zählen. Alle übrigen Seiten (Lübeck) bleiben unverändert.
+function physioStandortSuffix() {
+  return window.location.pathname.indexOf('bad-schwartau') !== -1 ? '_badschwartau' : '';
+}
+
 // Q&A Modal
 function openQA() {
   const overlay = document.getElementById('qa-overlay');
@@ -75,7 +82,7 @@ async function rueckrufSubmit() {
   btn.textContent = 'Wird gesendet...'; btn.disabled = true;
   try {
     const body = new URLSearchParams();
-    body.append('form-name', 'rueckruf');
+    body.append('form-name', physioStandortSuffix() ? 'rueckruf-badschwartau' : 'rueckruf');
     body.append('firstname', name);
     body.append('phone', tel);
     body.append('email', tel.replace(/\D/g,'') + '@rueckruf.physioproluebeck.de');
@@ -91,7 +98,7 @@ async function rueckrufSubmit() {
       document.getElementById('rb-form').style.display = 'none';
       document.getElementById('rb-success').style.display = 'block';
       window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push({ event: 'physio_lead_rueckruf' });
+      window.dataLayer.push({ event: 'physio_lead_rueckruf' + physioStandortSuffix() });
     } else {
       errEl.textContent = 'Fehler. Bitte anrufen: 0451 / 400 730 73';
       errEl.style.display = 'block';

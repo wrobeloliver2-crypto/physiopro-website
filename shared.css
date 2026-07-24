@@ -123,8 +123,8 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; height: var(--n
 
 /* ── TEAM GRID ── */
 .trainer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; align-items: start; }
-.trainer-card { background: #fff; border: 1px solid var(--beige-mid); border-radius: var(--radius); overflow: hidden; transition: .25s; }
-.trainer-card:hover { border-color: var(--beige); box-shadow: 0 8px 24px rgba(196,176,154,.2); transform: translateY(-3px); }
+.trainer-card { background: #fff; border: 4px solid var(--beige); border-radius: var(--radius); overflow: hidden; transition: .25s; }
+.trainer-card:hover { border-color: var(--beige-dark); box-shadow: 0 8px 24px rgba(196,176,154,.2); transform: translateY(-3px); }
 .trainer-img { height: 240px; overflow: hidden; background: var(--beige-light); }
 .trainer-img img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; transition: transform .4s; }
 .trainer-card:hover .trainer-img img { transform: scale(1.03); }
