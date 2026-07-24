@@ -12,28 +12,29 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, follow">
 <title>Passt PhysioPro zu dir?</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Newsreader:ital,wght@0,400;0,500;1,400;1,500&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --g:#55725e;--gd:#3d5445;--gl:#eef3f0;
-  --b:#c4b09a;--bl:#f7f0e8;--bm:#e8ddd0;
-  --t:#2c2825;--tm:#5a5450;--cr:#faf8f4;
+  --g:#2f4a37;--gd:#23392a;--gl:#e6ecdd;
+  --b:#a08a5e;--bl:#efe9dc;--bm:#ece4d3;
+  --t:#2c2a22;--tm:#54513f;--cr:#f6f1e7;
   --r:14px;
-  --sans:'DM Sans',system-ui,sans-serif;
-  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'Instrument Sans',system-ui,sans-serif;
+  --serif:'Newsreader',Georgia,serif;
 }
 body{font-family:var(--sans);background:var(--cr);color:var(--t);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:.5rem}
 .card{background:#fff;border-radius:20px;border:1px solid var(--bm);max-width:640px;width:100%;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,.07)}
-.hdr{background:linear-gradient(135deg,var(--g),var(--gd));padding:2.25rem 2.5rem 1.75rem;color:#fff}
-.hdr-tag{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:.6rem}
-.hdr h1{font-family:var(--serif);font-size:1.9rem;font-weight:300;line-height:1.2;margin-bottom:.4rem}
+.hdr{background:var(--g);padding:2.25rem 2.5rem 1.75rem;color:#fff}
+.hdr-tag{font-family:'Space Grotesk',sans-serif;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:.6rem}
+.hdr h1{font-family:var(--serif);font-size:1.9rem;font-weight:500;letter-spacing:-0.02em;line-height:1.15;margin-bottom:.4rem}
+.hdr h1 em{font-style:italic;color:#c6d9b8}
 .hdr p{font-size:.85rem;color:rgba(255,255,255,.75);line-height:1.6}
 .body{padding:2rem 2.5rem}
 
 /* STEP 1: Karten-Auswahl */
-.step-label{font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--b);margin-bottom:.5rem}
-.step-title{font-family:var(--serif);font-size:1.3rem;font-weight:300;line-height:1.3;margin-bottom:.35rem}
+.step-label{font-family:'Space Grotesk',sans-serif;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--b);margin-bottom:.5rem}
+.step-title{font-family:var(--serif);font-size:1.3rem;font-weight:500;letter-spacing:-0.02em;line-height:1.2;margin-bottom:.35rem}
 .step-sub{font-size:.85rem;color:var(--tm);margin-bottom:1.5rem;line-height:1.6}
 .chips{display:flex;flex-wrap:wrap;gap:.6rem;margin-bottom:1.75rem}
 .chip{display:flex;align-items:center;gap:.5rem;padding:.55rem 1rem;border:1.5px solid var(--bm);border-radius:100px;cursor:pointer;transition:.18s;background:#fff;font-family:var(--sans);font-size:.85rem;color:var(--tm);user-select:none}
@@ -67,16 +68,16 @@ body{font-family:var(--sans);background:var(--cr);color:var(--t);min-height:100v
 /* Result */
 .res-header{text-align:center;padding:1rem 0 1.5rem}
 .res-ring{width:96px;height:96px;margin:0 auto 1rem;position:relative;display:flex;align-items:center;justify-content:center}
-.res-pct{font-family:var(--serif);font-size:2rem;font-weight:300}
-.res-title{font-family:var(--serif);font-size:1.5rem;font-weight:300;margin-bottom:.5rem}
+.res-pct{font-family:var(--serif);font-size:2rem;font-weight:500}
+.res-title{font-family:var(--serif);font-size:1.5rem;font-weight:500;letter-spacing:-0.02em;margin-bottom:.5rem}
 .res-sub{font-size:.875rem;color:var(--tm);line-height:1.75;max-width:460px;margin:0 auto}
 .res-matches{display:flex;flex-direction:column;gap:.5rem;margin:1.5rem 0}
 .res-match{display:flex;gap:.75rem;padding:.75rem 1rem;border-radius:10px;font-size:.875rem;line-height:1.5}
 .res-match.pos{background:var(--gl);color:var(--gd)}
 .res-match.neu{background:var(--bl);color:#6b5a48}
 .res-cta{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:1.5rem}
-.btn-wa{background:#25D366;color:#fff;border:none;border-radius:100px;padding:.75rem 1.75rem;font-family:var(--sans);font-size:.875rem;font-weight:500;cursor:pointer;text-decoration:none;display:inline-block;transition:.18s}
-.btn-wa:hover{background:#1da856}
+.btn-wa{background:#25b04a;color:#fff;border:none;border-radius:100px;padding:.75rem 1.75rem;font-family:var(--sans);font-size:.875rem;font-weight:500;cursor:pointer;text-decoration:none;display:inline-block;transition:.18s}
+.btn-wa:hover{background:#1e8f3d}
 .btn-ol{background:#fff;color:var(--t);border:1.5px solid var(--bm);border-radius:100px;padding:.7rem 1.5rem;font-family:var(--sans);font-size:.875rem;cursor:pointer;transition:.18s}
 .btn-ol:hover{border-color:var(--g);color:var(--gd)}
 
@@ -109,7 +110,7 @@ body{font-family:var(--sans);background:var(--cr);color:var(--t);min-height:100v
 <div class="card">
   <div class="hdr">
     <div class="hdr-tag">PhysioPro Lübeck · Arbeitgeber-Check</div>
-    <h1>Passt PhysioPro<br>zu dir?</h1>
+    <h1>Passt PhysioPro<br>zu <em>dir</em>?</h1>
     <p>Wähle was dir wichtig ist – 2 kurze Schritte, ehrliches Ergebnis.</p>
   </div>
   <div class="body" id="body"></div>
@@ -195,7 +196,7 @@ function render() {
     if (btns.length) {
       const selLabels = [...selected].map(id => priorities.find(x=>x.id===id)?.label).filter(Boolean);
       const qStr = Object.values(qAnswers).join(', ');
-      const msg = encodeURIComponent('Hallo Hanna, ich habe den Arbeitgeber-Check gemacht – meine Übereinstimmung mit PhysioPro: ' + lastPct + '%! 🎯\nMir ist wichtig: ' + selLabels.join(', ') + '.\n' + qStr + '\nIch möchte mich gerne vorstellen!');
+      const msg = encodeURIComponent('Hallo Hanna, ich habe den Arbeitgeber-Check gemacht – meine Übereinstimmung mit PhysioPro: ' + lastPct + '%!\nMir ist wichtig: ' + selLabels.join(', ') + '.\n' + qStr + '\nIch möchte mich gerne vorstellen!');
       const url = 'https://wa.me/4917623339367?text=' + msg;
       btns.forEach(btn => btn.href = url);
     }
@@ -277,7 +278,7 @@ function renderResult() {
   if (pct >= 75) {
     title = 'Sehr gute Übereinstimmung';
     sub = 'Was dir wichtig ist, können wir dir bei PhysioPro Lübeck bieten. Komm auf einen Kaffee vorbei oder schreib Hanna direkt an.';
-    color = '#55725e';
+    color = '#2f4a37';
     matches = [
       ...[...selected].filter(id=>(priorities.find(x=>x.id===id)||{}).match===3).slice(0,3).map(id=>({
         type:'pos', text: '✓  ' + priorities.find(x=>x.id===id).label + ' – das bieten wir.'
@@ -286,7 +287,7 @@ function renderResult() {
   } else {
     title = 'Gute Basis';
     sub = 'Es gibt solide Überschneidungen. Ein kurzes Gespräch mit Hanna bringt schnell Klarheit ob es wirklich passt.';
-    color = '#8c7660';
+    color = '#a08a5e';
     matches = [
       ...[...selected].filter(id=>(priorities.find(x=>x.id===id)||{}).match>=2).slice(0,3).map(id=>({
         type:'pos', text: '✓  ' + priorities.find(x=>x.id===id).label + ' – können wir bieten.'
@@ -299,7 +300,7 @@ function renderResult() {
     <div class="res-header">
       <div class="res-ring">
         <svg width="96" height="96" style="position:absolute;inset:0;transform:rotate(-90deg)">
-          <circle cx="48" cy="48" r="${r}" fill="none" stroke="#e8ddd0" stroke-width="5"/>
+          <circle cx="48" cy="48" r="${r}" fill="none" stroke="#ece4d3" stroke-width="5"/>
           <circle cx="48" cy="48" r="${r}" fill="none" stroke="${color}" stroke-width="5"
             stroke-dasharray="${circ.toFixed(1)}"
             stroke-dashoffset="${(circ - dash).toFixed(1)}"
