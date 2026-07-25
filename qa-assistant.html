@@ -274,6 +274,7 @@ async function send() {
 
 inp.addEventListener('keydown', e => { if(e.key === 'Enter') { e.preventDefault(); send(); } });
 inp.addEventListener('keyup', e => { if(e.key === 'Enter') send(); });
+sendBtn.addEventListener('click', send);
 window.onload = () => {
   addMsg('Guten Tag! Womit kann ich Ihnen helfen? Wählen Sie ein Thema oder stellen Sie direkt Ihre Frage – ich erkläre Ihnen, was bei Ihrem Anliegen hilft und warum PhysioPro dafür die richtige Adresse ist.', false);
   setChips(STARTER_CHIPS);
