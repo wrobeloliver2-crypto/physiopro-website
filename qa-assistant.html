@@ -18,11 +18,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,500;1,500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
+  html {
+    overflow: hidden; height: 100%; overscroll-behavior: none;
+  }
   body {
     font-family: 'Instrument Sans', -apple-system, sans-serif;
     background: #f6f1e7;
     height: 100vh; height: 100dvh; display: flex; flex-direction: column; overflow: hidden;
-    max-width: 100vw;
+    max-width: 100vw; overscroll-behavior: none;
   }
   .qa-header {
     background: #2f4a37; color: #fff;
@@ -51,6 +54,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .msg {
     max-width: 87%; padding: 11px 14px; border-radius: 14px;
     font-size: 14px; line-height: 1.6; animation: fadeIn 0.2s ease;
+    overflow-wrap: anywhere; word-break: break-word;
   }
   @keyframes fadeIn { from{opacity:0;transform:translateY(4px)} to{opacity:1} }
   .msg-bot {
@@ -241,7 +245,7 @@ async function send() {
     history.push({ role: 'assistant', content: reply });
     exchangeCount++;
 
-    const replyHtml = reply.replace(/\n/g, '<br>');
+    const replyHtml = reply.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
     addMsg(replyHtml + '<div class="hint"><a href="/termin" target="_parent">Termin buchen</a> · <a href="tel:04514007307" target="_parent">0451 / 400 730 73</a></div>', false);
 
     if (exchangeCount >= 6) {
