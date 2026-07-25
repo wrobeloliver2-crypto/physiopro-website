@@ -623,7 +623,7 @@ async function bsSubmit(){
       fetch('/.netlify/functions/kruse-consent-log',{
         method:'POST',
         headers:{'Content-Type':'application/json'},
-        body:JSON.stringify({name:name,geburtsdatum:geburtsdatum,telefon:tel})
+        body:JSON.stringify({name:name,geburtsdatum:geburtsdatum,telefon:tel,hinweis:hinweis})
       }).catch(function(e){console.error('Kruse-Log fehlgeschlagen:',e);});
     }
     if(res.ok){
