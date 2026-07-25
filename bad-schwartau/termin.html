@@ -421,6 +421,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div style="margin-bottom:1rem;"><label style="display:block;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--warm-gray);margin-bottom:.35rem;">Name *</label><input id="bs-name" type="text" placeholder="Ihr Name" style="width:100%;padding:.8rem 1rem;border:1.5px solid var(--beige-mid);border-radius:12px;font-family:var(--sans);font-size:.9rem;outline:none;"></div>
           <div style="margin-bottom:1rem;"><label style="display:block;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--warm-gray);margin-bottom:.35rem;">Telefon *</label><input id="bs-tel" type="tel" placeholder="0451 ..." style="width:100%;padding:.8rem 1rem;border:1.5px solid var(--beige-mid);border-radius:12px;font-family:var(--sans);font-size:.9rem;outline:none;"></div>
           <div style="margin-bottom:1rem;"><label style="display:block;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--warm-gray);margin-bottom:.35rem;">E-Mail</label><input id="bs-email" type="email" placeholder="ihre@email.de" style="width:100%;padding:.8rem 1rem;border:1.5px solid var(--beige-mid);border-radius:12px;font-family:var(--sans);font-size:.9rem;outline:none;"></div>
+          <div id="bs-rezept-consent-block" style="display:none;">
+            <div style="margin-bottom:1rem;"><label style="display:block;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--warm-gray);margin-bottom:.35rem;">Geburtsdatum *</label><input id="bs-geburtsdatum" type="date" style="width:100%;padding:.8rem 1rem;border:1.5px solid var(--beige-mid);border-radius:12px;font-family:var(--sans);font-size:.9rem;outline:none;color:var(--text);"><p style="font-size:.75rem;color:var(--warm-gray);margin-top:.35rem;">Zur eindeutigen Zuordnung Ihrer Unterlagen bei der Physio Plus GmbH.</p></div>
+            <div style="display:flex;gap:.75rem;align-items:flex-start;margin-bottom:1.25rem;background:var(--beige-warm);border-radius:12px;padding:.9rem 1rem;"><input type="checkbox" id="bs-kruse-consent" style="margin-top:4px;accent-color:var(--rose);flex-shrink:0;"><label for="bs-kruse-consent" style="font-size:.8rem;color:var(--text-mid);line-height:1.55;">Ich bin damit einverstanden, dass PhysioPro Bad Schwartau meine bei der Physio Plus GmbH bzw. der Insolvenzverwaltung vorliegenden Behandlungsunterlagen zu meinem Rezept anfordert, um meine Behandlung fortzusetzen. Diese Einwilligung kann ich jederzeit formlos widerrufen. *</label></div>
+          </div>
           <div style="margin-bottom:1.25rem;"><label style="display:block;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--warm-gray);margin-bottom:.35rem;">Nachricht</label><textarea id="bs-hinweis" placeholder="z.B. wie viele Behandlungen sind noch offen, bevorzugte Uhrzeit..." style="width:100%;padding:.8rem 1rem;border:1.5px solid var(--beige-mid);border-radius:12px;font-family:var(--sans);font-size:.9rem;outline:none;resize:vertical;min-height:70px;"></textarea></div>
           <div style="display:flex;gap:.75rem;align-items:flex-start;margin-bottom:1.25rem;"><input type="checkbox" id="bs-dsgvo" style="margin-top:4px;accent-color:var(--rose);flex-shrink:0;"><label for="bs-dsgvo" style="font-size:.8rem;color:var(--text-mid);line-height:1.55;">Ich stimme der Verarbeitung meiner Daten zur Terminvereinbarung zu. *</label></div>
           <div id="bs-error" style="display:none;color:#c0392b;font-size:.82rem;margin-bottom:1rem;padding:.7rem 1rem;background:#fdf0f0;border-radius:12px;"></div>
@@ -588,11 +592,18 @@ function bsSetRezeptStatus(v){
   bsRezeptStatus = v;
   document.getElementById('bs-rezept-laufend').className = 'btn ' + (v==='laufend' ? 'btn-primary' : 'btn-outline');
   document.getElementById('bs-rezept-neu').className = 'btn ' + (v==='neu' ? 'btn-primary' : 'btn-outline');
+  document.getElementById('bs-rezept-consent-block').style.display = v==='laufend' ? 'block' : 'none';
 }
 async function bsSubmit(){
   const name=document.getElementById('bs-name').value.trim(),tel=document.getElementById('bs-tel').value.trim(),dsgvo=document.getElementById('bs-dsgvo').checked,errEl=document.getElementById('bs-error');
   if(!name||!tel){errEl.textContent='Bitte Name und Telefon angeben.';errEl.style.display='block';return;}
   if(!dsgvo){errEl.textContent='Bitte Datenschutz zustimmen.';errEl.style.display='block';return;}
+  const geburtsdatum=document.getElementById('bs-geburtsdatum').value;
+  const kruseConsent=document.getElementById('bs-kruse-consent').checked;
+  if(bsRezeptStatus==='laufend'){
+    if(!geburtsdatum){errEl.textContent='Bitte Geburtsdatum angeben.';errEl.style.display='block';return;}
+    if(!kruseConsent){errEl.textContent='Bitte der Anforderung Ihrer Unterlagen zustimmen.';errEl.style.display='block';return;}
+  }
   errEl.style.display='none';
   const btn=document.getElementById('bs-submit-btn');btn.textContent='Wird gesendet...';btn.disabled=true;
   const email=document.getElementById('bs-email').value.trim()||tel.replace(/\D/g,'')+'@badschwartau.physioproluebeck.de';
@@ -608,6 +619,13 @@ async function bsSubmit(){
     body.append('message',msg);
     appendUTMs(body);
     const res=await fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:body.toString()});
+    if(res.ok && bsRezeptStatus==='laufend' && kruseConsent){
+      fetch('/.netlify/functions/kruse-consent-log',{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({name:name,geburtsdatum:geburtsdatum,telefon:tel})
+      }).catch(function(e){console.error('Kruse-Log fehlgeschlagen:',e);});
+    }
     if(res.ok){
       document.getElementById('bs-form').style.display='none';
       document.getElementById('bs-success').style.display='block';
