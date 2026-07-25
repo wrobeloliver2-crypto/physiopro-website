@@ -1,7 +1,7 @@
 const { google } = require('googleapis');
 
 const SHEET_ID = '1W5YqJd-LN-2RuAQgJBv69TuWX3GhvdHBdUmIW7cTcBc';
-const SHEET_NAME = 'Einwilligungen';
+const SHEET_NAME = 'Tabellenblatt1';
 const KRUSE_EMAIL = 'kruse@mtk-kanzlei.de';
 const CC_EMAILS = ['hanna.wrobel@pilatescompany.de', 'info@physioproluebeck.de'];
 
