@@ -173,9 +173,10 @@ window.addEventListener('message', e => {
   document.body.appendChild(btn);
 })();
 
-// Fliegender Anruf-Button – nur Mobile
+// Fliegender Anruf-Button – nur Mobile, nicht auf Bad-Schwartau-Seiten (dort eigene Sticky-CTA)
 (function() {
   if (window.innerWidth > 640) return;
+  if (window.location.pathname.indexOf('bad-schwartau') !== -1) return;
   var btn = document.createElement('a');
   btn.href = 'tel:+4945140073073';
   btn.id = 'pp-call-btn';
