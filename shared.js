@@ -186,3 +186,45 @@ window.addEventListener('message', e => {
   document.body.appendChild(btn);
 })();
 
+// Sitewide Hinweisbanner – Physio Plus Bad Schwartau Betriebseinstellung (Juli/Aug 2026)
+// Entfernen bzw. Zeitraum pruefen: Ende August 2026
+(function() {
+  var banner = document.createElement('div');
+  banner.id = 'pp-alert-banner';
+  banner.innerHTML = '<span><strong>Wichtige Information für Patient:innen aus Bad Schwartau</strong> — Physio Plus hat den Betrieb eingestellt. So geht es mit Ihrem Rezept weiter</span>' +
+    '<a href="/bad-schwartau/termin#rezept-hinweis" class="pp-alert-btn">Jetzt informieren</a>';
+  document.body.insertBefore(banner, document.body.firstChild);
+
+  var style = document.createElement('style');
+  style.textContent = `
+    #pp-alert-banner {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1100;
+      background: #a08a5e; color: #fff;
+      display: flex; align-items: center; justify-content: center; gap: 1rem;
+      flex-wrap: wrap; text-align: center;
+      padding: .6rem 1.25rem; font-size: .85rem; font-family: inherit; line-height: 1.4;
+    }
+    #pp-alert-banner strong { font-weight: 600; }
+    .pp-alert-btn {
+      background: #fff; color: #8a6d2f !important; font-weight: 600;
+      padding: .35rem .95rem; border-radius: 100px; text-decoration: none;
+      white-space: nowrap; font-size: .8rem; flex-shrink: 0;
+    }
+    @media(max-width:640px) {
+      #pp-alert-banner { font-size: .78rem; padding: .55rem .75rem; }
+    }
+  `;
+  document.head.appendChild(style);
+
+  function adjustLayout() {
+    var h = banner.offsetHeight;
+    var nav = document.querySelector('nav');
+    if (nav) nav.style.top = h + 'px';
+    document.body.style.paddingTop = 'calc(var(--nav-h) + ' + h + 'px)';
+    var mobileMenu = document.querySelector('.mobile-menu');
+    if (mobileMenu) mobileMenu.style.top = 'calc(var(--nav-h) + ' + h + 'px)';
+  }
+  adjustLayout();
+  window.addEventListener('resize', adjustLayout);
+})();
+
