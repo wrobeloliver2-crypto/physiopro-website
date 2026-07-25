@@ -81,24 +81,27 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   }
   .chip:hover { background: #2f4a37; color: #fff; border-color: #2f4a37; }
   .qa-input-row {
-    padding: 10px 14px 14px; display: flex; gap: 8px; flex-shrink: 0;
+    padding: 10px 14px 14px; flex-shrink: 0;
     background: #f6f1e7; border-top: 1px solid #ddd4c0;
     position: sticky; bottom: 0;
   }
+  .qa-input-wrap { position: relative; width: 100%; }
   .qa-input {
-    flex: 1; border: 1px solid #ddd4c0; border-radius: 100px;
-    padding: 10px 16px; font-size: 14px; font-family: inherit;
-    background: #fff; outline: none; color: #2c2a22; height: 42px;
+    width: 100%; box-sizing: border-box;
+    border: 1px solid #ddd4c0; border-radius: 100px;
+    padding: 10px 50px 10px 16px; font-size: 14px; font-family: inherit;
+    background: #fff; outline: none; color: #2c2a22; height: 44px;
     transition: border-color .15s;
   }
   .qa-input:focus { border-color: #2f4a37; }
   .qa-send {
-    width: 42px; height: 42px; background: #2f4a37; border: none;
+    position: absolute; right: 4px; top: 50%; transform: translateY(-50%);
+    width: 36px; height: 36px; background: #2f4a37; border: none;
     border-radius: 50%; cursor: pointer; display: flex; align-items: center;
-    justify-content: center; flex-shrink: 0; transition: background .15s;
+    justify-content: center; transition: background .15s;
   }
   .qa-send:hover { background: #23392a; }
-  .qa-send svg { width: 18px; height: 18px; fill: #fff; }
+  .qa-send svg { width: 16px; height: 16px; fill: #fff; }
   .qa-send:disabled { opacity: 0.4; cursor: default; }
   .cta-row { display:flex; gap:8px; margin-top:10px; flex-wrap:wrap; }
   .hint {
@@ -134,10 +137,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="qa-messages" id="msgs"></div>
 <div class="chips" id="chips"></div>
 <div class="qa-input-row">
-  <input class="qa-input" id="inp" type="text" placeholder="Deine Frage …" autocomplete="off">
-  <button class="qa-send" id="sendBtn">
-    <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
-  </button>
+  <div class="qa-input-wrap">
+    <input class="qa-input" id="inp" type="text" placeholder="Deine Frage …" autocomplete="off">
+    <button class="qa-send" id="sendBtn">
+      <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+    </button>
+  </div>
 </div>
 
 <script>
