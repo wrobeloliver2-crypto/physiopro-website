@@ -39,12 +39,16 @@ function todayBerlinDateString() {
   return fmt.format(new Date()); // YYYY-MM-DD
 }
 
+function escapeHtml(str) {
+  return String(str || '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+}
+
 exports.handler = async () => {
   try {
     const sheets = await getSheetsClient();
     const result = await sheets.spreadsheets.values.get({
       spreadsheetId: SHEET_ID,
-      range: `${SHEET_NAME}!A:D`
+      range: `${SHEET_NAME}!A:E`
     });
     const rows = result.data.values || [];
     const today = todayBerlinDateString();
@@ -62,9 +66,10 @@ exports.handler = async () => {
     }
 
     const listHtml = todaysRows.map((row) => {
-      const [timestamp, name, geburtsdatum, telefon] = row;
+      const [timestamp, name, geburtsdatum, telefon, hinweis] = row;
       const time = new Intl.DateTimeFormat('de-DE', { timeZone: 'Europe/Berlin', hour: '2-digit', minute: '2-digit' }).format(new Date(timestamp));
-      return `<li><strong>${name}</strong>, geb. ${geburtsdatum}${telefon ? ' — Tel. ' + telefon : ''} (angefragt ${time} Uhr)</li>`;
+      const hinweisLine = hinweis ? `<br><span style="color:#666;">Nachricht: ${escapeHtml(hinweis)}</span>` : '';
+      return `<li><strong>${escapeHtml(name)}</strong>, geb. ${escapeHtml(geburtsdatum)}${telefon ? ' — Tel. ' + escapeHtml(telefon) : ''} (angefragt ${time} Uhr)${hinweisLine}</li>`;
     }).join('');
 
     const html = `
@@ -72,6 +77,9 @@ exports.handler = async () => {
       <p>heute (${today}) haben folgende Patient:innen ihre Einwilligung gegeben, dass PhysioPro Bad Schwartau ihre Behandlungsunterlagen zum laufenden Rezept bei Ihnen anfordert:</p>
       <ul>${listHtml}</ul>
       <p>Vielen Dank und beste Grüße<br>PhysioPro Bad Schwartau</p>
+      <hr style="border:none;border-top:1px solid #ddd;margin:1.5rem 0;">
+      <p style="font-size:12px;color:#888;">Wortlaut der von jeder Person oben per Checkbox erteilten Einwilligung:<br>
+      „Ich bin damit einverstanden, dass PhysioPro Bad Schwartau meine bei der Physio Plus GmbH bzw. dem zuständigen Insolvenzverwalter Herrn Jan Kruse (Kanzlei Dr. Möller – Thompson – Kruse, Neustadt in Holstein) vorliegenden Behandlungsunterlagen zu meinem Rezept anfordert, um meine Behandlung fortzusetzen. Diese Einwilligung kann ich jederzeit formlos widerrufen.“</p>
     `;
 
     const token = await getGraphToken();
