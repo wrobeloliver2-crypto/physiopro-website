@@ -493,36 +493,57 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   </div>
 </section>
 
-<!-- e) Terminanfrage / Lead-Formular -->
+<!-- e) Terminanfrage / 3 Wege -->
 <section class="section" style="padding-top:0;" id="termin-form">
-  <div class="container" style="max-width:800px;">
-    <div style="display:grid;grid-template-columns:1.2fr 1fr;gap:2.5rem;align-items:start;">
-      <div>
-        <h3 style="margin-bottom:1.5rem;">Termin ab 1. August anfragen</h3>
-        <div style="background:#fff;border-radius:var(--radius);border:1px solid var(--beige-mid);overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.05);padding:1.75rem;">
-          <div id="bs-form">
-            <div style="margin-bottom:1rem;"><label style="display:block;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--warm-gray);margin-bottom:.35rem;">Name *</label><input id="bs-name" type="text" placeholder="Ihr Name" style="width:100%;padding:.8rem 1rem;border:1.5px solid var(--beige-mid);border-radius:12px;font-family:var(--sans);font-size:.9rem;outline:none;"></div>
-            <div style="margin-bottom:1rem;"><label style="display:block;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--warm-gray);margin-bottom:.35rem;">Telefon *</label><input id="bs-tel" type="tel" placeholder="0451 ..." style="width:100%;padding:.8rem 1rem;border:1.5px solid var(--beige-mid);border-radius:12px;font-family:var(--sans);font-size:.9rem;outline:none;"></div>
-            <div style="margin-bottom:1rem;"><label style="display:block;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--warm-gray);margin-bottom:.35rem;">E-Mail</label><input id="bs-email" type="email" placeholder="ihre@email.de" style="width:100%;padding:.8rem 1rem;border:1.5px solid var(--beige-mid);border-radius:12px;font-family:var(--sans);font-size:.9rem;outline:none;"></div>
-            <div style="margin-bottom:1.25rem;"><label style="display:block;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--warm-gray);margin-bottom:.35rem;">Nachricht</label><textarea id="bs-hinweis" placeholder="z.B. wie viele Behandlungen sind noch offen, bevorzugte Uhrzeit..." style="width:100%;padding:.8rem 1rem;border:1.5px solid var(--beige-mid);border-radius:12px;font-family:var(--sans);font-size:.9rem;outline:none;resize:vertical;min-height:70px;"></textarea></div>
-            <div style="display:flex;gap:.75rem;align-items:flex-start;margin-bottom:1.25rem;"><input type="checkbox" id="bs-dsgvo" style="margin-top:4px;accent-color:var(--rose);flex-shrink:0;"><label for="bs-dsgvo" style="font-size:.8rem;color:var(--text-mid);line-height:1.55;">Ich stimme der Verarbeitung meiner Daten zur Terminvereinbarung zu. *</label></div>
-            <div id="bs-error" style="display:none;color:#c0392b;font-size:.82rem;margin-bottom:1rem;padding:.7rem 1rem;background:#fdf0f0;border-radius:12px;"></div>
-            <button onclick="bsSubmit()" class="btn btn-primary" style="width:100%;" id="bs-submit-btn">Termin anfragen</button>
+  <div class="container" style="max-width:1000px;">
+    <h3 style="margin-bottom:.35rem;">Termin ab 1. August anfragen</h3>
+    <p style="color:var(--text-mid);font-size:.92rem;margin-bottom:1.75rem;">Wählen Sie, wie es für Sie am schnellsten geht.</p>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.25rem;align-items:stretch;">
+
+      <!-- Karte 1: Sofort-Rückruf -->
+      <div style="background:#fff;border:1px solid var(--beige-mid);border-radius:var(--radius);padding:1.6rem;display:flex;flex-direction:column;">
+        <span class="tag" style="align-self:flex-start;margin-bottom:.85rem;">Am schnellsten</span>
+        <h4 style="font-size:1.02rem;margin-bottom:.4rem;">Rückruf anfordern</h4>
+        <p style="font-size:.85rem;color:var(--text-mid);line-height:1.6;margin-bottom:1.4rem;flex:1;">Nur Name und Telefonnummer — wir rufen zurück, meist noch am selben Tag.</p>
+        <button class="btn btn-outline" onclick="openRueckruf()" style="width:100%;">Sofort Rückruf anfordern</button>
+      </div>
+
+      <!-- Karte 2: Formular -->
+      <div style="background:#fff;border-radius:var(--radius);border:1px solid var(--beige-mid);overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.05);padding:1.6rem;">
+        <span class="tag" style="align-self:flex-start;margin-bottom:.85rem;">Mit Details</span>
+        <h4 style="font-size:1.02rem;margin-bottom:1rem;">Termin per Formular</h4>
+        <div id="bs-form">
+          <div style="margin-bottom:1rem;">
+            <label style="display:block;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--warm-gray);margin-bottom:.4rem;">Ihr Rezept</label>
+            <div style="display:flex;gap:.5rem;">
+              <button type="button" id="bs-rezept-laufend" onclick="bsSetRezeptStatus('laufend')" class="btn btn-outline" style="flex:1;font-size:.76rem;padding:.6rem .4rem;line-height:1.3;">Läuft bereits in<br>Bad Schwartau</button>
+              <button type="button" id="bs-rezept-neu" onclick="bsSetRezeptStatus('neu')" class="btn btn-outline" style="flex:1;font-size:.76rem;padding:.6rem .4rem;line-height:1.3;">Ich plane ein<br>neues Rezept</button>
+            </div>
           </div>
-          <div id="bs-success" style="display:none;text-align:center;padding:1.5rem 0;">
-            <div style="width:56px;height:56px;border-radius:50%;background:var(--beige-warm);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;color:var(--rose);font-size:1.5rem;">✓</div>
-            <h3 style="margin-bottom:.5rem;">Anfrage gesendet!</h3>
-            <p style="color:var(--text-mid);font-size:.9rem;">Vielen Dank! Wir melden uns bei Ihnen, sobald der Standort Bad Schwartau startet – spätestens am nächsten Werktag.</p>
-          </div>
+          <div style="margin-bottom:1rem;"><label style="display:block;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--warm-gray);margin-bottom:.35rem;">Name *</label><input id="bs-name" type="text" placeholder="Ihr Name" style="width:100%;padding:.8rem 1rem;border:1.5px solid var(--beige-mid);border-radius:12px;font-family:var(--sans);font-size:.9rem;outline:none;"></div>
+          <div style="margin-bottom:1rem;"><label style="display:block;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--warm-gray);margin-bottom:.35rem;">Telefon *</label><input id="bs-tel" type="tel" placeholder="0451 ..." style="width:100%;padding:.8rem 1rem;border:1.5px solid var(--beige-mid);border-radius:12px;font-family:var(--sans);font-size:.9rem;outline:none;"></div>
+          <div style="margin-bottom:1rem;"><label style="display:block;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--warm-gray);margin-bottom:.35rem;">E-Mail</label><input id="bs-email" type="email" placeholder="ihre@email.de" style="width:100%;padding:.8rem 1rem;border:1.5px solid var(--beige-mid);border-radius:12px;font-family:var(--sans);font-size:.9rem;outline:none;"></div>
+          <div style="margin-bottom:1.25rem;"><label style="display:block;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--warm-gray);margin-bottom:.35rem;">Nachricht</label><textarea id="bs-hinweis" placeholder="z.B. wie viele Behandlungen sind noch offen, bevorzugte Uhrzeit..." style="width:100%;padding:.8rem 1rem;border:1.5px solid var(--beige-mid);border-radius:12px;font-family:var(--sans);font-size:.9rem;outline:none;resize:vertical;min-height:70px;"></textarea></div>
+          <div style="display:flex;gap:.75rem;align-items:flex-start;margin-bottom:1.25rem;"><input type="checkbox" id="bs-dsgvo" style="margin-top:4px;accent-color:var(--rose);flex-shrink:0;"><label for="bs-dsgvo" style="font-size:.8rem;color:var(--text-mid);line-height:1.55;">Ich stimme der Verarbeitung meiner Daten zur Terminvereinbarung zu. *</label></div>
+          <div id="bs-error" style="display:none;color:#c0392b;font-size:.82rem;margin-bottom:1rem;padding:.7rem 1rem;background:#fdf0f0;border-radius:12px;"></div>
+          <button onclick="bsSubmit()" class="btn btn-primary" style="width:100%;" id="bs-submit-btn">Termin anfragen</button>
+        </div>
+        <div id="bs-success" style="display:none;text-align:center;padding:1.5rem 0;">
+          <div style="width:56px;height:56px;border-radius:50%;background:var(--beige-warm);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;color:var(--rose);font-size:1.5rem;">✓</div>
+          <h3 style="margin-bottom:.5rem;">Anfrage gesendet!</h3>
+          <p style="color:var(--text-mid);font-size:.9rem;">Vielen Dank! Wir melden uns bei Ihnen, sobald der Standort Bad Schwartau startet – spätestens am nächsten Werktag.</p>
         </div>
       </div>
 
-      <div style="background:var(--rose);border-radius:var(--radius);padding:2rem;">
-        <h4 style="color:rgba(255,255,255,.8);margin-bottom:.4rem;">Lieber direkt?</h4>
-        <h3 style="color:#fff;margin-bottom:.75rem;font-size:1.2rem;">Einfach anrufen</h3>
-        <a href="tel:+4945140073073" class="btn" style="background:#fff;color:var(--rose-dark);display:block;text-align:center;font-size:1rem;line-height:1.4;">0451<br>400&nbsp;730&nbsp;73</a>
+      <!-- Karte 3: Anrufen -->
+      <div style="background:var(--rose);border-radius:var(--radius);padding:1.6rem;display:flex;flex-direction:column;">
+        <h4 style="color:rgba(255,255,255,.75);margin-bottom:.4rem;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;">Lieber direkt?</h4>
+        <h3 style="color:#fff;margin-bottom:1.15rem;font-size:1.1rem;">Einfach anrufen</h3>
+        <a href="tel:+4945140073073" class="btn" style="background:#fff;color:var(--rose-dark);display:block;text-align:center;font-size:1rem;line-height:1.4;margin-top:auto;">0451<br>400&nbsp;730&nbsp;73</a>
         <p style="color:rgba(255,255,255,.75);font-size:.8rem;margin-top:.75rem;text-align:center;">Mo–Fr 7–19 Uhr</p>
       </div>
+
     </div>
   </div>
 </section>
@@ -561,6 +582,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 <script src="/shared.js?v=20260725"></script>
 <script>
+let bsRezeptStatus = null;
+function bsSetRezeptStatus(v){
+  bsRezeptStatus = v;
+  document.getElementById('bs-rezept-laufend').className = 'btn ' + (v==='laufend' ? 'btn-primary' : 'btn-outline');
+  document.getElementById('bs-rezept-neu').className = 'btn ' + (v==='neu' ? 'btn-primary' : 'btn-outline');
+}
 async function bsSubmit(){
   const name=document.getElementById('bs-name').value.trim(),tel=document.getElementById('bs-tel').value.trim(),dsgvo=document.getElementById('bs-dsgvo').checked,errEl=document.getElementById('bs-error');
   if(!name||!tel){errEl.textContent='Bitte Name und Telefon angeben.';errEl.style.display='block';return;}
@@ -569,7 +596,8 @@ async function bsSubmit(){
   const btn=document.getElementById('bs-submit-btn');btn.textContent='Wird gesendet...';btn.disabled=true;
   const email=document.getElementById('bs-email').value.trim()||tel.replace(/\D/g,'')+'@badschwartau.physioproluebeck.de';
   const hinweis=document.getElementById('bs-hinweis').value.trim();
-  const msg='Standort: Bad Schwartau (Eutiner Ring 4A)'+(hinweis?' | '+hinweis:'');
+  const rezeptTxt=bsRezeptStatus==='laufend'?'Rezept läuft bereits in Bad Schwartau':(bsRezeptStatus==='neu'?'Plant neues Rezept':'');
+  const msg='Standort: Bad Schwartau (Eutiner Ring 4A)'+(rezeptTxt?' | '+rezeptTxt:'')+(hinweis?' | '+hinweis:'');
   try{
     const body=new URLSearchParams();
     body.append('form-name','bad-schwartau-termin');
