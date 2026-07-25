@@ -79,7 +79,7 @@ exports.handler = async () => {
       <p>Vielen Dank und beste Grüße<br>PhysioPro Bad Schwartau</p>
       <hr style="border:none;border-top:1px solid #ddd;margin:1.5rem 0;">
       <p style="font-size:12px;color:#888;">Wortlaut der von jeder Person oben per Checkbox erteilten Einwilligung:<br>
-      „Ich bin damit einverstanden, dass PhysioPro Bad Schwartau meine bei der Physio Plus GmbH bzw. dem zuständigen Insolvenzverwalter Herrn Jan Kruse (Kanzlei Dr. Möller – Thompson – Kruse, Neustadt in Holstein) vorliegenden Behandlungsunterlagen zu meinem Rezept anfordert, um meine Behandlung fortzusetzen. Diese Einwilligung kann ich jederzeit formlos widerrufen.“</p>
+      „Ich bin damit einverstanden, dass PhysioPro Bad Schwartau meine bei der Physio Plus GmbH bzw. der zuständigen Insolvenzverwalterin Frau Beate Thompson (Kanzlei Dr. Möller – Thompson – Kruse, Neustadt in Holstein) vorliegenden Behandlungsunterlagen zu meinem Rezept anfordert, um meine Behandlung fortzusetzen. Diese Einwilligung kann ich jederzeit formlos widerrufen.“</p>
     `;
 
     const token = await getGraphToken();
