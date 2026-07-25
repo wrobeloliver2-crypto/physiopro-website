@@ -24,10 +24,14 @@ function physioStandortSuffix() {
 function openQA() {
   const overlay = document.getElementById('qa-overlay');
   if (overlay) { overlay.style.display='flex'; document.body.style.overflow='hidden'; }
+  const callBtn = document.getElementById('pp-call-btn');
+  if (callBtn) callBtn.style.display = 'none';
 }
 function closeQA() {
   const overlay = document.getElementById('qa-overlay');
   if (overlay) { overlay.style.display='none'; document.body.style.overflow=''; }
+  const callBtn = document.getElementById('pp-call-btn');
+  if (callBtn) callBtn.style.display = 'flex';
 }
 
 // Mobile Menu
