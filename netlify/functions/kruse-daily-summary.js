@@ -102,8 +102,5 @@ exports.handler = async () => {
   }
 };
 
-// Taeglich 17:00 Uhr deutsche Sommerzeit = 15:00 UTC.
-// ACHTUNG: bei Umstellung auf Winterzeit (MEZ) muss dies auf 16:00 UTC angepasst werden!
-exports.config = {
-  schedule: '0 15 * * *'
-};
+// Zeitplan (taeglich 17 Uhr deutsche Sommerzeit = 15 UTC) ist in netlify.toml
+// unter [functions."kruse-daily-summary"] deklariert, nicht hier im Code.
