@@ -1,7 +1,7 @@
 const { google } = require('googleapis');
 
 const SHEET_ID = '1W5YqJd-LN-2RuAQgJBv69TuWX3GhvdHBdUmIW7cTcBc';
-const SHEET_NAME = 'Einwilligungen';
+const SHEET_NAME = 'Tabellenblatt1';
 
 async function getSheetsClient() {
   const auth = new google.auth.JWT(
