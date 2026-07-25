@@ -609,7 +609,8 @@ async function bsSubmit(){
   const email=document.getElementById('bs-email').value.trim()||tel.replace(/\D/g,'')+'@badschwartau.physioproluebeck.de';
   const hinweis=document.getElementById('bs-hinweis').value.trim();
   const rezeptTxt=bsRezeptStatus==='laufend'?'Rezept läuft bereits in Bad Schwartau':(bsRezeptStatus==='neu'?'Plant neues Rezept':'');
-  const msg='Standort: Bad Schwartau (Eutiner Ring 4A)'+(rezeptTxt?' | '+rezeptTxt:'')+(hinweis?' | '+hinweis:'');
+  const kruseInfo=(bsRezeptStatus==='laufend' && kruseConsent)?' | Geburtsdatum: '+geburtsdatum+' | Einwilligung Datenanforderung bei Frau Thompson: JA':'';
+  const msg='Standort: Bad Schwartau (Eutiner Ring 4A)'+(rezeptTxt?' | '+rezeptTxt:'')+kruseInfo+(hinweis?' | '+hinweis:'');
   try{
     const body=new URLSearchParams();
     body.append('form-name','bad-schwartau-termin');
