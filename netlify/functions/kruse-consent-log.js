@@ -21,7 +21,7 @@ exports.handler = async (event) => {
 
   try {
     const body = JSON.parse(event.body || '{}');
-    const { name, geburtsdatum, telefon } = body;
+    const { name, geburtsdatum, telefon, hinweis } = body;
 
     if (!name || !geburtsdatum) {
       return { statusCode: 400, body: JSON.stringify({ error: 'name und geburtsdatum erforderlich' }) };
@@ -32,11 +32,11 @@ exports.handler = async (event) => {
 
     await sheets.spreadsheets.values.append({
       spreadsheetId: SHEET_ID,
-      range: `${SHEET_NAME}!A:D`,
+      range: `${SHEET_NAME}!A:E`,
       valueInputOption: 'USER_ENTERED',
       insertDataOption: 'INSERT_ROWS',
       requestBody: {
-        values: [[timestamp, name, geburtsdatum, telefon || '']]
+        values: [[timestamp, name, geburtsdatum, telefon || '', hinweis || '']]
       }
     });
 
