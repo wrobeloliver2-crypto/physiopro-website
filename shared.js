@@ -24,10 +24,14 @@ function physioStandortSuffix() {
 function openQA() {
   const overlay = document.getElementById('qa-overlay');
   if (overlay) { overlay.style.display='flex'; document.body.style.overflow='hidden'; }
+  const callBtn = document.getElementById('pp-call-btn');
+  if (callBtn) callBtn.style.display = 'none';
 }
 function closeQA() {
   const overlay = document.getElementById('qa-overlay');
   if (overlay) { overlay.style.display='none'; document.body.style.overflow=''; }
+  const callBtn = document.getElementById('pp-call-btn');
+  if (callBtn) callBtn.style.display = 'flex';
 }
 
 // Mobile Menu
@@ -169,9 +173,10 @@ window.addEventListener('message', e => {
   document.body.appendChild(btn);
 })();
 
-// Fliegender Anruf-Button – nur Mobile
+// Fliegender Anruf-Button – nur Mobile, nicht auf Bad-Schwartau-Seiten (dort eigene Sticky-CTA)
 (function() {
   if (window.innerWidth > 640) return;
+  if (window.location.pathname.indexOf('bad-schwartau') !== -1) return;
   var btn = document.createElement('a');
   btn.href = 'tel:+4945140073073';
   btn.id = 'pp-call-btn';
@@ -180,5 +185,47 @@ window.addEventListener('message', e => {
   var style = btn.style;
   style.cssText = 'position:fixed;bottom:5.5rem;right:1.25rem;z-index:8000;width:52px;height:52px;border-radius:50%;background:#55725e;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,.2);text-decoration:none;';
   document.body.appendChild(btn);
+})();
+
+// Sitewide Hinweisbanner – Physio Plus Bad Schwartau Betriebseinstellung (Juli/Aug 2026)
+// Entfernen bzw. Zeitraum pruefen: Ende August 2026
+(function() {
+  var banner = document.createElement('div');
+  banner.id = 'pp-alert-banner';
+  banner.innerHTML = '<span><strong>Wichtige Information für Patient:innen aus Bad Schwartau</strong> — Physio Plus hat den Betrieb eingestellt. So geht es mit Ihrem Rezept weiter</span>' +
+    '<a href="/bad-schwartau/termin#rezept-hinweis" class="pp-alert-btn">Jetzt informieren</a>';
+  document.body.insertBefore(banner, document.body.firstChild);
+
+  var style = document.createElement('style');
+  style.textContent = `
+    #pp-alert-banner {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1100;
+      background: #a08a5e; color: #fff;
+      display: flex; align-items: center; justify-content: center; gap: 1rem;
+      flex-wrap: wrap; text-align: center;
+      padding: .6rem 1.25rem; font-size: .85rem; font-family: inherit; line-height: 1.4;
+    }
+    #pp-alert-banner strong { font-weight: 600; }
+    .pp-alert-btn {
+      background: #fff; color: #8a6d2f !important; font-weight: 600;
+      padding: .35rem .95rem; border-radius: 100px; text-decoration: none;
+      white-space: nowrap; font-size: .8rem; flex-shrink: 0;
+    }
+    @media(max-width:640px) {
+      #pp-alert-banner { font-size: .78rem; padding: .55rem .75rem; }
+    }
+  `;
+  document.head.appendChild(style);
+
+  function adjustLayout() {
+    var h = banner.offsetHeight;
+    var nav = document.querySelector('nav');
+    if (nav) nav.style.top = h + 'px';
+    document.body.style.paddingTop = 'calc(var(--nav-h) + ' + h + 'px)';
+    var mobileMenu = document.querySelector('.mobile-menu');
+    if (mobileMenu) mobileMenu.style.top = 'calc(var(--nav-h) + ' + h + 'px)';
+  }
+  adjustLayout();
+  window.addEventListener('resize', adjustLayout);
 })();
 
