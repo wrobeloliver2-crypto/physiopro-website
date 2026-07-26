@@ -609,7 +609,7 @@ async function bsSubmit(){
   const email=document.getElementById('bs-email').value.trim()||tel.replace(/\D/g,'')+'@badschwartau.physioproluebeck.de';
   const hinweis=document.getElementById('bs-hinweis').value.trim();
   const rezeptTxt=bsRezeptStatus==='laufend'?'Rezept läuft bereits in Bad Schwartau':(bsRezeptStatus==='neu'?'Plant neues Rezept':'');
-  const kruseInfo=(bsRezeptStatus==='laufend' && kruseConsent)?' | Geburtsdatum: '+geburtsdatum+' | Einwilligung Datenanforderung bei Frau Thompson: JA':'';
+  const kruseInfo=bsRezeptStatus==='laufend'?' | Geburtsdatum: '+geburtsdatum+' | Einwilligung Datenanforderung bei Frau Thompson: '+(kruseConsent?'JA':'NEIN'):'';
   const msg='Standort: Bad Schwartau (Eutiner Ring 4A)'+(rezeptTxt?' | '+rezeptTxt:'')+kruseInfo+(hinweis?' | '+hinweis:'');
   try{
     const body=new URLSearchParams();
@@ -620,26 +620,6 @@ async function bsSubmit(){
     body.append('message',msg);
     appendUTMs(body);
     const res=await fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:body.toString()});
-    if(res.ok){
-      fetch('https://leadmanagementphysiopro.netlify.app/.netlify/functions/bad-schwartau-anfrage-create',{
-        method:'POST',
-        headers:{'Content-Type':'application/json'},
-        body:JSON.stringify({
-          name:name,
-          telefon:tel,
-          email:email,
-          hinweis:hinweis,
-          rezeptStatus:bsRezeptStatus||'',
-          geburtsdatum:geburtsdatum,
-          dsgvoEinwilligungKruse:bsRezeptStatus==='laufend'?(kruseConsent?'Ja':'Nein'):'',
-          utm_source:body.get('utm_source')||'',
-          utm_medium:body.get('utm_medium')||'',
-          utm_campaign:body.get('utm_campaign')||'',
-          utm_content:body.get('utm_content')||'',
-          gclid:body.get('gclid')||''
-        })
-      }).catch(function(e){console.error('Bad-Schwartau-Anfrage-Log fehlgeschlagen:',e);});
-    }
     if(res.ok && bsRezeptStatus==='laufend' && kruseConsent){
       fetch('/.netlify/functions/kruse-consent-log',{
         method:'POST',
