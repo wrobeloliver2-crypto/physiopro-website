@@ -161,7 +161,7 @@ window.addEventListener('message', e => {
     #pp-float-btn:hover { padding-right: 24px; box-shadow: -6px 6px 28px rgba(45,74,62,0.45); }
     #pp-float-btn svg { flex-shrink: 0; }
     @media(max-width:640px) {
-      #pp-float-btn { font-size: 13px; padding: 12px 14px; }
+      #pp-float-btn { display: none !important; }
     }
   `;
   document.head.appendChild(style);
@@ -228,4 +228,3 @@ window.addEventListener('message', e => {
   adjustLayout();
   window.addEventListener('resize', adjustLayout);
 })();
-
