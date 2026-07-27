@@ -1,6 +1,6 @@
-// ═══════════════════════════════════
-// PhysioPro Lübeck – Shared JS v2.0
-// ═══════════════════════════════════
+# ═══════════════════════════════════
+# PhysioPro Lübeck – Shared JS v2.0
+# ═══════════════════════════════════
 
 // UTM-Parameter aus der Landing-URL an einen URLSearchParams-Body anhängen.
 // Wird von allen Ads-relevanten Formularen genutzt (termin, osteopathie, rueckruf).
@@ -174,13 +174,16 @@ window.addEventListener('message', e => {
 })();
 
 // Sticky Bottom-CTA – nur Mobile, ersetzt den frueher schwebenden Anruf-Button.
-// Nicht auf Bad-Schwartau-Seiten (dort eigene, baugleiche Sticky-CTA bereits
-// vorhanden) und nicht auf der Termin-Seite selbst (ein Klick wuerde dort per
-// Seiten-Reload das laufende Buchungsformular zuruecksetzen).
+// Nicht auf Bad-Schwartau-Seiten, nicht auf der Termin-Seite selbst (ein Klick
+// wuerde dort per Seiten-Reload das laufende Buchungsformular zuruecksetzen)
+// und nicht auf der Startseite (index.html hat seit dem Mobile-Redesign
+// 07/2026 eine eigene, baugleiche 3-Button-Sticky-Leiste - #pp-mh-sticky -
+// direkt im Dokument, inkl. Ruckruf-Button, siehe index.html).
 (function() {
   var path = window.location.pathname;
   if (path.indexOf('bad-schwartau') !== -1) return;
   if (/^\/termin\/?$/.test(path) || /\/termin\.html$/.test(path)) return;
+  if (path === '/' || path === '' || /^\/index\.html$/.test(path)) return;
 
   var bar = document.createElement('div');
   bar.id = 'pp-sticky-cta';
