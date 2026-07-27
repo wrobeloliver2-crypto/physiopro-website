@@ -161,9 +161,399 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <a href="/wissen" onclick="toggleMenu()">Wissen</a>
   <a href="/kontakt" onclick="toggleMenu()">Kontakt</a>
 <a href="/termin" onclick="toggleMenu()">Termin buchen</a>
+<a href="https://wa.me/4915174509588" target="_blank" rel="noopener" onclick="toggleMenu()" style="color:#25b04a !important;">WhatsApp</a>
 </div>
 
-<!-- HERO -->
+<!-- ═══════════════════════════════════════════════════════════════
+     MOBILE STARTSEITE (≤768px) – ruhigerer Scroll, Redesign 07/2026.
+     Referenz: Design-Handoff "PhysioPro Mobil" (Option 4a + Kopfleiste 5b),
+     hochgeladen von Oliver. Ersetzt AUF MOBIL NUR die Optik/Reihenfolge;
+     Desktop bleibt komplett unverändert (siehe @media unten).
+     Bestehende Funktionen werden 1:1 wiederverwendet statt neu gebaut:
+     - "Termin anfragen" → idxToggleTerMin() (bestehender 3-Schritt-Assistent,
+       gleiche Funktion wie der Hero-Button oben)
+     - "Rückruf" → openRueckruf() (bestehendes Rückruf-Modal)
+     - Osteopathie-Check-CTA → gleicher Link wie im bestehenden Osteo-Abschnitt
+     - Echte Standort-Verlinkung Bad Schwartau → /bad-schwartau/termin (wie der
+       bestehende Hero-Tag)
+     Die alte Kopfzeile (Logo + Hamburger) aus 5b wird NICHT neu gebaut,
+     sondern ist die bestehende <nav> – die ist bereits fixed, papierfarben
+     und funktional (Menü, alle Links). Die neue grüne Standort-Leiste kommt
+     direkt darunter als erstes Element dieses Blocks.
+     WhatsApp (bisher nur im alten Hero erreichbar) wandert ins Menü, siehe
+     #mobile-menu weiter unten – Design-Vorgabe: "gehört in Footer/Menü".
+     ═══════════════════════════════════════════════════════════════ -->
+<style>
+  .pp-mh { display: none; }
+  @media (max-width: 768px) {
+    .pp-mh { display: block; background: var(--cream); }
+    .stats-bar, .studio-banner, #osteo-check-desktop, .hw-wrapper { display: none !important; }
+    /* Der bestehende 3-Schritt-Termin-Assistent (#idx-termin-form) lebt im
+       DOM innerhalb von .hero-text - er wird HIER NICHT mitversteckt, sonst
+       liesse er sich ueber den neuen Sticky-Button nicht mehr oeffnen (ein
+       display:none-Vorfahre kann von einem Kind nicht wieder sichtbar
+       gemacht werden). Stattdessen: alle anderen Hero-Kinder ausblenden,
+       .hero selbst auf 0 Padding, damit im geschlossenen Zustand kein
+       Leerraum entsteht. Beim Oeffnen (idxToggleTerMin) erscheint der
+       Assistent hier, unveraendert dieselbe Funktion wie im alten Hero-
+       Button - scrollIntoView bringt ihn in jedem Fall ins Bild. */
+    .hero { display: block !important; padding: 0 !important; gap: 0 !important; grid-template-columns: none !important; }
+    .hero-text > *:not(#idx-termin-form) { display: none !important; }
+    #idx-termin-form { margin: 0 !important; }
+    body { padding-bottom: 84px; }
+  }
+
+  .pp-mh-eyebrow { font-family: var(--meta); font-weight: 600; font-size: 11px; line-height: 1; letter-spacing: .13em; text-transform: uppercase; color: var(--warm-gray); }
+
+  /* 1. Standort-Leiste */
+  .pp-mh-locbar { background: #2f4a37; padding: 12px 18px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .pp-mh-loccol { display: flex; flex-direction: column; gap: 3px; }
+  .pp-mh-loccol--l { border-right: 1px solid rgba(246,241,231,.22); padding-right: 10px; }
+  .pp-mh-loclabel { display: block; font-family: var(--meta); font-weight: 500; font-size: 10px; letter-spacing: .13em; text-transform: uppercase; color: #c6d9b8; }
+  .pp-mh-locname { display: block; font-family: var(--sans); font-weight: 500; font-size: 14px; color: #f6f1e7; }
+  .pp-mh-locmeta { display: block; font-family: var(--sans); font-weight: 400; font-size: 12px; color: rgba(246,241,231,.7); }
+
+  /* 2.–3. Hero */
+  .pp-mh-hero { padding: 24px 18px 22px; display: flex; flex-direction: column; gap: 14px; }
+  .pp-mh-hero h1 { margin: 0; font-family: var(--serif); font-weight: 500; font-size: 38px; line-height: 1.04; letter-spacing: -.02em; color: var(--text); text-wrap: pretty; }
+  .pp-mh-hero p { margin: 0; font-family: var(--sans); font-weight: 400; font-size: 16px; line-height: 1.6; color: var(--text-mid); text-wrap: pretty; }
+
+  .pp-mh-portrait { padding: 0 18px; position: relative; }
+  .pp-mh-portrait img { width: 100%; height: 330px; object-fit: cover; object-position: top; border-radius: 14px; display: block; }
+  .pp-mh-quotecard { position: absolute; left: 32px; right: 52px; bottom: 14px; background: rgba(31,51,37,.86); backdrop-filter: blur(4px); border-radius: 12px; padding: 16px; display: flex; flex-direction: column; gap: 8px; }
+  .pp-mh-quotecard p { margin: 0; font-family: var(--serif); font-style: italic; font-weight: 400; font-size: 16.5px; line-height: 1.35; color: #f6f1e7; min-height: 44px; transition: opacity .4s ease; }
+  .pp-mh-src { font-family: var(--meta); font-weight: 600; font-size: 11px; letter-spacing: .13em; text-transform: uppercase; color: #c6d9b8; }
+
+  /* 4. Zahlenband */
+  .pp-mh-stats { margin: 24px 18px 0; background: #2f4a37; border-radius: 16px; padding: 26px 22px; display: grid; grid-template-columns: 1fr 1fr; gap: 22px 18px; text-align: center; justify-items: center; }
+  .pp-mh-stat-num { font-family: var(--serif); font-weight: 400; font-size: 34px; color: #f6f1e7; letter-spacing: -.02em; line-height: 1; }
+  .pp-mh-stat-label { font-family: var(--meta); font-weight: 500; font-size: 10px; letter-spacing: .11em; text-transform: uppercase; color: #c6d9b8; margin-top: 7px; }
+
+  /* 5. Wer Sie behandelt */
+  .pp-mh-team { background: var(--beige-warm); padding: 30px 18px; display: flex; flex-direction: column; gap: 16px; }
+  .pp-mh-team-row { display: flex; gap: 14px; align-items: flex-start; padding: 20px 0; border-top: 1px solid var(--border); }
+  .pp-mh-team-row:last-child { border-bottom: 1px solid var(--border); }
+  .pp-mh-team-row img { width: 76px; height: 76px; border-radius: 100px; object-fit: cover; object-position: top; flex: none; display: block; }
+  .pp-mh-team-quote { margin: 0; font-family: var(--serif); font-style: italic; font-weight: 400; font-size: 17.5px; line-height: 1.35; color: var(--text); min-height: 48px; transition: opacity .4s ease; }
+  .pp-mh-team-name { font-family: var(--meta); font-weight: 600; font-size: 11px; line-height: 1.4; letter-spacing: .13em; text-transform: uppercase; color: var(--warm-gray); margin-top: 7px; }
+
+  /* 6. Leistungen */
+  .pp-mh-leistungen { background: var(--cream); padding: 32px 18px; display: flex; flex-direction: column; gap: 18px; }
+  .pp-mh-leistungen h2 { margin: 0; font-family: var(--serif); font-weight: 500; font-size: 28px; line-height: 1.1; letter-spacing: -.02em; color: var(--text); }
+  .pp-mh-lrow { display: flex; align-items: baseline; gap: 14px; padding: 16px 0; border-top: 1px solid var(--border); text-decoration: none; }
+  .pp-mh-lrow:last-child { border-bottom: 1px solid var(--border); }
+  .pp-mh-lnum { font-family: var(--meta); font-weight: 600; font-size: 12px; color: var(--beige); flex: none; }
+  .pp-mh-ltitle { display: block; font-family: var(--serif); font-weight: 500; font-size: 19px; line-height: 1.15; color: var(--text); }
+  .pp-mh-lsub { display: block; font-family: var(--sans); font-weight: 400; font-size: 13.5px; line-height: 1.5; color: var(--text-mid); margin-top: 2px; }
+  .pp-mh-arrow { color: var(--accent-italic); font-size: 17px; flex: none; }
+
+  /* 7. Die Praxis */
+  .pp-mh-praxis { background: var(--beige-warm); padding: 32px 18px; display: flex; flex-direction: column; gap: 16px; }
+  .pp-mh-praxis-frame { position: relative; height: 250px; }
+  .pp-mh-praxis-layer { position: absolute; inset: 0; opacity: 0; transition: opacity .8s ease; }
+  .pp-mh-praxis-layer.active { opacity: 1; }
+  .pp-mh-praxis-layer img { width: 100%; height: 250px; object-fit: cover; border-radius: 14px; display: block; }
+  .pp-mh-praxis-card { position: absolute; left: 14px; right: 34px; bottom: 14px; background: rgba(31,51,37,.86); backdrop-filter: blur(4px); border-radius: 12px; padding: 14px 16px; }
+  .pp-mh-praxis-title { font-family: var(--serif); font-weight: 500; font-size: 18px; line-height: 1.15; color: #f6f1e7; }
+  .pp-mh-praxis-sub { font-family: var(--sans); font-weight: 400; font-size: 13px; line-height: 1.5; color: #c6d9b8; margin-top: 5px; }
+  .pp-mh-praxis-card--empfang { display: flex; gap: 12px; align-items: flex-start; }
+  .pp-mh-praxis-card--empfang img { width: 44px; height: 44px; border-radius: 100px; object-fit: cover; object-position: top; flex: none; }
+  .pp-mh-praxis-card--empfang p { margin: 0; font-family: var(--serif); font-style: italic; font-weight: 400; font-size: 15.5px; line-height: 1.35; color: #f6f1e7; }
+  .pp-mh-praxis-card--empfang .pp-mh-src { display: block; margin-top: 6px; font-size: 10.5px; }
+
+  /* 8. Osteopathie-Check */
+  .pp-mh-osteo { margin: 26px 18px 30px; background: #2f4a37; border-radius: 16px; padding: 28px 22px; display: flex; flex-direction: column; gap: 16px; }
+  .pp-mh-osteo-chip { align-self: flex-start; border: 1px solid rgba(198,217,184,.45); color: #c6d9b8; border-radius: 100px; padding: 5px 12px; font-family: var(--meta); font-weight: 600; font-size: 10.5px; letter-spacing: .13em; text-transform: uppercase; }
+  .pp-mh-osteo h2 { margin: 0; font-family: var(--serif); font-weight: 500; font-size: 30px; line-height: 1.08; letter-spacing: -.02em; color: #f6f1e7; }
+  .pp-mh-osteo h2 em { color: #c6d9b8; }
+  .pp-mh-osteo > p { margin: 0; font-family: var(--sans); font-weight: 400; font-size: 15px; line-height: 1.55; color: rgba(246,241,231,.78); }
+  .pp-mh-osteo-label { font-family: var(--meta); font-weight: 600; font-size: 10.5px; letter-spacing: .13em; text-transform: uppercase; color: #c6d9b8; padding-bottom: 4px; display: block; }
+  .pp-mh-osteo-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+  .pp-mh-osteo-pills span { background: rgba(246,241,231,.1); color: #f6f1e7; border-radius: 100px; padding: 8px 14px; font-family: var(--sans); font-weight: 400; font-size: 13.5px; }
+  .pp-mh-osteo-julia { display: flex; align-items: center; gap: 12px; padding-top: 16px; border-top: 1px solid rgba(246,241,231,.18); margin-top: 6px; }
+  .pp-mh-osteo-julia img { width: 44px; height: 44px; border-radius: 100px; object-fit: cover; object-position: top; flex: none; }
+  .pp-mh-osteo-julia p { margin: 0; font-family: var(--sans); font-weight: 400; font-size: 13.5px; line-height: 1.45; color: rgba(246,241,231,.78); }
+  .pp-mh-osteo-julia strong { color: #f6f1e7; font-weight: 600; }
+  .pp-mh-osteo-cta { background: #c6d9b8; color: #2f4a37; border-radius: 100px; padding: 15px 22px; font-family: var(--sans); font-weight: 600; font-size: 15px; text-decoration: none; text-align: center; min-height: 48px; display: flex; align-items: center; justify-content: center; box-sizing: border-box; }
+
+  /* 9. Zwei Standorte */
+  .pp-mh-standorte { background: var(--cream); padding: 32px 18px 40px; display: flex; flex-direction: column; gap: 12px; }
+  .pp-mh-srow { display: flex; align-items: baseline; gap: 14px; padding: 16px 0; border-top: 1px solid var(--border); text-decoration: none; }
+  .pp-mh-srow:last-child { border-bottom: 1px solid var(--border); }
+  .pp-mh-snum { font-family: var(--meta); font-weight: 600; font-size: 12px; color: var(--beige); flex: none; }
+  .pp-mh-sname { font-family: var(--serif); font-weight: 500; font-size: 20px; line-height: 1.15; color: var(--text); display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+  .pp-mh-schip { background: var(--rose-light); color: #3c5a41; border-radius: 100px; padding: 3px 10px; font-family: var(--meta); font-weight: 600; font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; }
+  .pp-mh-smeta { display: block; font-family: var(--sans); font-weight: 400; font-size: 13.5px; line-height: 1.55; color: var(--text-mid); margin-top: 2px; }
+  .pp-mh-sfoot { font-family: var(--sans); font-weight: 400; font-size: 13.5px; line-height: 1.6; color: var(--warm-gray); padding-top: 4px; }
+
+  /* 10. Sticky Bottom-Bar */
+  #pp-mh-sticky { display: none; }
+  @media (max-width: 768px) {
+    #pp-mh-sticky {
+      display: flex; gap: 10px; align-items: center;
+      position: fixed; left: 0; right: 0; bottom: 0; z-index: 900;
+      background: rgba(246,241,231,.92); backdrop-filter: blur(8px);
+      border-top: 1px solid var(--border);
+      padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+    }
+  }
+  #pp-mh-sticky .pp-mh-sticky-primary { flex: 1.35; appearance: none; border: none; cursor: pointer; background: #2f4a37; color: #f6f1e7; border-radius: 100px; padding: 14px 10px; font-family: var(--sans); font-weight: 600; font-size: 15px; min-height: 48px; }
+  #pp-mh-sticky .pp-mh-sticky-secondary { flex: 1; appearance: none; cursor: pointer; background: transparent; border: 1.5px solid #2f4a37; color: #2f4a37; border-radius: 100px; padding: 14px 10px; font-family: var(--sans); font-weight: 600; font-size: 15px; min-height: 48px; }
+  #pp-mh-sticky .pp-mh-sticky-call { width: 48px; height: 48px; border-radius: 100px; border: 1.5px solid #2f4a37; display: flex; align-items: center; justify-content: center; color: #2f4a37; font-size: 18px; text-decoration: none; flex: none; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .pp-mh-quotecard p, .pp-mh-team-quote, .pp-mh-praxis-layer { transition: none !important; }
+  }
+</style>
+
+<div class="pp-mh" id="pp-mh">
+
+  <!-- 1. Standort-Leiste -->
+  <div class="pp-mh-locbar">
+    <div class="pp-mh-loccol pp-mh-loccol--l">
+      <span class="pp-mh-loclabel">Standort 1</span>
+      <span class="pp-mh-locname">Stockelsdorf</span>
+      <span class="pp-mh-locmeta">Mo–Fr 7–19 Uhr</span>
+    </div>
+    <div class="pp-mh-loccol">
+      <span class="pp-mh-loclabel">Standort 2</span>
+      <span class="pp-mh-locname">Bad Schwartau</span>
+      <span class="pp-mh-locmeta">neu ab August</span>
+    </div>
+  </div>
+
+  <!-- 2. Hero-Text -->
+  <div class="pp-mh-hero">
+    <h1>Wir bewegen <em>Menschen</em></h1>
+    <p>Bei uns behandelt Sie ein Mensch mit Namen — nicht eine Praxis.</p>
+  </div>
+
+  <!-- 3. Hero-Porträt + Zitat (Hanna) -->
+  <div class="pp-mh-portrait">
+    <img src="team-hanna.webp" alt="Hanna Wrobel" width="768" height="1127" fetchpriority="high" decoding="async">
+    <div class="pp-mh-quotecard">
+      <p id="pp-mh-q0">„Ich schaue immer auf den ganzen Menschen, nicht nur auf das Symptom.“</p>
+      <div class="pp-mh-src">Hanna Wrobel · Gründerin</div>
+    </div>
+  </div>
+
+  <!-- 4. Zahlenband -->
+  <div class="pp-mh-stats">
+    <div><div class="pp-mh-stat-num">22</div><div class="pp-mh-stat-label">Jahre Erfahrung</div></div>
+    <div><div class="pp-mh-stat-num">4</div><div class="pp-mh-stat-label">Therapiebereiche</div></div>
+    <div><div class="pp-mh-stat-num">2</div><div class="pp-mh-stat-label">Standorte ab August</div></div>
+    <div><div class="pp-mh-stat-num">7–19</div><div class="pp-mh-stat-label">Uhr, Mo–Fr geöffnet</div></div>
+  </div>
+
+  <!-- 5. Wer Sie behandelt -->
+  <div class="pp-mh-team">
+    <div class="pp-mh-eyebrow">Wer Sie behandelt</div>
+    <div>
+      <div class="pp-mh-team-row">
+        <img src="team-julia.jpg" alt="Julia Mielke" loading="lazy" decoding="async">
+        <div>
+          <p class="pp-mh-team-quote" id="pp-mh-q1">„Ich nehme mir Zeit, wirklich hinzuhören.“</p>
+          <div class="pp-mh-team-name">Julia Mielke · Osteopathin</div>
+        </div>
+      </div>
+      <div class="pp-mh-team-row">
+        <img src="team-phillip.jpg" alt="Phillip" loading="lazy" decoding="async">
+        <div>
+          <p class="pp-mh-team-quote" id="pp-mh-q2">„Ich helfe Menschen, wieder Vertrauen in ihren Körper zu gewinnen.“</p>
+          <div class="pp-mh-team-name">Phillip · Physiotherapeut</div>
+        </div>
+      </div>
+      <div class="pp-mh-team-row">
+        <img src="team-anna.jpg" alt="Anna" loading="lazy" decoding="async">
+        <div>
+          <p class="pp-mh-team-quote" id="pp-mh-q3">„Bei mir fühlen sich Menschen verstanden.“</p>
+          <div class="pp-mh-team-name">Anna · Physiotherapeutin</div>
+        </div>
+      </div>
+      <div class="pp-mh-team-row">
+        <img src="team-maike.jpg" alt="Maike" loading="lazy" decoding="async">
+        <div>
+          <p class="pp-mh-team-quote" id="pp-mh-q4">„Ich sehe den Menschen, nicht nur die Diagnose.“</p>
+          <div class="pp-mh-team-name">Maike · Physiotherapeutin</div>
+        </div>
+      </div>
+      <div class="pp-mh-team-row">
+        <img src="team-tuana.jpg" alt="Tuana" loading="lazy" decoding="async">
+        <div>
+          <p class="pp-mh-team-quote" id="pp-mh-q5">„Bei mir merkt man: Bewegung darf auch Spaß machen.“</p>
+          <div class="pp-mh-team-name">Tuana · Physio &amp; Pilates</div>
+        </div>
+      </div>
+      <div class="pp-mh-team-row">
+        <img src="team-annika.jpg" alt="Annika" loading="lazy" decoding="async">
+        <div>
+          <p class="pp-mh-team-quote" id="pp-mh-q6">„Bei mir fühlt sich der Patient herzlich willkommen.“</p>
+          <div class="pp-mh-team-name">Annika · Empfang</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. Leistungen -->
+  <div class="pp-mh-leistungen">
+    <div class="pp-mh-eyebrow">Leistungen</div>
+    <h2>Vier Wege, <em>ein</em> Haus</h2>
+    <div>
+      <a class="pp-mh-lrow" href="/therapie">
+        <span class="pp-mh-lnum">01</span>
+        <span style="flex:1;"><span class="pp-mh-ltitle">Physiotherapie</span><span class="pp-mh-lsub">Rücken, Nacken, Gelenke, Lymphdrainage</span></span>
+        <span class="pp-mh-arrow">→</span>
+      </a>
+      <a class="pp-mh-lrow" href="/osteopathie">
+        <span class="pp-mh-lnum">02</span>
+        <span style="flex:1;"><span class="pp-mh-ltitle">Osteopathie</span><span class="pp-mh-lsub">Kiefer, Kopfschmerzen, Erschöpfung</span></span>
+        <span class="pp-mh-arrow">→</span>
+      </a>
+      <a class="pp-mh-lrow" href="/therapie">
+        <span class="pp-mh-lnum">03</span>
+        <span style="flex:1;"><span class="pp-mh-ltitle">KGG am Reformer</span><span class="pp-mh-lsub">Krankengymnastik am Gerät</span></span>
+        <span class="pp-mh-arrow">→</span>
+      </a>
+      <a class="pp-mh-lrow" href="/pilates">
+        <span class="pp-mh-lnum">04</span>
+        <span style="flex:1;"><span class="pp-mh-ltitle">Pilates</span><span class="pp-mh-lsub">Mit der Pilates Company, direkt nebenan</span></span>
+        <span class="pp-mh-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- 7. Die Praxis (Wechsler) -->
+  <div class="pp-mh-praxis">
+    <div class="pp-mh-eyebrow">Die Praxis</div>
+    <div class="pp-mh-praxis-frame">
+      <div class="pp-mh-praxis-layer active" id="pp-mh-praxis0">
+        <img src="studio-reformer-room.webp" alt="Reformer Raum" loading="lazy" decoding="async">
+        <div class="pp-mh-praxis-card">
+          <div class="pp-mh-praxis-title">KGG am Reformer</div>
+          <div class="pp-mh-praxis-sub">In der Region ein Alleinstellungsmerkmal.</div>
+        </div>
+      </div>
+      <div class="pp-mh-praxis-layer" id="pp-mh-praxis1">
+        <img src="hero-startseite.webp" alt="Empfang PhysioPro" loading="lazy" decoding="async">
+        <div class="pp-mh-praxis-card pp-mh-praxis-card--empfang">
+          <img src="team-annika.jpg" alt="Annika" loading="lazy" decoding="async">
+          <div>
+            <p>„Kein Formular-Schalter, sondern ein echtes Willkommen.“</p>
+            <div class="pp-mh-src">Annika · Empfang</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8. Osteopathie-Check -->
+  <div class="pp-mh-osteo">
+    <span class="pp-mh-osteo-chip">Neu · jetzt buchbar</span>
+    <h2>Der Osteopathie-<em>Check</em></h2>
+    <p>20 Minuten Orientierung: ob osteopathische Techniken zu Ihrem Anliegen passen.</p>
+    <div>
+      <span class="pp-mh-osteo-label">Passend bei</span>
+      <div class="pp-mh-osteo-pills">
+        <span>Rücken &amp; Verspannungen</span>
+        <span>Migräne, Kopf &amp; Kiefer</span>
+        <span>Gelenke</span>
+        <span>Stress</span>
+        <span>Chronische Schmerzen</span>
+      </div>
+    </div>
+    <div class="pp-mh-osteo-julia">
+      <img src="team-julia.webp" alt="Julia Mielke" loading="lazy" decoding="async">
+      <p><strong>Julia Mielke</strong><br>Osteopathin &amp; Heilpraktikerin</p>
+    </div>
+    <a class="pp-mh-osteo-cta" href="https://otr.md-therapie.de/hilg2Tr6OiAQy24lckW1NUkTTcyhobik" target="_blank" rel="noopener">Check buchen · 26,50 €</a>
+  </div>
+
+  <!-- 9. Zwei Standorte -->
+  <div class="pp-mh-standorte">
+    <div class="pp-mh-eyebrow">Zwei Standorte</div>
+    <div>
+      <a class="pp-mh-srow" href="/kontakt">
+        <span class="pp-mh-snum">01</span>
+        <span style="flex:1;">
+          <span class="pp-mh-sname">Stockelsdorf</span>
+          <span class="pp-mh-smeta">Segeberger Str. 1 · Mo–Fr 7–19 Uhr</span>
+        </span>
+        <span class="pp-mh-arrow">→</span>
+      </a>
+      <a class="pp-mh-srow" href="/bad-schwartau/termin">
+        <span class="pp-mh-snum">02</span>
+        <span style="flex:1;">
+          <span class="pp-mh-sname">Bad Schwartau <span class="pp-mh-schip">ab August</span></span>
+          <span class="pp-mh-smeta">Termine schon jetzt buchbar</span>
+        </span>
+        <span class="pp-mh-arrow">→</span>
+      </a>
+    </div>
+    <div class="pp-mh-sfoot">Behandlung auch ohne Verordnung.</div>
+  </div>
+
+</div>
+
+<!-- 10. Sticky Bottom-Bar (mobil) -->
+<div id="pp-mh-sticky">
+  <button type="button" class="pp-mh-sticky-primary" onclick="idxToggleTerMin()">Termin anfragen</button>
+  <button type="button" class="pp-mh-sticky-secondary" onclick="openRueckruf()">Rückruf</button>
+  <a href="tel:+4945140073073" class="pp-mh-sticky-call" aria-label="Anrufen: 0451 400 730 73"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2f4a37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></a>
+</div>
+
+<script>
+(function() {
+  // Zitat-Rotation: alle 2600ms wechselt genau EIN Zitat, rundlaufend über
+  // Hero + die sechs Team-Zeilen (q0..q6). Alle Sätze sind echte, bereits auf
+  // dieser Seite verwendete Team-Zitate (hanna-signature / hw-slide-Karten).
+  var QUOTES = {
+    0: ["„Ich schaue immer auf den ganzen Menschen, nicht nur auf das Symptom.“","„Für mich hört Physiotherapie nicht beim Körper auf – es geht immer auch um mentale Stärke.“","„Wir bringen Menschen dazu, selbst aktiv zu werden.“"],
+    1: ["„Ich nehme mir Zeit, wirklich hinzuhören.“","„Bei mir sind Sie gut aufgehoben – ob nach OP, in der Schwangerschaft oder einfach im stressigen Alltag.“","„Osteopathie heißt für mich: den ganzen Menschen in Bewegung verstehen.“"],
+    2: ["„Ich helfe Menschen, wieder Vertrauen in ihren Körper zu gewinnen.“","„Ich suche nach der Ursache – und erkläre so, dass du es wirklich verstehst.“","„Am Ende sollst du dir wieder selbst vertrauen.“"],
+    3: ["„Bei mir fühlen sich Menschen verstanden.“","„Ich höre erstmal zu – dann schauen wir gemeinsam, was Sie wirklich brauchen.“","„Am schönsten ist es, wenn ich sehe, wie jemand wieder selbstständig wird.“"],
+    4: ["„Ich sehe den Menschen, nicht nur die Diagnose.“","„Mit Humor und Geduld hole ich dich da ab, wo du gerade stehst.“","„Mir geht es um echte Veränderung – nicht nur ums kurzfristige Lindern.“"],
+    5: ["„Bei mir merkt man: Bewegung darf auch Spaß machen.“","„Ich liebe es, Fortschritte mitzuerleben – wenn jemand wieder selbstständig wird.“","„Gesundheit ist für mich keine Sache, die man behandelt, sondern etwas, das man in Bewegung bringt.“"],
+    6: ["„Bei mir fühlt sich der Patient herzlich willkommen.“","„Ruhe, Übersicht und Verlässlichkeit – das möchte ich am Empfang mitbringen.“","„Ich bin das organisatorische Herzstück der Praxis – mit 24 Jahren Erfahrung im Gesundheitswesen.“"]
+  };
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduceMotion) return;
+
+  var order = [0,1,2,3,4,5,6];
+  var idx = {0:0,1:0,2:0,3:0,4:0,5:0,6:0};
+  var turn = 0;
+
+  function tick() {
+    var person = order[turn % order.length];
+    turn++;
+    var el = document.getElementById('pp-mh-q' + person);
+    if (el) {
+      el.style.opacity = 0;
+      setTimeout(function() {
+        idx[person] = (idx[person] + 1) % QUOTES[person].length;
+        el.textContent = QUOTES[person][idx[person]];
+        el.style.opacity = 1;
+      }, 420);
+    }
+  }
+  setInterval(tick, 2600);
+})();
+
+(function() {
+  // Praxis-Wechsler: Crossfade KGG <-> Empfang alle 5200ms.
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduceMotion) return;
+  var layers = [document.getElementById('pp-mh-praxis0'), document.getElementById('pp-mh-praxis1')];
+  if (!layers[0] || !layers[1]) return;
+  var cur = 0;
+  setInterval(function() {
+    layers[cur].classList.remove('active');
+    cur = (cur + 1) % layers.length;
+    layers[cur].classList.add('active');
+  }, 5200);
+})();
+</script>
+
+<!-- HERO (Desktop; auf Mobil per @media oben ausgeblendet) -->
 <main>
 <div class="hero">
 <div class="hero-text">
@@ -637,54 +1027,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- PILATES PARTNER BACKLINK -->
 <section class="section" style="background:#fff;">
 <div class="container">
-<div class="pilates-partner-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;max-width:900px;margin:0 auto;">
-<div>
-<p class="eyebrow">Unser Pilates-Partner</p>
-<h2 style="font-size:clamp(1.6rem,3vw,2.2rem);margin-bottom:1rem;">Reformer Pilates & Aerial Yoga in Stockelsdorf</h2>
-<p style="color:var(--text-mid);line-height:1.8;margin-bottom:1.5rem;">Unsere Partnerpraxis <strong>Pilates Company Lübeck</strong> bietet direkt nebenan spezialisierte Pilates-Kurse an – Reformer Pilates, Aerial Yoga, Barre und Classic Pilates. Ideal als Ergänzung zur Physiotherapie.</p>
-<a href="https://www.pilatescompany.de/kurse" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:.5rem;background:#d9a49a;color:#fff;padding:.75rem 1.5rem;border-radius:100px;font-size:.875rem;font-weight:500;text-decoration:none;transition:.2s;" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">
+<div class="pilates-card-a" style="background:var(--beige-warm);border-radius:var(--radius);border:1px solid var(--beige-mid);border-top:3px solid #d9a49a;overflow:hidden;padding:1.75rem 2rem;max-width:900px;margin:0 auto;">
+<div style="font-size:.72rem;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:#d9a49a;margin-bottom:.4rem;">Unser Pilates-Partner</div>
+<h2 style="font-family:var(--serif);font-weight:500;font-size:1.25rem;margin:0 0 .6rem;">Reformer Pilates, Classic Pilates &amp; Yoga in Stockelsdorf</h2>
+<p style="font-size:.88rem;color:var(--text-mid);line-height:1.7;margin:0 0 1.25rem;">Unsere Partnerpraxis <strong>Pilates Company Lübeck</strong> bietet direkt nebenan Reformer Pilates, Classic Pilates, Yoga und Aerial Yoga an – in kleinen Gruppen und ideal als Ergänzung zur Physiotherapie.</p>
+<div style="display:flex;flex-direction:column;gap:.55rem;margin-bottom:1.25rem;">
+<div style="display:flex;align-items:center;gap:.55rem;padding:.4rem 0;border-bottom:1px solid var(--beige-mid);"><span style="color:#2f4a37;font-weight:700;flex-shrink:0;">✓</span><span style="font-size:.85rem;">Reformer Pilates</span></div>
+<div style="display:flex;align-items:center;gap:.55rem;padding:.4rem 0;border-bottom:1px solid var(--beige-mid);"><span style="color:#2f4a37;font-weight:700;flex-shrink:0;">✓</span><span style="font-size:.85rem;">Classic Pilates</span></div>
+<div style="display:flex;align-items:center;gap:.55rem;padding:.4rem 0;border-bottom:1px solid var(--beige-mid);"><span style="color:#2f4a37;font-weight:700;flex-shrink:0;">✓</span><span style="font-size:.85rem;">Yoga &amp; Aerial Yoga</span></div>
+<div style="display:flex;align-items:center;gap:.55rem;padding:.4rem 0;border-bottom:1px solid var(--beige-mid);"><span style="color:#2f4a37;font-weight:700;flex-shrink:0;">✓</span><span style="font-size:.85rem;">Gleicher Standort · Stockelsdorf</span></div>
+<div style="display:flex;align-items:center;gap:.55rem;padding:.4rem 0;"><span style="color:#2f4a37;font-weight:700;flex-shrink:0;">✓</span><span style="font-size:.85rem;">Kostenloses Probetraining</span></div>
+</div>
+<div style="display:flex;">
+<a href="https://www.pilatescompany.de/kurse" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:.5rem;background:#d9a49a;color:#fff;padding:.7rem 1.4rem;border-radius:100px;font-size:.85rem;font-weight:500;text-decoration:none;transition:.2s;" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">
 Zu den Pilates-Kursen →
 </a>
-</div>
-<div style="background:var(--beige-warm);border-radius:16px;padding:2rem;border:1px solid var(--beige-mid);box-sizing:border-box;width:100%;overflow:hidden;">
-
-  <!-- Desktop: mit Icons -->
-  <div class="pilates-why-desktop" style="display:flex;flex-direction:column;gap:1rem;">
-    <div style="display:flex;gap:1rem;align-items:flex-start;">
-      <div style="width:36px;height:36px;border-radius:50%;background:var(--green);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-      </div>
-      <div><strong style="display:block;margin-bottom:.2rem;">Reformer Pilates</strong><p style="font-size:.85rem;color:var(--text-mid);margin:0;">Effektives Ganzkörpertraining am Reformer-Gerät</p></div>
-    </div>
-    <div style="display:flex;gap:1rem;align-items:flex-start;">
-      <div style="width:36px;height:36px;border-radius:50%;background:var(--green);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-      </div>
-      <div><strong style="display:block;margin-bottom:.2rem;">Aerial Yoga & Barre</strong><p style="font-size:.85rem;color:var(--text-mid);margin:0;">Kraft, Balance und Beweglichkeit in kleinen Gruppen</p></div>
-    </div>
-    <div style="display:flex;gap:1rem;align-items:flex-start;">
-      <div style="width:36px;height:36px;border-radius:50%;background:var(--green);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-      </div>
-      <div><strong style="display:block;margin-bottom:.2rem;">Gleicher Standort</strong><p style="font-size:.85rem;color:var(--text-mid);margin:0;">Segeberger Str. 1, Stockelsdorf – direkt nebenan</p></div>
-    </div>
-    <div style="display:flex;gap:1rem;align-items:flex-start;">
-      <div style="width:36px;height:36px;border-radius:50%;background:var(--green);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-      </div>
-      <div><strong style="display:block;margin-bottom:.2rem;">Kostenloses Probetraining</strong><p style="font-size:.85rem;color:var(--text-mid);margin:0;">Einfach online buchen – unverbindlich</p></div>
-    </div>
-  </div>
-
-  <!-- Mobile: kompakte Zeilen ohne Icons -->
-  <div class="pilates-why-mobile" style="display:none;flex-direction:column;gap:.5rem;">
-    <div style="display:flex;gap:.5rem;align-items:center;padding:.5rem 0;border-bottom:1px solid var(--beige-mid);"><span style="color:#2f4a37;font-weight:700;flex-shrink:0;">✓</span><span style="font-size:.875rem;color:var(--text);">Reformer Pilates</span></div>
-    <div style="display:flex;gap:.5rem;align-items:center;padding:.5rem 0;border-bottom:1px solid var(--beige-mid);"><span style="color:#2f4a37;font-weight:700;flex-shrink:0;">✓</span><span style="font-size:.875rem;color:var(--text);">Aerial Yoga & Barre</span></div>
-    <div style="display:flex;gap:.5rem;align-items:center;padding:.5rem 0;border-bottom:1px solid var(--beige-mid);"><span style="color:#2f4a37;font-weight:700;flex-shrink:0;">✓</span><span style="font-size:.875rem;color:var(--text);">Gleicher Standort · Stockelsdorf</span></div>
-    <div style="display:flex;gap:.5rem;align-items:center;padding:.5rem 0;border-bottom:1px solid var(--beige-mid);"><span style="color:#2f4a37;font-weight:700;flex-shrink:0;">✓</span><span style="font-size:.875rem;color:var(--text);">Kostenloses Probetraining</span></div>
-    <a href="https://www.pilatescompany.de/kurse" target="_blank" style="display:block;text-align:center;background:#d9a49a;color:#fff;padding:.75rem;border-radius:100px;font-size:.875rem;font-weight:500;text-decoration:none;margin-top:.75rem;">Zu den Pilates-Kursen →</a>
-  </div>
-
 </div>
 </div>
 </div>
@@ -693,7 +1050,7 @@ Zu den Pilates-Kursen →
 <div class="divider"></div>
 
 <!-- OSTEOPATHIE CHECK -->
-<section class="section" style="background:#2f4a37;">
+<section class="section" id="osteo-check-desktop" style="background:#2f4a37;">
 <div class="container">
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;">
 <div>
@@ -868,7 +1225,7 @@ Zu den Pilates-Kursen →
 </div>
 </div>
 
-<script src="shared.js?v=202607271233"></script>
+<script src="shared.js?v=202607271350"></script>
 <form name="termin" netlify netlify-honeypot="bot-field" hidden>
 <input name="firstname"><input name="phone"><input name="email"><input name="message">
 <input name="utm_source"><input name="utm_medium"><input name="utm_campaign"><input name="utm_content"><input name="gclid">
@@ -896,13 +1253,6 @@ Zu den Pilates-Kursen →
 .mobile-hero-img { display:block; }
 .voor-wen-block { grid-template-columns: 1fr !important; }
 .voor-wen-block .block-btn-col { border-left: none !important; border-top: 1px solid var(--beige-mid); padding-top: 1rem !important; }
-.pilates-mobile-btn { display:block !important; }
-}
-@media(max-width:900px){
-.pilates-partner-grid { grid-template-columns: 1fr !important; gap: 2rem !important; }
-.pilates-why-desktop { display:none !important; }
-.pilates-why-mobile { display:flex !important; }
-.pilates-partner-grid > div { max-width:100%; overflow:hidden; }
 }
 </style>
 
