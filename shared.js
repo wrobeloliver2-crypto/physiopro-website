@@ -1,6 +1,6 @@
-# ═══════════════════════════════════
-# PhysioPro Lübeck – Shared JS v2.0
-# ═══════════════════════════════════
+// ═══════════════════════════════════
+// PhysioPro Lübeck – Shared JS v2.0
+// ═══════════════════════════════════
 
 // UTM-Parameter aus der Landing-URL an einen URLSearchParams-Body anhängen.
 // Wird von allen Ads-relevanten Formularen genutzt (termin, osteopathie, rueckruf).
