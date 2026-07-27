@@ -173,18 +173,48 @@ window.addEventListener('message', e => {
   document.body.appendChild(btn);
 })();
 
-// Fliegender Anruf-Button – nur Mobile, nicht auf Bad-Schwartau-Seiten (dort eigene Sticky-CTA)
+// Sticky Bottom-CTA – nur Mobile, ersetzt den frueher schwebenden Anruf-Button.
+// Nicht auf Bad-Schwartau-Seiten, nicht auf der Termin-Seite selbst (ein Klick
+// wuerde dort per Seiten-Reload das laufende Buchungsformular zuruecksetzen)
+// und nicht auf der Startseite (index.html hat seit dem Mobile-Redesign
+// 07/2026 eine eigene, baugleiche 3-Button-Sticky-Leiste - #pp-mh-sticky -
+// direkt im Dokument, inkl. Ruckruf-Button, siehe index.html).
 (function() {
-  if (window.innerWidth > 640) return;
-  if (window.location.pathname.indexOf('bad-schwartau') !== -1) return;
-  var btn = document.createElement('a');
-  btn.href = 'tel:+4945140073073';
-  btn.id = 'pp-call-btn';
-  btn.setAttribute('aria-label', 'Anrufen');
-  btn.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>';
-  var style = btn.style;
-  style.cssText = 'position:fixed;bottom:5.5rem;right:1.25rem;z-index:8000;width:52px;height:52px;border-radius:50%;background:#55725e;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,.2);text-decoration:none;';
-  document.body.appendChild(btn);
+  var path = window.location.pathname;
+  if (path.indexOf('bad-schwartau') !== -1) return;
+  if (/^\/termin\/?$/.test(path) || /\/termin\.html$/.test(path)) return;
+  if (path === '/' || path === '' || /^\/index\.html$/.test(path)) return;
+
+  var bar = document.createElement('div');
+  bar.id = 'pp-sticky-cta';
+  bar.className = 'pp-sticky-cta';
+  bar.innerHTML =
+    '<a href="/termin" class="btn btn-primary">Termin anfragen</a>' +
+    '<a href="tel:+4945140073073" class="pp-sticky-call" aria-label="Anrufen: 0451 400 730 73">' +
+    '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f6f1e7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>' +
+    '</a>';
+  document.body.appendChild(bar);
+
+  var style = document.createElement('style');
+  style.textContent = `
+    .pp-sticky-cta { display: none; }
+    @media(max-width:768px) {
+      .pp-sticky-cta {
+        display: flex; align-items: center; gap: .6rem;
+        position: fixed; left: 0; right: 0; bottom: 0; z-index: 900;
+        padding: .6rem .75rem calc(.6rem + env(safe-area-inset-bottom));
+        background: rgba(250,248,244,.92); backdrop-filter: blur(10px);
+        border-top: 1px solid var(--beige-mid);
+      }
+      .pp-sticky-cta a.btn { flex: 1; text-align: center; margin: 0; }
+      .pp-sticky-cta .pp-sticky-call {
+        width: 44px; height: 44px; flex-shrink: 0; border-radius: 12px;
+        background: var(--rose); display: flex; align-items: center; justify-content: center;
+      }
+      body { padding-bottom: 68px; }
+    }
+  `;
+  document.head.appendChild(style);
 })();
 
 // Sitewide Hinweisbanner – Physio Plus Bad Schwartau Betriebseinstellung (Juli/Aug 2026)
