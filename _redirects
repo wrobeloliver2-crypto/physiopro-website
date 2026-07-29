@@ -33,3 +33,8 @@
 /physiotherapie                      /therapie    301
 /physiotherapie/                     /therapie    301
 /physiotherapie.html                 /therapie    301
+
+# ── Ergaenzt 29.07.2026: physiocoaching.html entfernt, ersetzt durch /privat-versichert ──
+/physiocoaching                      /privat-versichert   301
+/physiocoaching/                     /privat-versichert   301
+/physiocoaching.html                 /privat-versichert   301
