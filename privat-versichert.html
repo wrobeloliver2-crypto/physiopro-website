@@ -282,8 +282,19 @@ async function pvSubmit(){
   if(!name||!tel){errEl.textContent='Bitte Name und Telefon angeben.';errEl.style.display='block';return;}
   if(!dsgvo){errEl.textContent='Bitte Datenschutz zustimmen.';errEl.style.display='block';return;}
   errEl.style.display='none';const btn=document.getElementById('pv-submit-btn');btn.textContent='Wird gesendet...';btn.disabled=true;
-  const empfehlungText = pfEmpfehlung.length ? (' | Empfohlenes Team (Finder-Ergebnis): '+pfEmpfehlung.join(', ')+' - Anfrage geht an diese Gruppe, wer zuerst frei hat') : '';
-  const msg='Herkunft: /privat-versichert | Privatpatient:in'+empfehlungText+(document.getElementById('pv-hinweis').value?' | '+document.getElementById('pv-hinweis').value:'');
+  // ═══ Update 29.07.2026: Anliegen-Text komplett neu aufgebaut (Oliver: "sehr sehr
+  // kryptisch, gibt nicht wieder was der Patient eingegeben hat"). Vorher: alles in
+  // einer Zeile mit "|" verkettet, inkl. veraltetem internen Tag "Privatpatient:in".
+  // Jetzt: eigene Nachricht des Interessenten steht IMMER zuerst und klar lesbar,
+  // interne Zusatzinfos folgen darunter mit Zeilenumbruch statt Pipe-Trennzeichen
+  // (bessere Lesbarkeit im Lead-Management) und aktuellem Wording "Privatversicherte"
+  // statt "Privatpatient:in". ═══
+  const hinweis = document.getElementById('pv-hinweis').value.trim();
+  const msgTeile = [];
+  if(hinweis) msgTeile.push(hinweis);
+  msgTeile.push('Herkunft: /privat-versichert (Privatversicherte)');
+  if(pfEmpfehlung.length) msgTeile.push('Empfohlenes Team (Finder-Ergebnis): '+pfEmpfehlung.join(', ')+' – Anfrage geht an diese Gruppe, wer zuerst frei hat');
+  const msg = msgTeile.join('\n');
   try{
     const res=await hsSubmit([{name:'firstname',value:name},{name:'phone',value:tel},{name:'email',value:document.getElementById('pv-email').value.trim()||tel.replace(/\D/g,'')+'@termin.physioproluebeck.de'},{name:'message',value:msg}], 'termin');
     if(res.ok){document.getElementById('pv-form').style.display='none';document.getElementById('pv-success').style.display='block';window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'physio_lead_termin'});}
