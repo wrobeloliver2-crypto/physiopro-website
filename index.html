@@ -378,6 +378,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
       </div>
       <div class="pp-mh-team-row">
+        <img src="team-imo.jpg" alt="Imo" loading="lazy" decoding="async">
+        <div>
+          <p class="pp-mh-team-quote" id="pp-mh-q8">„Ich möchte Menschen dabei helfen, wieder selbstständig in Bewegung zu kommen.“</p>
+          <div class="pp-mh-team-name">Imo · Physiotherapeutin</div>
+        </div>
+      </div>
+      <div class="pp-mh-team-row">
         <img src="team-nico.jpg" alt="Nico" loading="lazy" decoding="async">
         <div>
           <p class="pp-mh-team-quote" id="pp-mh-q7">„Mir geht es um langfristige Verbesserung – nicht nur ums Symptome lindern.“</p>
@@ -521,13 +528,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     4: ["„Ich sehe den Menschen, nicht nur die Diagnose.“","„Mit Humor und Geduld hole ich dich da ab, wo du gerade stehst.“","„Mir geht es um echte Veränderung – nicht nur ums kurzfristige Lindern.“"],
     5: ["„Bei mir merkt man: Bewegung darf auch Spaß machen.“","„Ich liebe es, Fortschritte mitzuerleben – wenn jemand wieder selbstständig wird.“","„Gesundheit ist für mich keine Sache, die man behandelt, sondern etwas, das man in Bewegung bringt.“"],
     6: ["„Bei mir fühlt sich der Patient herzlich willkommen.“","„Ruhe, Übersicht und Verlässlichkeit – das möchte ich am Empfang mitbringen.“","„Ich bin das organisatorische Herzstück der Praxis – mit 24 Jahren Erfahrung im Gesundheitswesen.“"],
-    7: ["„Mir geht es um langfristige Verbesserung – nicht nur ums Symptome lindern.“","„Ich helfe dabei, aus der Reha oder dem Alltag zurück in echte Bewegung zu kommen.“","„Als motivierender Coach nehme ich dich ernst und begleite dich Schritt für Schritt.“"]
+    7: ["„Mir geht es um langfristige Verbesserung – nicht nur ums Symptome lindern.“","„Ich helfe dabei, aus der Reha oder dem Alltag zurück in echte Bewegung zu kommen.“","„Als motivierender Coach nehme ich dich ernst und begleite dich Schritt für Schritt.“"],
+    8: ["„Ich möchte Menschen dabei helfen, wieder selbstständig in Bewegung zu kommen.“","„In der Bewegungsanalyse bin ich in meinem Element.“","„Empathischer Begleiter und verständlicher Erklärer – so sehe ich meine Rolle.“"]
   };
   var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (reduceMotion) return;
 
-  var order = [0,1,2,3,4,5,6,7];
-  var idx = {0:0,1:0,2:0,3:0,4:0,5:0,6:0,7:0};
+  var order = [0,1,2,3,4,5,6,7,8];
+  var idx = {0:0,1:0,2:0,3:0,4:0,5:0,6:0,7:0,8:0};
   var turn = 0;
 
   function tick() {
@@ -805,6 +813,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <em class="mini-quote active">„Ich sehe den Menschen, nicht nur die Diagnose.“</em>
           <em class="mini-quote">„Mit Humor und Geduld hole ich dich da ab, wo du gerade stehst.“</em>
           <em class="mini-quote">„Mir geht es um echte Veränderung – nicht nur ums kurzfristige Lindern.“</em>
+        </p>
+      </div>
+    </div>
+
+    <!-- SLIDE: Imo (Therapeutin) -->
+    <div class="hw-slide" data-therapist="true" style="position:absolute;inset:0;overflow:hidden;">
+      <img src="team-imo.jpg" alt="Imo" width="811" height="480" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;">
+      <div class="hw-photo-overlay">
+        <div class="hw-photo-name">Imo<span>Physiotherapeutin</span></div>
+        <p class="mini-quote-rotator hw-photo-quote">
+          <em class="mini-quote active">„Ich möchte Menschen dabei helfen, wieder selbstständig in Bewegung zu kommen.“</em>
+          <em class="mini-quote">„In der Bewegungsanalyse bin ich in meinem Element.“</em>
+          <em class="mini-quote">„Empathischer Begleiter und verständlicher Erklärer – so sehe ich meine Rolle.“</em>
         </p>
       </div>
     </div>
