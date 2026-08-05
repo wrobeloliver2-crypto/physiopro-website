@@ -107,7 +107,18 @@
     return b.length >= a.length ? b : a;
   }
 
+  // Standort aus URL lesen (z. B. ?standort=bad-schwartau). Optional —
+  // fehlt der Parameter, bleibt es beim bestehenden Dashboard-Fallback
+  // (Stockelsdorf). Abgestimmt mit der Placetel-KI (05.08.2026): einzelner
+  // Parameter auf dieser einen gemeinsamen URL, kein zweites Netlify-Ziel,
+  // analog zu den bestehenden Parametern tel/env. Erwarteter Wert für
+  // Bad Schwartau: "bad-schwartau" (kleingeschrieben, Bindestrich).
+  function leseStandortParam() {
+    return new URLSearchParams(window.location.search).get('standort') || '';
+  }
+
   const rawTel = leseTelParam();
+  const rawStandort = leseStandortParam();
   const telInput = document.getElementById('tel-input');
 
   function normalisiereAnzeige(n) {
@@ -145,7 +156,7 @@
       const res = await fetch(DASHBOARD + '/.netlify/functions/rueckruf-bestaetigung', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ telefon: tel }),
+        body: JSON.stringify({ telefon: tel, standort: rawStandort }),
       });
 
       if (res.ok) {
