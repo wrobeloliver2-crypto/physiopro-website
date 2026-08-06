@@ -21,20 +21,31 @@
   [headers.values]
     Cache-Control = "public, max-age=0, must-revalidate"
 
-# Statische Assets dürfen lange gecacht werden
+# Statische Assets: immer beim Server nachfragen (ETag-basiert), damit Kunden
+# Änderungen sofort sehen statt bis zu ein Jahr lang eine alte, gecachte
+# Version zu behalten. Netlify liefert bei unveraenderten Dateien ein
+# schnelles "304 Not Modified" zurueck (kein erneuter Download).
 [[headers]]
   for = "*.css"
   [headers.values]
-    Cache-Control = "public, max-age=31536000"
+    Cache-Control = "public, max-age=0, must-revalidate"
 [[headers]]
   for = "*.js"
   [headers.values]
-    Cache-Control = "public, max-age=31536000"
+    Cache-Control = "public, max-age=0, must-revalidate"
 [[headers]]
   for = "*.jpg"
   [headers.values]
-    Cache-Control = "public, max-age=31536000"
+    Cache-Control = "public, max-age=0, must-revalidate"
 [[headers]]
   for = "*.png"
   [headers.values]
-    Cache-Control = "public, max-age=31536000"
+    Cache-Control = "public, max-age=0, must-revalidate"
+[[headers]]
+  for = "*.webp"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+[[headers]]
+  for = "*.svg"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
