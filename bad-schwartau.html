@@ -161,6 +161,25 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .bs-photo-hero-content { padding: 1.75rem 1.5rem 2rem; }
   }
 
+  /* Mobil: Foto und Motto/Text als zwei schmale Spalten nebeneinander,
+     statt Foto-Banner mit Text-Overlay (das bleibt Desktop vorbehalten).
+     .bs-mobile-hero-grid ist auf Desktop unsichtbar; .bs-photo-hero und
+     die Overlay-Inhalte darin sind auf Mobil unsichtbar (siehe unten). */
+  .bs-mobile-hero-grid { display: none; }
+  @media(max-width:768px){
+    .bs-photo-hero { display: none; }
+    .bs-mobile-hero-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: .875rem;
+      align-items: stretch; padding: 1rem 1.25rem 0;
+    }
+    .bs-mobile-hero-photo { border-radius: 14px; overflow: hidden; background: var(--beige-warm); }
+    .bs-mobile-hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 15%; display: block; }
+    .bs-mobile-hero-text { display: flex; flex-direction: column; justify-content: center; gap: .6rem; }
+    .bs-mobile-hero-text .tag { font-size: 10.5px; padding: .25rem .55rem; }
+    .bs-mobile-hero-text h1 { font-size: 1.55rem; line-height: 1.08; margin: 0; }
+    .bs-mobile-hero-text .hero-subhead { font-size: 1rem; margin: 0; }
+  }
+
   /* .hero war als 2-Spalten-Grid für Text + Foto-Slider definiert (shared.css).
      Foto-Slider ist jetzt das große Banner oben, hier bleibt nur noch der
      Textblock übrig – daher einspaltig, mit angenehmer Lesebreite. */
@@ -210,7 +229,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <a href="/bad-schwartau" onclick="toggleMenu()">Termin buchen</a>
 </div>
 
-<!-- FOTO-HERO-BANNER: echtes Foto vom Behandlungsraum Eutiner Ring 4A -->
+<!-- MOBIL: Foto links, Motto/Text rechts als zwei Spalten (Desktop nutzt stattdessen das Foto-Banner unten mit Overlay) -->
+<div class="bs-mobile-hero-grid">
+  <div class="bs-mobile-hero-photo">
+    <img src="bad-schwartau/foto-behandlungsraum-2.jpg" alt="Behandlungsraum PhysioPro Bad Schwartau, Eutiner Ring 4A" fetchpriority="high" decoding="async">
+  </div>
+  <div class="bs-mobile-hero-text">
+    <div style="display:flex;gap:.4rem;flex-wrap:wrap;">
+      <span class="tag">Bad Schwartau</span>
+      <span class="tag">Mo–Fr 7–19</span>
+    </div>
+    <p class="hero-motto" style="font-family:var(--serif);font-weight:500;font-size:1.55rem;line-height:1.08;margin:0;">„Wir bewegen <em>Menschen</em>"</p>
+    <p class="hero-subhead" style="font-size:1rem;margin:0;">PhysioPro Bad Schwartau</p>
+  </div>
+</div>
+
+<!-- FOTO-HERO-BANNER (Desktop): echtes Foto vom Behandlungsraum Eutiner Ring 4A -->
 <div class="bs-photo-hero">
   <img src="bad-schwartau/foto-behandlungsraum-2.jpg" alt="Behandlungsraum PhysioPro Bad Schwartau, Eutiner Ring 4A" fetchpriority="high" decoding="async">
   <div class="bs-photo-hero-content">
