@@ -33,3 +33,8 @@
 /physiocoaching                      /privat-versichert   301
 /physiocoaching/                     /privat-versichert   301
 /physiocoaching.html                 /privat-versichert   301
+
+# ── Ergaenzt 07.08.2026: bad-schwartau/termin.html entfernt (veraltet, Inhalte auf /bad-schwartau) ──
+/bad-schwartau/termin                /bad-schwartau   301
+/bad-schwartau/termin/               /bad-schwartau   301
+/bad-schwartau/termin.html           /bad-schwartau   301
