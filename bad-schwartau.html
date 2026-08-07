@@ -211,6 +211,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .bs-hero-slide { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
   .bs-hero-slide--a { position: relative; animation: bsHeroFadeA 8s ease-in-out infinite; }
   .bs-hero-slide--b { opacity: 0; animation: bsHeroFadeB 8s ease-in-out infinite; }
+  /* Hannas Foto ist eine Ganzkörper-Nahaufnahme (Kopf ~10% von oben); enger auf
+     Kopf/Schultern zoomen, damit sie im Container proportional gleich groß wirkt
+     wie das weitwinklige Raumfoto und nicht dominanter/größer erscheint. */
+  .bs-hero-slide--b { object-position: center 8%; transform: scale(1.35); transform-origin: center 12%; }
   @keyframes bsHeroFadeA { 0%,58%{opacity:1;} 70%,88%{opacity:0;} 100%{opacity:1;} }
   @keyframes bsHeroFadeB { 0%,58%{opacity:0;} 70%,88%{opacity:1;} 100%{opacity:0;} }
   @media (prefers-reduced-motion: reduce) {
