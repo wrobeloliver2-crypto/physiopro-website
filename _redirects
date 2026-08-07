@@ -24,12 +24,12 @@
 # ── Ergaenzt 25.06.2026: Kurzlink Rueckruf-SMS (Query-Params werden durchgereicht) ──
 /r   /rueckruf-sms   200
 
-# ── Ergaenzt 20.07.2026: Temporaere Landingpage Bad Schwartau (bis Ablösung 01.08.2026) ──
-/bad-schwartau                       /bad-schwartau/termin   301
-/bad-schwartau/                      /bad-schwartau/termin   301
-/bad-schwartau.html                  /bad-schwartau/termin   301
-
 # ── Ergaenzt 24.07.2026: physiotherapie.html entfernt (verwaist, durch /therapie ersetzt) ──
 /physiotherapie                      /therapie    301
 /physiotherapie/                     /therapie    301
 /physiotherapie.html                 /therapie    301
+
+# ── Ergaenzt 29.07.2026: physiocoaching.html entfernt, ersetzt durch /privat-versichert ──
+/physiocoaching                      /privat-versichert   301
+/physiocoaching/                     /privat-versichert   301
+/physiocoaching.html                 /privat-versichert   301

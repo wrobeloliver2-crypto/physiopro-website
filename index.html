@@ -553,13 +553,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     5: ["„Bei mir merkt man: Bewegung darf auch Spaß machen.“","„Ich liebe es, Fortschritte mitzuerleben – wenn jemand wieder selbstständig wird.“","„Gesundheit ist für mich keine Sache, die man behandelt, sondern etwas, das man in Bewegung bringt.“"],
     6: ["„Bei mir fühlt sich der Patient herzlich willkommen.“","„Ruhe, Übersicht und Verlässlichkeit – das möchte ich am Empfang mitbringen.“","„Ich bin das organisatorische Herzstück der Praxis – mit 24 Jahren Erfahrung im Gesundheitswesen.“"],
     7: ["„Mir geht es um langfristige Verbesserung – nicht nur ums Symptome lindern.“","„Ich helfe dabei, aus der Reha oder dem Alltag zurück in echte Bewegung zu kommen.“","„Als motivierender Coach nehme ich dich ernst und begleite dich Schritt für Schritt.“"],
-    8: ["„Ich möchte Menschen dabei helfen, wieder selbstständig in Bewegung zu kommen.“","„In der Bewegungsanalyse bin ich in meinem Element.“","„Empathischer Begleiter und verständlicher Erklärer – so sehe ich meine Rolle.“"]
+    8: ["„Ich möchte Menschen dabei helfen, wieder selbstständig in Bewegung zu kommen.“","„In der Bewegungsanalyse bin ich in meinem Element.“","„Empathischer Begleiter und verständlicher Erklärer – so sehe ich meine Rolle.“"],
+    9: ["„Bei mir bist du in guten Händen – und darfst dabei auch mal lachen.“","„Am meisten freut es mich, wenn ich sehe, wie jemand wieder Fortschritte macht.“","„Ob nach der OP, im Sport oder im stressigen Büroalltag – ich nehme mir Zeit für dich.“"],
+    10: ["„Ich höre zu, sehe den Menschen im Ganzen und arbeite so mit ihm zusammen, dass er sich wirklich verstanden fühlt.“","„Ich liebe es, Ursachen zu finden – und Training so aufzubauen, dass es wirklich zu dir passt.“","„Für mich gehören Therapie und Training zusammen – beides bringt dich weiter.“"]
   };
   var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (reduceMotion) return;
 
-  var order = [0,1,2,3,4,5,6,7,8];
-  var idx = {0:0,1:0,2:0,3:0,4:0,5:0,6:0,7:0,8:0};
+  var order = [0,1,2,3,4,5,6,7,8,9,10];
+  var idx = {0:0,1:0,2:0,3:0,4:0,5:0,6:0,7:0,8:0,9:0,10:0};
   var turn = 0;
 
   function tick() {
@@ -876,6 +878,32 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <em class="mini-quote active">„Mir geht es um langfristige Verbesserung – nicht nur ums Symptome lindern.“</em>
           <em class="mini-quote">„Ich helfe dabei, aus der Reha oder dem Alltag zurück in echte Bewegung zu kommen.“</em>
           <em class="mini-quote">„Als motivierender Coach nehme ich dich ernst und begleite dich Schritt für Schritt.“</em>
+        </p>
+      </div>
+    </div>
+
+    <!-- SLIDE: Mascha (Therapeutin) -->
+    <div class="hw-slide" data-therapist="true" style="position:absolute;inset:0;overflow:hidden;">
+      <img src="team-mascha.jpg" alt="Mascha" width="1024" height="1024" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;">
+      <div class="hw-photo-overlay">
+        <div class="hw-photo-name">Mascha<span>Physiotherapeutin · Bad Schwartau</span></div>
+        <p class="mini-quote-rotator hw-photo-quote">
+          <em class="mini-quote active">„Bei mir bist du in guten Händen – und darfst dabei auch mal lachen.“</em>
+          <em class="mini-quote">„Am meisten freut es mich, wenn ich sehe, wie jemand wieder Fortschritte macht.“</em>
+          <em class="mini-quote">„Ob nach der OP, im Sport oder im stressigen Büroalltag – ich nehme mir Zeit für dich.“</em>
+        </p>
+      </div>
+    </div>
+
+    <!-- SLIDE: Dini (Therapeutin) -->
+    <div class="hw-slide" data-therapist="true" style="position:absolute;inset:0;overflow:hidden;">
+      <img src="team-dini.jpg" alt="Dini" width="1024" height="1024" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;">
+      <div class="hw-photo-overlay">
+        <div class="hw-photo-name">Dini<span>Physiotherapeutin · Bad Schwartau</span></div>
+        <p class="mini-quote-rotator hw-photo-quote">
+          <em class="mini-quote active">„Ich höre zu, sehe den Menschen im Ganzen und arbeite so mit ihm zusammen, dass er sich wirklich verstanden fühlt.“</em>
+          <em class="mini-quote">„Ich liebe es, Ursachen zu finden – und Training so aufzubauen, dass es wirklich zu dir passt.“</em>
+          <em class="mini-quote">„Für mich gehören Therapie und Training zusammen – beides bringt dich weiter.“</em>
         </p>
       </div>
     </div>

@@ -137,11 +137,39 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </style>
 </head>
 <body>
+<!-- ═══════════════════════════════════════════════════════════════
+     Seiteneigener Hinweisbanner – Physio Plus Bad Schwartau
+     Betriebseinstellung (Juli/Aug 2026). Nur auf dieser Seite, NICHT
+     sitewide (zuvor in shared.js, dort entfernt).
+     Entfernen bzw. Zeitraum pruefen: Ende August 2026
+     ═══════════════════════════════════════════════════════════════ -->
+<div id="pp-alert-banner">
+  <span><strong>Wichtige Information für Patient:innen aus Bad Schwartau</strong> — Physio Plus hat den Betrieb eingestellt. So geht es mit Ihrem Rezept weiter</span>
+  <a href="#rezept-hinweis" class="pp-alert-btn">Jetzt informieren</a>
+</div>
+<style>
+  #pp-alert-banner {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1100;
+    background: #a08a5e; color: #fff;
+    display: flex; align-items: center; justify-content: center; gap: 1rem;
+    flex-wrap: wrap; text-align: center;
+    padding: .6rem 1.25rem; font-size: .85rem; font-family: inherit; line-height: 1.4;
+  }
+  #pp-alert-banner strong { font-weight: 600; }
+  .pp-alert-btn {
+    background: #fff; color: #8a6d2f !important; font-weight: 600;
+    padding: .35rem .95rem; border-radius: 100px; text-decoration: none;
+    white-space: nowrap; font-size: .8rem; flex-shrink: 0;
+  }
+  @media(max-width:640px) {
+    #pp-alert-banner { font-size: .78rem; padding: .55rem .75rem; }
+  }
+</style>
 <nav><div class="nav-inner">
   <a href="/" class="logo"><img src="/logo.png?v=2" alt="PhysioPro Lübeck"></a>
   <ul class="nav-links">
     <li><a href="/">Home</a></li><li><a href="/team">Team</a></li><li><a href="/jobs">Jobs</a></li>
-    <li><a href="/therapie">Therapie</a></li><li><a href="/osteopathie">Osteopathie</a></li><li><a href="/physiocoaching">Physiocoaching</a></li>
+    <li><a href="/therapie">Therapie</a></li><li><a href="/osteopathie">Osteopathie</a></li><li><a href="/privat-versichert">Privatversicherte</a></li>
     <li><a href="/pilates">Pilates</a></li><li><a href="/wissen">Wissen</a></li>
       <li><a href="/kontakt">Kontakt</a></li>
     <li><a href="/termin" class="nav-cta">Termin buchen</a></li>
@@ -151,7 +179,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="mobile-menu" id="mobile-menu">
   <a href="/" onclick="toggleMenu()">Home</a><a href="/team" onclick="toggleMenu()">Team</a>
   <a href="/jobs" onclick="toggleMenu()">Jobs</a><a href="/therapie" onclick="toggleMenu()">Therapie</a>
-  <a href="/osteopathie" onclick="toggleMenu()">Osteopathie</a><a href="/physiocoaching" onclick="toggleMenu()">Physiocoaching</a><a href="/pilates" onclick="toggleMenu()">Pilates</a>
+  <a href="/osteopathie" onclick="toggleMenu()">Osteopathie</a><a href="/privat-versichert" onclick="toggleMenu()">Privatversicherte</a><a href="/pilates" onclick="toggleMenu()">Pilates</a>
   <a href="/wissen" onclick="toggleMenu()">Wissen</a>
   <a href="/kontakt" onclick="toggleMenu()">Kontakt</a><a href="/termin" onclick="toggleMenu()">Termin buchen</a>
 </div>
@@ -571,7 +599,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <footer><div class="container">
   <div class="footer-grid">
     <div class="footer-brand"><img src="/logo.png?v=2" alt="PhysioPro Lübeck" style="height:40px;filter:brightness(0) invert(1);opacity:.8;"><p style="margin-top:.75rem;">Physiotherapie, Osteopathie, Heilpraktik und Pilates in Stockelsdorf und Bad Schwartau bei Lübeck.</p></div>
-    <div class="footer-col"><h4>Leistungen</h4><ul><li><a href="/therapie">Physiotherapie</a></li><li><a href="/osteopathie">Osteopathie</a></li><li><a href="/physiocoaching">Physiocoaching</a></li><li><a href="/pilates">Pilates</a></li><li><a href="/team">Team</a></li><li><a href="/jobs">Jobs</a></li></ul></div>
+    <div class="footer-col"><h4>Leistungen</h4><ul><li><a href="/therapie">Physiotherapie</a></li><li><a href="/osteopathie">Osteopathie</a></li><li><a href="/privat-versichert">Privatversicherte</a></li><li><a href="/pilates">Pilates</a></li><li><a href="/team">Team</a></li><li><a href="/jobs">Jobs</a></li></ul></div>
     <div class="footer-col"><h4>Kontakt</h4><ul><li><a href="tel:+4945140073073">0451 / 400 730 73</a></li><li><a href="mailto:info@physioproluebeck.de">info@physioproluebeck.de</a></li><li><a href="/termin">Termin buchen</a></li></ul></div>
     <div class="footer-col"><h4>Öffnungszeiten</h4><ul><li><a>Mo–Fr: 7–19 Uhr</a></li></ul></div>
   </div>
@@ -585,7 +613,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f6f1e7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
   </a>
 </div>
-<script src="/shared.js?v=202607271233"></script>
+<script>
+  (function() {
+    var banner = document.getElementById('pp-alert-banner');
+    if (!banner) return;
+    function adjustLayout() {
+      var h = banner.offsetHeight;
+      var nav = document.querySelector('nav');
+      if (nav) nav.style.top = h + 'px';
+      document.body.style.paddingTop = 'calc(var(--nav-h) + ' + h + 'px)';
+      var mobileMenu = document.querySelector('.mobile-menu');
+      if (mobileMenu) mobileMenu.style.top = 'calc(var(--nav-h) + ' + h + 'px)';
+    }
+    adjustLayout();
+    window.addEventListener('resize', adjustLayout);
+  })();
+</script>
+<script src="/shared.js?v=202607290717"></script>
 <script>
 let bsRezeptStatus = null;
 function bsSetRezeptStatus(v){

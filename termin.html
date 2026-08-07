@@ -25,7 +25,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .radio-wann:hover,.radio-wann.sel { border-color:var(--rose);background:var(--rose-light); }
 </style>
 <!-- ═══ Design-Standard „Warm Editorial" – nur diese Seite, gleiche Token-Werte
-     wie index.html / team.html / therapie.html / osteopathie.html / physiocoaching.html / pilates.html / wissen.html / kontakt.html / bad-schwartau/termin.html ═══ -->
+     wie index.html / team.html / therapie.html / osteopathie.html / pilates.html / wissen.html / kontakt.html / bad-schwartau/termin.html ═══ -->
 <style>
   :root {
     --sans: 'Instrument Sans', system-ui, sans-serif;
@@ -65,7 +65,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <a href="/" class="logo"><img src="logo.png?v=2" alt="PhysioPro Lübeck"></a>
   <ul class="nav-links">
     <li><a href="/">Home</a></li><li><a href="/team">Team</a></li><li><a href="/jobs">Jobs</a></li>
-    <li><a href="/therapie">Therapie</a></li><li><a href="/osteopathie">Osteopathie</a></li><li><a href="/physiocoaching">Physiocoaching</a></li>
+    <li><a href="/therapie">Therapie</a></li><li><a href="/osteopathie">Osteopathie</a></li><li><a href="/privat-versichert">Privatversicherte</a></li>
     <li><a href="/pilates">Pilates</a></li><li><a href="/wissen">Wissen</a></li>
       <li><a href="/kontakt">Kontakt</a></li>
     <li><a href="/termin" class="nav-cta">Termin buchen</a></li>
@@ -75,7 +75,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="mobile-menu" id="mobile-menu">
   <a href="/" onclick="toggleMenu()">Home</a><a href="/team" onclick="toggleMenu()">Team</a>
   <a href="/jobs" onclick="toggleMenu()">Jobs</a><a href="/therapie" onclick="toggleMenu()">Therapie</a>
-  <a href="/osteopathie" onclick="toggleMenu()">Osteopathie</a><a href="/physiocoaching" onclick="toggleMenu()">Physiocoaching</a><a href="/pilates" onclick="toggleMenu()">Pilates</a>
+  <a href="/osteopathie" onclick="toggleMenu()">Osteopathie</a><a href="/privat-versichert" onclick="toggleMenu()">Privatversicherte</a><a href="/pilates" onclick="toggleMenu()">Pilates</a>
   <a href="/wissen" onclick="toggleMenu()">Wissen</a>
   <a href="/kontakt" onclick="toggleMenu()">Kontakt</a><a href="/termin" onclick="toggleMenu()">Termin buchen</a>
 </div>
@@ -95,7 +95,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <!-- Interaktives Formular -->
       <div>
         <h3 style="margin-bottom:1.5rem;">Termin anfragen</h3>
-        <div style="background:#fff;border-radius:var(--radius);border:1px solid var(--beige-mid);overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.05);">
+        <div style="background:#fff;border-radius:var(--radius);border:1px solid var(--beige-mid);overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.05);" id="ter-form-head">
           <div style="padding:1.25rem 1.75rem;border-bottom:1px solid var(--beige-mid);">
             <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.6rem;">
               <span id="ter-step-label" style="font-size:.78rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--rose);">Schritt 1 von 3</span>
@@ -198,19 +198,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <footer><div class="container">
   <div class="footer-grid">
     <div class="footer-brand"><img src="logo.png?v=2" alt="PhysioPro Lübeck" style="height:40px;filter:brightness(0) invert(1);opacity:.8;"><p style="margin-top:.75rem;">Physiotherapie, Osteopathie, Heilpraktik und Pilates in Stockelsdorf und Bad Schwartau bei Lübeck.</p></div>
-    <div class="footer-col"><h4>Leistungen</h4><ul><li><a href="/therapie">Physiotherapie</a></li><li><a href="/osteopathie">Osteopathie</a></li><li><a href="/physiocoaching">Physiocoaching</a></li><li><a href="/pilates">Pilates</a></li><li><a href="/team">Team</a></li><li><a href="/jobs">Jobs</a></li></ul></div>
+    <div class="footer-col"><h4>Leistungen</h4><ul><li><a href="/therapie">Physiotherapie</a></li><li><a href="/osteopathie">Osteopathie</a></li><li><a href="/privat-versichert">Privatversicherte</a></li><li><a href="/pilates">Pilates</a></li><li><a href="/team">Team</a></li><li><a href="/jobs">Jobs</a></li></ul></div>
     <div class="footer-col"><h4>Kontakt</h4><ul><li><a href="tel:+4945140073073">0451 / 400 730 73</a></li><li><a href="mailto:info@physioproluebeck.de">info@physioproluebeck.de</a></li><li><a href="/termin">Termin buchen</a></li></ul></div>
     <div class="footer-col"><h4>Öffnungszeiten</h4><ul><li><a>Mo–Fr: 7–19 Uhr</a></li></ul></div>
   </div>
   <p class="footer-motto">Wir bewegen Menschen</p>
 <div class="footer-bottom"><p>© 2026 PhysioPro Lübeck · Hanna Wrobel</p><div style="display:flex;gap:1.5rem;"><a href="/impressum">Impressum</a><a href="/datenschutz">Datenschutz</a></div></div>
 </div></footer>
-<script src="shared.js?v=202607271350"></script>
+<script src="shared.js?v=202607290717"></script>
 <script>
 
 // HubSpot Submit Helper
 function getCookie(name) {
-  const v = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
+  const v = document.cookie.match('(^|;)\s*' + name + '\s*=\s*([^;]+)');
   return v ? v.pop() : '';
 }
 async function hsSubmit(fields, formId) {
@@ -225,9 +225,10 @@ async function hsSubmit(fields, formId) {
   return res;
 }
 function selTer(label,groupId){document.querySelectorAll('#'+groupId+' label').forEach(l=>{l.style.borderColor='var(--beige-mid)';l.style.background='#fff';l.classList.remove('sel');});label.style.borderColor='var(--rose)';label.style.background='var(--rose-light)';label.classList.add('sel');}
+function terScrollTop(){var h=document.getElementById('ter-form-head');if(h)h.scrollIntoView({behavior:'smooth',block:'start'});}
 const terT=['','Welche Behandlung?','Details','Ihre Kontaktdaten'],terP=[0,33,66,100];
-function terNext(s){document.getElementById('ter-s'+s).style.display='none';document.getElementById('ter-s'+(s+1)).style.display='block';document.getElementById('ter-step-label').textContent='Schritt '+(s+1)+' von 3';document.getElementById('ter-step-title').textContent=terT[s+1];document.getElementById('ter-progress').style.width=terP[s+1]+'%';}
-function terBack(s){document.getElementById('ter-s'+s).style.display='none';document.getElementById('ter-s'+(s-1)).style.display='block';document.getElementById('ter-step-label').textContent='Schritt '+(s-1)+' von 3';document.getElementById('ter-step-title').textContent=terT[s-1];document.getElementById('ter-progress').style.width=terP[s-1]+'%';}
+function terNext(s){document.getElementById('ter-s'+s).style.display='none';document.getElementById('ter-s'+(s+1)).style.display='block';document.getElementById('ter-step-label').textContent='Schritt '+(s+1)+' von 3';document.getElementById('ter-step-title').textContent=terT[s+1];document.getElementById('ter-progress').style.width=terP[s+1]+'%';terScrollTop();}
+function terBack(s){document.getElementById('ter-s'+s).style.display='none';document.getElementById('ter-s'+(s-1)).style.display='block';document.getElementById('ter-step-label').textContent='Schritt '+(s-1)+' von 3';document.getElementById('ter-step-title').textContent=terT[s-1];document.getElementById('ter-progress').style.width=terP[s-1]+'%';terScrollTop();}
 async function terSubmit(){
   const name=document.getElementById('ter-name').value.trim(),tel=document.getElementById('ter-tel').value.trim(),dsgvo=document.getElementById('ter-dsgvo').checked,errEl=document.getElementById('ter-error');
   if(!name||!tel){errEl.textContent='Bitte Name und Telefon angeben.';errEl.style.display='block';return;}
