@@ -89,6 +89,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .trainer-info { border-top: 1.5px solid var(--rose); }
   .trainer-specialty { font-family: var(--meta); letter-spacing: .1em; text-transform: uppercase; font-size: .72rem; }
 
+  /* Standort-Badges auf den Team-Karten */
+  .trainer-standort { display: flex; gap: .35rem; flex-wrap: wrap; margin: .4rem 0 .1rem; }
+  .trainer-standort span {
+    display: inline-block; background: var(--beige-warm); color: var(--beige-dark);
+    font-family: var(--meta); font-weight: 500; font-size: .66rem; letter-spacing: .09em;
+    text-transform: uppercase; padding: .22rem .6rem; border-radius: 999px;
+    border: 1px solid var(--beige-mid);
+  }
+
   /* Jobs-CTA: warme Papier-Fläche statt Grün-auf-Grün */
   .team-jobs-cta { background: var(--beige-warm); border: 1px solid var(--beige-mid); }
 
@@ -102,7 +111,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <a href="/" class="logo"><img src="logo.png?v=2" alt="PhysioPro Lübeck"></a>
   <ul class="nav-links">
     <li><a href="/">Home</a></li><li><a href="/team" class="active">Team</a></li><li><a href="/jobs">Jobs</a></li>
-    <li><a href="/therapie">Therapie</a></li><li><a href="/osteopathie">Osteopathie</a></li><li><a href="/physiocoaching">Physiocoaching</a></li>
+    <li><a href="/therapie">Therapie</a></li><li><a href="/osteopathie">Osteopathie</a></li><li><a href="/privat-versichert">Privatversicherte</a></li>
     <li><a href="/pilates">Pilates</a></li><li><a href="/wissen">Wissen</a></li>
       <li><a href="/kontakt">Kontakt</a></li>
     <li><a href="/termin" class="nav-cta">Termin buchen</a></li>
@@ -112,7 +121,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="mobile-menu" id="mobile-menu">
   <a href="/" onclick="toggleMenu()">Home</a><a href="/team" onclick="toggleMenu()">Team</a>
   <a href="/jobs" onclick="toggleMenu()">Jobs</a><a href="/therapie" onclick="toggleMenu()">Therapie</a>
-  <a href="/osteopathie" onclick="toggleMenu()">Osteopathie</a><a href="/physiocoaching" onclick="toggleMenu()">Physiocoaching</a><a href="/pilates" onclick="toggleMenu()">Pilates</a>
+  <a href="/osteopathie" onclick="toggleMenu()">Osteopathie</a><a href="/privat-versichert" onclick="toggleMenu()">Privatversicherte</a><a href="/pilates" onclick="toggleMenu()">Pilates</a>
   <a href="/wissen" onclick="toggleMenu()">Wissen</a>
   <a href="/kontakt" onclick="toggleMenu()">Kontakt</a><a href="/termin" onclick="toggleMenu()">Termin buchen</a>
 </div>
@@ -134,6 +143,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <span class="tag" style="margin-bottom:.5rem;">Gründerin & Inhaberin</span>
         <h3 style="margin-top:.2rem;">Hanna Wrobel</h3>
         <p style="color:var(--beige-dark);font-size:.85rem;margin-top:.2rem;font-weight:500;letter-spacing:.03em;">Physiotherapeutin · Pilatestrainerin</p>
+        <div class="trainer-standort"><span>Stockelsdorf</span></div>
         <p style="color:var(--text-mid);margin-top:.75rem;line-height:1.6;font-size:.88rem;">Hanna Wrobel gründete PhysioPro Lübeck nach über 22 Jahren therapeutischer Erfahrung. Ihr Ansatz verbindet klassische Physiotherapie mit modernen Methoden wie Pilates am Reformer – immer mit dem Ziel, nachhaltige Gesundheit zu fördern.</p>
         <div style="margin-top:1rem;display:flex;gap:.75rem;flex-wrap:wrap;">
           <a href="https://wa.me/4917623339367" target="_blank" class="btn btn-primary" style="font-size:.8rem;padding:.55rem 1rem;display:inline-flex;align-items:center;gap:.45rem;">
@@ -152,6 +162,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <div class="trainer-info">
           <h3>Anna</h3>
           <p class="trainer-specialty">Physiotherapeutin</p>
+          <div class="trainer-standort"><span>Stockelsdorf</span></div>
 
           <div class="trainer-methods">
             <span>Manuelle Therapie</span>
@@ -178,6 +189,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <div class="trainer-info">
           <h3>Julia Mielke</h3>
           <p class="trainer-specialty">Osteopathin · Heilpraktikerin · Physiotherapeutin</p>
+          <div class="trainer-standort"><span>Stockelsdorf</span><span>Bad Schwartau</span></div>
 
           <div class="trainer-methods">
             <span style="background:var(--osteo-light);color:var(--osteo-dark);font-weight:600;">Osteopathie</span>
@@ -202,6 +214,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <div class="trainer-info">
           <h3>Tuana</h3>
           <p class="trainer-specialty">Physiotherapeutin · Pilates-Trainerin</p>
+          <div class="trainer-standort"><span>Stockelsdorf</span></div>
 
           <div class="trainer-methods">
             <span>Krankengymnastik (KGG)</span>
@@ -227,6 +240,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <div class="trainer-info">
           <h3>Maike</h3>
           <p class="trainer-specialty">Physiotherapeutin · Pilatestrainerin</p>
+          <div class="trainer-standort"><span>Stockelsdorf</span></div>
 
           <div class="trainer-methods">
             <span>Krankengymnastik (KGG)</span>
@@ -247,35 +261,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           </ul>
         </div>
       </div>
-      <div class="trainer-card trainer-card--done">
-        <div class="trainer-img"><img src="team-imo.jpg" alt="Imo"></div>
-        <div class="trainer-info">
-          <h3>Imo</h3>
-          <p class="trainer-specialty">Physiotherapeutin</p>
-
-          <div class="trainer-methods">
-            <span>Lymphdrainage</span>
-            <span>CMD / Kiefergelenk</span>
-            <span>Trainingstherapie</span>
-          </div>
-          <p class="trainer-quals">Staatsexamen Physiotherapie · Lymphdrainage-Ausbildung · Faszien­distorsionsmodell nach Typaldos · CMD</p>
-
-          <p class="trainer-claim">„Ich möchte Menschen dabei helfen, wieder selbstständig in Bewegung zu kommen.“</p>
-
-          <p class="trainer-needs-label">Du bist bei Imo richtig, wenn …</p>
-          <ul class="trainer-needs">
-            <li>… du unter akuten oder chronischen Schmerzen leidest</li>
-            <li>… du unter Kiefer- oder Kopfschmerzen (CMD) leidest</li>
-            <li>… du nach einer OP oder Reha wieder Sicherheit in deinem Körper finden willst</li>
-            <li>… du dir eine empathische Begleiterin wünschst, die dir Dinge verständlich erklärt</li>
-          </ul>
-        </div>
-      </div>
       <div class="trainer-card trainer-card--pinned">
         <div class="trainer-img"><img src="team-annika.jpg" alt="Annika"></div>
         <div class="trainer-info">
           <h3>Annika</h3>
           <p class="trainer-specialty">Front Office & Administration</p>
+          <div class="trainer-standort"><span>Stockelsdorf</span></div>
 
           <div class="trainer-methods">
             <span>Physiotherapeutin</span>
@@ -296,10 +287,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
       </div>
       <div class="trainer-card trainer-card--done">
-        <div class="trainer-img"><img src="team-phillip.jpg" alt="Phillip" style="object-position:center 30%;transform:scale(1.4);transform-origin:center 30%;"></div>
+        <div class="trainer-img"><img src="team-phillip.jpg" alt="Phillip"></div>
         <div class="trainer-info">
           <h3>Phillip</h3>
           <p class="trainer-specialty">Physiotherapeut</p>
+          <div class="trainer-standort"><span>Stockelsdorf</span></div>
 
           <div class="trainer-methods">
             <span>Krankengymnastik (KGG)</span>
@@ -326,6 +318,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <div class="trainer-info">
           <h3>Nico</h3>
           <p class="trainer-specialty">Physiotherapeut · Physiocoach</p>
+          <div class="trainer-standort"><span>Stockelsdorf</span></div>
 
           <div class="trainer-methods">
             <span>Krankengymnastik (KGG)</span>
@@ -346,6 +339,81 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           </ul>
         </div>
       </div>
+      <div class="trainer-card trainer-card--done">
+        <div class="trainer-img"><img src="team-imo.jpg" alt="Imo"></div>
+        <div class="trainer-info">
+          <h3>Imo</h3>
+          <p class="trainer-specialty">Physiotherapeutin</p>
+          <div class="trainer-standort"><span>Stockelsdorf</span></div>
+
+          <div class="trainer-methods">
+            <span>Lymphdrainage</span>
+            <span>CMD / Kiefergelenk</span>
+            <span>Trainingstherapie</span>
+          </div>
+          <p class="trainer-quals">Staatsexamen Physiotherapie · Lymphdrainage-Ausbildung · Faszien­distorsionsmodell nach Typaldos · CMD</p>
+
+          <p class="trainer-claim">„Ich möchte Menschen dabei helfen, wieder selbstständig in Bewegung zu kommen.“</p>
+
+          <p class="trainer-needs-label">Du bist bei Imo richtig, wenn …</p>
+          <ul class="trainer-needs">
+            <li>… du unter akuten oder chronischen Schmerzen leidest</li>
+            <li>… du unter Kiefer- oder Kopfschmerzen (CMD) leidest</li>
+            <li>… du nach einer OP oder Reha wieder Sicherheit in deinem Körper finden willst</li>
+            <li>… du dir eine empathische Begleiterin wünschst, die dir Dinge verständlich erklärt</li>
+          </ul>
+        </div>
+      </div>
+      <div class="trainer-card trainer-card--done">
+        <div class="trainer-img"><img src="team-mascha.jpg" alt="Mascha"></div>
+        <div class="trainer-info">
+          <h3>Mascha</h3>
+          <p class="trainer-specialty">Physiotherapeutin</p>
+          <div class="trainer-standort"><span>Bad Schwartau</span></div>
+
+          <div class="trainer-methods">
+            <span>Krankengymnastik (KGG)</span>
+          </div>
+          <p class="trainer-quals">Staatsexamen Physiotherapie</p>
+
+          <p class="trainer-claim">„Bei mir bist du in guten Händen – und darfst dabei auch mal lachen.“</p>
+
+          <p class="trainer-needs-label">Du bist bei Mascha richtig, wenn …</p>
+          <ul class="trainer-needs">
+            <li>… du mit akuten, chronischen oder wiederkehrenden Beschwerden zu ihr kommst</li>
+            <li>… du dich nach einer Operation in kleinen, sicheren Schritten zurücktasten möchtest</li>
+            <li>… du dir eine ruhige und humorvolle Begleitung wünschst, bei der du dich ernst genommen fühlst</li>
+            <li>… du im Büroalltag oder als Sportler:in wieder mehr Beweglichkeit und Sicherheit gewinnen willst</li>
+          </ul>
+        </div>
+      </div>
+      <div class="trainer-card trainer-card--done">
+        <div class="trainer-img"><img src="team-dini.jpg" alt="Dini"></div>
+        <div class="trainer-info">
+          <h3>Dini</h3>
+          <p class="trainer-specialty">Physiotherapeutin · Sport &amp; Bewegung</p>
+          <div class="trainer-standort"><span>Bad Schwartau</span></div>
+
+          <div class="trainer-methods">
+            <span>Manuelle Therapie</span>
+            <span>Krankengymnastik (KGG)</span>
+            <span>CMD / Kiefergelenk</span>
+            <span>Trainingstherapie</span>
+            <span>Prävention</span>
+          </div>
+          <p class="trainer-quals">Staatsexamen Physiotherapie · Manuelle Therapie (zertifiziert) · CMD/KGG-Fortbildungen</p>
+
+          <p class="trainer-claim">„Ich höre zu, sehe den Menschen im Ganzen und arbeite so mit ihm zusammen, dass er sich wirklich verstanden fühlt.“</p>
+
+          <p class="trainer-needs-label">Du bist bei Dini richtig, wenn …</p>
+          <ul class="trainer-needs">
+            <li>… du als Sportler:in strukturiert und gezielt trainieren möchtest</li>
+            <li>… dich Verspannungen im Kiefer oder wiederkehrende Kopfschmerzen belasten</li>
+            <li>… du eine Therapeutin suchst, die analytisch nach der Ursache sucht und dich dabei ganzheitlich im Blick behält</li>
+            <li>… du sowohl Manuelle Therapie als auch aktives Training in einer Behandlung verbinden möchtest</li>
+          </ul>
+        </div>
+      </div>
     </div>
 
     <!-- Jobs CTA -->
@@ -360,12 +428,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <footer><div class="container">
   <div class="footer-grid">
     <div class="footer-brand"><img src="logo.png?v=2" alt="PhysioPro Lübeck" style="height:40px;filter:brightness(0) invert(1);opacity:.8;"><p style="margin-top:.75rem;">Physiotherapie, Osteopathie, Heilpraktik und Pilates in Stockelsdorf und Bad Schwartau bei Lübeck.</p></div>
-    <div class="footer-col"><h4>Leistungen</h4><ul><li><a href="/therapie">Physiotherapie</a></li><li><a href="/osteopathie">Osteopathie</a></li><li><a href="/physiocoaching">Physiocoaching</a></li><li><a href="/pilates">Pilates</a></li><li><a href="/team">Team</a></li><li><a href="/jobs">Jobs</a></li></ul></div>
+    <div class="footer-col"><h4>Leistungen</h4><ul><li><a href="/therapie">Physiotherapie</a></li><li><a href="/osteopathie">Osteopathie</a></li><li><a href="/privat-versichert">Privatversicherte</a></li><li><a href="/pilates">Pilates</a></li><li><a href="/team">Team</a></li><li><a href="/jobs">Jobs</a></li></ul></div>
     <div class="footer-col"><h4>Kontakt</h4><ul><li><a href="tel:+4945140073073">0451 / 400 730 73</a></li><li><a href="mailto:info@physioproluebeck.de">info@physioproluebeck.de</a></li><li><a href="/termin">Termin buchen</a></li></ul></div>
     <div class="footer-col"><h4>Öffnungszeiten</h4><ul><li><a>Mo–Fr: 7–19 Uhr</a></li></ul></div>
   </div>
   <p class="footer-motto">Wir bewegen Menschen</p>
 <div class="footer-bottom"><p>© 2026 PhysioPro Lübeck · Hanna Wrobel</p><div style="display:flex;gap:1.5rem;"><a href="/impressum">Impressum</a><a href="/datenschutz">Datenschutz</a></div></div>
 </div></footer>
-<script src="shared.js?v=202607271350"></script>
+<script src="shared.js?v=202607290717"></script>
 </body></html>
