@@ -204,6 +204,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   @media(max-width:768px){ .bs-trainer-grid { grid-template-columns: repeat(2,1fr); } }
   @media(max-width:480px){ .bs-trainer-grid { grid-template-columns: 1fr; } }
 
+  /* ── Hero-Crossfade: zwei gestapelte Bilder, alle 5s sanfter Wechsel ──
+     .bs-hero-slide--a und --b liegen übereinander; die Animation blendet
+     Bild B alle 8s für 3s ein (5s Standzeit je Bild), dann zurück. Läuft
+     rein per CSS parallel im Mobil- und Desktop-Container. */
+  .bs-hero-slide { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .bs-hero-slide--a { position: relative; animation: bsHeroFadeA 8s ease-in-out infinite; }
+  .bs-hero-slide--b { opacity: 0; animation: bsHeroFadeB 8s ease-in-out infinite; }
+  @keyframes bsHeroFadeA { 0%,58%{opacity:1;} 70%,88%{opacity:0;} 100%{opacity:1;} }
+  @keyframes bsHeroFadeB { 0%,58%{opacity:0;} 70%,88%{opacity:1;} 100%{opacity:0;} }
+  @media (prefers-reduced-motion: reduce) {
+    .bs-hero-slide--a, .bs-hero-slide--b { animation: none; }
+    .bs-hero-slide--b { opacity: 0; }
+  }
+
   /* ── Foto-Hero (Desktop): Bild + Overlay-Text ────────────────── */
   .bs-photo-hero { position: relative; width: 100%; height: 620px; overflow: hidden; }
   .bs-photo-hero img { width: 100%; height: 100%; object-fit: cover; object-position: center 40%; display: block; }
@@ -330,8 +344,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- MOBIL: Foto links, Motto/Text rechts als zwei Spalten (Desktop nutzt stattdessen das Foto-Banner unten mit Overlay) -->
 <div class="bs-mobile-hero-grid">
-  <div class="bs-mobile-hero-photo">
-    <img src="bad-schwartau/foto-behandlungsraum.jpg" alt="Behandlungsraum PhysioPro Bad Schwartau, Eutiner Ring 4A" fetchpriority="high" decoding="async">
+  <div class="bs-mobile-hero-photo bs-hero-crossfade">
+    <img class="bs-hero-slide bs-hero-slide--a" src="bad-schwartau/foto-behandlungsraum.jpg" alt="Behandlungsraum PhysioPro Bad Schwartau, Eutiner Ring 4A" fetchpriority="high" decoding="async">
+    <img class="bs-hero-slide bs-hero-slide--b" src="team-hanna.jpg" alt="Hanna Wrobel, PhysioPro Bad Schwartau" decoding="async">
   </div>
   <div class="bs-mobile-hero-text">
     <div style="display:flex;gap:.4rem;flex-wrap:wrap;">
@@ -344,8 +359,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 
 <!-- FOTO-HERO-BANNER (Desktop): echtes Foto vom Behandlungsraum Eutiner Ring 4A -->
-<div class="bs-photo-hero">
-  <img src="bad-schwartau/foto-behandlungsraum.jpg" alt="Behandlungsraum PhysioPro Bad Schwartau, Eutiner Ring 4A" fetchpriority="high" decoding="async">
+<div class="bs-photo-hero bs-hero-crossfade">
+  <img class="bs-hero-slide bs-hero-slide--a" src="bad-schwartau/foto-behandlungsraum.jpg" alt="Behandlungsraum PhysioPro Bad Schwartau, Eutiner Ring 4A" fetchpriority="high" decoding="async">
+  <img class="bs-hero-slide bs-hero-slide--b" src="team-hanna.jpg" alt="Hanna Wrobel, PhysioPro Bad Schwartau" decoding="async">
   <div class="bs-photo-hero-content">
     <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:.75rem;">
       <span class="tag">Bad Schwartau · Eutiner Ring 4A</span>
