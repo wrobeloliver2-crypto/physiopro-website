@@ -50,6 +50,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
      wie index.html / team.html / therapie.html / osteopathie.html / pilates.html / wissen.html / kontakt.html / termin.html / bad-schwartau/termin.html.
      Die Rose-Akzentfarbe (#d9a49a) von „She Regulates" / Hanna Wrobel bleibt bewusst unverändert. ═══ -->
 <style>
+  /* ═══════════════════════════════════════════════════════════════════
+     DESIGN-STANDARD „WARM EDITORIAL"
+     Referenz-Implementierung. Alle Werte sind Tokens oder daraus
+     abgeleitete, wiederverwendbare Klassen (Präfix .pp-) – bewusst
+     seiten-unabhängig, damit dieser Block 1:1 auf die übrigen
+     Unterseiten übernommen werden kann.
+     Ausnahme laut Vorgabe: die Rose-Akzentfarbe #d9a49a bleibt dem
+     Themenblock „Hanna Wrobel / She Regulates" vorbehalten.
+     ═══════════════════════════════════════════════════════════════ */
+
   :root {
     --sans: 'Instrument Sans', system-ui, sans-serif;
     --serif: 'Newsreader', Georgia, serif;
@@ -57,133 +67,222 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     --accent-italic: #5e7a52;
     --rose: #2f4a37; --rose-dark: #23392a; --rose-light: #e6ecdd;
     --green: #2f4a37; --green-dark: #23392a; --green-light: #e6ecdd;
+    --green-pale: #c6d9b8;
     --beige: #a08a5e; --beige-warm: #efe9dc; --beige-mid: #ece4d3;
     --beige-dark: #8a8368; --beige-light: #efe9dc; --cream: #f6f1e7;
     --text: #2c2a22; --text-mid: #54513f; --warm-gray: #8a8368;
-    --border: #ddd4c0; --radius: 16px;
+    --border: #ddd4c0; --radius: 16px; --radius-sm: 12px;
+    --shadow: 0 40px 80px -40px rgba(60,50,30,.4);
   }
-  body { background: var(--cream); }
-  h1, h2, h3 { font-weight: 500; letter-spacing: -0.02em; }
-  h1 { line-height: 1.06; } h2, h3 { line-height: 1.15; }
+
+  /* ── Basis ───────────────────────────────────────────────────── */
+  body { background: var(--cream); color: var(--text); }
+  h1, h2, h3 { font-family: var(--serif); font-weight: 500; letter-spacing: -0.02em; }
+  h1 { line-height: 1.04; } h2, h3 { line-height: 1.12; }
   h1 em, h2 em, h3 em { font-style: italic; color: var(--accent-italic); font-weight: 500; }
-  h4, .eyebrow, h2.eyebrow { font-family: var(--meta); font-weight: 500; font-size: 11.5px; letter-spacing: .13em; text-transform: uppercase; color: var(--beige-dark); }
-  .tag { background: var(--rose-light); color: #3c5a41; font-family: var(--meta); letter-spacing: .1em; }
-  .btn-primary { background: var(--rose); color: var(--cream); }
-  .btn-primary:hover { background: var(--rose-dark); }
-  .btn-outline { border: 1.5px solid var(--rose); color: var(--rose); }
-  .btn-outline:hover { background: var(--rose); color: var(--cream); border-color: var(--rose); }
-  .stats-bar { background: #2f4a37; }
-  .modal-header { background: #2f4a37; }
-  footer { background: #2f4a37; color: rgba(246,241,231,.7); }
-  footer .footer-col h4, footer .footer-col h2 { color: #f6f1e7; font-size: .75rem; letter-spacing: .1em; }
+  p { text-wrap: pretty; }
+  a { color: var(--green); }
+  a:hover { color: var(--accent-italic); }
+  h4, .eyebrow, h2.eyebrow, .pp-kicker {
+    font-family: var(--meta); font-weight: 500; font-size: 11.5px;
+    letter-spacing: .13em; text-transform: uppercase; color: var(--warm-gray);
+    margin: 0 0 .6rem;
+  }
+
+  /* ── Sektionsrhythmus: Papier ↔ Sand, Dunkelgrün nur als Zäsur ── */
+  .section { padding: 32px 18px; }
+  @media (min-width: 769px) { .section { padding: 60px 44px; } }
+  .sec--paper { background: var(--cream); }
+  .sec--alt   { background: var(--beige-warm); }
+  .sec--dark  { background: var(--green); color: rgba(246,241,231,.85); }
+  .sec--dark h1, .sec--dark h2, .sec--dark h3 { color: #f6f1e7; }
+  .sec--dark h1 em, .sec--dark h2 em, .sec--dark h3 em { color: var(--green-pale); }
+  .sec--dark .eyebrow, .sec--dark .pp-kicker { color: rgba(246,241,231,.55); }
+  .divider { display: none; }
+
+  /* ── Buttons & Chips: immer Pill ─────────────────────────────── */
+  .btn { border-radius: 100px; font-family: var(--sans); font-weight: 500; }
+  .btn-primary { background: var(--green); color: var(--cream); }
+  .btn-primary:hover { background: var(--green-dark); color: var(--cream); }
+  .btn-outline { background: transparent; border: 1.5px solid var(--green); color: var(--green); }
+  .btn-outline:hover { background: var(--green); color: var(--cream); border-color: var(--green); }
+  .tag, .pp-chip {
+    display: inline-block; border-radius: 100px;
+    background: var(--green-light); color: #3c5a41;
+    font-family: var(--meta); font-size: 11px; font-weight: 500;
+    letter-spacing: .1em; text-transform: uppercase; padding: .3rem .75rem;
+  }
+  .pp-chips { display: flex; flex-wrap: wrap; gap: .4rem; }
+  .pp-link {
+    color: var(--green-dark); font-size: .9rem; text-decoration: none;
+    border-bottom: 1.5px solid var(--green-pale); padding-bottom: 2px;
+  }
+  .pp-link:hover { border-bottom-color: var(--green); }
+
+  /* ── Karten: eine Kartensprache für die ganze Seite ──────────── */
+  .pp-card, .therapie-card, .bs-trainer-card {
+    background: #fff; border: 4px solid var(--border);
+    border-radius: var(--radius); overflow: hidden; box-shadow: none;
+  }
+  .pp-body { font-size: .9rem; color: var(--text-mid); line-height: 1.6; margin: 0; }
+  .pp-grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; align-items: start; }
+  @media (max-width: 900px) { .pp-grid-3 { grid-template-columns: repeat(2,1fr); } }
+  @media (max-width: 560px) { .pp-grid-3 { grid-template-columns: 1fr; } }
+
+  .therapie-card-body { padding: 1.75rem; border-top: none; display: flex; flex-direction: column; gap: .6rem; }
+  .therapie-card-body h3 { font-size: 1.15rem; margin: 0; }
+  .therapie-card-body p { font-size: .9rem; color: var(--text-mid); line-height: 1.6; margin: 0; }
+  .therapie-card.innovativ { background: var(--green); border-color: var(--green); }
+
+  /* Themenblock (Zielgruppe): Karte + Akzent nur in Label und Button */
+  .pp-topics { display: flex; flex-direction: column; gap: 1.25rem; }
+  .pp-topic { display: grid; grid-template-columns: 1fr auto; align-items: center; }
+  .pp-topic-main { padding: 1.75rem 2rem; display: flex; flex-direction: column; gap: .5rem; }
+  .pp-topic-main h3 { font-size: 1.2rem; margin: 0; }
+  .pp-topic-main .pp-kicker { margin: 0; }
+  .pp-topic-cta { padding: 1.75rem 2rem; border-left: 1px solid var(--beige-mid); }
+  @media (max-width: 720px) {
+    .pp-topic { grid-template-columns: 1fr; }
+    .pp-topic-main { padding: 1.5rem; }
+    .pp-topic-cta { border-left: none; border-top: 1px solid var(--beige-mid); padding: 1.25rem 1.5rem; }
+    .pp-topic-cta .btn { display: block; text-align: center; }
+  }
+
+  /* ── Redaktionelle Liste (Ablauf, FAQ) statt Karten ──────────── */
+  .pp-steps { display: flex; flex-direction: column; }
+  .pp-step { display: grid; grid-template-columns: 44px 1fr; gap: 1.25rem; padding: 1.5rem 0; border-bottom: 1px solid var(--border); }
+  .pp-step:last-child { border-bottom: none; }
+  .pp-step-num { font-family: var(--meta); font-size: 12px; font-weight: 500; letter-spacing: .14em; color: var(--beige); padding-top: .35rem; }
+  .pp-step h3 { font-size: 1.1rem; margin: 0 0 .4rem; }
+  .pp-faq { display: flex; flex-direction: column; }
+  .pp-faq-item { padding: 1.5rem 0; border-bottom: 1px solid var(--border); }
+  .pp-faq-item:last-child { border-bottom: none; }
+  .pp-faq-item h3 { font-size: 1.05rem; margin: 0 0 .5rem; }
+
+  /* ── Zahlenband (dunkelgrüne Zäsur) ──────────────────────────── */
+  .stats-bar { background: var(--green); }
+  .stats-bar .stat-num { font-family: var(--serif); font-weight: 500; color: #f6f1e7; letter-spacing: -.02em; }
+  .stats-bar .stat-label { font-family: var(--meta); font-size: 11px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: rgba(246,241,231,.6); }
+  .stats-bar .stat-divider { background: rgba(246,241,231,.18); }
+
+  .modal-header { background: var(--green); }
+  footer { background: var(--green); color: rgba(246,241,231,.7); }
+  footer .footer-col h4, footer .footer-col h2 { color: #f6f1e7; font-family: var(--meta); font-size: 11.5px; letter-spacing: .13em; text-transform: uppercase; }
   footer .footer-col ul li a { color: rgba(246,241,231,.62); }
-  footer .footer-col ul li a:hover, .footer-bottom a:hover { color: #c6d9b8; }
-  .footer-motto { color: rgba(246,241,231,.55); }
-  #pp-call-btn { background: #2f4a37 !important; }
-  .therapie-card { background:#fff; border-radius:var(--radius); overflow:hidden; box-shadow:0 4px 20px rgba(0,0,0,.06); border:1px solid var(--beige-mid); }
-  .therapie-card img { width:100%; height:200px; object-fit:cover; display:block; }
-  .therapie-card-body { padding:1.5rem; border-top:3px solid var(--rose); }
-  .therapie-card-body h3 { font-size:1.1rem; margin-bottom:.5rem; }
-  .therapie-card-body p { font-size:.875rem; color:var(--text-mid); line-height:1.7; margin:0; }
-  .therapie-card.innovativ { background:var(--rose); }
-  .therapie-card.innovativ .therapie-card-body { border-top-color:rgba(255,255,255,.4); }
+  footer .footer-col ul li a:hover, .footer-bottom a:hover { color: var(--green-pale); }
+  .footer-motto { font-family: var(--serif); font-style: italic; color: rgba(246,241,231,.55); }
+  #pp-call-btn { background: var(--green) !important; }
 
-  /* Sticky Bottom-Bar (mobil) – primäre Aktion immer erreichbar, analog
-     zu .bs-sticky-cta auf bad-schwartau/termin.html und dem globalen
-     #pp-sticky-cta aus shared.js (das über den Pfad-Ausschluss
-     "bad-schwartau" bewusst NICHT auf dieser Seite injiziert wird). */
-  .bs-sticky-cta { display:none; }
-  @media (max-width:768px) {
+  /* ── Sticky Bottom-Bar (mobil) ───────────────────────────────── */
+  .bs-sticky-cta { display: none; }
+  @media (max-width: 768px) {
     .bs-sticky-cta {
-      display:flex; align-items:center; gap:.6rem;
-      position:fixed; left:0; right:0; bottom:0; z-index:900;
-      padding:.6rem .75rem calc(.6rem + env(safe-area-inset-bottom));
-      background:rgba(246,241,231,.92); backdrop-filter:blur(10px);
-      border-top:1px solid var(--beige-mid);
+      display: flex; align-items: center; gap: .6rem;
+      position: fixed; left: 0; right: 0; bottom: 0; z-index: 900;
+      padding: .6rem .75rem calc(.6rem + env(safe-area-inset-bottom));
+      background: rgba(246,241,231,.92); backdrop-filter: blur(10px);
+      border-top: 1px solid var(--beige-mid);
     }
-    .bs-sticky-cta button.btn { flex:1; text-align:center; margin:0; width:100%; }
+    .bs-sticky-cta button.btn { flex: 1; text-align: center; margin: 0; width: 100%; min-height: 44px; }
     .bs-sticky-cta .bs-sticky-call {
-      width:44px; height:44px; flex-shrink:0; border-radius:12px;
-      background:var(--rose); display:flex; align-items:center; justify-content:center;
+      width: 44px; height: 44px; flex-shrink: 0; border-radius: 100px;
+      background: var(--green); display: flex; align-items: center; justify-content: center;
     }
-    body { padding-bottom:68px; }
+    body { padding-bottom: 68px; }
   }
 
-  /* Team-Karten (Personen-Karte), lokal mit Warm-Editorial-Werten definiert,
-     da shared.css noch das alte Farbschema führt (siehe .trainer-card dort:
-     --rose:#55725e). Gleiche Struktur wie auf team.html, nur Token-Werte
-     hier lokal überschrieben, analog zu .therapie-card oben in dieser Datei. */
-  .bs-trainer-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; align-items:start; }
-  .bs-trainer-card { background:#fff; border:1px solid var(--beige-mid); border-radius:var(--radius); overflow:hidden; }
-  .bs-trainer-img { height:240px; overflow:hidden; background:var(--beige-warm); }
-  .bs-trainer-img img { width:100%; height:100%; object-fit:cover; object-position:center top; display:block; }
-  .bs-trainer-img--placeholder { display:flex; align-items:center; justify-content:center; background:repeating-linear-gradient(135deg,var(--beige-warm),var(--beige-warm) 10px,var(--beige-mid) 10px,var(--beige-mid) 20px); }
-  .bs-trainer-img--placeholder span { font-family:var(--meta); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--beige-dark); background:rgba(255,255,255,.85); padding:.4rem .8rem; border-radius:100px; }
-  .bs-trainer-info { padding:1.25rem 1.5rem; border-top:3px solid var(--rose); }
-  .bs-trainer-info h3 { font-size:1.1rem; margin-bottom:.3rem; }
-  .bs-trainer-specialty { font-size:.82rem; color:var(--beige-dark); font-weight:500; letter-spacing:.03em; margin:0; }
-  .bs-trainer-claim { font-family:var(--serif); font-style:italic; font-size:.95rem; line-height:1.5; color:var(--rose-dark); margin:.5rem 0 0; }
-  @media(max-width:768px){ .bs-trainer-grid { grid-template-columns:repeat(2,1fr); } }
-  @media(max-width:480px){ .bs-trainer-grid { grid-template-columns:1fr; } }
+  /* ── Personen-Karte ──────────────────────────────────────────── */
+  .bs-trainer-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; align-items: start; }
+  .bs-trainer-img { height: 260px; overflow: hidden; background: var(--beige-warm); border: 4px solid var(--border); border-radius: 14px; margin: 1rem 1rem 0; }
+  .bs-trainer-img img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+  .bs-trainer-img--placeholder { display: flex; align-items: center; justify-content: center; background: repeating-linear-gradient(135deg,var(--beige-warm),var(--beige-warm) 10px,var(--beige-mid) 10px,var(--beige-mid) 20px); }
+  .bs-trainer-img--placeholder span { font-family: var(--meta); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--beige-dark); background: rgba(255,255,255,.85); padding: .4rem .8rem; border-radius: 100px; }
+  .bs-trainer-info { padding: 1.5rem; border-top: none; display: flex; flex-direction: column; gap: .35rem; }
+  .bs-trainer-info h3 { font-size: 1.15rem; margin: 0; }
+  .bs-trainer-specialty { font-family: var(--meta); font-size: 11px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--warm-gray); margin: 0; }
+  .bs-trainer-claim { font-family: var(--serif); font-style: italic; font-size: 1rem; line-height: 1.5; color: var(--accent-italic); margin: .25rem 0 0; }
+  @media(max-width:768px){ .bs-trainer-grid { grid-template-columns: repeat(2,1fr); } }
+  @media(max-width:480px){ .bs-trainer-grid { grid-template-columns: 1fr; } }
 
-  /* Foto-Hero-Banner: volles Bild direkt unter der Nav, mit dunklem
-     Verlauf für Textlesbarkeit. Text/Tags/Buttons schweben als Overlay
-     frei auf dem Foto (kein separater Kartenhintergrund), das Formular
-     bleibt separat darunter wie gehabt. */
-  .bs-photo-hero {
-    position: relative;
-    width: 100%;
-    height: 620px;
-    overflow: hidden;
-  }
-  .bs-photo-hero img {
-    width: 100%; height: 100%;
-    object-fit: cover;
-    object-position: center 40%;
-    display: block;
-  }
+  /* ── Foto-Hero (Desktop): Bild + Overlay-Text ────────────────── */
+  .bs-photo-hero { position: relative; width: 100%; height: 620px; overflow: hidden; }
+  .bs-photo-hero img { width: 100%; height: 100%; object-fit: cover; object-position: center 40%; display: block; }
   .bs-photo-hero::after {
-    content: '';
-    position: absolute; inset: 0;
+    content: ''; position: absolute; inset: 0;
     background: linear-gradient(180deg, rgba(35,57,42,.15) 0%, rgba(35,57,42,.15) 35%, rgba(24,38,28,.78) 100%);
   }
   .bs-photo-hero-content {
     position: absolute; inset: 0; z-index: 2;
-    display: flex; flex-direction: column; justify-content: flex-end;
+    display: flex; flex-direction: column; justify-content: flex-end; gap: .75rem;
     padding: 2.5rem 2.5rem 3rem;
   }
   .bs-photo-hero-content .tag { background: rgba(255,255,255,.16); color: #f6f1e7; backdrop-filter: blur(6px); }
-  .bs-photo-hero-content h1 { color: #f6f1e7; }
-  .bs-photo-hero-content h1 em { color: #c6d9b8; }
+  .bs-photo-hero-content h1 { color: #f6f1e7; margin: 0; }
+  .bs-photo-hero-content h1 em { color: var(--green-pale); }
   .bs-photo-hero-content .hero-subhead { color: rgba(246,241,231,.92); }
   .bs-photo-hero-content > p { color: rgba(246,241,231,.85); }
-  @media(max-width:768px){ .bs-photo-hero { height: 520px; }
+  @media(max-width:768px){
+    .bs-photo-hero { height: 520px; }
     .bs-photo-hero-content { padding: 1.75rem 1.5rem 2rem; }
   }
 
-  /* Mobil: Foto und Motto/Text als zwei schmale Spalten nebeneinander,
-     statt Foto-Banner mit Text-Overlay (das bleibt Desktop vorbehalten).
-     .bs-mobile-hero-grid ist auf Desktop unsichtbar; .bs-photo-hero und
-     die Overlay-Inhalte darin sind auf Mobil unsichtbar (siehe unten). */
+  /* Mobil: Foto und Motto als zwei schmale Spalten. Signature-Move:
+     asymmetrischer Radius am großen Bild. */
   .bs-mobile-hero-grid { display: none; }
   @media(max-width:768px){
     .bs-photo-hero { display: none; }
     .bs-mobile-hero-grid {
       display: grid; grid-template-columns: 1fr 1fr; gap: .875rem;
-      align-items: stretch; padding: 1rem 1.25rem 0;
+      align-items: stretch; padding: 1.25rem 1.25rem 0;
     }
-    .bs-mobile-hero-photo { border-radius: 14px; overflow: hidden; background: var(--beige-warm); border: 1px solid var(--beige-mid); }
+    .bs-mobile-hero-photo { border-radius: 14px; overflow: hidden; background: var(--beige-warm); border: 4px solid var(--border); box-shadow: 0 40px 80px -40px rgba(60,50,30,.4); }
     .bs-mobile-hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 15%; display: block; }
     .bs-mobile-hero-text { display: flex; flex-direction: column; justify-content: center; gap: .6rem; }
-    .bs-mobile-hero-text .tag { font-size: 10.5px; padding: .25rem .55rem; }
-    .bs-mobile-hero-text h1 { font-size: 1.55rem; line-height: 1.08; margin: 0; }
+    .bs-mobile-hero-text .tag { font-size: 10px; padding: .25rem .6rem; }
+    .bs-mobile-hero-text h1 { font-size: 1.6rem; line-height: 1.06; margin: 0; }
     .bs-mobile-hero-text .hero-subhead { font-size: 1rem; margin: 0; }
   }
 
-  /* .hero war als 2-Spalten-Grid für Text + Foto-Slider definiert (shared.css).
-     Foto-Slider ist jetzt das große Banner oben, hier bleibt nur noch der
-     Textblock übrig – daher einspaltig, mit angenehmer Lesebreite. */
+  /* KI-Assistent ("Frag hier KI") wird von shared.js global injiziert –
+     auf dieser Seite bewusst ausgeblendet. */
+  #pp-float-btn, #qa-overlay { display: none !important; }
+
+  /* Hero-Textblock einspaltig (Foto liegt als Banner darüber) */
   .hero { display: block; max-width: 720px; padding-top: 2.5rem; }
+
+  /* ── Zweispalter (Osteopathie-Check, Recruiting) ─────────────── */
+  .pp-split { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+  .pp-card-dark { background: rgba(255,255,255,.10); border: 1px solid rgba(255,255,255,.28); border-radius: var(--radius); padding: 2rem; }
+  .pp-banner { display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+  .pp-banner-actions { display: flex; gap: .75rem; flex-wrap: wrap; min-width: 0; }
+
+  /* ── Mobil (Standardfall: ca. 90 % der Besuche) ──────────────── */
+  @media (max-width: 768px) {
+    .section { padding: 28px 18px; }
+    .section > .container { padding-left: 0; padding-right: 0; max-width: 100%; }
+    h1 { font-size: 36px; }
+    h2 { font-size: 28px; }
+    h3 { font-size: 1.1rem; }
+    body, p { font-size: 15.5px; }
+
+    .pp-split { grid-template-columns: 1fr; gap: 1.5rem; }
+    .pp-card-dark { padding: 1.5rem; }
+    .pp-banner { flex-direction: column; align-items: flex-start; gap: 1.25rem; }
+    .pp-banner-actions { width: 100%; flex-direction: column; }
+    .pp-banner-actions .btn { width: 100%; text-align: center; }
+
+    /* Hit-Targets */
+    .btn { min-height: 44px; display: inline-flex; align-items: center; justify-content: center; }
+    .pp-topic-cta .btn { width: 100%; }
+
+    .pp-step { grid-template-columns: 36px 1fr; gap: .9rem; padding: 1.25rem 0; }
+    .pp-topic-main { gap: .6rem; }
+    .bs-trainer-img { height: 260px; }
+
+    .stats-bar .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem 1rem; }
+    .stats-bar .stat-divider { display: none; }
+    .stats-bar .stat-item { text-align: center; }
+  }
 </style>
 <script src="https://js-eu1.hsforms.net/forms/embed/147794864.js" defer></script>
 </head>
@@ -267,8 +366,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 <!-- MOBILE: Terminformular inline -->
 <div id="idx-termin-form" style="display:none;margin-top:1.5rem;">
-  <div style="background:#fff;border-radius:var(--radius);border:1px solid var(--beige-mid);overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.05);">
-    <div style="padding:1rem 1.5rem;border-bottom:1px solid var(--beige-mid);">
+  <div class="pp-card">
+    <div style="padding:1rem 1.5rem;border-bottom:1px solid var(--border);">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.5rem;">
         <span id="idx-step-label" style="font-size:.78rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--rose);">Schritt 1 von 3</span>
         <span id="idx-step-title" style="font-size:.82rem;color:var(--text-mid);">Welche Behandlung?</span>
@@ -356,7 +455,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <!-- Erfolg -->
       <div id="idx-success" style="display:none;text-align:center;padding:1.5rem 0;">
         <div style="font-size:2rem;margin-bottom:.75rem;">✓</div>
-        <p style="font-family:var(--serif);font-weight:300;font-size:1.3rem;margin-bottom:.5rem;">Anfrage gesendet!</p>
+        <p style="font-family:var(--serif);font-weight:500;font-size:1.3rem;margin-bottom:.5rem;">Anfrage gesendet!</p>
         <p style="font-size:.9rem;color:var(--text-mid);">Wir melden uns persönlich bei Ihnen.</p>
       </div>
     </div>
@@ -367,14 +466,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 
 <!-- BEWERTUNGEN -->
-<div class="divider"></div>
-<section class="section" style="background:var(--beige-warm);">
+<section class="section sec--alt">
 <div class="container" style="max-width:720px;text-align:center;">
 <p class="eyebrow">Was unsere Patient:innen sagen</p>
 <h2 style="margin-bottom:.5rem;">5,0 von 5 Sternen</h2>
 <p style="color:var(--text-mid);font-size:.85rem;margin-bottom:1.5rem;">Bewertungen unseres Standorts Stockelsdorf – wir freuen uns, diese Erfahrung auch am Eutiner Ring 4A einzulösen.</p>
 <div style="display:flex;justify-content:center;gap:.25rem;font-size:1.5rem;color:#d9a49a;margin-bottom:1rem;">★★★★★</div>
-<a href="https://www.google.com/search?q=PhysioPro+L%C3%BCbeck+Bewertungen" target="_blank" rel="noopener" style="color:var(--rose-dark);font-size:.9rem;text-decoration:underline;">Alle Bewertungen auf Google ansehen →</a>
+<a href="https://www.google.com/search?q=PhysioPro+L%C3%BCbeck+Bewertungen" target="_blank" rel="noopener" class="pp-link">Alle Bewertungen auf Google ansehen →</a>
 </div>
 </section>
 
@@ -394,8 +492,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 <!-- TEAM BAD SCHWARTAU -->
-<div class="divider"></div>
-<section class="section" style="background:#fff;">
+<section class="section sec--paper">
 <div class="container">
 <p class="eyebrow">Ihr Team am Eutiner Ring</p>
 <h2 style="margin-bottom:1rem;">Die Menschen hinter <em>PhysioPro Bad Schwartau</em></h2>
@@ -432,98 +529,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p style="margin-top:1.5rem;font-size:.85rem;color:var(--text-mid);font-style:italic;">Wir stellen die weiteren Gesichter hinter PhysioPro Bad Schwartau nach und nach hier vor.</p>
 </div>
 </section>
-
-<!-- Studiobild bewusst entfernt: zeigt den Empfang in Stockelsdorf, nicht Bad Schwartau. Folgt, sobald eigenes Foto vom Eutiner Ring 4A vorhanden ist. -->
-
-<div class="divider"></div>
-
-<!-- FÜR WEN / DREI BLÖCKE -->
-<section class="section" style="background:#fff;">
-<div class="container">
-  <p class="eyebrow">Für wen wir da sind</p>
-  <h2 style="margin-bottom:2rem;">Menschen, die sich wieder <em>bewegen</em> wollen –<br>wir helfen dabei</h2>
-  <div style="display:flex;flex-direction:column;gap:1.5rem;">
-
-    <!-- Block 1: Physio – Grün -->
-    <div style="background:var(--beige-warm);border-radius:var(--radius);border:1px solid var(--beige-mid);border-top:3px solid #2f4a37;overflow:hidden;display:grid;grid-template-columns:1fr auto;align-items:center;" class="voor-wen-block">
-      <div style="padding:1.5rem 2rem;">
-        <div style="font-size:.72rem;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:#2f4a37;margin-bottom:.3rem;">Physiotherapie · Hanna Wrobel & Team</div>
-        <h3 style="font-size:1.1rem;margin-bottom:.4rem;">Klassische Beschwerden – individuell behandelt</h3>
-        <p style="font-size:.85rem;color:var(--text-mid);line-height:1.6;margin-bottom:.75rem;">Rücken, Nacken, Gelenke, Sportverletzungen, Lymphdrainage – kurze Wartezeiten, auch ohne Rezept.</p>
-        <div style="display:flex;flex-wrap:wrap;gap:.4rem;">
-          <span style="font-size:.78rem;background:#fff;border:1px solid #2f4a37;border-radius:100px;padding:.25rem .7rem;color:#2f4a37;">Rückenschmerzen</span>
-          <span style="font-size:.78rem;background:#fff;border:1px solid #2f4a37;border-radius:100px;padding:.25rem .7rem;color:#2f4a37;">Gelenkprobleme</span>
-          <span style="font-size:.78rem;background:#fff;border:1px solid #2f4a37;border-radius:100px;padding:.25rem .7rem;color:#2f4a37;">Lymphdrainage</span>
-          <span style="font-size:.78rem;background:#fff;border:1px solid #2f4a37;border-radius:100px;padding:.25rem .7rem;color:#2f4a37;">KGG am Reformer</span>
-        </div>
-      </div>
-      <div style="padding:1.5rem 2rem;border-left:1px solid var(--beige-mid);flex-shrink:0;" class="block-btn-col">
-        <a href="/therapie" class="btn btn-primary" style="white-space:nowrap;">Mehr erfahren</a>
-      </div>
-    </div>
-
-    <!-- Block 2: Osteo/Julia – Braun -->
-    <div style="background:var(--beige-warm);border-radius:var(--radius);border:1px solid var(--beige-mid);border-top:3px solid #a08a5e;overflow:hidden;display:grid;grid-template-columns:1fr auto;align-items:center;" class="voor-wen-block">
-      <div style="padding:1.5rem 2rem;">
-        <div style="font-size:.72rem;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:#a08a5e;margin-bottom:.3rem;">Osteopathie · Julia Mielke · Standort Stockelsdorf</div>
-        <h3 style="font-size:1.1rem;margin-bottom:.4rem;">Alltagsstress, Bildschirm & chronische Beschwerden</h3>
-        <p style="font-size:.85rem;color:var(--text-mid);line-height:1.6;margin-bottom:.75rem;">Nacken, Kiefer, Kopfschmerzen, Erschöpfung – Julia behandelt die Ursache. Osteopathie-Check ab 26,50 €.</p>
-        <div style="display:flex;flex-wrap:wrap;gap:.4rem;">
-          <span style="font-size:.78rem;background:#fff;border:1px solid #a08a5e;border-radius:100px;padding:.25rem .7rem;color:#a08a5e;">Nackenschmerzen</span>
-          <span style="font-size:.78rem;background:#fff;border:1px solid #a08a5e;border-radius:100px;padding:.25rem .7rem;color:#a08a5e;">Kiefergelenk</span>
-          <span style="font-size:.78rem;background:#fff;border:1px solid #a08a5e;border-radius:100px;padding:.25rem .7rem;color:#a08a5e;">Kopfschmerzen</span>
-          <span style="font-size:.78rem;background:#fff;border:1px solid #a08a5e;border-radius:100px;padding:.25rem .7rem;color:#a08a5e;">Erschöpfung</span>
-        </div>
-      </div>
-      <div style="padding:1.5rem 2rem;border-left:1px solid var(--beige-mid);flex-shrink:0;" class="block-btn-col">
-        <a href="/osteopathie" class="btn" style="background:#a08a5e;color:#fff;white-space:nowrap;">Mehr erfahren</a>
-      </div>
-    </div>
-
-    <!-- Block 3: Hanna/She Regulates – Rose -->
-    <div style="background:#faf7f3;border-radius:var(--radius);border:1px solid #e8d5d1;border-top:3px solid #d9a49a;overflow:hidden;display:grid;grid-template-columns:1fr auto;align-items:center;" class="voor-wen-block">
-      <div style="padding:1.5rem 2rem;">
-        <div style="font-size:.72rem;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:#d9a49a;margin-bottom:.3rem;">Frau ab 40 · Hanna Wrobel · She Regulates</div>
-        <h3 style="font-size:1.1rem;margin-bottom:.4rem;">Wechseljahre & hormonelle Umbruchphasen</h3>
-        <p style="font-size:.85rem;color:var(--text-mid);line-height:1.6;margin-bottom:.75rem;">Hannas Spezialisierung: Physiotherapie & Beckenboden – speziell für Frauen in der zweiten Lebenshälfte. Pilates am Reformer ergänzend an unserem Standort Stockelsdorf.</p>
-        <div style="display:flex;flex-wrap:wrap;gap:.4rem;">
-          <span style="font-size:.78rem;background:#fff;border:1px solid #d9a49a;border-radius:100px;padding:.25rem .7rem;color:#d9a49a;">Schlafprobleme</span>
-          <span style="font-size:.78rem;background:#fff;border:1px solid #d9a49a;border-radius:100px;padding:.25rem .7rem;color:#d9a49a;">Erschöpfung</span>
-          <span style="font-size:.78rem;background:#fff;border:1px solid #d9a49a;border-radius:100px;padding:.25rem .7rem;color:#d9a49a;">Beckenboden</span>
-          <span style="font-size:.78rem;background:#fff;border:1px solid #d9a49a;border-radius:100px;padding:.25rem .7rem;color:#d9a49a;">Gelenkschmerzen</span>
-        </div>
-      </div>
-      <div style="padding:1.5rem 2rem;border-left:1px solid #e8d5d1;flex-shrink:0;" class="block-btn-col">
-        <a href="/therapie" class="btn" style="background:#d9a49a;color:#fff;white-space:nowrap;">Mehr erfahren</a>
-      </div>
-    </div>
-
-  </div>
-</div>
-</section>
-
-<div class="divider"></div>
-
 <!-- THERAPIE-KARTEN -->
-<section class="section" style="background:#fff;">
+<section class="section sec--alt">
 <div class="container">
 <p class="eyebrow">Unsere Leistungen im Detail</p>
-<h2 style="margin-bottom:2rem;">Physiotherapie am Eutiner Ring 4A</h2>
-<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;">
+<h2 style="margin-bottom:2rem;">Physiotherapie am <em>Eutiner Ring</em> 4A</h2>
+<div class="pp-grid-3">
   <div class="therapie-card">
-    <img src="foto-manuelle.jpg" alt="Manuelle Therapie">
-    <div class="therapie-card-body" style="border-top-color:var(--beige);"><h3>Manuelle Therapie</h3><p>Gezielte Handgriffe und Mobilisationstechniken lösen Blockaden, mobilisieren Gelenke und regulieren Muskelspannungen.</p></div>
+    <div class="therapie-card-body"><h3>Manuelle Therapie</h3><p>Gezielte Handgriffe und Mobilisationstechniken lösen Blockaden, mobilisieren Gelenke und regulieren Muskelspannungen.</p></div>
   </div>
   <div class="therapie-card">
-    <img src="foto-lymphdrainage.jpg" alt="Manuelle Lymphdrainage">
-    <div class="therapie-card-body" style="border-top-color:var(--beige);"><h3>Manuelle Lymphdrainage</h3><p>Sanfte, rhythmische Grifftechnik zur Entstauung – bewährt bei Schwellungen, nach Operationen oder bei Lymphödemen.</p></div>
+    <div class="therapie-card-body"><h3>Manuelle Lymphdrainage</h3><p>Sanfte, rhythmische Grifftechnik zur Entstauung – bewährt bei Schwellungen, nach Operationen oder bei Lymphödemen.</p></div>
   </div>
   <div class="therapie-card">
-    <img src="foto-massage.jpg" alt="Massage">
-    <div class="therapie-card-body" style="border-top-color:var(--beige);"><h3>Massage</h3><p>Löst Verspannungen, lindert Schmerzen und fördert die Durchblutung. Wirkt positiv auf chronische Schmerzen und Entspannung.</p></div>
+    <div class="therapie-card-body"><h3>Massage</h3><p>Löst Verspannungen, lindert Schmerzen und fördert die Durchblutung. Wirkt positiv auf chronische Schmerzen und Entspannung.</p></div>
   </div>
   <div class="therapie-card innovativ">
-    <img src="foto-krankengymnastik.jpg" alt="Krankengymnastik am Reformer" style="opacity:.85;">
     <div class="therapie-card-body">
       <span style="font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.75);font-weight:500;">Innovativ</span>
       <h3 style="color:#fff;">Krankengymnastik am Reformer</h3>
@@ -534,49 +555,203 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 </section>
 
-<div class="divider"></div>
+<!-- Studiobild bewusst entfernt: zeigt den Empfang in Stockelsdorf, nicht Bad Schwartau. Folgt, sobald eigenes Foto vom Eutiner Ring 4A vorhanden ist. -->
 
-<!-- PREISE / KOSTEN -->
-<section class="section" style="background:var(--beige-warm);">
+
+<!-- FÜR WEN / DREI BLÖCKE -->
+<section class="section sec--paper">
+<div class="container">
+  <p class="eyebrow">Für wen wir da sind</p>
+  <h2 style="margin-bottom:2rem;">Menschen, die sich wieder <em>bewegen</em> wollen –<br>wir helfen dabei</h2>
+  <div class="pp-topics">
+
+    <article class="pp-card pp-topic">
+      <div class="pp-topic-main">
+        <p class="pp-kicker" style="color:#2f4a37;">Physiotherapie · Hanna Wrobel &amp; Team</p>
+        <h3>Klassische Beschwerden – individuell behandelt</h3>
+        <p class="pp-body">Rücken, Nacken, Gelenke, Sportverletzungen, Lymphdrainage – kurze Wartezeiten, auch ohne Rezept.</p>
+        <div class="pp-chips">
+          <span class="pp-chip">Rückenschmerzen</span>
+          <span class="pp-chip">Gelenkprobleme</span>
+          <span class="pp-chip">Lymphdrainage</span>
+          <span class="pp-chip">KGG am Reformer</span>
+        </div>
+      </div>
+      <div class="pp-topic-cta">
+        <a href="/therapie" class="btn btn-primary">Mehr erfahren</a>
+      </div>
+    </article>
+
+    <article class="pp-card pp-topic">
+      <div class="pp-topic-main">
+        <p class="pp-kicker" style="color:#a08a5e;">Osteopathie · Julia Mielke · Standort Stockelsdorf</p>
+        <h3>Alltagsstress, Bildschirm &amp; chronische Beschwerden</h3>
+        <p class="pp-body">Nacken, Kiefer, Kopfschmerzen, Erschöpfung – Julia behandelt die Ursache. Osteopathie-Check ab 26,50 €.</p>
+        <div class="pp-chips">
+          <span class="pp-chip">Nackenschmerzen</span>
+          <span class="pp-chip">Kiefergelenk</span>
+          <span class="pp-chip">Kopfschmerzen</span>
+          <span class="pp-chip">Erschöpfung</span>
+        </div>
+      </div>
+      <div class="pp-topic-cta">
+        <a href="/osteopathie" class="btn btn-outline">Mehr erfahren</a>
+      </div>
+    </article>
+
+    <article class="pp-card pp-topic">
+      <div class="pp-topic-main">
+        <p class="pp-kicker" style="color:#d9a49a;">Frau ab 40 · Hanna Wrobel · She Regulates</p>
+        <h3>Wechseljahre &amp; hormonelle Umbruchphasen</h3>
+        <p class="pp-body">Hannas Spezialisierung: Physiotherapie &amp; Beckenboden – speziell für Frauen in der zweiten Lebenshälfte. Pilates am Reformer ergänzend an unserem Standort Stockelsdorf.</p>
+        <div class="pp-chips">
+          <span class="pp-chip">Schlafprobleme</span>
+          <span class="pp-chip">Erschöpfung</span>
+          <span class="pp-chip">Gelenkschmerzen</span>
+        </div>
+      </div>
+      <div class="pp-topic-cta">
+        <a href="/therapie" class="btn" style="background:#d9a49a;color:#fff;">Mehr erfahren</a>
+      </div>
+    </article>
+  </div>
+</div>
+</section>
+<!-- FAQ -->
+<section class="section sec--alt">
 <div class="container" style="max-width:720px;">
-<p class="eyebrow">Kosten & Abrechnung</p>
-<h2 style="margin-bottom:1.5rem;">Kassenrezept oder Selbstzahler</h2>
-<p style="color:var(--text-mid);line-height:1.8;margin-bottom:1rem;">Physiotherapie mit Kassenrezept rechnen wir direkt mit Ihrer gesetzlichen oder privaten Krankenkasse ab – für Sie entstehen dabei in der Regel nur die gesetzliche Zuzahlung. Auch ohne Rezept behandeln wir Sie gerne als Selbstzahler:in, mit transparenten Preisen, die wir Ihnen vor der ersten Behandlung nennen.</p>
-<p style="color:var(--text-mid);font-size:.9rem;font-style:italic;">Genaue Preise besprechen wir am besten persönlich – jede Behandlung ist individuell.</p>
+<p class="eyebrow">Häufige Fragen</p>
+<h2 style="margin-bottom:2rem;"><em>Neustart</em> am Eutiner Ring – Ihre Fragen</h2>
+<div class="pp-faq">
+
+<div class="pp-faq-item">
+<h3>Kann mein bestehendes Rezept von der alten Praxis übernommen werden?</h3>
+<p class="pp-body">Nein – wir sind ein komplett neuer Betrieb, keine Übernahme der bisherigen Praxis. Ihre alten Unterlagen liegen uns nicht vor. Aber keine Sorge: Wir kümmern uns gerne darum. Im Zweifel holen wir mit Ihrer Einwilligung ein neues Rezept direkt bei Ihrem Hausarzt für Sie ein.</p>
+</div>
+
+<div class="pp-faq-item">
+<h3>Was, wenn ich noch kein neues Rezept habe?</h3>
+<p class="pp-body">Können wir sofort keine Lösung finden, aber es besteht eine medizinische Notwendigkeit: Vom 1. bis 14. August 2026 behandeln wir Sie auch ohne Rezeptnachweis. Das ist unser bewusstes Entgegenkommen für alle, die für die Umstände rund um den Praxiswechsel nichts können.</p>
+</div>
+
+<div class="pp-faq-item">
+<h3>Übernehmen Sie meine Patientendaten von der alten Praxis?</h3>
+<p class="pp-body">Nein. Wir haben keinen Zugriff auf Unterlagen der bisherigen Praxis und übernehmen auch keine Patientendaten. Wir starten mit Ihnen ganz neu – bringen Sie einfach mit, was Sie haben, den Rest klären wir gemeinsam vor Ort.</p>
+</div>
+
+<div class="pp-faq-item">
+<h3>Ist das die gleiche Praxis wie vorher, nur mit neuem Namen?</h3>
+<p class="pp-body">Nein. PhysioPro Bad Schwartau ist ein neuer, eigenständiger Betrieb am gleichen Standort – keine Fortführung oder Nachfolge der vorherigen Praxis.</p>
+</div>
+
+</div>
 </div>
 </section>
 
-<div class="divider"></div>
+
+
 
 <!-- ABLAUF -->
-<section class="section">
+<section class="section sec--paper">
 <div class="container" style="max-width:720px;">
 <p class="eyebrow">So läuft es ab</p>
-<h2 style="margin-bottom:2rem;">Von der Anfrage zur Behandlung</h2>
-<div>
-<div style="display:grid;grid-template-columns:48px 1fr;gap:1.25rem;padding:1.5rem 0;border-bottom:1px solid var(--beige-mid);"><div style="font-family:var(--serif);font-size:1.8rem;font-weight:300;color:#2f4a37;line-height:1;">01</div><div><h3 style="font-size:1.1rem;margin-bottom:.4rem;">Termin buchen – ohne Wartezeit am Telefon</h3><p style="font-size:.875rem;color:var(--text-mid);line-height:1.7;margin:0;">Online oder per Rückruf. Kein Warten in der Leitung. Auch ohne Rezept möglich.</p></div></div>
-<div style="display:grid;grid-template-columns:48px 1fr;gap:1.25rem;padding:1.5rem 0;border-bottom:1px solid var(--beige-mid);"><div style="font-family:var(--serif);font-size:1.8rem;font-weight:300;color:#2f4a37;line-height:1;">02</div><div><h3 style="font-size:1.1rem;margin-bottom:.4rem;">Erstbefundung & Anamnese</h3><p style="font-size:.875rem;color:var(--text-mid);line-height:1.7;margin:0;">Wir nehmen uns Zeit: Wo sind die Beschwerden? Was macht es besser? Was ist Ihr Ziel?</p></div></div>
-<div style="display:grid;grid-template-columns:48px 1fr;gap:1.25rem;padding:1.5rem 0;border-bottom:1px solid var(--beige-mid);"><div style="font-family:var(--serif);font-size:1.8rem;font-weight:300;color:#2f4a37;line-height:1;">03</div><div><h3 style="font-size:1.1rem;margin-bottom:.4rem;">Individueller Behandlungsplan</h3><p style="font-size:.875rem;color:var(--text-mid);line-height:1.7;margin:0;">Abgestimmt auf Ihren Körper, Ihren Alltag und Ihre Ziele – kein Schema F.</p></div></div>
-<div style="display:grid;grid-template-columns:48px 1fr;gap:1.25rem;padding:1.5rem 0;"><div style="font-family:var(--serif);font-size:1.8rem;font-weight:300;color:#2f4a37;line-height:1;">04</div><div><h3 style="font-size:1.1rem;margin-bottom:.4rem;">Behandlung & ehrliche Begleitung</h3><p style="font-size:.875rem;color:var(--text-mid);line-height:1.7;margin:0;">Jede Einheit ist individuell. Wir erklären was wir tun, passen die Therapie laufend an – und sind auch für Fragen da.</p></div></div>
+<h2 style="margin-bottom:1.5rem;">Von der Anfrage zur <em>Behandlung</em></h2>
+<div class="pp-steps">
+<div class="pp-step">
+  <div class="pp-step-num">01</div>
+  <div>
+    <h3>Termin buchen – ohne Wartezeit am Telefon</h3>
+    <p class="pp-body">Online oder per Rückruf. Kein Warten in der Leitung. Auch ohne Rezept möglich.</p>
+  </div>
+</div>
+<div class="pp-step">
+  <div class="pp-step-num">02</div>
+  <div>
+    <h3>Erstbefundung &amp; Anamnese</h3>
+    <p class="pp-body">Wir nehmen uns Zeit: Wo sind die Beschwerden? Was macht es besser? Was ist Ihr Ziel?</p>
+  </div>
+</div>
+<div class="pp-step">
+  <div class="pp-step-num">03</div>
+  <div>
+    <h3>Individueller Behandlungsplan</h3>
+    <p class="pp-body">Abgestimmt auf Ihren Körper, Ihren Alltag und Ihre Ziele – kein Schema F.</p>
+  </div>
+</div>
+<div class="pp-step">
+  <div class="pp-step-num">04</div>
+  <div>
+    <h3>Behandlung &amp; ehrliche Begleitung</h3>
+    <p class="pp-body">Jede Einheit ist individuell. Wir erklären was wir tun, passen die Therapie laufend an – und sind auch für Fragen da.</p>
+  </div>
+</div>
 </div>
 </div>
 </section>
 
-<div class="divider"></div>
 
+
+
+<!-- OSTEOPATHIE CHECK -->
+<section class="section sec--dark">
+<div class="container">
+<div class="pp-split">
+<div>
+<span style="display:inline-block;font-size:.75rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:rgba(255,255,255,.25);padding:.3rem .75rem;border-radius:100px;margin-bottom:1rem;">Standort Stockelsdorf</span>
+<h2 style="margin-bottom:1rem;">Der <em>Osteopathie</em>-Check</h2>
+<p style="font-size:1.1rem;color:rgba(255,255,255,.9);font-style:italic;margin-bottom:1.5rem;">20 Minuten Orientierung – durchgeführt von Julia Mielke.</p>
+<p style="color:rgba(255,255,255,.85);line-height:1.8;margin-bottom:2rem;">Ein strukturiertes Informations- und Einschätzungsgespräch. Er hilft einzuschätzen, ob osteopathische Techniken für Ihr persönliches Anliegen geeignet sein könnten.</p>
+</div>
+<div class="pp-card-dark">
+<p class="eyebrow" style="color:#fff;margin-bottom:1.25rem;">Für wen eignet sich der Check?</p>
+<div style="display:flex;flex-direction:column;gap:.5rem;">
+<p style="color:rgba(255,255,255,.85);font-size:.875rem;">· Rückenbeschwerden & Verspannungen</p>
+<p style="color:rgba(255,255,255,.85);font-size:.875rem;">· Bewegungs- und Gelenkeinschränkungen</p>
+<p style="color:rgba(255,255,255,.85);font-size:.875rem;">· Migräne, Kopf- & Kieferschmerzen</p>
+<p style="color:rgba(255,255,255,.85);font-size:.875rem;">· Stressbedingte Beschwerden</p>
+<p style="color:rgba(255,255,255,.85);font-size:.875rem;">· Chronische Schmerzen</p>
+<p style="color:rgba(255,255,255,.85);font-size:.875rem;">· Verdauungs- & Funktionsstörungen</p>
+</div>
+<div style="margin-top:1.5rem;display:flex;gap:1rem;align-items:center;">
+<img src="team-julia.webp" alt="Julia Mielke" width="48" height="48" loading="lazy" decoding="async" style="width:48px;height:48px;border-radius:50%;object-fit:cover;object-position:center 10%;border:2px solid rgba(255,255,255,.5);">
+<p style="color:rgba(255,255,255,.85);font-size:.875rem;margin:0;"><strong style="color:#fff;">Julia Mielke</strong> · Osteopathin & Heilpraktikerin</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+
+
+
+<!-- CTA -->
+<section class="section sec--alt">
+<div class="container" style="text-align:center;max-width:640px;">
+<span class="tag">Jetzt starten</span>
+<h2>Bereit für Ihre erste <em>Behandlung</em>?</h2>
+<p style="color:var(--text-mid);margin-top:1rem;margin-bottom:2rem;">Buchen Sie online – schnell, unkompliziert und ohne Wartezeit am Telefon. Auch ohne ärztliche Verordnung möglich.</p>
+<div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+<button class="btn btn-primary" onclick="openRueckruf()">Rückruf anfordern</button>
+<button class="btn btn-primary" id="idx-termin-toggle" onclick="idxToggleTerMin()">Termin buchen</button>
+<a class="btn btn-outline" href="tel:+4945140073073">0451 / 400 730 73</a>
+</div>
+</div>
+</section>
+
+<!-- FOOTER -->
 <!-- PILATES PARTNER BACKLINK -->
-<section class="section" style="background:#fff;">
+<section class="section sec--paper">
 <div class="container">
 <div class="pilates-partner-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;max-width:900px;margin:0 auto;">
 <div>
 <p class="eyebrow">Unser Pilates-Partner</p>
 <h2 style="font-size:clamp(1.6rem,3vw,2.2rem);margin-bottom:1rem;">Reformer Pilates & Aerial Yoga in Stockelsdorf</h2>
 <p style="color:var(--text-mid);line-height:1.8;margin-bottom:1.5rem;">Unsere Partnerpraxis <strong>Pilates Company Lübeck</strong> bietet in Stockelsdorf spezialisierte Pilates-Kurse an – Reformer Pilates, Aerial Yoga, Barre und Classic Pilates. Rund 15 Minuten von Bad Schwartau entfernt, als ideale Ergänzung zur Physiotherapie.</p>
-<a href="https://www.pilatescompany.de/kurse" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:.5rem;background:#d9a49a;color:#fff;padding:.75rem 1.5rem;border-radius:100px;font-size:.875rem;font-weight:500;text-decoration:none;transition:.2s;" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">
+<a href="https://www.pilatescompany.de/kurse" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:.5rem;background:var(--beige);color:#fff;padding:.75rem 1.5rem;border-radius:100px;font-size:.875rem;font-weight:500;text-decoration:none;transition:.2s;" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">
 Zu den Pilates-Kursen →
 </a>
 </div>
-<div style="background:var(--beige-warm);border-radius:16px;padding:2rem;border:1px solid var(--beige-mid);box-sizing:border-box;width:100%;overflow:hidden;">
+<div class="pp-card" style="padding:2rem;box-sizing:border-box;width:100%;">
 
   <!-- Desktop: mit Icons -->
   <div class="pilates-why-desktop" style="display:flex;flex-direction:column;gap:1rem;">
@@ -608,108 +783,26 @@ Zu den Pilates-Kursen →
 
   <!-- Mobile: kompakte Zeilen ohne Icons -->
   <div class="pilates-why-mobile" style="display:none;flex-direction:column;gap:.5rem;">
-    <div style="display:flex;gap:.5rem;align-items:center;padding:.5rem 0;border-bottom:1px solid var(--beige-mid);"><span style="color:#2f4a37;font-weight:700;flex-shrink:0;">✓</span><span style="font-size:.875rem;color:var(--text);">Reformer Pilates</span></div>
-    <div style="display:flex;gap:.5rem;align-items:center;padding:.5rem 0;border-bottom:1px solid var(--beige-mid);"><span style="color:#2f4a37;font-weight:700;flex-shrink:0;">✓</span><span style="font-size:.875rem;color:var(--text);">Aerial Yoga & Barre</span></div>
-    <div style="display:flex;gap:.5rem;align-items:center;padding:.5rem 0;border-bottom:1px solid var(--beige-mid);"><span style="color:#2f4a37;font-weight:700;flex-shrink:0;">✓</span><span style="font-size:.875rem;color:var(--text);">Stockelsdorf · ca. 15 Min. entfernt</span></div>
-    <div style="display:flex;gap:.5rem;align-items:center;padding:.5rem 0;border-bottom:1px solid var(--beige-mid);"><span style="color:#2f4a37;font-weight:700;flex-shrink:0;">✓</span><span style="font-size:.875rem;color:var(--text);">Kostenloses Probetraining</span></div>
-    <a href="https://www.pilatescompany.de/kurse" target="_blank" style="display:block;text-align:center;background:#d9a49a;color:#fff;padding:.75rem;border-radius:100px;font-size:.875rem;font-weight:500;text-decoration:none;margin-top:.75rem;">Zu den Pilates-Kursen →</a>
+    <div style="display:flex;gap:.5rem;align-items:center;padding:.5rem 0;border-bottom:1px solid var(--border);"><span style="color:#2f4a37;font-weight:700;flex-shrink:0;">✓</span><span style="font-size:.875rem;color:var(--text);">Reformer Pilates</span></div>
+    <div style="display:flex;gap:.5rem;align-items:center;padding:.5rem 0;border-bottom:1px solid var(--border);"><span style="color:#2f4a37;font-weight:700;flex-shrink:0;">✓</span><span style="font-size:.875rem;color:var(--text);">Aerial Yoga & Barre</span></div>
+    <div style="display:flex;gap:.5rem;align-items:center;padding:.5rem 0;border-bottom:1px solid var(--border);"><span style="color:#2f4a37;font-weight:700;flex-shrink:0;">✓</span><span style="font-size:.875rem;color:var(--text);">Stockelsdorf · ca. 15 Min. entfernt</span></div>
+    <div style="display:flex;gap:.5rem;align-items:center;padding:.5rem 0;border-bottom:1px solid var(--border);"><span style="color:#2f4a37;font-weight:700;flex-shrink:0;">✓</span><span style="font-size:.875rem;color:var(--text);">Kostenloses Probetraining</span></div>
+    <a href="https://www.pilatescompany.de/kurse" target="_blank" style="display:block;text-align:center;background:var(--beige);color:#fff;padding:.75rem;border-radius:100px;font-size:.875rem;font-weight:500;text-decoration:none;margin-top:.75rem;">Zu den Pilates-Kursen →</a>
   </div>
 
 </div>
 </div>
 </div>
 </section>
-
-<div class="divider"></div>
-
-<!-- OSTEOPATHIE CHECK -->
-<section class="section" style="background:#2f4a37;">
-<div class="container">
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;">
-<div>
-<span style="display:inline-block;font-size:.75rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:rgba(255,255,255,.25);padding:.3rem .75rem;border-radius:100px;margin-bottom:1rem;">Standort Stockelsdorf</span>
-<h2 style="color:#fff;margin-bottom:1rem;">Der Osteopathie-Check</h2>
-<p style="font-size:1.1rem;color:rgba(255,255,255,.9);font-style:italic;margin-bottom:1.5rem;">20 Minuten Orientierung – durchgeführt von Julia Mielke.</p>
-<p style="color:rgba(255,255,255,.85);line-height:1.8;margin-bottom:2rem;">Ein strukturiertes Informations- und Einschätzungsgespräch. Er hilft einzuschätzen, ob osteopathische Techniken für Ihr persönliches Anliegen geeignet sein könnten.</p>
-</div>
-<div style="background:rgba(255,255,255,.15);border-radius:var(--radius);padding:2rem;border:1px solid rgba(255,255,255,.3);">
-<p class="eyebrow" style="color:#fff;margin-bottom:1.25rem;">Für wen eignet sich der Check?</p>
-<div style="display:flex;flex-direction:column;gap:.5rem;">
-<p style="color:rgba(255,255,255,.85);font-size:.875rem;">· Rückenbeschwerden & Verspannungen</p>
-<p style="color:rgba(255,255,255,.85);font-size:.875rem;">· Bewegungs- und Gelenkeinschränkungen</p>
-<p style="color:rgba(255,255,255,.85);font-size:.875rem;">· Migräne, Kopf- & Kieferschmerzen</p>
-<p style="color:rgba(255,255,255,.85);font-size:.875rem;">· Stressbedingte Beschwerden</p>
-<p style="color:rgba(255,255,255,.85);font-size:.875rem;">· Chronische Schmerzen</p>
-<p style="color:rgba(255,255,255,.85);font-size:.875rem;">· Verdauungs- & Funktionsstörungen</p>
-</div>
-<div style="margin-top:1.5rem;display:flex;gap:1rem;align-items:center;">
-<img src="team-julia.webp" alt="Julia Mielke" width="48" height="48" loading="lazy" decoding="async" style="width:48px;height:48px;border-radius:50%;object-fit:cover;object-position:center 10%;border:2px solid rgba(255,255,255,.5);">
-<p style="color:rgba(255,255,255,.85);font-size:.875rem;margin:0;"><strong style="color:#fff;">Julia Mielke</strong> · Osteopathin & Heilpraktikerin</p>
-</div>
-</div>
-</div>
-</div>
-</section>
-
-<div class="divider"></div>
-
-<!-- FAQ -->
-<section class="section">
-<div class="container" style="max-width:720px;">
-<p class="eyebrow">Häufige Fragen</p>
-<h2 style="margin-bottom:2rem;">Neustart am Eutiner Ring – Ihre Fragen</h2>
-<div style="display:flex;flex-direction:column;gap:0;">
-
-<div style="padding:1.5rem 0;border-bottom:1px solid var(--beige-mid);">
-<h3 style="font-size:1.05rem;margin-bottom:.5rem;">Kann mein bestehendes Rezept von der alten Praxis übernommen werden?</h3>
-<p style="font-size:.9rem;color:var(--text-mid);line-height:1.7;margin:0;">Nein – wir sind ein komplett neuer Betrieb, keine Übernahme der bisherigen Praxis. Ihre alten Unterlagen liegen uns nicht vor. Aber keine Sorge: Wir kümmern uns gerne darum. Im Zweifel holen wir mit Ihrer Einwilligung ein neues Rezept direkt bei Ihrem Hausarzt für Sie ein.</p>
-</div>
-
-<div style="padding:1.5rem 0;border-bottom:1px solid var(--beige-mid);">
-<h3 style="font-size:1.05rem;margin-bottom:.5rem;">Was, wenn ich noch kein neues Rezept habe?</h3>
-<p style="font-size:.9rem;color:var(--text-mid);line-height:1.7;margin:0;">Können wir sofort keine Lösung finden, aber es besteht eine medizinische Notwendigkeit: Vom 1. bis 14. August 2026 behandeln wir Sie auch ohne Rezeptnachweis. Das ist unser bewusstes Entgegenkommen für alle, die für die Umstände rund um den Praxiswechsel nichts können.</p>
-</div>
-
-<div style="padding:1.5rem 0;border-bottom:1px solid var(--beige-mid);">
-<h3 style="font-size:1.05rem;margin-bottom:.5rem;">Übernehmen Sie meine Patientendaten von der alten Praxis?</h3>
-<p style="font-size:.9rem;color:var(--text-mid);line-height:1.7;margin:0;">Nein. Wir haben keinen Zugriff auf Unterlagen der bisherigen Praxis und übernehmen auch keine Patientendaten. Wir starten mit Ihnen ganz neu – bringen Sie einfach mit, was Sie haben, den Rest klären wir gemeinsam vor Ort.</p>
-</div>
-
-<div style="padding:1.5rem 0;">
-<h3 style="font-size:1.05rem;margin-bottom:.5rem;">Ist das die gleiche Praxis wie vorher, nur mit neuem Namen?</h3>
-<p style="font-size:.9rem;color:var(--text-mid);line-height:1.7;margin:0;">Nein. PhysioPro Bad Schwartau ist ein neuer, eigenständiger Betrieb am gleichen Standort – keine Fortführung oder Nachfolge der vorherigen Praxis.</p>
-</div>
-
-</div>
-</div>
-</section>
-
-<div class="divider"></div>
-
-<!-- CTA -->
-<section class="section">
-<div class="container" style="text-align:center;max-width:640px;">
-<span class="tag">Jetzt starten</span>
-<h2>Bereit für Ihre erste Behandlung?</h2>
-<p style="color:var(--text-mid);margin-top:1rem;margin-bottom:2rem;">Buchen Sie online – schnell, unkompliziert und ohne Wartezeit am Telefon. Auch ohne ärztliche Verordnung möglich.</p>
-<div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
-<button class="btn btn-primary" onclick="openRueckruf()">Rückruf anfordern</button>
-<button class="btn btn-primary" id="idx-termin-toggle" onclick="idxToggleTerMin()">Termin buchen</button>
-<a class="btn btn-outline" href="tel:+4945140073073">0451 / 400 730 73</a>
-</div>
-</div>
-</section>
-
-<!-- FOOTER -->
 <!-- JOB BANNER -->
-<section style="background:#2f4a37; padding:3rem 0;">
-  <div class="container" style="display:flex; align-items:center; justify-content:space-between; gap:2rem; flex-wrap:wrap;">
+<section class="section sec--dark">
+  <div class="container pp-banner">
     <div>
       <div style="font-size:.75rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:.5rem;">Wir wachsen – wachse mit uns</div>
-      <h2 style="color:#fff;font-size:clamp(1.4rem,3vw,2rem);margin-bottom:.5rem;font-weight:300;">Physiotherapeut:in gesucht in Bad Schwartau</h2>
+      <h2 style="font-size:clamp(1.6rem,3vw,2.1rem);margin-bottom:.5rem;">Physiotherapeut:in gesucht in Bad Schwartau</h2>
       <p style="color:rgba(255,255,255,.7);font-size:.95rem;max-width:520px;line-height:1.7;">Überdurchschnittliches Gehalt, keine langen Wartezeiten, familiäres Team. Bewerbung in 3 Minuten – kein Anschreiben nötig.</p>
     </div>
-    <div style="display:flex;gap:1rem;flex-wrap:wrap;min-width:0;">
+    <div class="pp-banner-actions">
       <a href="/jobs" class="btn btn-primary" style="background:#fff;color:#2f4a37;font-weight:500;">Offene Stelle ansehen</a>
       <a href="https://wa.me/4917623339367?text=Hallo%20Hanna%2C%20ich%20interessiere%20mich%20f%C3%BCr%20eine%20Stelle%20bei%20PhysioPro%20Bad%20Schwartau." target="_blank" class="btn btn-outline" style="border-color:rgba(255,255,255,.4);color:#fff;">WhatsApp an Hanna</a>
     </div>
@@ -721,7 +814,7 @@ Zu den Pilates-Kursen →
 <div class="container">
 <div class="footer-grid">
 <div class="footer-brand">
-<img src="logo-badschwartau.png" alt="PhysioPro Bad Schwartau" style="height:40px;opacity:.9;">
+<img src="logo-badschwartau.png" alt="PhysioPro Bad Schwartau" style="height:52px;filter:brightness(0) invert(1);opacity:.85;">
 <p style="margin-top:.75rem;">Physiotherapie am Eutiner Ring 4A – Teil der PhysioPro-Gruppe mit Standorten in Bad Schwartau und Stockelsdorf.</p>
 <p style="margin-top:.5rem;font-size:.8rem;">Eutiner Ring 4A · 23611 Bad Schwartau</p>
 </div>
@@ -845,19 +938,9 @@ Zu den Pilates-Kursen →
 <input name="firstname"><input name="phone"><input name="email"><input name="message">
 <input name="utm_source"><input name="utm_medium"><input name="utm_campaign"><input name="utm_content"><input name="gclid">
 </form>
-<div id="qa-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:2100;align-items:center;justify-content:center;padding:1rem;backdrop-filter:blur(4px);" onclick="if(event.target===this)closeQA()">
-<div id="qa-modal" style="background:#fff;border-radius:20px;max-width:480px;width:100%;height:580px;overflow:hidden;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.2);">
-<button onclick="closeQA()" style="position:absolute;top:.75rem;right:.75rem;background:rgba(255,255,255,.15);border:none;border-radius:50%;width:28px;height:28px;cursor:pointer;font-size:.9rem;color:#fff;z-index:10;display:flex;align-items:center;justify-content:center;">✕</button>
-<iframe src="qa-assistant.html" style="width:100%;height:100%;border:none;" frameborder="0" id="qa-frame"></iframe>
-</div>
-</div>
 <style>
 @media(max-width:640px){
-#qa-modal { height:85vh !important; max-height:85vh !important; border-radius:20px 20px 0 0 !important; }
-#qa-overlay { align-items:flex-end !important; padding:0 !important; }
 .studio-banner { display:none; }
-.voor-wen-block { grid-template-columns: 1fr !important; }
-.voor-wen-block .block-btn-col { border-left: none !important; border-top: 1px solid var(--beige-mid); padding-top: 1rem !important; }
 .pilates-mobile-btn { display:block !important; }
 }
 @media(max-width:900px){
