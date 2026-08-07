@@ -216,4 +216,3 @@ window.addEventListener('message', e => {
   `;
   document.head.appendChild(style);
 })();
-

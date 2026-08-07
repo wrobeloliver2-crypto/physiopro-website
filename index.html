@@ -206,12 +206,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   .pp-mh-eyebrow { font-family: var(--meta); font-weight: 600; font-size: 11px; line-height: 1; letter-spacing: .13em; text-transform: uppercase; color: var(--warm-gray); }
 
   /* 1. Standort-Leiste */
-  .pp-mh-locbar { background: #2f4a37; padding: 12px 18px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-  .pp-mh-loccol { display: flex; flex-direction: column; gap: 3px; }
-  .pp-mh-loccol--l { border-right: 1px solid rgba(246,241,231,.22); padding-right: 10px; }
+  .pp-mh-locbar { background: #2f4a37; padding: 14px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .pp-mh-loccol {
+    display: flex; flex-direction: column; align-items: center; gap: 4px;
+    text-align: center; text-decoration: none; -webkit-tap-highlight-color: transparent;
+    background: rgba(246,241,231,.07);
+    border: 1px solid rgba(246,241,231,.16);
+    border-radius: 14px;
+    padding: 14px 10px 16px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.08);
+    transition: background .15s, transform .1s;
+  }
+  a.pp-mh-loccol:active { background: rgba(246,241,231,.14); transform: scale(.98); opacity: 1; }
   .pp-mh-loclabel { display: block; font-family: var(--meta); font-weight: 500; font-size: 10px; letter-spacing: .13em; text-transform: uppercase; color: #c6d9b8; }
-  .pp-mh-locname { display: block; font-family: var(--sans); font-weight: 500; font-size: 14px; color: #f6f1e7; }
-  .pp-mh-locmeta { display: block; font-family: var(--sans); font-weight: 400; font-size: 12px; color: rgba(246,241,231,.7); }
+  .pp-mh-locname { display: flex; align-items: center; justify-content: center; gap: 5px; font-family: var(--sans); font-weight: 600; font-size: 18px; color: #f6f1e7; margin-top: 2px; }
+  .pp-mh-locname svg { flex: none; width: 14px; height: 14px; opacity: .75; }
+  .pp-mh-locmeta { display: block; font-family: var(--sans); font-weight: 400; font-size: 12px; color: rgba(246,241,231,.7); margin-top: 1px; }
 
   /* 2.–3. Hero */
   .pp-mh-hero { padding: 24px 18px 22px; display: flex; flex-direction: column; gap: 14px; }
@@ -310,16 +320,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <!-- 1. Standort-Leiste -->
   <div class="pp-mh-locbar">
-    <div class="pp-mh-loccol pp-mh-loccol--l">
+    <a class="pp-mh-loccol" href="/termin">
       <span class="pp-mh-loclabel">Standort 1</span>
-      <span class="pp-mh-locname">Stockelsdorf</span>
+      <span class="pp-mh-locname">Stockelsdorf <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       <span class="pp-mh-locmeta">Mo–Fr 7–19 Uhr</span>
-    </div>
-    <div class="pp-mh-loccol">
+    </a>
+    <a class="pp-mh-loccol" href="/bad-schwartau">
       <span class="pp-mh-loclabel">Standort 2</span>
-      <span class="pp-mh-locname">Bad Schwartau</span>
-      <span class="pp-mh-locmeta">neu ab August</span>
-    </div>
+      <span class="pp-mh-locname">Bad Schwartau <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="pp-mh-locmeta">Mo–Fr 7–19 Uhr</span>
+    </a>
   </div>
 
   <!-- 2. Hero-Text -->
@@ -341,7 +351,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="pp-mh-stats">
     <div><div class="pp-mh-stat-num">22</div><div class="pp-mh-stat-label">Jahre Erfahrung</div></div>
     <div><div class="pp-mh-stat-num">4</div><div class="pp-mh-stat-label">Therapiebereiche</div></div>
-    <div><div class="pp-mh-stat-num">2</div><div class="pp-mh-stat-label">Standorte ab August</div></div>
+    <div><div class="pp-mh-stat-num">2</div><div class="pp-mh-stat-label">Standorte in Lübeck</div></div>
     <div><div class="pp-mh-stat-num">7–19</div><div class="pp-mh-stat-label">Uhr, Mo–Fr geöffnet</div></div>
   </div>
 
@@ -500,7 +510,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="pp-mh-standorte">
     <div class="pp-mh-eyebrow">Zwei Standorte</div>
     <div>
-      <a class="pp-mh-srow" href="/kontakt">
+      <a class="pp-mh-srow" href="/termin">
         <span class="pp-mh-snum">01</span>
         <span style="flex:1;">
           <span class="pp-mh-sname">Stockelsdorf</span>
@@ -508,11 +518,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </span>
         <span class="pp-mh-arrow">→</span>
       </a>
-      <a class="pp-mh-srow" href="/bad-schwartau/termin">
+      <a class="pp-mh-srow" href="/bad-schwartau">
         <span class="pp-mh-snum">02</span>
         <span style="flex:1;">
-          <span class="pp-mh-sname">Bad Schwartau <span class="pp-mh-schip">ab August</span></span>
-          <span class="pp-mh-smeta">Termine schon jetzt buchbar</span>
+          <span class="pp-mh-sname">Bad Schwartau</span>
+          <span class="pp-mh-smeta">Eutiner Ring 4A · Mo–Fr 7–19 Uhr</span>
         </span>
         <span class="pp-mh-arrow">→</span>
       </a>
@@ -591,7 +601,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="hero-text">
 <div style="display:flex;gap:.5rem;flex-wrap:wrap;">
 <span class="tag">Lübeck · Stockelsdorf</span>
-<a class="tag" href="/bad-schwartau/termin">Bad Schwartau · ab August</a>
+<a class="tag" href="/bad-schwartau">Bad Schwartau</a>
 </div>
 <h1 class="hero-motto">„Wir bewegen <em>Menschen</em>"</h1>
 <h2 class="hero-subhead">Ihr Zentrum für Physiotherapie, Osteopathie, Heilpraktik & Pilates</h2>
@@ -1027,7 +1037,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="stat-divider"></div>
 <div class="stat-item"><div class="stat-num">4</div><div class="stat-label">Therapiebereiche</div></div>
 <div class="stat-divider"></div>
-<div class="stat-item"><div class="stat-num">2</div><div class="stat-label">Standorte ab August</div></div>
+<div class="stat-item"><div class="stat-num">2</div><div class="stat-label">Standorte in Lübeck</div></div>
 <div class="stat-divider"></div>
 <div class="stat-item"><div class="stat-num">7–19</div><div class="stat-label">Uhr, Mo–Fr geöffnet</div></div>
 </div>
@@ -1201,7 +1211,7 @@ Zu den Pilates-Kursen →
 <div class="footer-grid">
 <div class="footer-brand">
 <img src="logo.png?v=2" alt="PhysioPro Lübeck" style="height:40px;filter:brightness(0) invert(1);opacity:.8;">
-<p style="margin-top:.75rem;">Physiotherapie, Osteopathie, Heilpraktik und Pilates in Lübeck & Stockelsdorf – ab August auch in Bad Schwartau.</p>
+<p style="margin-top:.75rem;">Physiotherapie, Osteopathie, Heilpraktik und Pilates in Stockelsdorf und Bad Schwartau bei Lübeck.</p>
 <p style="margin-top:.5rem;font-size:.8rem;">Segeberger Str. 1 · 23617 Stockelsdorf</p>
 </div>
 <div class="footer-col">
