@@ -211,10 +211,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .bs-hero-slide { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
   .bs-hero-slide--a { position: relative; animation: bsHeroFadeA 8s ease-in-out infinite; }
   .bs-hero-slide--b { opacity: 0; animation: bsHeroFadeB 8s ease-in-out infinite; }
-  /* Hannas Foto ist eine Ganzkörper-Nahaufnahme (Kopf ~10% von oben); enger auf
-     Kopf/Schultern zoomen, damit sie im Container proportional gleich groß wirkt
-     wie das weitwinklige Raumfoto und nicht dominanter/größer erscheint. */
-  .bs-hero-slide--b { object-position: center 8%; transform: scale(1.35); transform-origin: center 12%; }
   @keyframes bsHeroFadeA { 0%,58%{opacity:1;} 70%,88%{opacity:0;} 100%{opacity:1;} }
   @keyframes bsHeroFadeB { 0%,58%{opacity:0;} 70%,88%{opacity:1;} 100%{opacity:0;} }
   @media (prefers-reduced-motion: reduce) {
@@ -225,6 +221,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   /* ── Foto-Hero (Desktop): Bild + Overlay-Text ────────────────── */
   .bs-photo-hero { position: relative; width: 100%; height: 620px; overflow: hidden; }
   .bs-photo-hero img { width: 100%; height: 100%; object-fit: cover; object-position: center 40%; display: block; }
+  /* Hannas Foto ist eine Ganzkörper-Nahaufnahme; bei diesem breiten, flachen
+     Bannerformat schneidet object-fit:cover bereits stark auf die Bildhöhe zu,
+     daher reicht eine reine Positionsanpassung ohne zusätzlichen Zoom. */
+  .bs-photo-hero img.bs-hero-slide--b { object-position: center 15%; }
   .bs-photo-hero::after {
     content: ''; position: absolute; inset: 0;
     background: linear-gradient(180deg, rgba(35,57,42,.15) 0%, rgba(35,57,42,.15) 35%, rgba(24,38,28,.78) 100%);
@@ -253,8 +253,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       display: grid; grid-template-columns: 1fr 1fr; gap: .875rem;
       align-items: stretch; padding: 1.25rem 1.25rem 0;
     }
-    .bs-mobile-hero-photo { border-radius: 14px; overflow: hidden; background: var(--beige-warm); border: 4px solid var(--border); box-shadow: 0 40px 80px -40px rgba(60,50,30,.4); }
+    .bs-mobile-hero-photo { position: relative; border-radius: 14px; overflow: hidden; background: var(--beige-warm); border: 4px solid var(--border); box-shadow: 0 40px 80px -40px rgba(60,50,30,.4); }
     .bs-mobile-hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 15%; display: block; }
+    .bs-mobile-hero-photo img.bs-hero-slide--b { object-position: center 8%; transform: scale(1.5); transform-origin: 50% 20%; }
     .bs-mobile-hero-text { display: flex; flex-direction: column; justify-content: center; gap: .6rem; }
     .bs-mobile-hero-text .tag { font-size: 10px; padding: .25rem .6rem; }
     .bs-mobile-hero-text h1 { font-size: 1.6rem; line-height: 1.06; margin: 0; }
