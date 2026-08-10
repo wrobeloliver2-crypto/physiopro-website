@@ -925,11 +925,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <style>
 .hw-slide {
   opacity: 0;
+  pointer-events: none;
   transition: opacity .7s ease-in-out;
   background: var(--beige-warm);
 }
 .hw-slide.hw-active {
   opacity: 1;
+  pointer-events: auto;
 }
 .hw-photo-overlay {
   position: absolute; left: 0; right: 0; bottom: 0;
