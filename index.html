@@ -562,7 +562,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (reduceMotion) return;
 
-  var order = [0,1,2,3,4,5,6,7,8,9,10];
+  // Annika (Index 6) ist bewusst NICHT in der Rotation - ihr Zitat soll
+  // statisch bleiben ("Als Physiotherapeutin verstehe ich..."), da es
+  // gezielt ihre fachliche Doppelrolle (Physiotherapeutin + Empfang)
+  // transportiert. Die drei alten Rotations-Varianten in QUOTES[6] bleiben
+  // im Objekt stehen, werden aber nie mehr aufgerufen.
+  var order = [0,1,2,3,4,5,7,8,9,10];
   var idx = {0:0,1:0,2:0,3:0,4:0,5:0,6:0,7:0,8:0,9:0,10:0};
   var turn = 0;
 
