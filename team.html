@@ -143,7 +143,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <span class="tag" style="margin-bottom:.5rem;">Gründerin & Inhaberin</span>
         <h3 style="margin-top:.2rem;">Hanna Wrobel</h3>
         <p style="color:var(--beige-dark);font-size:.85rem;margin-top:.2rem;font-weight:500;letter-spacing:.03em;">Physiotherapeutin · Pilatestrainerin</p>
-        <div class="trainer-standort"><span>Stockelsdorf</span></div>
         <p style="color:var(--text-mid);margin-top:.75rem;line-height:1.6;font-size:.88rem;">Hanna Wrobel gründete PhysioPro Lübeck nach über 22 Jahren therapeutischer Erfahrung. Ihr Ansatz verbindet klassische Physiotherapie mit modernen Methoden wie Pilates am Reformer – immer mit dem Ziel, nachhaltige Gesundheit zu fördern.</p>
         <div style="margin-top:1rem;display:flex;gap:.75rem;flex-wrap:wrap;">
           <a href="https://wa.me/4917623339367" target="_blank" class="btn btn-primary" style="font-size:.8rem;padding:.55rem 1rem;display:inline-flex;align-items:center;gap:.45rem;">
@@ -157,7 +156,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <!-- Team Grid -->
     <h4 class="team-grid-heading">Das Team</h4>
     <div class="trainer-grid">
-      <div class="trainer-card trainer-card--done">
+      <div class="trainer-card trainer-card--done" id="team-anna">
         <div class="trainer-img"><img src="team-anna.jpg" alt="Anna"></div>
         <div class="trainer-info">
           <h3>Anna</h3>
@@ -184,7 +183,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           </ul>
         </div>
       </div>
-      <div class="trainer-card trainer-card--done" style="order:-2;">
+      <div class="trainer-card trainer-card--done" style="order:-2;" id="team-julia">
         <div class="trainer-img"><img src="team-julia.jpg" alt="Julia Mielke" style="object-position:center 10%;"></div>
         <div class="trainer-info">
           <h3>Julia Mielke</h3>
@@ -209,7 +208,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           </ul>
         </div>
       </div>
-      <div class="trainer-card trainer-card--done">
+      <div class="trainer-card trainer-card--done" id="team-tuana">
         <div class="trainer-img"><img src="team-tuana.jpg" alt="Tuana"></div>
         <div class="trainer-info">
           <h3>Tuana</h3>
@@ -235,7 +234,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           </ul>
         </div>
       </div>
-      <div class="trainer-card trainer-card--done">
+      <div class="trainer-card trainer-card--done" id="team-maike">
         <div class="trainer-img"><img src="team-maike.jpg" alt="Maike"></div>
         <div class="trainer-info">
           <h3>Maike</h3>
@@ -261,7 +260,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           </ul>
         </div>
       </div>
-      <div class="trainer-card trainer-card--pinned">
+      <div class="trainer-card trainer-card--pinned" id="team-annika">
         <div class="trainer-img"><img src="team-annika.jpg" alt="Annika"></div>
         <div class="trainer-info">
           <h3>Annika</h3>
@@ -286,7 +285,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           </ul>
         </div>
       </div>
-      <div class="trainer-card trainer-card--done">
+      <div class="trainer-card trainer-card--done" id="team-phillip">
         <div class="trainer-img"><img src="team-phillip.jpg" alt="Phillip"></div>
         <div class="trainer-info">
           <h3>Phillip</h3>
@@ -313,7 +312,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           </ul>
         </div>
       </div>
-      <div class="trainer-card trainer-card--done">
+      <div class="trainer-card trainer-card--done" id="team-nico">
         <div class="trainer-img"><img src="team-nico.jpg" alt="Nico"></div>
         <div class="trainer-info">
           <h3>Nico</h3>
@@ -339,7 +338,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           </ul>
         </div>
       </div>
-      <div class="trainer-card trainer-card--done">
+      <div class="trainer-card trainer-card--done" id="team-imo">
         <div class="trainer-img"><img src="team-imo.jpg" alt="Imo"></div>
         <div class="trainer-info">
           <h3>Imo</h3>
@@ -351,7 +350,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <span>CMD / Kiefergelenk</span>
             <span>Trainingstherapie</span>
           </div>
-          <p class="trainer-quals">Staatsexamen Physiotherapie · Lymphdrainage-Ausbildung · Faszien­distorsionsmodell nach Typaldos · CMD</p>
+          <p class="trainer-quals">Staatsexamen Physiotherapie · Lymphdrainage-Ausbildung · Faszien&shy;distorsionsmodell nach Typaldos · CMD</p>
 
           <p class="trainer-claim">„Ich möchte Menschen dabei helfen, wieder selbstständig in Bewegung zu kommen.“</p>
 
@@ -364,7 +363,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           </ul>
         </div>
       </div>
-      <div class="trainer-card trainer-card--done">
+      <div class="trainer-card trainer-card--done" id="team-mascha">
         <div class="trainer-img"><img src="team-mascha.jpg" alt="Mascha"></div>
         <div class="trainer-info">
           <h3>Mascha</h3>
@@ -387,7 +386,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           </ul>
         </div>
       </div>
-      <div class="trainer-card trainer-card--done">
+      <div class="trainer-card trainer-card--done" id="team-dini">
         <div class="trainer-img"><img src="team-dini.jpg" alt="Dini"></div>
         <div class="trainer-info">
           <h3>Dini</h3>
@@ -411,6 +410,32 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <li>… dich Verspannungen im Kiefer oder wiederkehrende Kopfschmerzen belasten</li>
             <li>… du eine Therapeutin suchst, die analytisch nach der Ursache sucht und dich dabei ganzheitlich im Blick behält</li>
             <li>… du sowohl Manuelle Therapie als auch aktives Training in einer Behandlung verbinden möchtest</li>
+          </ul>
+        </div>
+      </div>
+      <div class="trainer-card trainer-card--done" id="team-vera">
+        <div class="trainer-img"><img src="team-vera.jpg" alt="Vera"></div>
+        <div class="trainer-info">
+          <h3>Vera</h3>
+          <p class="trainer-specialty">Empfang &amp; Organisation</p>
+          <div class="trainer-standort"><span>Bad Schwartau</span></div>
+
+          <div class="trainer-methods">
+            <span>Seit 2009 am Eutiner Ring 4A</span>
+            <span>Terminplanung</span>
+            <span>Telefon &amp; Anfragen</span>
+            <span>Organisation &amp; Struktur</span>
+          </div>
+          <p class="trainer-quals">Kaufmännische Ausbildung</p>
+
+          <p class="trainer-claim">„Viele, die hier zur Tür hereinkommen, kenne ich seit Jahren – und genau das sollen sie auch spüren.“</p>
+
+          <p class="trainer-needs-label">Du bist bei Vera richtig, wenn …</p>
+          <ul class="trainer-needs">
+            <li>… du beim ersten Anruf jemanden erreichen willst, der die Praxis wirklich kennt</li>
+            <li>… dir wichtig ist, dass Termine sitzen und Absprachen halten</li>
+            <li>… du lieber persönlich begrüßt als abgefertigt werden möchtest</li>
+            <li>… du eine Frage zu Rezept, Verordnung oder Ablauf hast und eine klare Antwort brauchst</li>
           </ul>
         </div>
       </div>
