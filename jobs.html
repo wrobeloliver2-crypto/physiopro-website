@@ -86,6 +86,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .benefit-card strong { display: block; margin-bottom: .3rem; font-size: .95rem; }
   .benefit-card p { font-size: .85rem; color: var(--text-mid); margin: 0; line-height: 1.6; }
   .sticky-box { position: sticky; top: 90px; }
+  .ts-stats { display:grid; grid-template-columns:repeat(4,1fr); gap:1rem; margin-bottom:2.5rem; }
+  .ts-stat { background:var(--cream); border:1px solid var(--beige-mid); border-radius:var(--radius); padding:1.25rem; }
+  .ts-stat strong { display:block; font-family:var(--serif); font-size:1.5rem; font-weight:500; color:var(--rose); letter-spacing:-.02em; }
+  .ts-stat span { display:block; margin-top:.35rem; font-size:.82rem; color:var(--text-mid); line-height:1.5; }
+  .ts-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:1.25rem; }
+  .ts-card { margin:0; background:#fff; border:1px solid var(--beige-mid); border-radius:var(--radius); padding:1.75rem; display:flex; flex-direction:column; gap:1.25rem; }
+  .ts-card blockquote { margin:0; font-family:var(--serif); font-size:1.05rem; line-height:1.55; color:var(--text); }
+  .ts-card figcaption { display:flex; align-items:center; gap:.75rem; margin-top:auto; padding-top:1rem; border-top:1px solid var(--border); }
+  .ts-card figcaption img { width:52px; height:52px; border-radius:50%; object-fit:cover; object-position:center top; flex-shrink:0; }
+  .ts-card figcaption > span { font-family:var(--meta); font-size:.7rem; letter-spacing:.09em; text-transform:uppercase; color:var(--warm-gray); line-height:1.5; }
+  .ts-card figcaption strong { display:block; font-family:var(--sans); font-size:.95rem; font-weight:600; letter-spacing:0; text-transform:none; color:var(--text); margin-bottom:.15rem; }
+  @media(max-width:860px){ .ts-stats { grid-template-columns:repeat(2,1fr); } }
+  @media(max-width:520px){ .ts-stats { grid-template-columns:1fr; } .ts-card { padding:1.4rem; } }
   @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
   @media(max-width:640px){
     #finder-overlay { padding:0 !important; align-items:flex-end !important; }
@@ -292,6 +305,96 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ STIMMEN AUS DEM TEAM (aus den Mitarbeiter-Profilen) ═══ -->
+<section class="section" id="teamstimmen" style="background:var(--beige-warm);border-top:1px solid var(--beige-mid);">
+  <div class="container">
+    <h4 style="margin-bottom:.4rem;">Stimmen aus dem Team</h4>
+    <h2 style="max-width:720px;margin-bottom:.75rem;">Warum unser Team <em>gern</em> hier arbeitet</h2>
+    <p style="color:var(--text-mid);max-width:660px;line-height:1.8;margin-bottom:2.5rem;">Wir haben unser Team selbst gefragt – jede:r hat einen eigenen Fragebogen ausgefüllt. Das hier sind ihre Antworten, nicht unsere Werbetexte.</p>
+
+    <!-- Kennzahlen aus den Fragebögen -->
+    <div class="ts-stats">
+      <div class="ts-stat"><strong>14 von 14</strong><span>nennen „Gutes Team &amp; Miteinander“</span></div>
+      <div class="ts-stat"><strong>9 von 14</strong><span>nennen den persönlichen, familiären Umgang</span></div>
+      <div class="ts-stat"><strong>8 von 14</strong><span>nennen die fachliche Weiterentwicklung</span></div>
+      <div class="ts-stat"><strong>7 von 14</strong><span>sagen: Werte &amp; Philosophie passen zu mir</span></div>
+    </div>
+
+    <!-- Zitate -->
+    <div class="ts-grid">
+
+      <figure class="ts-card">
+        <blockquote>„Der persönliche, familiäre Umgang, die Bandbreite an Methoden unter einem Dach und ein eingespieltes, motiviertes Team – hier stimmt für mich alles zusammen. Stillstand ist keine Option: bei der Gesundheit nicht und bei uns nicht.“</blockquote>
+        <figcaption>
+          <img src="team-dini.jpg" alt="Dini" loading="lazy" width="52" height="52">
+          <span><strong>Dini</strong>Physiotherapeutin · Bad Schwartau</span>
+        </figcaption>
+      </figure>
+
+      <figure class="ts-card">
+        <blockquote>„Gutes Team, fachliche Weiterentwicklung, Vielfalt an Patient:innen und Methoden, Werte, die zu mir passen, und gute Arbeitsbedingungen – bei PhysioPro kommt alles zusammen. Gesundheit ist nichts, das man behandelt, sondern etwas, das man in Bewegung bringt.“</blockquote>
+        <figcaption>
+          <img src="team-imo.jpg" alt="Imo" loading="lazy" width="52" height="52">
+          <span><strong>Imo</strong>Physiotherapeutin · Stockelsdorf</span>
+        </figcaption>
+      </figure>
+
+      <figure class="ts-card">
+        <blockquote>„Was PhysioPro ausmacht, ist der persönliche, familiäre Umgang und ein eingespieltes Team. Fachlich kann ich mich weiterentwickeln – und die Werte passen zu meinen.“</blockquote>
+        <figcaption>
+          <img src="team-phillip.jpg" alt="Phillip" loading="lazy" width="52" height="52">
+          <span><strong>Phillip</strong>Physiotherapeut · Stockelsdorf</span>
+        </figcaption>
+      </figure>
+
+      <figure class="ts-card">
+        <blockquote>„Hier geht es um Coaching und Eigenständigkeit, nicht nur um Behandlung. Gesundheit passiert nicht im Wartezimmer, sondern im Alltag.“</blockquote>
+        <figcaption>
+          <img src="team-nico.jpg" alt="Nico" loading="lazy" width="52" height="52">
+          <span><strong>Nico</strong>Physiotherapeut &amp; Physiocoach · Stockelsdorf</span>
+        </figcaption>
+      </figure>
+
+      <figure class="ts-card">
+        <blockquote>„Persönlicher Umgang, ein motiviertes Team und eine moderne Praxis. Wir denken über die Therapie hinaus – Richtung Prävention und Lebensstil.“</blockquote>
+        <figcaption>
+          <img src="team-maike.jpg" alt="Maike" loading="lazy" width="52" height="52">
+          <span><strong>Maike</strong>Physiotherapeutin · Stockelsdorf</span>
+        </figcaption>
+      </figure>
+
+      <figure class="ts-card">
+        <blockquote>„Gutes Miteinander, viele verschiedene Patient:innen und Methoden, gute Arbeitsbedingungen – und ein Team, in dem man sich wirklich austauscht.“</blockquote>
+        <figcaption>
+          <img src="team-tuana.jpg" alt="Tuana" loading="lazy" width="52" height="52">
+          <span><strong>Tuana</strong>Physiotherapeutin · Stockelsdorf</span>
+        </figcaption>
+      </figure>
+
+      <figure class="ts-card">
+        <blockquote>„Ein gutes Team und die Vielfalt an Patient:innen und Methoden – dazu eine Ausstattung, mit der ich so arbeiten kann, wie ich es für richtig halte.“</blockquote>
+        <figcaption>
+          <img src="team-julia.jpg" alt="Julia Mielke" loading="lazy" width="52" height="52">
+          <span><strong>Julia</strong>Osteopathin · Stockelsdorf &amp; Bad Schwartau</span>
+        </figcaption>
+      </figure>
+
+      <figure class="ts-card">
+        <blockquote>„Für mich zählt vor allem das gute Team und das Miteinander. Und dass bei uns der Patient im Mittelpunkt steht.“</blockquote>
+        <figcaption>
+          <img src="team-vera.jpg" alt="Vera" loading="lazy" width="52" height="52">
+          <span><strong>Vera</strong>Empfang &amp; Organisation · Bad Schwartau</span>
+        </figcaption>
+      </figure>
+
+    </div>
+
+    <div style="text-align:center;margin-top:2.5rem;">
+      <a href="#bewerbung" class="btn btn-primary">Werde Teil des Teams →</a>
     </div>
   </div>
 </section>
