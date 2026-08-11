@@ -514,6 +514,28 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <script src="shared.js?v=202607281105"></script>
 <script>
+// Lokale Netlify-Forms-Submit-Funktion für diese Seite.
+// WICHTIG: shared.js enthält ebenfalls eine hsSubmit()-Funktion, aber die
+// prüft formId gegen eine UUID, die hier nie übergeben wird, und fällt
+// dadurch immer auf form-name 'kontakt' zurück - dadurch landeten bisherige
+// Bewerbungen (u.a. Zeynep Colak 04.06., Nicole Clasen 25.05., Maria Jimenez
+// 21.05.) fälschlich im "kontakt"-Formular statt im "bewerbung"-Formular.
+// Diese lokale Definition überschreibt die aus shared.js (Script-Reihenfolge:
+// shared.js zuerst geladen, dieser Block danach) und verwendet formId direkt
+// als form-name - analog zu termin.html, kontakt.html, osteopathie.html,
+// privat-versichert.html.
+async function hsSubmit(fields, formId) {
+  const body = new URLSearchParams();
+  body.append('form-name', formId || 'bewerbung');
+  fields.forEach(f => body.append(f.name, f.value));
+  const res = await fetch('/', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: body.toString()
+  });
+  return res;
+}
+
 // Bewerbungsformular JS
 let bewDays = [];
 
