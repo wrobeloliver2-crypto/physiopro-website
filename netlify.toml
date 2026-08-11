@@ -10,11 +10,6 @@
 [functions]
   directory = "netlify/functions"
 
-# Taegliche Kruse-Zusammenfassung: 17 Uhr deutsche Sommerzeit = 15 UTC.
-# ACHTUNG bei Umstellung auf Winterzeit (MEZ, ab Oktober): auf 16 UTC anpassen!
-[functions."kruse-daily-summary"]
-  schedule = "0 15 * * *"
-
 # HTML-Seiten nie aggressiv cachen – verhindert veraltete Seiten nach Updates
 [[headers]]
   for = "/*"
