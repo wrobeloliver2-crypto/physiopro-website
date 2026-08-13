@@ -44,3 +44,21 @@
   for = "*.svg"
   [headers.values]
     Cache-Control = "public, max-age=0, must-revalidate"
+
+# ── Ergaenzt 13.08.2026: 301-Redirects (Alt-URLs / .html-Varianten) ──
+[[redirects]]
+  from = "/online-termine"
+  to = "/termin"
+  status = 301
+
+[[redirects]]
+  from = "/impressum.html"
+  to = "/impressum"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/datenschutz.html"
+  to = "/datenschutz"
+  status = 301
+  force = true
