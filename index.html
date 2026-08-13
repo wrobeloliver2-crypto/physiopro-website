@@ -549,6 +549,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </div>
         </div>
       </div>
+      <div class="pp-mh-praxis-layer" id="pp-mh-praxis2">
+        <img src="foto-behandlungsraum-3.jpg" alt="Behandlungsraum der PhysioPro-Praxis in Bad Schwartau" loading="lazy" decoding="async">
+        <div class="pp-mh-praxis-card">
+          <div class="pp-mh-praxis-title">Behandlungsraum Bad Schwartau</div>
+          <div class="pp-mh-praxis-sub">Bewusst gestaltet – Genesung braucht die richtige Umgebung.</div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -654,11 +661,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 })();
 
 (function() {
-  // Praxis-Wechsler: Crossfade KGG <-> Empfang alle 5200ms.
+  // Praxis-Wechsler: Crossfade KGG <-> Empfang <-> Bad Schwartau alle 5200ms.
   var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (reduceMotion) return;
-  var layers = [document.getElementById('pp-mh-praxis0'), document.getElementById('pp-mh-praxis1')];
-  if (!layers[0] || !layers[1]) return;
+  var layers = [document.getElementById('pp-mh-praxis0'), document.getElementById('pp-mh-praxis1'), document.getElementById('pp-mh-praxis2')];
+  if (!layers[0] || !layers[1] || !layers[2]) return;
   var cur = 0;
   setInterval(function() {
     layers[cur].classList.remove('active');
