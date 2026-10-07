@@ -804,6 +804,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <input id="idx-tel" type="tel" placeholder="Telefon *" style="width:100%;padding:.8rem 1rem;border:1.5px solid var(--beige-mid);border-radius:12px;font-family:var(--sans);font-size:.9rem;outline:none;">
           <input id="idx-email" type="email" placeholder="E-Mail (optional)" style="width:100%;padding:.8rem 1rem;border:1.5px solid var(--beige-mid);border-radius:12px;font-family:var(--sans);font-size:.9rem;outline:none;">
           <textarea id="idx-hinweis" placeholder="Hinweise (optional)" rows="2" style="width:100%;padding:.8rem 1rem;border:1.5px solid var(--beige-mid);border-radius:12px;font-family:var(--sans);font-size:.9rem;outline:none;resize:none;"></textarea>
+          <!-- Standort-Pflichtfrage (07.10.2026): Anliegen bekommt "Standort: ..." vorne,
+               das Rezeptionsdashboard ordnet die Karte damit der richtigen Offen-Spalte zu. -->
+          <div>
+            <p style="font-size:.85rem;font-weight:500;margin-bottom:.5rem;">Wo möchten Sie behandelt werden? *</p>
+            <div style="display:flex;gap:.5rem;" id="idx-standort-group">
+              <label style="flex:1;display:flex;align-items:center;justify-content:center;gap:.5rem;padding:.7rem;border:1.5px solid var(--beige-mid);border-radius:12px;cursor:pointer;transition:.2s;font-size:.85rem;" onclick="idxSel(this,'idx-standort-group')"><input type="radio" name="idx-standort" value="Stockelsdorf" style="accent-color:var(--rose);"><span>Stockelsdorf</span></label>
+              <label style="flex:1;display:flex;align-items:center;justify-content:center;gap:.5rem;padding:.7rem;border:1.5px solid var(--beige-mid);border-radius:12px;cursor:pointer;transition:.2s;font-size:.85rem;" onclick="idxSel(this,'idx-standort-group')"><input type="radio" name="idx-standort" value="Bad Schwartau" style="accent-color:var(--rose);"><span>Bad Schwartau</span></label>
+            </div>
+          </div>
           <label style="display:flex;align-items:flex-start;gap:.6rem;font-size:.78rem;color:var(--text-mid);cursor:pointer;">
             <input id="idx-dsgvo" type="checkbox" style="accent-color:var(--rose);margin-top:.15rem;flex-shrink:0;">
             Ich stimme der Verarbeitung meiner Daten zur Terminvereinbarung zu. *
@@ -1477,11 +1486,13 @@ function idxBack(s){
 async function idxSubmit(){
   var name=document.getElementById('idx-name').value.trim(),tel=document.getElementById('idx-tel').value.trim(),dsgvo=document.getElementById('idx-dsgvo').checked,errEl=document.getElementById('idx-error');
   if(!name||!tel){errEl.textContent='Bitte Name und Telefon angeben.';errEl.style.display='block';return;}
+  var standortWahl=document.querySelector('input[name="idx-standort"]:checked');
+  if(!standortWahl){errEl.textContent='Bitte wählen Sie Ihren Standort.';errEl.style.display='block';return;}
   if(!dsgvo){errEl.textContent='Bitte Datenschutz zustimmen.';errEl.style.display='block';return;}
   errEl.style.display='none';
   var btn=document.getElementById('idx-submit-btn');btn.textContent='Wird gesendet...';btn.disabled=true;
   var beh=document.querySelector('input[name="idx-beh"]:checked'),rez=document.querySelector('input[name="idx-rez"]:checked'),pat=document.querySelector('input[name="idx-pat"]:checked'),wann=document.querySelector('input[name="idx-wann"]:checked');
-  var msg='Behandlung: '+(beh?beh.value:'-')+' | Rezept: '+(rez?rez.value:'-')+' | Patient: '+(pat?pat.value:'-')+' | Wunschtermin: '+(wann?wann.value:'-')+(document.getElementById('idx-hinweis').value?' | '+document.getElementById('idx-hinweis').value:'');
+  var msg='Standort: '+standortWahl.value+' | Behandlung: '+(beh?beh.value:'-')+' | Rezept: '+(rez?rez.value:'-')+' | Patient: '+(pat?pat.value:'-')+' | Wunschtermin: '+(wann?wann.value:'-')+(document.getElementById('idx-hinweis').value?' | '+document.getElementById('idx-hinweis').value:'');
   try{
     var body=new URLSearchParams();
     body.append('form-name','termin');
