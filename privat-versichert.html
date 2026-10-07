@@ -304,6 +304,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div style="margin-bottom:1rem;"><label style="display:block;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--warm-gray);margin-bottom:.35rem;">Telefon *</label><input id="pv-tel" type="tel" placeholder="0451 ..." style="width:100%;padding:.8rem 1rem;border:1.5px solid var(--beige-mid);border-radius:12px;font-family:var(--sans);font-size:.9rem;outline:none;box-sizing:border-box;"></div>
           <div style="margin-bottom:1rem;"><label style="display:block;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--warm-gray);margin-bottom:.35rem;">E-Mail</label><input id="pv-email" type="email" placeholder="ihre@email.de" style="width:100%;padding:.8rem 1rem;border:1.5px solid var(--beige-mid);border-radius:12px;font-family:var(--sans);font-size:.9rem;outline:none;box-sizing:border-box;"></div>
           <div style="margin-bottom:1rem;"><label style="display:block;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--warm-gray);margin-bottom:.35rem;">Sonstige Hinweise</label><textarea id="pv-hinweis" placeholder="z.B. Beschwerden, bevorzugte Uhrzeit..." style="width:100%;padding:.8rem 1rem;border:1.5px solid var(--beige-mid);border-radius:12px;font-family:var(--sans);font-size:.9rem;outline:none;resize:vertical;min-height:70px;box-sizing:border-box;"></textarea></div>
+          <div style="margin-bottom:1rem;"><label style="display:block;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--warm-gray);margin-bottom:.35rem;">Wo möchten Sie behandelt werden? *</label><div style="display:flex;gap:.5rem;" id="pv-standort-group"><label style="flex:1;display:flex;align-items:center;justify-content:center;gap:.5rem;padding:.7rem;border:1.5px solid var(--beige-mid);border-radius:12px;cursor:pointer;transition:.2s;font-size:.88rem;" onclick="pvSelStandort(this)"><input type="radio" name="pv-standort" value="Stockelsdorf" style="accent-color:var(--rose);">Stockelsdorf</label><label style="flex:1;display:flex;align-items:center;justify-content:center;gap:.5rem;padding:.7rem;border:1.5px solid var(--beige-mid);border-radius:12px;cursor:pointer;transition:.2s;font-size:.88rem;" onclick="pvSelStandort(this)"><input type="radio" name="pv-standort" value="Bad Schwartau" style="accent-color:var(--rose);">Bad Schwartau</label></div></div>
           <div style="display:flex;gap:.75rem;align-items:flex-start;margin-bottom:1.25rem;"><input type="checkbox" id="pv-dsgvo" style="margin-top:4px;accent-color:var(--rose);flex-shrink:0;"><label for="pv-dsgvo" style="font-size:.8rem;color:var(--text-mid);line-height:1.55;">Ich stimme der Verarbeitung meiner Daten zur Terminvereinbarung zu. *</label></div>
           <div id="pv-error" style="display:none;color:#c0392b;font-size:.82rem;margin-bottom:1rem;padding:.7rem 1rem;background:#fdf0f0;border-radius:12px;"></div>
           <button onclick="pvSubmit()" class="btn btn-primary" style="width:100%;" id="pv-submit-btn">Anfrage senden</button>
@@ -354,10 +355,13 @@ async function hsSubmit(fields, formId) {
   const res = await fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: body.toString() });
   return res;
 }
+function pvSelStandort(label){document.querySelectorAll('#pv-standort-group label').forEach(function(l){l.style.borderColor='var(--beige-mid)';l.style.background='#fff';});label.style.borderColor='var(--rose)';label.style.background='var(--rose-light)';}
 let pfEmpfehlung = [];  // in-memory only, kein localStorage - Klarnamen der 4 Empfohlenen
 async function pvSubmit(){
   const name=document.getElementById('pv-name').value.trim(),tel=document.getElementById('pv-tel').value.trim(),dsgvo=document.getElementById('pv-dsgvo').checked,errEl=document.getElementById('pv-error');
   if(!name||!tel){errEl.textContent='Bitte Name und Telefon angeben.';errEl.style.display='block';return;}
+  const standortWahl=document.querySelector('input[name="pv-standort"]:checked');
+  if(!standortWahl){errEl.textContent='Bitte wählen Sie Ihren Standort.';errEl.style.display='block';return;}
   if(!dsgvo){errEl.textContent='Bitte Datenschutz zustimmen.';errEl.style.display='block';return;}
   errEl.style.display='none';const btn=document.getElementById('pv-submit-btn');btn.textContent='Wird gesendet...';btn.disabled=true;
   // ═══ Update 29.07.2026: Anliegen-Text komplett neu aufgebaut (Oliver: "sehr sehr
@@ -369,6 +373,7 @@ async function pvSubmit(){
   // statt "Privatpatient:in". ═══
   const hinweis = document.getElementById('pv-hinweis').value.trim();
   const msgTeile = [];
+  msgTeile.push('Standort: '+standortWahl.value);
   if(hinweis) msgTeile.push(hinweis);
   msgTeile.push('Herkunft: /privat-versichert (Privatversicherte)');
   if(pfEmpfehlung.length) msgTeile.push('Empfohlenes Team (Finder-Ergebnis): '+pfEmpfehlung.join(', ')+' – Anfrage geht an diese Gruppe, wer zuerst frei hat');

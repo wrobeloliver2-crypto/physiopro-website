@@ -66,6 +66,34 @@ function selectRbPrio(label) {
   document.querySelectorAll('#rb-prio-group .radio-opt').forEach(l => l.classList.remove('selected'));
   label.classList.add('selected');
 }
+// Standort-Pflichtfrage im Rückruf-Formular (07.10.2026).
+// Auf der Bad-Schwartau-Seite steht der Standort fest, dort keine Frage;
+// auf allen anderen Seiten wird die Auswahl hier vor der Datenschutz-Zeile
+// eingefügt. Das Anliegen bekommt vorne "Standort: ...", damit das
+// Rezeptionsdashboard die Karte der richtigen Offen-Spalte zuordnet.
+function rbStandortFest() {
+  return physioStandortSuffix() ? 'Bad Schwartau' : '';
+}
+function selectRbStandort(label) {
+  document.querySelectorAll('#rb-standort-group .radio-opt').forEach(l => l.classList.remove('selected'));
+  label.classList.add('selected');
+}
+function rbStandortEinbauen() {
+  const form = document.getElementById('rb-form');
+  if (!form || rbStandortFest() || document.getElementById('rb-standort-group')) return;
+  const dsgvo = form.querySelector('.dsgvo-check');
+  if (!dsgvo) return;
+  const feld = document.createElement('div');
+  feld.className = 'form-field';
+  feld.innerHTML = '<label>Wo möchten Sie behandelt werden? *</label>'
+    + '<div class="radio-group" id="rb-standort-group">'
+    + '<label class="radio-opt" onclick="selectRbStandort(this)"><input type="radio" name="rb-standort" value="Stockelsdorf"><span>Stockelsdorf</span></label>'
+    + '<label class="radio-opt" onclick="selectRbStandort(this)"><input type="radio" name="rb-standort" value="Bad Schwartau"><span>Bad Schwartau</span></label>'
+    + '</div>';
+  dsgvo.parentNode.insertBefore(feld, dsgvo);
+}
+if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', rbStandortEinbauen);
+else rbStandortEinbauen();
 function selectRbThema(btn, thema) {
   document.querySelectorAll('#rb-thema-group button').forEach(b => {
     b.style.background='#fff'; b.style.borderColor='var(--beige-mid)'; b.style.color='var(--text-mid)';
@@ -80,6 +108,9 @@ async function rueckrufSubmit() {
   const prio = document.querySelector('input[name="rb-prio"]:checked');
   const errEl = document.getElementById('rb-error');
   if (!name || !tel) { errEl.textContent = 'Bitte Name und Telefonnummer angeben.'; errEl.style.display='block'; return; }
+  const standortWahl = document.querySelector('input[name="rb-standort"]:checked');
+  const standort = rbStandortFest() || (standortWahl ? standortWahl.value : '');
+  if (!standort && document.getElementById('rb-standort-group')) { errEl.textContent = 'Bitte wählen Sie Ihren Standort.'; errEl.style.display='block'; return; }
   if (!dsgvo) { errEl.textContent = 'Bitte Datenschutz zustimmen.'; errEl.style.display='block'; return; }
   errEl.style.display = 'none';
   const btn = document.getElementById('rb-btn');
@@ -91,7 +122,7 @@ async function rueckrufSubmit() {
     body.append('phone', tel);
     body.append('email', tel.replace(/\D/g,'') + '@rueckruf.physioproluebeck.de');
     const thema = document.getElementById('rb-thema') ? document.getElementById('rb-thema').value : '';
-    body.append('message', (thema ? 'Thema: ' + thema + ' | ' : '') + 'Rückruf | Priorität: ' + (prio ? prio.value : 'nicht angegeben'));
+    body.append('message', (standort ? 'Standort: ' + standort + ' | ' : '') + (thema ? 'Thema: ' + thema + ' | ' : '') + 'Rückruf | Priorität: ' + (prio ? prio.value : 'nicht angegeben'));
     appendUTMs(body);
     const res = await fetch('/', {
       method: 'POST',

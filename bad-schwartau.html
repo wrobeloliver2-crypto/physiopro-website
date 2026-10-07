@@ -1136,7 +1136,7 @@ async function idxSubmit(){
   errEl.style.display='none';
   var btn=document.getElementById('idx-submit-btn');btn.textContent='Wird gesendet...';btn.disabled=true;
   var beh=document.querySelector('input[name="idx-beh"]:checked'),rez=document.querySelector('input[name="idx-rez"]:checked'),standort=document.querySelector('input[name="idx-standort"]:checked'),anfahrt=document.querySelector('input[name="idx-anfahrt"]:checked'),pat=document.querySelector('input[name="idx-pat"]:checked'),wann=document.querySelector('input[name="idx-wann"]:checked');
-  var msg='Behandlung: '+(beh?beh.value:'-')+' | Rezept: '+(rez?rez.value:'-')+' | Standort bekannt: '+(standort?standort.value:'-')+' | Anfahrt bekannt: '+(anfahrt?anfahrt.value:'-')+' | Patient: '+(pat?pat.value:'-')+' | Wunschtermin: '+(wann?wann.value:'-')+(document.getElementById('idx-hinweis').value?' | '+document.getElementById('idx-hinweis').value:'');
+  var msg='Standort: Bad Schwartau | Behandlung: '+(beh?beh.value:'-')+' | Rezept: '+(rez?rez.value:'-')+' | Standort bekannt: '+(standort?standort.value:'-')+' | Anfahrt bekannt: '+(anfahrt?anfahrt.value:'-')+' | Patient: '+(pat?pat.value:'-')+' | Wunschtermin: '+(wann?wann.value:'-')+(document.getElementById('idx-hinweis').value?' | '+document.getElementById('idx-hinweis').value:'');
   try{
     var body=new URLSearchParams();
     body.append('form-name','termin-badschwartau');
